@@ -5,7 +5,7 @@ package Drives "DC drives"
   model DCmotor_ser "DC motor series excited"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.Transient ramp(t_change=0, t_duration=10)
       annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
@@ -49,7 +49,8 @@ package Drives "DC drives"
       annotation (Line(points={{30,0},{30,0}}, color={176,0,0}));
     connect(ramp.y, voltage.vDC_in)
       annotation (Line(points={{-60,20},{-44,20},{-44,0}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>DC machine (series-connected) with load (drive along height-profile).</p>
 <p><i>See for example:</i>
 <pre>
@@ -58,13 +59,16 @@ package Drives "DC drives"
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"), experiment(StopTime=60));
+"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end DCmotor_ser;
 
   model DCmotor_par "DC motor parallel excited"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-60,-20},{-80,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage armVoltage(V_nom=1500)
@@ -72,7 +76,7 @@ package Drives "DC drives"
     PowerSystems.AC1ph_DC.Sensors.Psensor power
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage excVoltage(V_nom=1500)
-      annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
+      annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
     PowerSystems.AC1ph_DC.Drives.DCMpar dcm_par(redeclare model Rotor =
           PowerSystems.Mechanics.Rotational.ElectricRotor (J=6.4), redeclare
         model Motor = PowerSystems.AC1ph_DC.Machines.DCpar (redeclare record
@@ -98,17 +102,18 @@ package Drives "DC drives"
       annotation (Line(points={{-40,-10},{-20,-10}}, color={0,0,255}));
     connect(power.term_n, dcm_par.term)
       annotation (Line(points={{0,-10},{20,-10}}, color={0,0,255}));
-    connect(excVoltage.term, dcm_par.field) annotation (Line(points={{-40,-50},
-            {10,-50},{10,-14},{20,-14}}, color={0,0,255}));
+    connect(excVoltage.term, dcm_par.field) annotation (Line(points={{-40,-40},
+            {10,-40},{10,-14},{20,-14}}, color={0,0,255}));
     connect(grd.term, armVoltage.neutral)
       annotation (Line(points={{-60,-10},{-60,-10}}, color={0,0,255}));
     connect(excVoltage.neutral, armVoltage.neutral)
-      annotation (Line(points={{-60,-50},{-60,-10}}, color={0,0,255}));
+      annotation (Line(points={{-60,-40},{-60,-10}}, color={0,0,255}));
     connect(dcm_par.flange, tabLoad.flange_a)
       annotation (Line(points={{40,-10},{60,-10}}, color={0,0,0}));
     connect(dcm_par.heat, bdCond.heat)
       annotation (Line(points={{30,0},{30,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>DC machine (parallel-connected) with load (drive along height-profile).</p>
 <p><i>See for example:</i>
 <pre>
@@ -116,13 +121,16 @@ package Drives "DC drives"
   tabLoad.vVehicle
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=60));
+</html>"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
   end DCmotor_par;
 
   model DCmotor_pm "DC motor permanent magnet excited"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(V_nom=100)
@@ -146,7 +154,7 @@ package Drives "DC drives"
       startTime=1.5,
       useSupport=false,
       offsetTorque=0)
-      annotation (Placement(transformation(extent={{90,20},{70,40}})));
+      annotation (Placement(transformation(extent={{90,8},{70,28}})));
 
   equation
     connect(grd.term, voltage.neutral)
@@ -162,10 +170,11 @@ package Drives "DC drives"
     connect(loadInertia.flange_b, frictTorq.flange)
       annotation (Line(points={{60,-10},{70,-10}}, color={0,0,0}));
     connect(loadInertia.flange_b, torqueStep.flange) annotation (Line(points={{
-            60,-10},{64,-10},{64,30},{70,30}}, color={0,0,0}));
+            60,-10},{64,-10},{64,18},{70,18}}, color={0,0,0}));
     connect(dcm_pm.heat, efficiency.heat) annotation (Line(points={{20,0},{20,
             10},{-10,10},{-10,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>DC machine (permanent magnet) start-up and step-load.</p>
 <p><i>See for example:</i>
 <pre>
@@ -177,7 +186,10 @@ package Drives "DC drives"
 <p>See also example DCcharSpeed.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"), experiment(StopTime=3));
+"),
+      experiment(StopTime=3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end DCmotor_pm;
 
   model BLDC "Brushless DC motor"
@@ -186,7 +198,7 @@ package Drives "DC drives"
       f_nom=60,
       refType=PowerSystems.Types.ReferenceFrame.Inertial,
       dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=100)
@@ -220,7 +232,7 @@ package Drives "DC drives"
       stepTorque=-10,
       useSupport=false,
       offsetTorque=0)
-      annotation (Placement(transformation(extent={{90,20},{70,40}})));
+      annotation (Placement(transformation(extent={{90,10},{70,30}})));
   equation
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
@@ -237,8 +249,9 @@ package Drives "DC drives"
     connect(loadInertia.flange_b, frictTorq.flange)
       annotation (Line(points={{60,-10},{70,-10}}, color={0,0,0}));
     connect(loadInertia.flange_b, torqueStep.flange) annotation (Line(points={{
-            60,-10},{64,-10},{64,30},{70,30}}, color={0,0,0}));
-    annotation (Documentation(info="<html>
+            60,-10},{64,-10},{64,20},{70,20}}, color={0,0,0}));
+    annotation (
+      Documentation(info="<html>
 <p>Brushless DC machine (permanent magnet synchronous machine) start-up and step-load.</p>
 <p><i>See for example:</i>
 <pre>
@@ -250,13 +263,16 @@ package Drives "DC drives"
 <p>See also example BLDCcharSpeed.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"), experiment(StopTime=3, Tolerance=1e-005));
+"),
+      experiment(StopTime=3, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end BLDC;
 
   model DCcharSpeed "DC pm: torque - speed characteristic"
 
     inner PowerSystems.System system(f_nom=60, dynType=PowerSystems.Types.Dynamics.SteadyState)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=100)
@@ -288,7 +304,8 @@ package Drives "DC drives"
       annotation (Line(points={{20,-10},{40,-10}}, color={0,0,0}));
     connect(machine.heat, efficiency.heat) annotation (Line(points={{10,0},{10,
             10},{-30,10},{-30,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>DC machine (permanent magnet) torque-speed characteristic.</p>
 <p></p>
 <p><i>See for example as a function of phase:</i>
@@ -299,13 +316,16 @@ package Drives "DC drives"
 </pre>
 (right click dcm_pm.motor.w_el and choose Independent variable: w_el).</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Tolerance=1e-005));
+</html>"),
+      experiment(StopTime=1, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end DCcharSpeed;
 
   model BLDCcharSpeed "BLDC: torque - speed characteristic"
 
     inner PowerSystems.System system(f_nom=60, dynType=PowerSystems.Types.Dynamics.SteadyState)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(V_nom=100, pol=0)
@@ -341,7 +361,8 @@ package Drives "DC drives"
       annotation (Line(points={{20,-10},{40,-10}}, color={0,0,0}));
     connect(speedSignal.y, speed.w_in)
       annotation (Line(points={{80,-10},{60,-10}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Brushless DC machine (permanent magnet synchronous machine) torque-speed characteristic.</p>
 <p>This example uses rectangular modulation with constant voltage amplitude and width=2/3, corresponding to 2 phases on, 1 phase off (no additional PWM).</p>
 <p><i>See for example as a function of phase:</i>
@@ -352,7 +373,10 @@ package Drives "DC drives"
 </pre>
 (right click dcm_pm.motor.w_el and choose Independent variable: w_el).</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Tolerance=1e-005));
+</html>"),
+      experiment(StopTime=1, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end BLDCcharSpeed;
 
   annotation (preferredView="info", Documentation(info="<html>

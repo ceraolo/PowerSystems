@@ -6,7 +6,7 @@ package Inverters "Inverters 1 phase and DC"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       t_change=0.1,
       t_duration=0.1,
@@ -66,18 +66,22 @@ package Inverters "Inverters 1 phase and DC"
       annotation (Line(points={{90,10},{90,10}}, color={0,0,255}));
     connect(rectifier.heat, bdCond.heat)
       annotation (Line(points={{20,20},{20,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>1-phase rectifier. Compare 'equation' and 'modular' version.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=0.2e-3));
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Rectifier;
 
   model InverterToLoad "Inverter to load"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage vDC(V_nom=100)
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(
@@ -140,18 +144,22 @@ package Inverters "Inverters 1 phase and DC"
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
     connect(inverter.heat, bdCond.heat)
       annotation (Line(points={{-10,0},{-10,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>1-phase inverter, feeding load at constant 100Hz with increasing amplitude.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=0.2e-3));
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{80,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{80,60}})));
   end InverterToLoad;
 
   model InverterToGrid "Inverter to grid"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage vDC(
       pol=0,
       V_nom=100,
@@ -215,17 +223,21 @@ package Inverters "Inverters 1 phase and DC"
       annotation (Line(points={{-10,-10},{0,-10}}, color={0,0,255}));
     connect(inverter.heat, bdCond.heat)
       annotation (Line(points={{-20,0},{-20,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>3-phase inverter, feeding into grid with increasing phase. Compare 'switch', 'equation' and 'modular' version.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=0.2e-3));
+</html>"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end InverterToGrid;
 
   model InverterAvToGrid "Inverter to grid"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage vDC(
       pol=0,
       V_nom=100,
@@ -284,17 +296,21 @@ package Inverters "Inverters 1 phase and DC"
       annotation (Line(points={{-10,-10},{0,-10}}, color={0,0,255}));
     connect(inverter.heat, bdCond.heat)
       annotation (Line(points={{-20,0},{-20,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>1-phase inverter based on AVERAGED switch-equation, feeding into grid with increasing phase.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=0.2e-3));
+</html>"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end InverterAvToGrid;
 
   model Chopper "Chopper"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage vDC(V_nom=100)
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meterDCin(
@@ -346,11 +362,15 @@ package Inverters "Inverters 1 phase and DC"
       annotation (Line(points={{-20,30},{6,30},{6,0}}, color={0,0,127}));
     connect(chopper.heat, bdCond.heat)
       annotation (Line(points={{0,0},{0,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>One quadrant chopper.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=0.2e-3));
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{80,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{80,40}})));
   end Chopper;
 
   annotation (preferredView="info", Documentation(info="<html>

@@ -5,7 +5,7 @@ package Transformation "Transformation 1 phase"
   model OnePhase "One phase transformer"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100.5,80},{-80.5,100}})));
+      annotation (Placement(transformation(extent={{-100.5,20},{-80.5,40}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(pol=-1)
       annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter1
@@ -21,7 +21,7 @@ package Transformation "Transformation 1 phase"
     PowerSystems.AC1ph_DC.ImpedancesOneTerm.Resistor res(V_nom=10, r=1000)
       annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.AC1ph_DC.Nodes.PolarityGround polGrd(pol=0)
-      annotation (Placement(transformation(extent={{80,-40},{100,-20}})));
+      annotation (Placement(transformation(extent={{80,-34},{100,-14}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-90,-10},{-110,10}})));
 
@@ -37,10 +37,11 @@ package Transformation "Transformation 1 phase"
     connect(meter2.term_n, res.term)
       annotation (Line(points={{60,0},{80,0}}, color={0,0,255}));
     connect(res.term, polGrd.term)
-      annotation (Line(points={{80,0},{80,-30}}, color={0,0,255}));
+      annotation (Line(points={{80,0},{80,-24}}, color={0,0,255}));
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-90,0},{-90,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>The one-phase transformer has fluctuating potential primary and secondary side.<br>
 Both sides have to choose a grounding scheme. In this example grounding is performed<br>
 - for primary side: integrated in the voltage source<br>
@@ -53,13 +54,16 @@ Both sides have to choose a grounding scheme. In this example grounding is perfo
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Transformation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1, Interval=1e-3));
+"),
+      experiment(StopTime=1, Interval=1e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end OnePhase;
 
   model TapChanger "One phase tap changing primary and secondary"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100.5,80},{-80.5,100}})));
+      annotation (Placement(transformation(extent={{-100.5,40},{-80.5,60}})));
     PowerSystems.Control.Relays.TapChangerRelay tapRelay2(
       preset_1={0,0},
       preset_2={0,-1,0,1},
@@ -71,7 +75,7 @@ Both sides have to choose a grounding scheme. In this example grounding is perfo
       preset_1={0,-1,0,1},
       preset_2={0,0},
       t_switch_1={1,2,3}) annotation (Placement(transformation(
-          origin={10,70},
+          origin={10,60},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(pol=-1)
@@ -133,14 +137,15 @@ Both sides have to choose a grounding scheme. In this example grounding is perfo
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-90,0},{-90,0}}, color={0,0,255}));
     connect(tapRelay1.tap_1, trafo1.tap_1_in)
-      annotation (Line(points={{6,60},{6,40}}, color={255,127,0}));
+      annotation (Line(points={{6,50},{6,40}}, color={255,127,0}));
     connect(tapRelay1.tap_2, trafo1.tap_2_in)
-      annotation (Line(points={{14,60},{14,40}}, color={255,127,0}));
+      annotation (Line(points={{14,50},{14,40}}, color={255,127,0}));
     connect(tapRelay2.tap_1, trafo2.tap_1_in)
       annotation (Line(points={{6,-60},{6,-40}}, color={255,127,0}));
     connect(tapRelay2.tap_2, trafo2.tap_2_in)
       annotation (Line(points={{14,-60},{14,-40}}, color={255,127,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>The transformers change either primary or secondary voltage level at times (1,2,3).
 <pre>
   trafo1   primary voltage levels (1, 0.9, 1, 1.1)*V_nom_prim
@@ -155,7 +160,10 @@ Note that the primary voltage source is fixed.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Transformation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=4, Interval=1e-3));
+"),
+      experiment(StopTime=4, Interval=1e-3),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TapChanger;
   annotation (preferredView="info", Documentation(info="<html>
 <p>Transformers one-phase and tap changer control.</p>
