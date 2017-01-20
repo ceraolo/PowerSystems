@@ -5,7 +5,7 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Resistor "Resistor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter Generic.Resistance r=1 "resistance";
+    parameter Types.Generic.Resistance r=1 "resistance";
   protected
     final parameter SI.Resistance R=r*Utilities.Precalculation.baseR(
           puUnits,
@@ -41,7 +41,7 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Conductor "Conductor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter Generic.Conductance g=1 "conductance";
+    parameter Types.Generic.Conductance g=1 "conductance";
   protected
     final parameter SI.Conductance G=g/Utilities.Precalculation.baseR(
           puUnits,
@@ -77,8 +77,8 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Inductor "Inductor with series resistor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter Generic.Resistance r=0 "resistance";
-    parameter Generic.Reactance x=1 "reactance matrix";
+    parameter Types.Generic.Resistance r=0 "resistance";
+    parameter Types.Generic.Reactance x=1 "reactance matrix";
   protected
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
           puUnits,
@@ -133,8 +133,8 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Capacitor "Capacitor with parallel conductor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter Generic.Conductance g=0 "conductance";
-    parameter Generic.Susceptance b=1 "susceptance";
+    parameter Types.Generic.Conductance g=0 "conductance";
+    parameter Types.Generic.Susceptance b=1 "susceptance";
   protected
     final parameter Real[2] GC_base=Utilities.Precalculation.baseGC(
           puUnits,
@@ -204,8 +204,8 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Varistor "Varistor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Resistance r0=100 "small voltage resistance";
-    parameter SIpu.Voltage v0=1 "saturation voltage";
+    parameter Types.Generic.Resistance r0=100 "small voltage resistance";
+    parameter Types.Generic.Voltage v0=1 "saturation voltage";
   protected
     final parameter Real V0=(v0*Utilities.Precalculation.baseV(puUnits, V_nom));
     final parameter Real H0=(r0*Utilities.Precalculation.baseR(
@@ -230,17 +230,17 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
             lineColor={0,0,255},
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid), Line(points={{30,25},{26,2},{-26,-2},
-                {-30,-26}}, color={0,0,0})}),
+                {-30,-26}},color={0,0,0})}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-10,60},{10,-60}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(points={{10,-22},{2,-20},{-2,
-            20},{-10,22}}, color={0,0,0})}));
+            extent={{-10,60},{10,-60}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Line(points={{10,-22},{2,-20},{-2,
+                20},{-10,22}}, color={0,0,0})}));
   end Varistor;
 
   package Partials "Partial models"

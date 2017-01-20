@@ -10,7 +10,7 @@ package Generic "Types for input: e.g. input voltage unit \"V or PU\""
   type ActivePower = Real (final quantity="Power", unit="MW or PU");
   type ApparentPower = Real (final quantity="ApparentPower", unit="MVA or PU");
   type ReactivePower = Real (final quantity="ReactivePower", unit="Mvar or PU");
-  type Resistance = Real (final quantity="Resistance", unit="ohm_ or PU");
+  type Resistance = Real (final quantity="Resistance", unit="ohm or PU");
   type Reactance = Real (final quantity="Reactance", unit="ohm or PU");
   type Impedance = Real (final quantity="Impedance", unit="ohm or PU");
   type Inductance = Real (final quantity="Inductance", unit="H or PU");
