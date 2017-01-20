@@ -17,6 +17,12 @@ Power systems has two kinds of models: Generic and Other. The latter come from t
  Tools use the size of the model's sheet to choose the display default size of the models. Tools (e.g. Dymola and OpenModelica) as default arrange things so that everything in the shett is visible. So, If models have large blank parts, then important parts of the diagram are smaller than necessary, often tiny. This is particular important when in Dymola's simulation mode the model diagram is displayed.
   Blank parts will be thus progressively eliminated to enhance model's display in tools, at least those mentioned above.
 
+3) THE PU SYSTEM
+The p.u. System is largely used in Power System Analysis, and in power system components databases. Therefore, the Power Systems library supplies support for this.
+Note that, due to the current Modelica standard, the units of measure of plotted quantities are unable to make this distinction. Therefore, for instance, a voltage will always be shown as having as unit “V/V”, whether it is actually p.u. or S.I.
+This is especially tricky when input parameters must be introduced. Take for instance AC3ph.Lines.Parameters.RXline. resistances and reactances are shown to be introduced in Ohm/Ohm or Ohm/(V.V/VA) whether puUnits is true or false.
+To alleviate this, this ticket modifies input dialog boxes to show that the user has two units of measure. For instance the unit of measure in AC4ph.Impedances.Inductor will ve "ohm or p.u." This is clearer for the user instead of having "Ohm/Ohm" (even if they are actually ohm's when input is in SI). As a drawback this imposes units of measure that are not good Modelica code, and may cause warning.
+
 
 The writer of these notes, as well as all the changes that will be made in this repository is
 Massimo Ceraolo - massimo.ceraolo@unipi.it
