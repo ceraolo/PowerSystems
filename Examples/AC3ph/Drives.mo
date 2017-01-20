@@ -6,7 +6,7 @@ package Drives "AC drives, dq0"
     "AC asynchronous machine: torque - slip characteristic"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.SteadyState)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-60,-20},{-80,0}})));
     PowerSystems.AC3ph.Sources.Voltage voltage(V_nom=400)
@@ -40,7 +40,9 @@ package Drives "AC drives, dq0"
       annotation (Line(points={{-40,-10},{-20,-10}}, color={0,120,120}));
     connect(speedSignal.y, speed.w_in)
       annotation (Line(points={{58,-10},{40,-10}}, color={0,0,127}));
-    annotation (experiment(StopTime=1), Documentation(info="<html>
+    annotation (
+      experiment(StopTime=1),
+      Documentation(info="<html>
 <p>Steady-state simulation to produce motor characteristic 'torque vs slip'.<br>
 <pre>
   asm.torque         motor mechanical torque
@@ -53,13 +55,15 @@ package Drives "AC drives, dq0"
 <p>Plot torque vs slip:<br>
 plot 'asm.torque', then right-click 'asm.motor.slip' and choose 'Independent variable': 'asm.motor.slip'.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"));
+</html>"),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ASMcharacteristic;
 
   model ASM_Y_D "AC asynchronous machine Y-Delta switcheable"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC3ph.Sources.Voltage voltage(V_nom=400, v0=1)
@@ -98,7 +102,8 @@ plot 'asm.torque', then right-click 'asm.motor.slip' and choose 'Independent var
       annotation (Line(points={{-30,-10},{-10,-10}}, color={0,120,120}));
     connect(asm_Y_D.heat, bdCond.heat)
       annotation (Line(points={{0,0},{0,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Asynchron machine, Y-Delta switcheable, start-up.</p>
 <p><i>See for example:</i>
 <pre>
@@ -111,14 +116,17 @@ plot 'asm.torque', then right-click 'asm.motor.slip' and choose 'Independent var
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"), experiment(StopTime=3));
+"),
+      experiment(StopTime=3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ASM_Y_D;
 
   model ASMav
     "AC asynchronous machine, voltage controlled with average inverter"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Synchron)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*6000)
@@ -174,7 +182,8 @@ Compare 'transient' and 'steady-state' mode.</p>
       annotation (Line(points={{40,0},{40,0}}, color={176,0,0}));
     connect(inverter.heat, bdCond2.heat)
       annotation (Line(points={{-40,0},{-40,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Asynchron machine with load (drive along height-profile), on-load steady-state start.<br>
 The model uses a time-average inverter. With the actual parameter values the 'inverter' corresponds exactly to an AC voltage source of 3kV.</p>
 <p><i>See for example:</i>
@@ -186,17 +195,20 @@ The model uses a time-average inverter. With the actual parameter values the 'in
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"), experiment(
+"),
+      experiment(
         StopTime=60,
         Interval=5e-2,
-        Tolerance=1e-006));
+        Tolerance=1e-006),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ASMav;
 
   model ASMav_icontrol
     "AC asynchronous machine, current controlled with average inverter"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Synchron)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-40},{-60,-20}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*6000)
@@ -234,7 +246,7 @@ Compare 'transient' and 'steady-state' mode.</p>
       s_end=0.36,
       t_change=30,
       t_duration=60) "phase of modulation signal"
-      annotation (Placement(transformation(extent={{-70,30},{-50,50}})));
+      annotation (Placement(transformation(extent={{-40,30},{-20,50}})));
     Modelica.Blocks.Continuous.LimPID PI_i_q(
       Td=0.1,
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
@@ -254,14 +266,15 @@ Compare 'transient' and 'steady-state' mode.</p>
     connect(i_q.y, PI_i_q.u_s)
       annotation (Line(points={{-70,10},{-52,10}}, color={0,0,127}));
     connect(i_d.y, asm_ctrl.i_act[1])
-      annotation (Line(points={{-50,40},{16,40},{16,-19.5}}, color={0,0,127}));
+      annotation (Line(points={{-20,40},{16,40},{16,-19.5}}, color={0,0,127}));
     connect(asm_ctrl.i_meas[2], PI_i_q.u_m) annotation (Line(points={{4,-19.5},
             {4,-12},{-40,-12},{-40,-2}}, color={0,0,127}));
     connect(PI_i_q.y, asm_ctrl.i_act[2])
       annotation (Line(points={{-29,10},{16,10},{16,-20.5}}, color={0,0,127}));
     connect(asm_ctrl.heat, bdCond.heat)
       annotation (Line(points={{10,-20},{10,-20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Current (torque) controlled asynchron machine with load (drive along height-profile), steady-state start, torque-increase after start.<br>
 The model uses a time-average inverter. For comparison with the previous example 'ASMav'.</p>
 <p><i>See for example:</i>
@@ -272,16 +285,19 @@ The model uses a time-average inverter. For comparison with the previous example
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"), experiment(
+"),
+      experiment(
         StopTime=60,
         Interval=5e-2,
-        Tolerance=1e-006));
+        Tolerance=1e-006),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end ASMav_icontrol;
 
   model ASM "AC asynchronous machine, voltage controlled"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*6000)
@@ -339,7 +355,8 @@ Compare 'transient' and 'steady-state' mode.</p>
       annotation (Line(points={{40,0},{40,0}}, color={176,0,0}));
     connect(inverter.heat, bdCond2.heat)
       annotation (Line(points={{-40,0},{-40,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Asynchron machine with load (drive along height-profile), on-load transient start.<br>
 The machine defines the reference-system independent of the system choice (as needed for example in hardware-in-the-loop simulation). This model uses a switched inverter.</p>
 <p><i>See for example:</i>
@@ -349,14 +366,17 @@ The machine defines the reference-system independent of the system choice (as ne
   asm.motor.tau_el  electric torque
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Tolerance=1e-005));
+</html>"),
+      experiment(StopTime=1, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ASM;
 
   model SM_ctrlAv
     "AC synchronous pm machine, current controlled with average inverter"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-40},{-60,-20}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*2*
@@ -391,7 +411,7 @@ The machine defines the reference-system independent of the system choice (as ne
       t_change=3,
       s_start=0,
       s_end=0) "phase of modulation signal"
-      annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
     Modelica.Blocks.Continuous.LimPID PI_i_q(
       Ti=0.2,
       Td=0.1,
@@ -421,8 +441,9 @@ The machine defines the reference-system independent of the system choice (as ne
     connect(PI_i_q.y, sm_ctrl.i_act[2])
       annotation (Line(points={{-39,20},{16,20},{16,-20.5}}, color={0,0,127}));
     connect(i_d.y, sm_ctrl.i_act[1])
-      annotation (Line(points={{-60,50},{16,50},{16,-19.5}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{0,50},{16,50},{16,-19.5}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p>Field oriented control of pm synchronous machine with time-average inverter. The first component of i_dq controls 'field', the second controls 'torque' at constant 'field'.<br>
 For pm machine (psi_pm &gt;  0, x_d = x_q) i_d can be set to zero. For reluctance machines (psi_pm = 0, x_d &gt;  x_q) i_d must have a positive value.</p>
 On-load steady-state start with torque-increase at 3 s and load-step 6 s.</p>
@@ -434,13 +455,16 @@ On-load steady-state start with torque-increase at 3 s and load-step 6 s.</p>
   loadInertia.w
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=10));
+</html>"),
+      experiment(StopTime=10),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end SM_ctrlAv;
 
   model SM_ctrl "AC synchronous pm machine, current controlled"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-40},{-60,-20}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*2*
@@ -482,7 +506,7 @@ On-load steady-state start with torque-increase at 3 s and load-step 6 s.</p>
       yMax=1) annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
     PowerSystems.Blocks.Signals.Transient i_d(s_start=0, s_end=0)
       "phase of modulation signal"
-      annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
 
   equation
     connect(sm_ctrl.heat, bdCond.heat)
@@ -504,8 +528,9 @@ On-load steady-state start with torque-increase at 3 s and load-step 6 s.</p>
     connect(PI_i_q.y, sm_ctrl.i_act[2])
       annotation (Line(points={{-39,20},{16,20},{16,-20.5}}, color={0,0,127}));
     connect(i_d.y, sm_ctrl.i_act[1])
-      annotation (Line(points={{-60,50},{16,50},{16,-19.5}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{0,50},{16,50},{16,-19.5}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p>Field oriented control of pm synchronous machine with modulated inverter. The first component of i_dq controls 'field', the second controls 'torque' at constant 'field'.<br>
 For pm machine (psi_pm &gt;  0, x_d = x_q) i_d can be set to zero. For reluctance machines (psi_pm = 0, x_d &gt;  x_q) i_d must have a positive value.</p>
 Transient start with torque-increase at 0.5 s and load-step 2 s.</p>
@@ -517,14 +542,17 @@ Transient start with torque-increase at 0.5 s and load-step 2 s.</p>
   loadInertia.w
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=3, Tolerance=1e-005));
+</html>"),
+      experiment(StopTime=3, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end SM_ctrl;
 
   model ASM_ctrlAv
     "AC asynchronous machine, current controlled with average inverter"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-40},{-60,-20}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*2*
@@ -561,7 +589,7 @@ Transient start with torque-increase at 0.5 s and load-step 2 s.</p>
       t_change=8,
       s_end=0.45,
       s_start=0.35) "phase of modulation signal"
-      annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+      annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
     Modelica.Blocks.Continuous.LimPID PI_i_q(
       Td=0.1,
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
@@ -591,8 +619,9 @@ Transient start with torque-increase at 0.5 s and load-step 2 s.</p>
     connect(PI_i_q.y, asm_ctrl.i_act[2])
       annotation (Line(points={{-39,20},{16,20},{16,-20.5}}, color={0,0,127}));
     connect(i_d.y, asm_ctrl.i_act[1])
-      annotation (Line(points={{-60,50},{16,50},{16,-19.5}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-20,50},{16,50},{16,-19.5}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p>Field oriented control of asynchronous machine with time-average inverter. The first component of i_dq controls 'field', the second controls 'torque' at constant 'field'.</p>
 On-load steady-state start with torque-increase at 3 s, load-step 6 s and field-increase at 8 s.</p>
 <p><i>See for example:</i>
@@ -604,13 +633,16 @@ On-load steady-state start with torque-increase at 3 s, load-step 6 s and field-
 </pre></p>
 Check vPhasor[1] &lt;  1.<br>The time-average inverter produces a desired voltage proportional to vPhasor[1] even if vPhasor[1] &gt;  1. For a time-resolved converter this corresponds to overmodulation.
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=10, Interval=0.001));
+</html>"),
+      experiment(StopTime=10, Interval=0.001),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end ASM_ctrlAv;
 
   model ASM_ctrl "AC asynchronous machine, current controlled"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-40},{-60,-20}})));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(pol=0, V_nom=sqrt(2/3)*2*
@@ -656,7 +688,7 @@ Check vPhasor[1] &lt;  1.<br>The time-average inverter produces a desired voltag
       t_change=2.5,
       t_duration=0.5,
       s_start=0.35) "phase of modulation signal"
-      annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+      annotation (Placement(transformation(extent={{-30,40},{-10,60}})));
 
   equation
     connect(asm_ctrl.heat, bdCond.heat)
@@ -678,8 +710,9 @@ Check vPhasor[1] &lt;  1.<br>The time-average inverter produces a desired voltag
     connect(PI_i_q.y, asm_ctrl.i_act[2])
       annotation (Line(points={{-39,20},{16,20},{16,-20.5}}, color={0,0,127}));
     connect(i_d.y, asm_ctrl.i_act[1])
-      annotation (Line(points={{-60,50},{16,50},{16,-19.5}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-10,50},{16,50},{16,-19.5}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p>Field oriented control of asynchronous machine with modulated inverter. The first component of i_dq controls 'field', the second controls 'torque' at constant 'field'.</p>
 Transient start with torque-increase at 0.5 s, load-step 2 s and field-increase at 2.5 s.</p>
 <p><i>See for example:</i>
@@ -690,7 +723,10 @@ Transient start with torque-increase at 0.5 s, load-step 2 s and field-increase 
   asm_ctrl.motor.slip
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
-</html>"), experiment(StopTime=3, Tolerance=1e-005));
+</html>"),
+      experiment(StopTime=3, Tolerance=1e-005),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end ASM_ctrl;
 
   annotation (preferredView="info", Documentation(info="<html>
