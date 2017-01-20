@@ -4,19 +4,19 @@ package Turbines "Turbine example data"
 
   record SteamTurboGroup1200MW "Steam turbo-group, example"
     extends PowerSystems.Mechanics.TurboGroups.Parameters.SteamTurboGroup(
-     w_nom(displayUnit="rpm")=314.15926535898,
-     P_nom={480e6,240e6,240e6,240e6},
-     J_turb={20000,200000,200000,200000},
-     J_gen=62000,
-     J_aux={460,830},
-     stiff={260,355,750,750,750,220}*1e6);
+      w_nom(displayUnit="rpm") = 314.15926535898,
+      P_nom={480e6,240e6,240e6,240e6},
+      J_turb={20000,200000,200000,200000},
+      J_gen=62000,
+      J_aux={460,830},
+      stiff={260,355,750,750,750,220}*1e6);
     annotation (defaultComponentPrefixes="parameter");
   end SteamTurboGroup1200MW;
 
   record GasTurbineGear "Small GT with gear, example"
     extends PowerSystems.Mechanics.TurboGroups.Parameters.GasTurbineGear(
       w_nom=1576.7653528367,
-      P_nom={12, -2}*1e6,
+      P_nom={12,-2}*1e6,
       J_turb=40,
       J_comp=50,
       J_gear1={0.6,12},
@@ -62,7 +62,6 @@ package Turbines "Turbine example data"
       stiff_sh={16,1}*1e4);
     annotation (defaultComponentPrefixes="parameter");
   end WindTurbineGear;
-   annotation (preferredView="info",
- Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 </html>"));
 end Turbines;

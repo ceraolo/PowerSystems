@@ -9,12 +9,12 @@ package Semiconductors "Breaker example data"
       eps={1e-4,1e-4},
       Vf=1,
       Hsw_nom=2e-3,
-      cT_loss=fill(0,0),
+      cT_loss=fill(0, 0),
       T0_loss=300);
-    annotation (defaultComponentName="idealSC100_10",
+    annotation (
+      defaultComponentName="idealSC100_10",
       defaultComponentPrefixes="parameter",
-      Documentation(
-            info="<html>
+      Documentation(info="<html>
 </html>"));
   end IdealSC100V_10A;
 
@@ -25,12 +25,12 @@ package Semiconductors "Breaker example data"
       eps={1e-4,1e-4},
       Vf=2.5,
       Hsw_nom=0.25,
-      cT_loss=fill(0,0),
+      cT_loss=fill(0, 0),
       T0_loss=300);
-    annotation (defaultComponentName="idealSC1k_100",
+    annotation (
+      defaultComponentName="idealSC1k_100",
       defaultComponentPrefixes="parameter",
-      Documentation(
-            info="<html>
+      Documentation(info="<html>
 </html>"));
   end IdealSC1kV_100A;
 
@@ -43,14 +43,13 @@ package Semiconductors "Breaker example data"
       Hsw_nom=5,
       cT_loss={0.005},
       T0_loss=300);
-    annotation (defaultComponentName="idealSC3k_500",
+    annotation (
+      defaultComponentName="idealSC3k_500",
       defaultComponentPrefixes="parameter",
-      Documentation(
-            info="<html>
+      Documentation(info="<html>
 </html>"));
   end IdealSC3kV_500A;
 
-  annotation (preferredView="info",
-    Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 </html>"));
 end Semiconductors;

@@ -2,102 +2,102 @@ within PowerSystems.Examples.Data;
 package Machines "Machine example data"
   extends Modelica.Icons.MaterialPropertiesPackage;
 
-record DCser1500V_1p5MVA "DC machine series excited, example"
-  extends PowerSystems.AC1ph_DC.Machines.Parameters.DCser(
-    pp=2,
-    l_fd=0.15,
-    r_fd=0.01,
-    l_q=0.5,
-    r_q=0.05,
-    puUnits=true,
-    V_nom=1500,
-    S_nom=1.5e6,
-    w_nom=157.079632679489661923);
-  annotation (defaultComponentPrefixes="parameter");
-end DCser1500V_1p5MVA;
+  record DCser1500V_1p5MVA "DC machine series excited, example"
+    extends PowerSystems.AC1ph_DC.Machines.Parameters.DCser(
+      pp=2,
+      l_fd=0.15,
+      r_fd=0.01,
+      l_q=0.5,
+      r_q=0.05,
+      puUnits=true,
+      V_nom=1500,
+      S_nom=1.5e6,
+      w_nom=157.079632679489661923);
+    annotation (defaultComponentPrefixes="parameter");
+  end DCser1500V_1p5MVA;
 
-record DCpar1500V_1p5MVA "DC machine parallel excited, example"
-  extends PowerSystems.AC1ph_DC.Machines.Parameters.DCpar(
-    pp=2,
-    l_fd=100*pi,
-    r_fd=100,
-    l_q=0.5,
-    r_q=0.05,
-    puUnits=true,
-    V_nom=1500,
-    S_nom=1.5e6,
-    w_nom=157.079632679489661923,
-    Vf_nom=1500);
-  annotation (defaultComponentPrefixes="parameter");
-end DCpar1500V_1p5MVA;
+  record DCpar1500V_1p5MVA "DC machine parallel excited, example"
+    extends PowerSystems.AC1ph_DC.Machines.Parameters.DCpar(
+      pp=2,
+      l_fd=100*pi,
+      r_fd=100,
+      l_q=0.5,
+      r_q=0.05,
+      puUnits=true,
+      V_nom=1500,
+      S_nom=1.5e6,
+      w_nom=157.079632679489661923,
+      Vf_nom=1500);
+    annotation (defaultComponentPrefixes="parameter");
+  end DCpar1500V_1p5MVA;
 
-record DCpm100V_1kVA "DC machine permanent magnet excited, example"
-  extends PowerSystems.AC1ph_DC.Machines.Parameters.DCpm(
-    pp=2,
-    l_aq=0.5,
-    r_aq=0.05,
-    puUnits=true,
-    V_nom(displayUnit="V")=100,
-    S_nom(displayUnit="kVA")=1e3,
-    w_nom=157.079632679489661923);
-  annotation (defaultComponentPrefixes="parameter");
-end DCpm100V_1kVA;
+  record DCpm100V_1kVA "DC machine permanent magnet excited, example"
+    extends PowerSystems.AC1ph_DC.Machines.Parameters.DCpm(
+      pp=2,
+      l_aq=0.5,
+      r_aq=0.05,
+      puUnits=true,
+      V_nom(displayUnit="V") = 100,
+      S_nom(displayUnit="kVA") = 1e3,
+      w_nom=157.079632679489661923);
+    annotation (defaultComponentPrefixes="parameter");
+  end DCpm100V_1kVA;
 
-record BLDC100V_1kVA
+  record BLDC100V_1kVA
     "BLDC machine (= synchronous pm, 3rd order model), example pu-units"
-  extends PowerSystems.AC3ph.Machines.Parameters.Synchron3rd(
-    puUnits=true,
-    V_nom(displayUnit="V")=100*sqrt(3/2)/2,
-    S_nom(displayUnit="kVA")=1e3,
-    f_nom=60,
-    neu_iso=false,
-    pp=2,
-    final excite=2,
-    psi_pm(unit="1")=1.2,
-    x_d=0.4,
-    x_q=0.4,
-    x_0=0.1,
-    r_s=0.05,
-    r_n=1);
-  annotation (defaultComponentName="bldc100_1k",
-    defaultComponentPrefixes="parameter",
-    Documentation(
-          info="<html>
+    extends PowerSystems.AC3ph.Machines.Parameters.Synchron3rd(
+      puUnits=true,
+      V_nom(displayUnit="V") = 100*sqrt(3/2)/2,
+      S_nom(displayUnit="kVA") = 1e3,
+      f_nom=60,
+      neu_iso=false,
+      pp=2,
+      final excite=2,
+      psi_pm(unit="1") = 1.2,
+      x_d=0.4,
+      x_q=0.4,
+      x_0=0.1,
+      r_s=0.05,
+      r_n=1);
+    annotation (
+      defaultComponentName="bldc100_1k",
+      defaultComponentPrefixes="parameter",
+      Documentation(info="<html>
 <p>The relation between source DC voltage V_dc and nominal 3-phase voltage of the synchronous machine V_nom is given by
 <pre>  V_nom = V_dc*sqrt(3/2)/2</pre>
 Note that V_nom is only used, if impedance values x and r are given in pu.<br>
 f_nom is needed to relate impedance x and inductance L values.</p>
 </html>
 "));
-end BLDC100V_1kVA;
+  end BLDC100V_1kVA;
 
-record BLDC100V_1kVA_SI
+  record BLDC100V_1kVA_SI
     "BLDC machine (= synchronous pm, 3rd order model), example SI-units"
-  extends PowerSystems.AC3ph.Machines.Parameters.Synchron3rd(
-    puUnits=false,
-    V_nom(displayUnit="V")=100*sqrt(3/2)/2,
-    S_nom(displayUnit="kVA")=1e3,
-    f_nom=60,
-    neu_iso=false,
-    pp=2,
-    final excite=2,
-    psi_pm(unit="1")=1.2,
-    x_d=1.5,
-    x_q=1.5,
-    x_0=0.375,
-    r_s=0.1875,
-    r_n=1);
-  annotation (defaultComponentName="bldc100_1k_SI",
-    defaultComponentPrefixes="parameter",
-    Documentation(
-          info="<html>
+    extends PowerSystems.AC3ph.Machines.Parameters.Synchron3rd(
+      puUnits=false,
+      V_nom(displayUnit="V") = 100*sqrt(3/2)/2,
+      S_nom(displayUnit="kVA") = 1e3,
+      f_nom=60,
+      neu_iso=false,
+      pp=2,
+      final excite=2,
+      psi_pm(unit="1") = 1.2,
+      x_d=1.5,
+      x_q=1.5,
+      x_0=0.375,
+      r_s=0.1875,
+      r_n=1);
+    annotation (
+      defaultComponentName="bldc100_1k_SI",
+      defaultComponentPrefixes="parameter",
+      Documentation(info="<html>
 <p>The relation between source DC voltage V_dc and nominal 3-phase voltage of the synchronous machine V_nom is given by
 <pre>  V_nom = V_dc*sqrt(3/2)/2</pre>
 Note that V_nom is only used, if impedance values x and r are given in pu.<br>
 f_nom is needed to relate impedance x and inductance L values.</p>
 </html>
 "));
-end BLDC100V_1kVA_SI;
+  end BLDC100V_1kVA_SI;
 
   record Asynchron400V_30kVA "Asynchronous machine, example"
     extends PowerSystems.AC3ph.Machines.Parameters.Asynchron(
@@ -117,8 +117,8 @@ end BLDC100V_1kVA_SI;
       xsig_r={0.1},
       r_r={0.04},
       puUnits=true,
-      V_nom(displayUnit="V")=400,
-      S_nom(displayUnit="kVA")=30e3,
+      V_nom(displayUnit="V") = 400,
+      S_nom(displayUnit="kVA") = 30e3,
       f_nom=50);
     annotation (defaultComponentPrefixes="parameter");
   end Asynchron400V_30kVA;
@@ -134,12 +134,12 @@ end BLDC100V_1kVA_SI;
       n_r=2,
       transDat=true,
       use_xtr=true,
-      xtr={0.1, 0.075},
-      tc={0.014, 0.4e-3},
-      to={0.4, 2.8e-3},
+      xtr={0.1,0.075},
+      tc={0.014,0.4e-3},
+      to={0.4,2.8e-3},
       xsig_s=0.05,
-      xsig_r={0.0529633, 0.0481803},
-      r_r={0.0234304, 0.580595},
+      xsig_r={0.0529633,0.0481803},
+      r_r={0.0234304,0.580595},
       puUnits=true,
       V_nom=3000,
       S_nom=1.5e6,
@@ -159,8 +159,8 @@ end BLDC100V_1kVA_SI;
       r_s=0.03,
       r_n=1,
       puUnits=true,
-      V_nom(displayUnit="V")=400,
-      S_nom(displayUnit="kVA")=30e3,
+      V_nom(displayUnit="V") = 400,
+      S_nom(displayUnit="kVA") = 30e3,
       f_nom=50);
     annotation (defaultComponentPrefixes="parameter");
   end Synchron3rd_pm400V_30kVA;
@@ -194,8 +194,8 @@ end BLDC100V_1kVA_SI;
       r_rd={0.04},
       r_rq={0.04},
       puUnits=true,
-      V_nom(displayUnit="V")=400,
-      S_nom(displayUnit="kVA")=30e3,
+      V_nom(displayUnit="V") = 400,
+      S_nom(displayUnit="kVA") = 30e3,
       f_nom=50,
       If_nom=0);
     annotation (defaultComponentPrefixes="parameter");
@@ -212,8 +212,8 @@ end BLDC100V_1kVA_SI;
       r_s=0.03,
       r_n=1,
       puUnits=true,
-      V_nom(displayUnit="V")=560,
-      S_nom(displayUnit="kVA")=100e3,
+      V_nom(displayUnit="V") = 560,
+      S_nom(displayUnit="kVA") = 100e3,
       f_nom=400);
     annotation (defaultComponentPrefixes="parameter");
   end Synchron3rd_pm560V_100kVA;
@@ -247,8 +247,8 @@ end BLDC100V_1kVA_SI;
       r_rd={0.03},
       r_rq={0.03},
       puUnits=true,
-      V_nom(displayUnit="V")=560,
-      S_nom(displayUnit="kVA")=100e3,
+      V_nom(displayUnit="V") = 560,
+      S_nom(displayUnit="kVA") = 100e3,
       f_nom=400,
       If_nom=0);
     annotation (defaultComponentPrefixes="parameter");
@@ -282,22 +282,22 @@ end BLDC100V_1kVA_SI;
       r_n=1,
       transDat=true,
       use_xtr=true,
-      xtr_d={0.361123, 0.283696},
-      xtr_q={0.464817, 0.303593},
-      tc_d={0.93133, 0.0253919},
-      tc_q={0.270197, 0.041458},
-      to_d={5.94309, 0.0321197},
-      to_q={1.207780, 0.0595723},
+      xtr_d={0.361123,0.283696},
+      xtr_q={0.464817,0.303593},
+      tc_d={0.93133,0.0253919},
+      tc_q={0.270197,0.041458},
+      to_d={5.94309,0.0321197},
+      to_q={1.207780,0.0595723},
       use_if0=true,
       if0=0.286,
       alpha_if0=-0.97738438111682,
       tol=1e-6,
       xsig_s=0.2,
-      xsig_rd={0.1294, 0.03498},
-      xsig_rq={0.3948, 0.1527},
+      xsig_rd={0.1294,0.03498},
+      xsig_rq={0.3948,0.1527},
       xm_d={0.05965},
-      r_rd={1.321e-3, 14.38e-3},
-      r_rq={7.037e-3, 20.38e-3},
+      r_rd={1.321e-3,14.38e-3},
+      r_rq={7.037e-3,20.38e-3},
       puUnits=true,
       V_nom=20e3,
       S_nom=1200e6,
@@ -334,22 +334,22 @@ end BLDC100V_1kVA_SI;
       r_n=1,
       transDat=true,
       use_xtr=true,
-      xtr_d={0.3290, 0.253},
-      xtr_q={0.436, 0.2730},
-      tc_d={0.7158, 0.02058},
-      tc_q={0.2134, 0.03320},
-      to_d={4.164, 0.02658},
-      to_q={0.9307, 0.04936},
+      xtr_d={0.3290,0.253},
+      xtr_q={0.436,0.2730},
+      tc_d={0.7158,0.02058},
+      tc_q={0.2134,0.03320},
+      to_d={4.164,0.02658},
+      to_q={0.9307,0.04936},
       use_if0=true,
       if0=0.835428,
       alpha_if0=-1.7910219718115,
       tol=1e-6,
       xsig_s=0.17,
-      xsig_rd={0.1294, 0.03498},
-      xsig_rq={0.3948, 0.1527},
+      xsig_rd={0.1294,0.03498},
+      xsig_rq={0.3948,0.1527},
       xm_d={0.05965},
-      r_rd={1.321e-3, 14.38e-3},
-      r_rq={7.037e-3, 20.38e-3},
+      r_rd={1.321e-3,14.38e-3},
+      r_rq={7.037e-3,20.38e-3},
       puUnits=true,
       V_nom=26e3,
       S_nom=720e6,
@@ -375,8 +375,7 @@ end BLDC100V_1kVA_SI;
     annotation (defaultComponentPrefixes="parameter");
   end SynchronIso20kV_500MVA;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Note: a correct value for S_nom is only needed, if you choose input in pu-units. In this case the 'nominal' values are chosen as base-values. For SI-units S_nom is not used. Nevertheless it must be defined. V_nom however is used to define voltage start values.</p>
 </html>"));
 end Machines;
