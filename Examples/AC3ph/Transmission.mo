@@ -5,42 +5,43 @@ package Transmission "AC transmission, dq0"
   model PowerTransfer "Power transfer between two nodes"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       t_change=30,
       t_duration=60,
       ph_end=2*pi,
       ph_start=0)
-      annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
+      annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
+      annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
     PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
           PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=130e3, S_nom=100e6),
         len=100e3)
-      annotation (Placement(transformation(extent={{20,0},{40,20}})));
+      annotation (Placement(transformation(extent={{18,-10},{38,10}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{-20,0},{0,20}})));
+      annotation (Placement(transformation(extent={{-22,-10},{-2,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus2(V_nom=130e3)
-      annotation (Placement(transformation(extent={{80,0},{60,20}})));
+      annotation (Placement(transformation(extent={{78,-10},{58,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-60,0},{-80,20}})));
+      annotation (Placement(transformation(extent={{-62,-10},{-82,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{80,0},{100,20}})));
+      annotation (Placement(transformation(extent={{78,-10},{98,10}})));
 
   equation
     connect(transPh.y, infBus1.vPhasor_in)
-      annotation (Line(points={{-60,30},{-44,30},{-44,20}}, color={0,0,127}));
+      annotation (Line(points={{-62,20},{-46,20},{-46,10}}, color={0,0,127}));
     connect(infBus1.term, sensor.term_p)
-      annotation (Line(points={{-40,10},{-20,10}}, color={0,110,110}));
+      annotation (Line(points={{-42,0},{-22,0}}, color={0,110,110}));
     connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{0,10},{20,10}}, color={0,110,110}));
+      annotation (Line(points={{-2,0},{18,0}}, color={0,110,110}));
     connect(line.term_n, infBus2.term)
-      annotation (Line(points={{40,10},{60,10}}, color={0,110,110}));
+      annotation (Line(points={{38,0},{58,0}}, color={0,110,110}));
     connect(grd1.term, infBus1.neutral)
-      annotation (Line(points={{-60,10},{-60,10}}, color={0,0,255}));
+      annotation (Line(points={{-62,0},{-62,0}}, color={0,0,255}));
     connect(grd2.term, infBus2.neutral)
-      annotation (Line(points={{80,10},{80,10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>Shows the influence of phase-difference on power flow.<br>
 Alternatively one can look at a variation of amplitude ratios.</p>
 <p><i>See for example:</i>
@@ -50,7 +51,10 @@ Alternatively one can look at a variation of amplitude ratios.</p>
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=60));
+"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end PowerTransfer;
 
   model VoltageStability "Voltage stability"
@@ -138,7 +142,8 @@ Alternatively one can look at a variation of amplitude ratios.</p>
       annotation (Line(points={{-80,-30},{-80,-30}}, color={0,0,255}));
     connect(infBus.neutral, grd4.term)
       annotation (Line(points={{60,10},{60,10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Power flow between source and infinite bus. The bus-voltage decreases from 1 to 0.
 <pre>
   stable:     voltage above extremal point (maximum p[1])
@@ -150,13 +155,16 @@ Alternatively one can look at a variation of amplitude ratios.</p>
   meter1/2/3.p[1] as independent variable.
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>"), experiment(StopTime=180, Interval=180e-3));
+</html>"),
+      experiment(StopTime=180, Interval=180e-3),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,100}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,100}})));
   end VoltageStability;
 
   model RXline "Single lumped line"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(
       V_nom=400e3,
       v0=1.04,
@@ -204,20 +212,24 @@ Alternatively one can look at a variation of amplitude ratios.</p>
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
     connect(infBus2.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Short-time line switched off.<br>
 Compare with PIline.</p>
 <p><i>See for example:</i>
 <pre>  meter.p[1:2]     active and reactive power</pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end RXline;
 
   model Tline "Single PI-line"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(
       V_nom=400e3,
       v0=1.04,
@@ -265,7 +277,8 @@ Compare with PIline.</p>
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
     connect(infBus2.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Short-time line switched off.<br>
 Compare with RXline.</p>
 <p><i>See for example:</i>
@@ -275,13 +288,16 @@ Compare with RXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1, Interval=2.5e-5));
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end Tline;
 
   model FaultRXline "Faulted lumped line"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(
       V_nom=400e3,
       v0=1.04,
@@ -306,7 +322,7 @@ Compare with RXline.</p>
     PowerSystems.AC3ph.Sensors.PVImeter meter(V_nom=400e3, S_nom=1000e6)
       annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc
-      annotation (Placement(transformation(extent={{10,20},{30,40}})));
+      annotation (Placement(transformation(extent={{10,14},{30,34}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
@@ -328,12 +344,13 @@ Compare with RXline.</p>
     connect(switch2.term_n, infBus2.term)
       annotation (Line(points={{60,-10},{70,-10}}, color={0,110,110}));
     connect(line.term_f, abc.term)
-      annotation (Line(points={{20,0},{20,20}}, color={0,120,120}));
+      annotation (Line(points={{20,0},{20,14}}, color={0,120,120}));
     connect(grd1.term, infBus1.neutral)
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
     connect(infBus2.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with FaultPIline.</p>
 <p><i>See for example:</i>
@@ -343,13 +360,16 @@ Compare with FaultPIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultRXline;
 
   model FaultTline "Faulted PI-line"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(
       V_nom=400e3,
       v0=1.04,
@@ -374,7 +394,7 @@ Compare with FaultPIline.</p>
     PowerSystems.AC3ph.Sensors.PVImeter meter(V_nom=400e3, S_nom=1000e6)
       annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc
-      annotation (Placement(transformation(extent={{10,20},{30,40}})));
+      annotation (Placement(transformation(extent={{10,16},{30,36}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{-80,-20},{-100,0}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
@@ -396,12 +416,13 @@ Compare with FaultPIline.</p>
     connect(breaker2.term_n, infBus2.term)
       annotation (Line(points={{60,-10},{70,-10}}, color={0,110,110}));
     connect(line.term_f, abc.term)
-      annotation (Line(points={{20,0},{20,20}}, color={0,120,120}));
+      annotation (Line(points={{20,0},{20,16}}, color={0,120,120}));
     connect(grd1.term, infBus1.neutral)
       annotation (Line(points={{-80,-10},{-80,-10}}, color={0,0,255}));
     connect(infBus2.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with FaultRXline.</p>
 <p><i>See for example:</i>
@@ -412,13 +433,16 @@ Compare with FaultRXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1, Interval=2.5e-5));
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultTline;
 
   model DoubleRXline "Parallel lumped lines, one faulted"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=20e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
@@ -439,7 +463,7 @@ Compare with FaultRXline.</p>
     PowerSystems.AC3ph.Breakers.Switch switch2(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{50,0},{70,20}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc
-      annotation (Placement(transformation(extent={{20,40},{40,60}})));
+      annotation (Placement(transformation(extent={{20,36},{40,56}})));
     PowerSystems.AC3ph.Sources.InfBus InfBus2(V_nom=400e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{90,-20},{70,0}})));
@@ -477,14 +501,15 @@ Compare with FaultRXline.</p>
     connect(switch2.term_n, InfBus2.term)
       annotation (Line(points={{70,10},{70,-10}}, color={0,110,110}));
     connect(lineF.term_f, abc.term)
-      annotation (Line(points={{30,20},{30,40}}, color={0,120,120}));
+      annotation (Line(points={{30,20},{30,36}}, color={0,120,120}));
     connect(infBus1.term, trafo.term_p)
       annotation (Line(points={{-70,-10},{-60,-10}}, color={0,120,120}));
     connect(grd1.term, infBus1.neutral)
       annotation (Line(points={{-90,-10},{-90,-10}}, color={0,0,255}));
     connect(InfBus2.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with DoublePIline.</p>
 <p><i>See for example:</i>
@@ -494,14 +519,17 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.5, Interval=2.5e-5));
+"),
+      experiment(StopTime=0.5, Interval=2.5e-5),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXline;
 
   model DoublelLine "Parallel lines, one faulted"
     import PowerSystems;
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=20e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
@@ -522,7 +550,7 @@ Compare with DoublePIline.</p>
     PowerSystems.AC3ph.Breakers.Switch switch2(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{50,0},{70,20}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc
-      annotation (Placement(transformation(extent={{20,40},{40,60}})));
+      annotation (Placement(transformation(extent={{20,34},{40,54}})));
     PowerSystems.AC3ph.Sources.InfBus InfBus2(V_nom=400e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{90,-20},{70,0}})));
@@ -561,14 +589,15 @@ Compare with DoublePIline.</p>
     connect(switch2.term_n, InfBus2.term)
       annotation (Line(points={{70,10},{70,-10}}, color={0,110,110}));
     connect(lineF.term_f, abc.term)
-      annotation (Line(points={{30,20},{30,40}}, color={0,110,110}));
+      annotation (Line(points={{30,20},{30,34}}, color={0,110,110}));
     connect(infBus1.term, trafo.term_p)
       annotation (Line(points={{-70,-10},{-60,-10}}, color={0,120,120}));
     connect(grd1.term, infBus1.neutral)
       annotation (Line(points={{-90,-10},{-90,-10}}, color={0,0,255}));
     connect(grd2.term, InfBus2.neutral)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with DoublePIline.</p>
 <p><i>See for example:</i>
@@ -579,14 +608,17 @@ Compare with DoublePIline.</p>
   abc.i_abc        fault currents
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>"), experiment(StopTime=0.5, Interval=2.5e-5));
+</html>"),
+      experiment(StopTime=0.5, Interval=2.5e-5),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoublelLine;
 
   model DoubleRXlineTG
     "Parallel lumped lines with turbo generator, one line faulted"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Generation.TurboGenerator turbGen(
       p_start=0.762922,
       redeclare model Generator = PowerSystems.AC3ph.Machines.Synchron_ee (
@@ -616,7 +648,7 @@ Compare with DoublePIline.</p>
     PowerSystems.AC3ph.Breakers.Switch switch2(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{50,0},{70,20}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc(epsG=1e-5)
-      annotation (Placement(transformation(extent={{20,40},{40,60}})));
+      annotation (Placement(transformation(extent={{20,34},{40,54}})));
     PowerSystems.AC3ph.Sources.InfBus InfBus(V_nom=400e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{90,-20},{70,0}})));
@@ -660,12 +692,13 @@ Compare with DoublePIline.</p>
     connect(switch2.term_n, InfBus.term)
       annotation (Line(points={{70,10},{70,-10}}, color={0,110,110}));
     connect(lineF.term_f, abc.term)
-      annotation (Line(points={{30,20},{30,40}}, color={0,110,110}));
+      annotation (Line(points={{30,20},{30,34}}, color={0,110,110}));
     connect(InfBus.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
     connect(turbGen.heat, boundary.heat)
       annotation (Line(points={{-80,0},{-80,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with DoublePIline.</p>
 <p><i>See for example:</i>
@@ -675,14 +708,17 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.5));
+"),
+      experiment(StopTime=0.5),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXlineTG;
 
   model DoubleLineTG "Parallel lines with turbo generator, one line faulted"
     import PowerSystems;
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Generation.TurboGenerator turbGen(
       p_start=0.761825,
       redeclare model Generator = PowerSystems.AC3ph.Machines.Synchron_ee (
@@ -711,7 +747,7 @@ Compare with DoublePIline.</p>
     PowerSystems.AC3ph.Breakers.Switch switch2(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{50,0},{70,20}})));
     PowerSystems.AC3ph.Faults.Fault_abc abc(epsG=1e-5)
-      annotation (Placement(transformation(extent={{20,40},{40,60}})));
+      annotation (Placement(transformation(extent={{20,32},{40,52}})));
     PowerSystems.AC3ph.Sources.InfBus InfBus(V_nom=400e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{90,-20},{70,0}})));
@@ -755,12 +791,13 @@ Compare with DoublePIline.</p>
     connect(switch2.term_n, InfBus.term)
       annotation (Line(points={{70,10},{70,-10}}, color={0,110,110}));
     connect(lineF.term_f, abc.term)
-      annotation (Line(points={{30,20},{30,40}}, color={0,110,110}));
+      annotation (Line(points={{30,20},{30,32}}, color={0,110,110}));
     connect(InfBus.neutral, grd2.term)
       annotation (Line(points={{90,-10},{90,-10}}, color={0,0,255}));
     connect(turbGen.heat, boundary.heat)
       annotation (Line(points={{-80,0},{-80,0}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with DoublePIline.</p>
 <p><i>See for example:</i>
@@ -771,7 +808,10 @@ Compare with DoublePIline.</p>
   abc.i_abc        fault currents
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>"), experiment(StopTime=0.5, Interval=1.5e-4));
+</html>"),
+      experiment(StopTime=0.5, Interval=1.5e-4),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleLineTG;
   annotation (preferredView="info", Documentation(info="<html>
 <p>Transmission line models and faults.</p>

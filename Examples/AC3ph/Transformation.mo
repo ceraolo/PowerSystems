@@ -6,7 +6,7 @@ package Transformation "Transformation dq0"
     import PowerSystems;
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100.5,80},{-80.5,100}})));
+      annotation (Placement(transformation(extent={{-100.5,40},{-80.5,60}})));
 
     PowerSystems.AC3ph.Sources.Voltage voltage
       annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
@@ -75,7 +75,8 @@ package Transformation "Transformation dq0"
       annotation (Line(points={{60,-60},{80,-60}}, color={0,110,110}));
     connect(trafo3.term_p, bus.term) annotation (Line(points={{0,-60},{-10,-60},
             {-10,0},{-20,0}}, color={0,120,120}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Primary and secondary signals show a topology dependent phase shift.</p>
 <p>
 Y-Y and Delta-Delta configuration:<br>
@@ -95,13 +96,16 @@ PAR-Y configuration:<br>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end PhaseShifts;
 
   model TapChanger "Tap changing primary and secondary"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100.5,80},{-80.5,100}})));
+      annotation (Placement(transformation(extent={{-100.5,60},{-80.5,80}})));
     PowerSystems.AC3ph.Sources.Voltage voltage
       annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter1
@@ -174,7 +178,8 @@ PAR-Y configuration:<br>
       annotation (Line(points={{6,-60},{6,-40}}, color={255,127,0}));
     connect(tapRelay2.tap_2, trafo2.tap_2_in)
       annotation (Line(points={{14,-60},{14,-40}}, color={255,127,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>The transformers change either primary or secondary voltage level at times (1,2,3).
 <pre>
   trafo1   primary voltage levels (1, 0.9, 1, 1.1)*V_nom_prim
@@ -190,13 +195,16 @@ if primary side is changed at fixed source.
 if secondary side is changed at fixed source.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=4));
+"),
+      experiment(StopTime=4),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TapChanger;
 
   model TreeWinding "Tree winding transformer"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100.5,80},{-80.5,100}})));
+      annotation (Placement(transformation(extent={{-100.5,40},{-80.5,60}})));
 
     PowerSystems.AC3ph.Sources.Voltage voltage
       annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
@@ -234,7 +242,8 @@ if secondary side is changed at fixed source.</p>
             {30,-4},{30,-30},{40,-30}}, color={0,120,120}));
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-90,0},{-90,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Primary and secondary signals show a topology dependent phase shift.</p>
 <p>
 Y-Y and Delta-Delta configuration:<br>
@@ -253,7 +262,10 @@ Delta_Y configuration:<br>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end TreeWinding;
   annotation (preferredView="info", Documentation(info="<html>
 <p>Transformers three-phase and tap changer control.</p>

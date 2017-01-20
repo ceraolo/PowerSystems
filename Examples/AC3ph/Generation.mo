@@ -5,38 +5,39 @@ package Generation "AC power generation, dq0"
   model Vsource "Power transfer from voltage source to slack bus"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.VsourceRX Vsource(
       V_nom=20e3,
       v_start=1.02,
       S_nom=500e6,
       pq_start={1,0.428},
       alpha_start=0.037545522868902)
-      annotation (Placement(transformation(extent={{-70,0},{-50,20}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{-30,0},{-10,20}})));
+      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
     PowerSystems.AC3ph.Lines.RXline line(len=40e3, redeclare record Data =
           PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=20e3, S_nom=500e6))
-      annotation (Placement(transformation(extent={{10,0},{30,20}})));
+      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{70,0},{50,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{50,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-70,0},{-90,20}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{70,0},{90,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{90,10}})));
 
   equation
     connect(Vsource.term, sensor.term_p)
-      annotation (Line(points={{-50,10},{-30,10}}, color={0,110,110}));
+      annotation (Line(points={{-50,0},{-30,0}}, color={0,110,110}));
     connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{-10,10},{10,10}}, color={0,110,110}));
+      annotation (Line(points={{-10,0},{10,0}}, color={0,110,110}));
     connect(line.term_n, infBus.term)
-      annotation (Line(points={{30,10},{50,10}}, color={0,110,110}));
+      annotation (Line(points={{30,0},{50,0}}, color={0,110,110}));
     connect(grd1.term, Vsource.neutral)
-      annotation (Line(points={{-70,10},{-70,10}}, color={0,0,255}));
+      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     connect(infBus.neutral, grd2.term)
-      annotation (Line(points={{70,10},{70,10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{70,0},{70,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>Amplitude and phase of voltage are given in both nodes.<br>
 The powerflow depends essentially on the phase difference between the nodes and also on the voltage amplitudes.</p>
 <p><i>See for example:</i>
@@ -45,43 +46,47 @@ The powerflow depends essentially on the phase difference between the nodes and 
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end Vsource;
 
   model PVsource "Power transfer from power-voltage source to slack bus"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,18},{-80,38}})));
     PowerSystems.AC3ph.Sources.PVsource PVsource(
       V_nom=20e3,
       S_nom=500e6,
       v0=1.02,
-      p0=1) annotation (Placement(transformation(extent={{-70,0},{-50,20}})));
+      p0=1) annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
           PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=20e3, S_nom=500e6),
         len=40e3)
-      annotation (Placement(transformation(extent={{10,0},{30,20}})));
+      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{-30,0},{-10,20}})));
+      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{70,0},{50,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{50,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-70,0},{-90,20}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{70,0},{90,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{90,10}})));
 
   equation
     connect(PVsource.term, sensor.term_p)
-      annotation (Line(points={{-50,10},{-30,10}}, color={0,110,110}));
+      annotation (Line(points={{-50,0},{-30,0}}, color={0,110,110}));
     connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{-10,10},{10,10}}, color={0,110,110}));
+      annotation (Line(points={{-10,0},{10,0}}, color={0,110,110}));
     connect(line.term_n, infBus.term)
-      annotation (Line(points={{30,10},{50,10}}, color={0,110,110}));
+      annotation (Line(points={{30,0},{50,0}}, color={0,110,110}));
     connect(grd1.term, PVsource.neutral)
-      annotation (Line(points={{-70,10},{-70,10}}, color={0,0,255}));
+      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     connect(infBus.neutral, grd2.term)
-      annotation (Line(points={{70,10},{70,10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{70,0},{70,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>Power and voltage-amplitude are given in the source node, whereas the slackBus is identical to the previous example.<br>
 The active powerflow is now directly determined through a parameter instead of indirectly depending on the voltage phase-angle.</p>
 <p><i>See for example:</i>
@@ -89,43 +94,47 @@ The active powerflow is now directly determined through a parameter instead of i
  sensor.p[1:2]    active and reactive power
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=1));
+</html>"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end PVsource;
 
   model PQsource "Power transfer from power source to slack bus"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.PQsource PQsource(
       S_nom=500e6,
       V_nom=20e3,
       pq0={1,0.428})
-      annotation (Placement(transformation(extent={{-70,0},{-50,20}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{-30,0},{-10,20}})));
+      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
     PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
           PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=20e3, S_nom=500e6),
         len=40e3)
-      annotation (Placement(transformation(extent={{10,0},{30,20}})));
+      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{70,0},{50,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{50,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-70,0},{-90,20}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{70,0},{90,20}})));
+      annotation (Placement(transformation(extent={{70,-10},{90,10}})));
 
   equation
     connect(PQsource.term, sensor.term_p)
-      annotation (Line(points={{-50,10},{-30,10}}, color={0,110,110}));
+      annotation (Line(points={{-50,0},{-30,0}}, color={0,110,110}));
     connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{-10,10},{10,10}}, color={0,110,110}));
+      annotation (Line(points={{-10,0},{10,0}}, color={0,110,110}));
     connect(line.term_n, infBus.term)
-      annotation (Line(points={{30,10},{50,10}}, color={0,110,110}));
+      annotation (Line(points={{30,0},{50,0}}, color={0,110,110}));
     connect(grd1.term, PQsource.neutral)
-      annotation (Line(points={{-70,10},{-70,10}}, color={0,0,255}));
+      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     connect(infBus.neutral, grd2.term)
-      annotation (Line(points={{70,10},{70,10}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{70,0},{70,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>Active and reactive power are given in the source node, whereas the slackBus is identical to the previous example.<br>
 Both active and reactive powerflow are now directly determined through a parameter.</p>
 <p><i>See for example:</i>
@@ -133,87 +142,91 @@ Both active and reactive powerflow are now directly determined through a paramet
  sensor.p[1:2]    active and reactive power
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=1));
+</html>"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end PQsource;
 
   model PowerAngle "Generator at fixed power angle"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Machines.Control.PowerAngle powerAngle(delta=
           0.78539816339745)
-      annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
+      annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     PowerSystems.Control.Exciters.ExciterSimple exciter(v_f=2.258)
-      annotation (Placement(transformation(extent={{-30,70},{-50,90}})));
+      annotation (Placement(transformation(extent={{-30,56},{-50,76}})));
     PowerSystems.AC3ph.Machines.Control.Excitation excitation(V_nom=20e3,
         Vf_nom=20e3)
-      annotation (Placement(transformation(extent={{-30,40},{-50,60}})));
+      annotation (Placement(transformation(extent={{-30,30},{-50,50}})));
     PowerSystems.AC3ph.Machines.Synchron3rd_ee generator(redeclare replaceable
         record Data =
           PowerSystems.Examples.Data.Machines.SynchronIso20kV_500MVA)
-      annotation (Placement(transformation(extent={{-30,0},{-50,20}})));
+      annotation (Placement(transformation(extent={{-30,-10},{-50,10}})));
 
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{0,0},{20,20}})));
+      annotation (Placement(transformation(extent={{0,-10},{20,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{90,0},{70,20}})));
+      annotation (Placement(transformation(extent={{90,-10},{70,10}})));
     PowerSystems.AC3ph.Sources.Voltage Vgen1(
       V_nom=20e3,
       v0=2.258,
       alpha0=0.78539816339745)
-      annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
+      annotation (Placement(transformation(extent={{-82,-60},{-62,-40}})));
     PowerSystems.AC3ph.Impedances.Inductor RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       r=0.01,
       x_m=-0.5,
       x_s=1.1)
-      annotation (Placement(transformation(extent={{-50,-80},{-30,-60}})));
+      annotation (Placement(transformation(extent={{-52,-60},{-32,-40}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor1
-      annotation (Placement(transformation(extent={{0,-80},{20,-60}})));
+      annotation (Placement(transformation(extent={{-2,-60},{18,-40}})));
     PowerSystems.AC3ph.Sources.Voltage Vbus1(V_nom=20e3)
-      annotation (Placement(transformation(extent={{90,-80},{70,-60}})));
+      annotation (Placement(transformation(extent={{88,-60},{68,-40}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-80,-80},{-100,-60}})));
+      annotation (Placement(transformation(extent={{-82,-60},{-102,-40}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{90,-80},{110,-60}})));
+      annotation (Placement(transformation(extent={{88,-60},{108,-40}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd3
-      annotation (Placement(transformation(extent={{90,0},{110,20}})));
+      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     PowerSystems.Common.Thermal.BdCondV bdCond(m=2)
-      annotation (Placement(transformation(extent={{-50,20},{-30,40}})));
+      annotation (Placement(transformation(extent={{-50,10},{-30,30}})));
 
   equation
     connect(Vgen1.term, RLgen1.term_p)
-      annotation (Line(points={{-60,-70},{-50,-70}}, color={0,110,110}));
+      annotation (Line(points={{-62,-50},{-52,-50}}, color={0,110,110}));
     connect(RLgen1.term_n, sensor1.term_p)
-      annotation (Line(points={{-30,-70},{0,-70}}, color={0,110,110}));
+      annotation (Line(points={{-32,-50},{-2,-50}},color={0,110,110}));
     connect(sensor1.term_n, Vbus1.term)
-      annotation (Line(points={{20,-70},{70,-70}}, color={0,110,110}));
+      annotation (Line(points={{18,-50},{68,-50}}, color={0,110,110}));
     connect(exciter.fieldVoltage, excitation.fieldVoltage)
-      annotation (Line(points={{-46,70},{-46,60}}, color={0,0,127}));
+      annotation (Line(points={{-46,56},{-46,50}}, color={0,0,127}));
     connect(excitation.termVoltage, exciter.termVoltage)
-      annotation (Line(points={{-34,60},{-34,70}}, color={0,0,127}));
-    connect(generator.term, excitation.term) annotation (Line(points={{-30,10},
-            {-20,10},{-20,50},{-30,50}}, color={0,110,110}));
-    connect(excitation.field, generator.field) annotation (Line(points={{-30,46},
-            {-24,46},{-24,6},{-30,6}}, color={0,0,255}));
-    connect(generator.term, powerAngle.term) annotation (Line(points={{-30,10},
-            {-20,10},{-20,-10},{-80,-10},{-80,10}}, color={0,110,110}));
+      annotation (Line(points={{-34,50},{-34,56}}, color={0,0,127}));
+    connect(generator.term, excitation.term) annotation (Line(points={{-30,0},{
+            -20,0},{-20,40},{-30,40}}, color={0,110,110}));
+    connect(excitation.field, generator.field) annotation (Line(points={{-30,36},
+            {-24,36},{-24,-4},{-30,-4}}, color={0,0,255}));
+    connect(generator.term, powerAngle.term) annotation (Line(points={{-30,0},{
+            -20,0},{-20,-20},{-80,-20},{-80,0}}, color={0,110,110}));
     connect(powerAngle.airgap, generator.airgap)
-      annotation (Line(points={{-60,16},{-40,16}}, color={0,0,0}));
+      annotation (Line(points={{-60,6},{-40,6}}, color={0,0,0}));
     connect(generator.term, sensor.term_p)
-      annotation (Line(points={{-30,10},{0,10}}, color={0,110,110}));
+      annotation (Line(points={{-30,0},{0,0}}, color={0,110,110}));
     connect(sensor.term_n, infBus.term)
-      annotation (Line(points={{20,10},{70,10}}, color={0,110,110}));
+      annotation (Line(points={{20,0},{70,0}}, color={0,110,110}));
     connect(grd1.term, Vgen1.neutral)
-      annotation (Line(points={{-80,-70},{-80,-70}}, color={0,0,255}));
+      annotation (Line(points={{-82,-50},{-82,-50}}, color={0,0,255}));
     connect(Vbus1.neutral, grd2.term)
-      annotation (Line(points={{90,-70},{90,-70}}, color={0,0,255}));
+      annotation (Line(points={{88,-50},{88,-50}}, color={0,0,255}));
     connect(infBus.neutral, grd3.term)
-      annotation (Line(points={{90,10},{90,10}}, color={0,0,255}));
+      annotation (Line(points={{90,0},{90,0}}, color={0,0,255}));
     connect(generator.heat, bdCond.heat)
-      annotation (Line(points={{-40,20},{-40,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-40,10},{-40,10}}, color={176,0,0}));
+    annotation (
+      Documentation(info="<html>
 <p>This example is a first step on the way 'from voltage source to generator model'.</p>
 <p>Lower part of example (for comparison with and interpretation of upper part):<br>
 simplest generator description as a \"voltage behind reactance\".</p>
@@ -229,13 +242,16 @@ The power-angle is artificially fixed. The correspondence is:
  sensor.p[1:2]    active and reactive power
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=1));
+</html>"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end PowerAngle;
 
   model TurbineGenerator "Turbine with generator"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
     parameter SI.AngularVelocity w_start=2*pi*generator.par.f_nom/generator.par.pp
       "initial angular velocity (start-value if ini='st')";
     PowerSystems.Mechanics.TurboGroups.SingleMassTG turboGrp(
@@ -243,23 +259,23 @@ The power-angle is artificially fixed. The correspondence is:
       H=20,
       w_nom=2*pi*generator.par.f_nom/generator.par.pp,
       P_nom=generator.par.S_nom)
-      annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
+      annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     PowerSystems.AC3ph.Machines.Synchron3rd_ee generator(redeclare replaceable
         record Data =
           PowerSystems.Examples.Data.Machines.SynchronIso20kV_500MVA)
-      annotation (Placement(transformation(extent={{-30,0},{-50,20}})));
+      annotation (Placement(transformation(extent={{-30,-10},{-50,10}})));
 
     PowerSystems.Control.Governors.GovernorSimple governor(p=1.0116)
-      annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
+      annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
     PowerSystems.Control.Exciters.ExciterSimple exciter(v_f=2.258)
-      annotation (Placement(transformation(extent={{-30,70},{-50,90}})));
+      annotation (Placement(transformation(extent={{-30,56},{-50,76}})));
     PowerSystems.AC3ph.Machines.Control.Excitation excitation(V_nom=20e3,
         Vf_nom=20e3)
-      annotation (Placement(transformation(extent={{-30,40},{-50,60}})));
+      annotation (Placement(transformation(extent={{-30,30},{-50,50}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{0,0},{20,20}})));
+      annotation (Placement(transformation(extent={{0,-10},{20,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{90,0},{70,20}})));
+      annotation (Placement(transformation(extent={{90,-10},{70,10}})));
     PowerSystems.AC3ph.Sources.Voltage Vgen1(
       V_nom=20e3,
       v0=2.258,
@@ -281,9 +297,9 @@ The power-angle is artificially fixed. The correspondence is:
     PowerSystems.AC3ph.Nodes.GroundOne grd2
       annotation (Placement(transformation(extent={{90,-80},{110,-60}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd3
-      annotation (Placement(transformation(extent={{90,0},{110,20}})));
+      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     PowerSystems.Common.Thermal.BdCondV bdCond(m=2)
-      annotation (Placement(transformation(extent={{-50,20},{-30,40}})));
+      annotation (Placement(transformation(extent={{-50,10},{-30,30}})));
 
   equation
     connect(Vgen1.term, RLgen1.term_p)
@@ -293,32 +309,33 @@ The power-angle is artificially fixed. The correspondence is:
     connect(sensor1.term_n, VBus1.term)
       annotation (Line(points={{20,-70},{70,-70}}, color={0,110,110}));
     connect(exciter.fieldVoltage, excitation.fieldVoltage)
-      annotation (Line(points={{-46,70},{-46,60}}, color={0,0,127}));
+      annotation (Line(points={{-46,56},{-46,50}}, color={0,0,127}));
     connect(excitation.termVoltage, exciter.termVoltage)
-      annotation (Line(points={{-34,60},{-34,70}}, color={0,0,127}));
+      annotation (Line(points={{-34,50},{-34,56}}, color={0,0,127}));
     connect(turboGrp.airgap, generator.airgap)
-      annotation (Line(points={{-60,16},{-40,16}}, color={0,0,0}));
-    connect(generator.term, excitation.term) annotation (Line(points={{-30,10},
-            {-20,10},{-20,50},{-30,50}}, color={0,110,110}));
-    connect(excitation.field, generator.field) annotation (Line(points={{-30,46},
-            {-24,46},{-24,6},{-30,6}}, color={0,0,255}));
+      annotation (Line(points={{-60,6},{-40,6}}, color={0,0,0}));
+    connect(generator.term, excitation.term) annotation (Line(points={{-30,0},{
+            -20,0},{-20,40},{-30,40}}, color={0,110,110}));
+    connect(excitation.field, generator.field) annotation (Line(points={{-30,36},
+            {-24,36},{-24,-4},{-30,-4}}, color={0,0,255}));
     connect(generator.term, sensor.term_p)
-      annotation (Line(points={{-30,10},{0,10}}, color={0,110,110}));
+      annotation (Line(points={{-30,0},{0,0}}, color={0,110,110}));
     connect(sensor.term_n, infBus.term)
-      annotation (Line(points={{20,10},{70,10}}, color={0,110,110}));
+      annotation (Line(points={{20,0},{70,0}}, color={0,110,110}));
     connect(turboGrp.speed, governor.speed)
-      annotation (Line(points={{-76,20},{-76,30}}, color={0,0,127}));
+      annotation (Line(points={{-76,10},{-76,20}}, color={0,0,127}));
     connect(governor.power, turboGrp.power)
-      annotation (Line(points={{-64,30},{-64,20}}, color={0,0,127}));
+      annotation (Line(points={{-64,20},{-64,10}}, color={0,0,127}));
     connect(grd1.term, Vgen1.neutral)
       annotation (Line(points={{-80,-70},{-80,-70}}, color={0,0,255}));
     connect(VBus1.neutral, grd2.term)
       annotation (Line(points={{90,-70},{90,-70}}, color={0,0,255}));
     connect(infBus.neutral, grd3.term)
-      annotation (Line(points={{90,10},{90,10}}, color={0,0,255}));
+      annotation (Line(points={{90,0},{90,0}}, color={0,0,255}));
     connect(generator.heat, bdCond.heat)
-      annotation (Line(points={{-40,20},{-40,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-40,10},{-40,10}}, color={176,0,0}));
+    annotation (
+      Documentation(info="<html>
 <p>Second example 'from voltage source to generator model' with additional turbine.</p>
 <p>Lower part of example (for comparison with and interpretation of upper part):<br>
 simplest generator description as a \"voltage behind reactance\".</p>
@@ -336,13 +353,16 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-100},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
   end TurbineGenerator;
 
   model TurbineGeneratorLine "Turbine with generator and line"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-10,60},{10,80}})));
     parameter SI.AngularVelocity w_start=2*pi*generator.par.f_nom/generator.par.pp
       "initial angular velocity (start-value if ini='st')";
     PowerSystems.Mechanics.TurboGroups.SingleMassTG turboGrp(
@@ -350,48 +370,49 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
       H=20,
       w_nom=2*pi*generator.par.f_nom/generator.par.pp,
       P_nom=generator.par.S_nom)
-      annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
+      annotation (Placement(transformation(extent={{-84,-30},{-64,-10}})));
     PowerSystems.AC3ph.Machines.Synchron3rd_ee generator(redeclare replaceable
         record Data =
           PowerSystems.Examples.Data.Machines.SynchronIso20kV_500MVA)
-      annotation (Placement(transformation(extent={{-30,0},{-50,20}})));
+      annotation (Placement(transformation(extent={{-34,-30},{-54,-10}})));
 
     PowerSystems.Control.Governors.GovernorSimple governor(p=1.0094)
-      annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
+      annotation (Placement(transformation(extent={{-84,0},{-64,20}})));
     PowerSystems.Control.Exciters.ExciterSimple exciter(v_f=2.245)
-      annotation (Placement(transformation(extent={{-30,80},{-50,100}})));
+      annotation (Placement(transformation(extent={{-34,50},{-54,70}})));
     PowerSystems.AC3ph.Machines.Control.Excitation excitation(V_nom=20e3,
         Vf_nom=20e3)
-      annotation (Placement(transformation(extent={{-30,50},{-50,70}})));
+      annotation (Placement(transformation(extent={{-34,20},{-54,40}})));
     PowerSystems.AC3ph.Nodes.BusBar busbar
-      annotation (Placement(transformation(extent={{-20,0},{0,20}})));
+      annotation (Placement(transformation(extent={{-24,-30},{-4,-10}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{0,0},{20,20}})));
+      annotation (Placement(transformation(extent={{-4,-30},{16,-10}})));
     PowerSystems.AC3ph.Lines.RXline line(
       redeclare record Data = PowerSystems.AC3ph.Lines.Parameters.RXline (
           V_nom=20e3,
           r=0.02e-3,
           x=0.2e-3),
       dynType=PowerSystems.Types.Dynamics.FreeInitial,
-      len=400e3) annotation (Placement(transformation(extent={{30,0},{50,20}})));
+      len=400e3)
+      annotation (Placement(transformation(extent={{26,-30},{46,-10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=20e3)
-      annotation (Placement(transformation(extent={{90,0},{70,20}})));
+      annotation (Placement(transformation(extent={{86,-30},{66,-10}})));
     PowerSystems.AC3ph.Sources.Voltage Vgen1(
       V_nom=20e3,
       v0=2.245,
       alpha0=1.0285225282003)
-      annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
+      annotation (Placement(transformation(extent={{-82,-70},{-62,-50}})));
     PowerSystems.AC3ph.Impedances.Inductor RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       x_s=1.1,
       x_m=-0.5,
       r=0.01)
-      annotation (Placement(transformation(extent={{-50,-80},{-30,-60}})));
+      annotation (Placement(transformation(extent={{-52,-70},{-32,-50}})));
     PowerSystems.AC3ph.Nodes.BusBar busbar1
-      annotation (Placement(transformation(extent={{-20,-80},{0,-60}})));
+      annotation (Placement(transformation(extent={{-22,-70},{-2,-50}})));
     PowerSystems.AC3ph.Sensors.Psensor sensor1
-      annotation (Placement(transformation(extent={{0,-80},{20,-60}})));
+      annotation (Placement(transformation(extent={{-2,-70},{18,-50}})));
     PowerSystems.AC3ph.Lines.RXline line1(
       redeclare record Data = PowerSystems.AC3ph.Lines.Parameters.RXline (
           V_nom=20e3,
@@ -399,60 +420,61 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
           x=0.2e-3),
       dynType=PowerSystems.Types.Dynamics.FreeInitial,
       len=400e3)
-      annotation (Placement(transformation(extent={{30,-80},{50,-60}})));
+      annotation (Placement(transformation(extent={{28,-70},{48,-50}})));
     PowerSystems.AC3ph.Sources.Voltage VBus1(V_nom=20e3)
-      annotation (Placement(transformation(extent={{90,-80},{70,-60}})));
+      annotation (Placement(transformation(extent={{88,-70},{68,-50}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-80,-80},{-100,-60}})));
+      annotation (Placement(transformation(extent={{-82,-70},{-102,-50}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{90,-80},{110,-60}})));
+      annotation (Placement(transformation(extent={{88,-70},{108,-50}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd3
-      annotation (Placement(transformation(extent={{90,0},{110,20}})));
+      annotation (Placement(transformation(extent={{86,-30},{106,-10}})));
     PowerSystems.Common.Thermal.BdCondV bdCond(m=2)
-      annotation (Placement(transformation(extent={{-50,20},{-30,40}})));
+      annotation (Placement(transformation(extent={{-54,-10},{-34,10}})));
 
   equation
     connect(Vgen1.term, RLgen1.term_p)
-      annotation (Line(points={{-60,-70},{-50,-70}}, color={0,110,110}));
+      annotation (Line(points={{-62,-60},{-52,-60}}, color={0,110,110}));
     connect(RLgen1.term_n, busbar1.term)
-      annotation (Line(points={{-30,-70},{-10,-70}}, color={0,110,110}));
+      annotation (Line(points={{-32,-60},{-12,-60}}, color={0,110,110}));
     connect(busbar1.term, sensor1.term_p)
-      annotation (Line(points={{-10,-70},{0,-70}}, color={0,110,110}));
+      annotation (Line(points={{-12,-60},{-2,-60}},color={0,110,110}));
     connect(sensor1.term_n, line1.term_p)
-      annotation (Line(points={{20,-70},{30,-70}}, color={0,110,110}));
+      annotation (Line(points={{18,-60},{28,-60}}, color={0,110,110}));
     connect(line1.term_n, VBus1.term)
-      annotation (Line(points={{50,-70},{70,-70}}, color={0,110,110}));
+      annotation (Line(points={{48,-60},{68,-60}}, color={0,110,110}));
     connect(exciter.fieldVoltage, excitation.fieldVoltage)
-      annotation (Line(points={{-46,80},{-46,70}}, color={0,0,127}));
+      annotation (Line(points={{-50,50},{-50,40}}, color={0,0,127}));
     connect(excitation.termVoltage, exciter.termVoltage)
-      annotation (Line(points={{-34,70},{-34,80}}, color={0,0,127}));
+      annotation (Line(points={{-38,40},{-38,50}}, color={0,0,127}));
     connect(turboGrp.airgap, generator.airgap)
-      annotation (Line(points={{-60,16},{-40,16}}, color={0,0,0}));
-    connect(generator.term, excitation.term) annotation (Line(points={{-30,10},
-            {-20,10},{-20,60},{-30,60}}, color={0,110,110}));
-    connect(excitation.field, generator.field) annotation (Line(points={{-30,56},
-            {-24,56},{-24,6},{-30,6}}, color={0,0,255}));
+      annotation (Line(points={{-64,-14},{-44,-14}}, color={0,0,0}));
+    connect(generator.term, excitation.term) annotation (Line(points={{-34,-20},
+            {-24,-20},{-24,30},{-34,30}},color={0,110,110}));
+    connect(excitation.field, generator.field) annotation (Line(points={{-34,26},
+            {-28,26},{-28,-24},{-34,-24}}, color={0,0,255}));
     connect(generator.term, busbar.term)
-      annotation (Line(points={{-30,10},{-10,10}}, color={0,110,110}));
+      annotation (Line(points={{-34,-20},{-14,-20}}, color={0,110,110}));
     connect(busbar.term, sensor.term_p)
-      annotation (Line(points={{-10,10},{0,10}}, color={0,110,110}));
+      annotation (Line(points={{-14,-20},{-4,-20}}, color={0,110,110}));
     connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{20,10},{30,10}}, color={0,110,110}));
+      annotation (Line(points={{16,-20},{26,-20}}, color={0,110,110}));
     connect(line.term_n, infBus.term)
-      annotation (Line(points={{50,10},{70,10}}, color={0,110,110}));
+      annotation (Line(points={{46,-20},{66,-20}}, color={0,110,110}));
     connect(turboGrp.speed, governor.speed)
-      annotation (Line(points={{-76,20},{-76,30}}, color={0,0,127}));
+      annotation (Line(points={{-80,-10},{-80,0}}, color={0,0,127}));
     connect(governor.power, turboGrp.power)
-      annotation (Line(points={{-64,30},{-64,20}}, color={0,0,127}));
+      annotation (Line(points={{-68,0},{-68,-10}}, color={0,0,127}));
     connect(grd1.term, Vgen1.neutral)
-      annotation (Line(points={{-80,-70},{-80,-70}}, color={0,0,255}));
+      annotation (Line(points={{-82,-60},{-82,-60}}, color={0,0,255}));
     connect(VBus1.neutral, grd2.term)
-      annotation (Line(points={{90,-70},{90,-70}}, color={0,0,255}));
+      annotation (Line(points={{88,-60},{88,-60}}, color={0,0,255}));
     connect(infBus.neutral, grd3.term)
-      annotation (Line(points={{90,10},{90,10}}, color={0,0,255}));
+      annotation (Line(points={{86,-20},{86,-20}}, color={0,0,255}));
     connect(generator.heat, bdCond.heat)
-      annotation (Line(points={{-40,20},{-40,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-44,-10},{-44,-10}}, color={176,0,0}));
+    annotation (
+      Documentation(info="<html>
 <p>The third example is obtained from the previous by adding a line between generator and infinite bus.</p>
 <p>The terminal voltage depends on the line-properties. Now the correspondence is:
 <pre>
@@ -466,13 +488,16 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TurbineGeneratorLine;
 
   model TurboGeneratorLine "Turbo-generator with line to infinite bus"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Generation.TurboGenerator turboGen(
       H=20,
       redeclare model Generator = PowerSystems.AC3ph.Machines.Synchron3rd_ee (
@@ -564,7 +589,8 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
       annotation (Line(points={{90,10},{90,10}}, color={0,0,255}));
     connect(turboGen.heat, bdCond.heat)
       annotation (Line(points={{-50,20},{-50,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>This example is the last step on the way 'from voltage source to generator model'.</p>
 <p>Turbine and generator are packed into one single model. The terminal voltage depends on the line-properties. The correspondence is:
 <pre>
@@ -578,7 +604,10 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,60}})));
   end TurboGeneratorLine;
 
   model GenOrder3and7 "Generator-models of different order"
@@ -704,7 +733,7 @@ The high order model exhibits fast damping of torque-oscillations due to the dam
     "Turbogroup with generator, electro-mechanical interaction"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
     PowerSystems.Control.Setpoints.Set_w_p_v setpts
       annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
     PowerSystems.AC3ph.Generation.TurboGrpGenerator turboGrpGen(
@@ -757,7 +786,8 @@ The high order model exhibits fast damping of torque-oscillations due to the dam
       annotation (Line(points={{80,10},{80,10}}, color={0,0,255}));
     connect(turboGrpGen.heat, bdCond.heat)
       annotation (Line(points={{-70,20},{-70,20}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>The example illustrates the influence of an electric shock on the mechanical behaviour of the turbogroup.<br>
 A common 3-phase short circuit occurs at 0.1 sec, cleared after 200 ms.</p>
 <p><i>See for example:</i>
@@ -766,7 +796,10 @@ A common 3-phase short circuit occurs at 0.1 sec, cleared after 200 ms.</p>
   turboGrpGen.turboGroup.delta   relative angles between single turbines (frequencies typical 16 to 23 Hz)
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=0.5, Interval=0.5e-3));
+</html>"),
+      experiment(StopTime=0.5, Interval=0.5e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,80}})));
   end TurboGroupGenerator;
 
   model TieLine "Generators and power-oscillations"
@@ -969,7 +1002,7 @@ After the load decreases, system frequency starts to increase from 60 to 62 Hz w
   model WindGeneratorLine "Asynchronous generator"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Generation.WindGenerator windGen(redeclare model Gear =
           PowerSystems.Mechanics.TurboGroups.WindTurbineGear (redeclare record
             Data = PowerSystems.Examples.Data.Turbines.WindTurbineGear),
@@ -1017,7 +1050,8 @@ After the load decreases, system frequency starts to increase from 60 to 62 Hz w
       annotation (Line(points={{-50,20},{-50,20}}, color={176,0,0}));
     connect(trsSignal1.y, windGen.windSpeed)
       annotation (Line(points={{-80,10},{-60,10}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>This example shows an asynchron generator directly coupled to the grid.<br>
 The wind-speed is increased from 5 to 15 m/s. The machine remains stable.</p>
 <p><i>See for example:</i>
@@ -1028,13 +1062,16 @@ The wind-speed is increased from 5 to 15 m/s. The machine remains stable.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
 
-"), experiment(StopTime=60, Interval=60e-3));
+"),
+      experiment(StopTime=60, Interval=60e-3),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end WindGeneratorLine;
 
   model Islanding "AC synchronous generator in islanding configuration"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
     parameter SI.Voltage vAC_nom=560 "AC nominal voltage";
     parameter SI.Voltage vDC_nom=750 "DC nominal voltage";
     PowerSystems.Control.Setpoints.Set_w_p setpts
@@ -1128,7 +1165,8 @@ The wind-speed is increased from 5 to 15 m/s. The machine remains stable.</p>
       annotation (Line(points={{-50,-50},{-40,-50}}, color={0,120,120}));
     connect(turboGen.phiRotor, reference.theta)
       annotation (Line(points={{-60,-40},{-50,-40}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Permanent magnet excited synchron generator, rotor defines reference system.<br>
 The generator is directly coupled to a (passive) rectifier. If an average-version of the rectifier is tolerable, no transforms at all are necessary. The simulation (for linear generator models) is fast. This is of particular importance for high speed machines, because the high frequency drastically slows down
 integration in inertial abc-system.</p>
@@ -1139,7 +1177,10 @@ integration in inertial abc-system.</p>
   DCvoltage.v
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=30));
+</html>"),
+      experiment(StopTime=30),
+      Diagram(coordinateSystem(extent={{-100,-100},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
   end Islanding;
 
 public
@@ -1147,7 +1188,7 @@ public
     "AC torque controlled synchronous machine as local generator"
 
     inner PowerSystems.System system(f_nom=60)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-10,60},{10,80}})));
     parameter SI.Voltage vDC_nom=780 "DC nominal voltage";
     final parameter SI.Current I_nom=PMgen.generator.par.S_nom/PMgen.generator.par.V_nom
       "generator nominal current";
@@ -1247,7 +1288,8 @@ public
       annotation (Line(points={{-80,-50},{-70,-50}}, color={0,0,127}));
     connect(i_d.y, PMgen.i_act[1]) annotation (Line(points={{-80,-10},{-36,-10},
             {-36,-39.5}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Permanent magnet excited synchron generator, defining reference system.<br>
 The generator is directly coupled to a (passive) rectifier. If an average-version of the rectifier is tolerable, no transforms at all are necessary.</p>
 <p><i>See for example:</i>
@@ -1256,7 +1298,10 @@ The generator is directly coupled to a (passive) rectifier. If an average-versio
   DCvoltage.v
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
-</html>"), experiment(StopTime=30));
+</html>"),
+      experiment(StopTime=30),
+      Diagram(coordinateSystem(extent={{-100,-100},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
   end LocalGeneration;
 
   annotation (preferredView="info", Documentation(info="<html>
