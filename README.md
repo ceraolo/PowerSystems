@@ -1,6 +1,6 @@
 # Modified-Power-Systems
 A modified version of https://github.com/modelica/PowerSystems
-It is realised starting from the version available there on 17 Jan 2017, at 15.00
+It is realised starting from the version available there on Jan, 20 2017, at 15.00
 
 All rights and copyrights belong to the library available from this link.
 
