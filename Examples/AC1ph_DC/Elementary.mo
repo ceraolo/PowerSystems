@@ -6,14 +6,14 @@ package Elementary "AC 1-phase and DC components"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.Control.Relays.SwitchRelay relay(
       n=1,
       ini_state=true,
       t_switch={0.1}) annotation (Placement(transformation(
-          origin={50,70},
+          origin={50,50},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(V_nom=10e3, use_vPhasor_in=
@@ -46,19 +46,23 @@ package Elementary "AC 1-phase and DC components"
     connect(breaker.term_n, grd.term)
       annotation (Line(points={{60,0},{90,0}}, color={0,0,255}));
     connect(relay.y[1], breaker.control)
-      annotation (Line(points={{50,60},{50,10}}, color={255,0,255}));
+      annotation (Line(points={{50,40},{50,32},{50,10}}, color={255,0,255}));
     connect(grd1.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=1e-4));
+</html>"),
+      experiment(StopTime=0.2, Interval=1e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Breaker;
 
   model Fault "Fault"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.Control.Relays.SwitchRelay relay1(n=2, t_switch={3.5,29.5}/50)
       annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
     PowerSystems.Control.Relays.SwitchRelay relay2(n=2, t_switch={3.6,29.4}/50)
@@ -79,7 +83,7 @@ package Elementary "AC 1-phase and DC components"
       annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation
             =90)));
     replaceable PowerSystems.AC1ph_DC.Faults.Fault_Ab fault_Ab
-      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
+      annotation (Placement(transformation(extent={{-10,30},{10,50}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{-90,-40},{-110,-20}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd2
@@ -97,7 +101,7 @@ package Elementary "AC 1-phase and DC components"
     connect(line.term_f, meter.term_p) annotation (Line(points={{0,-20},{0,-10},
             {-6.12303e-016,-10}}, color={0,0,255}));
     connect(meter.term_n, fault_Ab.term) annotation (Line(points={{6.12303e-016,
-            10},{0,10},{0,40}}, color={0,0,255}));
+            10},{0,10},{0,30}}, color={0,0,255}));
     connect(relay1.y, switch1.control) annotation (Line(points={{-60,10},{-50,
             10},{-50,-20}}, color={255,0,255}));
     connect(relay2.y, switch2.control)
@@ -106,17 +110,21 @@ package Elementary "AC 1-phase and DC components"
       annotation (Line(points={{-90,-30},{-90,-30}}, color={0,0,255}));
     connect(voltage2.neutral, grd2.term)
       annotation (Line(points={{90,-30},{90,-30}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=1e-4));
+"),
+      experiment(StopTime=0.2, Interval=1e-4),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end Fault;
 
   model Impedance "Impedance"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(use_vPhasor_in=true)
@@ -141,46 +149,54 @@ package Elementary "AC 1-phase and DC components"
       annotation (Line(points={{40,0},{80,0}}, color={0,0,255}));
     connect(grd1.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=2.7e-4));
+</html>"),
+      experiment(StopTime=0.2, Interval=2.7e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Impedance;
 
   model ImpedanceOneTerm "Impedance One-terminal"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
-      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
+      annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
+      annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter
-      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+      annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
     replaceable PowerSystems.AC1ph_DC.ImpedancesOneTerm.Inductor ind(r=0.1)
-      annotation (Placement(transformation(extent={{30,-10},{50,10}})));
+      annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
-      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
+      annotation (Placement(transformation(extent={{-50,-30},{-70,-10}})));
 
   equation
     connect(transPh.y, voltage.vPhasor_in)
-      annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
+      annotation (Line(points={{-60,0},{-34,0},{-34,-10}}, color={0,0,127}));
     connect(voltage.term, meter.term_p)
-      annotation (Line(points={{-50,0},{-40,0}}, color={0,0,255}));
+      annotation (Line(points={{-30,-20},{-20,-20}}, color={0,0,255}));
     connect(meter.term_n, ind.term)
-      annotation (Line(points={{-20,0},{30,0}}, color={0,0,255}));
+      annotation (Line(points={{0,-20},{50,-20}}, color={0,0,255}));
     connect(grd.term, voltage.neutral)
-      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-50,-20},{-50,-20}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=2.7e-4));
+</html>"),
+      experiment(StopTime=0.2, Interval=2.7e-4),
+      Diagram(coordinateSystem(extent={{-100,-40},{80,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{80,40}})));
   end ImpedanceOneTerm;
 
   model Line "Line"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(ph_end=
           0.087266462599716)
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
@@ -190,16 +206,16 @@ package Elementary "AC 1-phase and DC components"
       alpha0=0.087266462599716)
       annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage2(V_nom=132e3)
-      annotation (Placement(transformation(extent={{90,-10},{70,10}})));
+      annotation (Placement(transformation(extent={{78,-10},{58,10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter(V_nom=132e3, S_nom=100e6)
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
     replaceable PowerSystems.AC1ph_DC.Lines.Tline line(redeclare record Data =
           PowerSystems.AC1ph_DC.Lines.Parameters.Line (V_nom=132e3))
-      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+      annotation (Placement(transformation(extent={{16,-10},{36,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+      annotation (Placement(transformation(extent={{84,-10},{104,10}})));
 
   equation
     connect(transPh.y, voltage1.vPhasor_in)
@@ -207,23 +223,27 @@ package Elementary "AC 1-phase and DC components"
     connect(voltage1.term, meter.term_p)
       annotation (Line(points={{-50,0},{-40,0}}, color={0,0,255}));
     connect(meter.term_n, line.term_p)
-      annotation (Line(points={{-20,0},{20,0}}, color={0,0,255}));
+      annotation (Line(points={{-20,0},{16,0}}, color={0,0,255}));
     connect(line.term_n, voltage2.term)
-      annotation (Line(points={{40,0},{70,0}}, color={0,0,255}));
+      annotation (Line(points={{36,0},{58,0}}, color={0,0,255}));
     connect(grd1.term, voltage1.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     connect(voltage2.neutral, grd2.term)
-      annotation (Line(points={{90,0},{90,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{78,0},{84,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=0.2, Interval=1e-4));
+</html>"),
+      experiment(StopTime=0.2, Interval=1e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Line;
 
   model DoublelLine "Parallel lines, one faulted"
     import PowerSystems;
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage1(V_nom=20e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
@@ -290,7 +310,8 @@ package Elementary "AC 1-phase and DC components"
             50},{-30,20}}, color={255,0,255}));
     connect(relay2.y[1], switch2.control) annotation (Line(points={{70,50},{66,
             50},{60,50},{60,20}}, color={255,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Fault clearance by short-time line switched off.<br>
 Compare with DoublePIline.</p>
 <p><i>See for example:</i>
@@ -301,17 +322,20 @@ Compare with DoublePIline.</p>
   abc.i_abc        fault currents
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.Spot.TransmissionAC3ph\">up users guide</a></p>
-</html>"), experiment(StopTime=0.5, Interval=2.5e-5));
+</html>"),
+      experiment(StopTime=0.5, Interval=2.5e-5),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoublelLine;
 
   model LoadAC "AC load"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
     PowerSystems.Blocks.Signals.Transient[2] trsSignal(s_start={1,2}, s_end={2,
           3}) annotation (Placement(transformation(
-          origin={40,60},
+          origin={40,40},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(a_end=0.9)
@@ -335,19 +359,23 @@ Compare with DoublePIline.</p>
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     connect(trsSignal.y, zLoadAC.pq_in)
-      annotation (Line(points={{40,50},{40,10}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{40,30},{40,24},{40,10}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Interval=1e-4));
+</html>"),
+      experiment(StopTime=1, Interval=1e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{80,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{80,60}})));
   end LoadAC;
 
   model LoadDC "AC load"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.Transient trsSignalL(s_start=0.5, s_end=1)
       annotation (Placement(transformation(
-          origin={40,60},
+          origin={40,36},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC1ph_DC.Sources.DCvoltage voltage(use_vDC_in=true)
@@ -371,16 +399,20 @@ Compare with DoublePIline.</p>
     connect(transV.y, voltage.vDC_in)
       annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
     connect(trsSignalL.y, pLoadDC.p_in)
-      annotation (Line(points={{40,50},{40,10}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{40,26},{40,10}}, color={0,0,127}));
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Interval=2.7e-4));
+</html>"),
+      experiment(StopTime=1, Interval=2.7e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{80,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{80,60}})));
   end LoadDC;
 
   model Machines "Machines"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Mechanics.Rotational.Rotor rotor
       annotation (Placement(transformation(extent={{28,-10},{48,10}})));
     PowerSystems.Mechanics.Rotational.Torque torq(tau0=-1)
@@ -421,23 +453,27 @@ Compare with DoublePIline.</p>
       annotation (Line(points={{0,10},{0,10}}, color={176,0,0}));
     connect(transTau.y, torq.tau_in)
       annotation (Line(points={{80,0},{80,0}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1));
+"),
+      experiment(StopTime=1),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Machines;
 
   model Sensor "Sensor and meter"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC1ph_DC.ImpedancesOneTerm.Resistor res
-      annotation (Placement(transformation(extent={{80,-10},{100,10}})));
+      annotation (Placement(transformation(extent={{40,-10},{60,10}})));
     replaceable PowerSystems.AC1ph_DC.Sensors.PVImeter meter
-      annotation (Placement(transformation(extent={{0,-10},{20,10}})));
+      annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
     PowerSystems.AC1ph_DC.Sources.Vspectrum voltage(use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
@@ -447,49 +483,57 @@ Compare with DoublePIline.</p>
     connect(transPh.y, voltage.vPhasor_in)
       annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
     connect(voltage.term, meter.term_p)
-      annotation (Line(points={{-50,0},{0,0}}, color={0,0,255}));
+      annotation (Line(points={{-50,0},{-8,0}},color={0,0,255}));
     connect(meter.term_n, res.term)
-      annotation (Line(points={{20,0},{80,0}}, color={0,0,255}));
+      annotation (Line(points={{12,0},{40,0}}, color={0,0,255}));
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=2.7e-4));
+"),
+      experiment(StopTime=0.2, Interval=2.7e-4),
+      Diagram(coordinateSystem(extent={{-100,-20},{80,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{80,60}})));
   end Sensor;
 
   model Source "Source"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
     replaceable PowerSystems.AC1ph_DC.Sources.ACvoltage voltage
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter
-      annotation (Placement(transformation(extent={{40,-10},{60,10}})));
+      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
     PowerSystems.AC1ph_DC.ImpedancesOneTerm.Inductor ind
-      annotation (Placement(transformation(extent={{70,-10},{90,10}})));
+      annotation (Placement(transformation(extent={{52,-10},{72,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-40,-10},{-60,10}})));
 
   equation
     connect(voltage.term, meter.term_p)
-      annotation (Line(points={{-20,0},{40,0}}, color={0,0,255}));
+      annotation (Line(points={{-20,0},{20,0}}, color={0,0,255}));
     connect(meter.term_n, ind.term)
-      annotation (Line(points={{60,0},{70,0}}, color={0,0,255}));
+      annotation (Line(points={{40,0},{52,0}}, color={0,0,255}));
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-40,0},{-40,0}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=2.7e-4));
+"),
+      experiment(StopTime=0.2, Interval=2.7e-4),
+      Diagram(coordinateSystem(extent={{-60,-20},{80,60}})),
+      Icon(coordinateSystem(extent={{-60,-20},{80,60}})));
   end Source;
 
   model Transformer "Transformer"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.Control.Relays.TapChangerRelay tapChanger(
@@ -497,7 +541,7 @@ Compare with DoublePIline.</p>
       preset_2={1,1,2},
       t_switch_1={0.9,1.9},
       t_switch_2={1.1,2.1}) annotation (Placement(transformation(
-          origin={10,60},
+          origin={10,30},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(use_vPhasor_in=true)
@@ -518,7 +562,7 @@ Compare with DoublePIline.</p>
     PowerSystems.AC1ph_DC.ImpedancesOneTerm.Resistor res(V_nom=10, r=100)
       annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.AC1ph_DC.Nodes.PolarityGround polGrd1(pol=0)
-      annotation (Placement(transformation(extent={{80,-40},{100,-20}})));
+      annotation (Placement(transformation(extent={{80,-36},{100,-16}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd
       annotation (Placement(transformation(extent={{-80,-10},{-100,10}})));
 
@@ -534,24 +578,28 @@ Compare with DoublePIline.</p>
     connect(meter2.term_n, res.term)
       annotation (Line(points={{70,0},{80,0}}, color={0,0,255}));
     connect(res.term, polGrd1.term)
-      annotation (Line(points={{80,0},{80,-30}}, color={0,0,255}));
+      annotation (Line(points={{80,0},{80,-26}}, color={0,0,255}));
     connect(grd.term, voltage.neutral)
       annotation (Line(points={{-80,0},{-80,0}}, color={0,0,255}));
     connect(tapChanger.tap_1, trafo.tap_1_in)
-      annotation (Line(points={{6,50},{6,10}}, color={255,127,0}));
+      annotation (Line(points={{6,20},{6,10}}, color={255,127,0}));
     connect(tapChanger.tap_2, trafo.tap_2_in)
-      annotation (Line(points={{14,50},{14,10}}, color={255,127,0}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{14,20},{14,10}}, color={255,127,0}));
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=3, Interval=4e-4));
+"),
+      experiment(StopTime=3, Interval=4e-4),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Transformer;
 
   model Rectifier "Rectifier"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage vAC(V_nom=2, use_vPhasor_in=true)
@@ -592,17 +640,21 @@ Compare with DoublePIline.</p>
       annotation (Line(points={{90,0},{90,0}}, color={0,0,255}));
     connect(rectifier.heat, boundary.heat)
       annotation (Line(points={{20,10},{20,10}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=0.2e-3));
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Rectifier;
 
   model Inverter "Inverter, controlled rectifier"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage vAC(use_vPhasor_in=true)
@@ -618,7 +670,7 @@ Compare with DoublePIline.</p>
     PowerSystems.AC1ph_DC.Sources.DCvoltage vDC(pol=0, V_nom=2)
       annotation (Placement(transformation(extent={{90,-10},{70,10}})));
     PowerSystems.AC1ph_DC.Inverters.Select select(alpha0=0.5235987755983)
-      annotation (Placement(transformation(extent={{30,40},{10,60}})));
+      annotation (Placement(transformation(extent={{30,34},{10,54}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd2
@@ -630,9 +682,9 @@ Compare with DoublePIline.</p>
     connect(transPh.y, vAC.vPhasor_in)
       annotation (Line(points={{-80,20},{-64,20},{-64,10}}, color={0,0,127}));
     connect(select.theta_out, dc_ac.theta)
-      annotation (Line(points={{26,40},{26,10}}, color={0,0,127}));
+      annotation (Line(points={{26,34},{26,10}}, color={0,0,127}));
     connect(select.vPhasor_out, dc_ac.vPhasor)
-      annotation (Line(points={{14,40},{14,10}}, color={0,0,127}));
+      annotation (Line(points={{14,34},{14,10}}, color={0,0,127}));
     connect(vDC.term, meterDC.term_p)
       annotation (Line(points={{70,0},{60,0}}, color={0,0,255}));
     connect(meterDC.term_n, dc_ac.DC)
@@ -649,10 +701,14 @@ Compare with DoublePIline.</p>
       annotation (Line(points={{-80,0},{-80,0}}, color={0,0,255}));
     connect(dc_ac.heat, boundary.heat)
       annotation (Line(points={{20,10},{20,10}}, color={176,0,0}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"), experiment(StopTime=0.2, Interval=0.2e-3));
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Inverter;
 
   annotation (preferredView="info", Documentation(info="<html>
