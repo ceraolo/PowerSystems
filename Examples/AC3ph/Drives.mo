@@ -629,6 +629,7 @@ Check vPhasor[1] &lt;  1.<br>The time-average inverter produces a desired voltag
             "switch, no diode, no losses") "inverter with modulator",
       w_start=0.10471975511966)
       annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
+
     PowerSystems.Common.Thermal.BdCondV bdCond(m=5)
       annotation (Placement(transformation(extent={{0,-20},{20,0}})));
     PowerSystems.Mechanics.Rotational.Rotor loadInertia(J=0.5, w_start(

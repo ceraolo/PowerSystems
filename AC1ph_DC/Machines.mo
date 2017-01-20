@@ -8,8 +8,8 @@ package Machines "DC-machines, electric part"
     parameter Real k(final unit="N.m/A") = 1 "transformation coefficient";
 
     SI.AngularVelocity w "ang velocity rotor";
-    Interfaces.Rotation_n airgap "electro-mechanical connection"
-      annotation (Placement(transformation(
+    Interfaces.Rotation_n airgap "electro-mechanical connection" annotation (
+        Placement(transformation(
           origin={0,60},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -20,40 +20,34 @@ package Machines "DC-machines, electric part"
     w = der(airgap.phi);
     k*w = term.v[1] - term.v[2];
     airgap.tau = -k*term.i[1];
-    annotation (defaultComponentName = "emf",
+    annotation (
+      defaultComponentName="emf",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Ellipse(
-            extent={{-60,60},{60,-60}},
-            lineColor={135,135,135},
-            fillColor={135,135,135},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{-40,40},{40,-40}},
-            lineColor={135,135,135},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{26,20},{66,-20}},
-            lineColor={255,255,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{26,20},{46,-20},{66,20},{26,20}},
-            lineColor={135,135,135},
-            fillColor={135,135,135},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-80,18},{-60,18}}, color={0,0,255}),
-          Line(points={{-70,-18},{34,-18},{14,18},{-30,18}}, color={0,0,255}),
-          Text(
-            extent={{-110,10},{90,-10}},
-            lineColor={0,0,255},
-            textString=
-                 "emf")}),
-      Documentation(
-              info="<html>
+          grid={2,2}), graphics={Ellipse(
+              extent={{-60,60},{60,-60}},
+              lineColor={135,135,135},
+              fillColor={135,135,135},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{-40,40},{40,-40}},
+              lineColor={135,135,135},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{26,20},{66,-20}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{26,20},{46,-20},{66,20},{26,20}},
+              lineColor={135,135,135},
+              fillColor={135,135,135},
+              fillPattern=FillPattern.Solid),Line(points={{-80,18},{-60,18}},
+            color={0,0,255}),Line(points={{-70,-18},{34,-18},{14,18},{-30,18}},
+            color={0,0,255}),Text(
+              extent={{-110,10},{90,-10}},
+              lineColor={0,0,255},
+              textString="emf")}),
+      Documentation(info="<html>
 <p>EMF transforms electrical power into rotational mechanical power without losses.
 <pre>  P_mec = der(airgap.phi)*airgap.tau = -v*i = -P_el.</pre></p>
 <p>The power is independent of the factor <tt>k</tt>. The connector 'airgap' transfers the rotor-torque to the mechanical system.</p>
@@ -80,9 +74,9 @@ package Machines "DC-machines, electric part"
 
     tau_el = i*(c.L_md*i);
     heat.ports.Q_flow = -c.R*i*i;
-    annotation (defaultComponentName = "DCser",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="DCser",
+      Documentation(info="<html>
 <p>The field (stator) winding and armature (rotor) winding are series-connected.<br>
 Contains in general compensation and commutation poles.<br>
 The parameter values l_q and r_q have to be interpreted differently for machines without and with
@@ -109,14 +103,14 @@ L_md depends on the winding ratio between armature and field winding</p>
 &nbsp; - solving the steady-state machine equations for L_md at nominal conditions. This method leads to</p>
 <pre>  L_md=(V_nom/I_nom - (R_fd + R_q))/(pp*w_nom)</pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,10},{100,-10}},
-            lineColor={255,255,255},
-            textString=
-                 "ser")}));
+              extent={{-100,10},{100,-10}},
+              lineColor={255,255,255},
+              textString="ser")}));
   end DCser;
 
   model DCpar "DC machine parallel excited"
@@ -124,23 +118,24 @@ L_md depends on the winding ratio between armature and field winding</p>
 
   initial equation
     if dynType == Types.Dynamics.SteadyInitial then
-      der({i_f, i}) = {0,0};
+      der({i_f,i}) = {0,0};
     elseif dynType == Types.Dynamics.FixedInitial then
       i = i_start;
     end if;
 
   equation
     if dynType <> Types.Dynamics.SteadyState then
-      diagonal(c.L)*der({i_f, i}) + {0, w_el*c.L_md*i_f} + diagonal(c.R)*{i_f, i} = {v_f, v};
+      diagonal(c.L)*der({i_f,i}) + {0,w_el*c.L_md*i_f} + diagonal(c.R)*{i_f,i}
+        = {v_f,v};
     else
-      {0, w_el*c.L_md*i_f} + diagonal(c.R)*{i_f, i} = {v_f, v};
+      {0,w_el*c.L_md*i_f} + diagonal(c.R)*{i_f,i} = {v_f,v};
     end if;
 
     tau_el = i*(c.L_md*i_f);
-    heat.ports.Q_flow = -{c.R[1]*i_f*i_f, c.R[2]*i*i};
-    annotation (defaultComponentName = "DCpar",
-      Documentation(
-              info="<html>
+    heat.ports.Q_flow = -{c.R[1]*i_f*i_f,c.R[2]*i*i};
+    annotation (
+      defaultComponentName="DCpar",
+      Documentation(info="<html>
 <p>The field (stator) winding and armature (rotor) winding are parallel-connected
 or the field winding has a separate excitation source.<br>
 Contains in general compensation and commutation poles.<br>
@@ -175,14 +170,14 @@ It can be determined in several ways,<br>
   w_el_lim = pp*w_nom/(1 - R_q*I_nom/V_nom)  no-load angular velocity (electrical)
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,10},{100,-10}},
-            lineColor={255,255,255},
-            textString=
-                 "par")}));
+              extent={{-100,10},{100,-10}},
+              lineColor={255,255,255},
+              textString="par")}));
   end DCpar;
 
   model DCpm "DC machine permanent magnet excited"
@@ -203,10 +198,10 @@ It can be determined in several ways,<br>
     end if;
 
     tau_el = i*c.Psi_pm;
-    heat.ports.Q_flow = -{0, c.R*i*i};
-    annotation (defaultComponentName = "DCpm",
-      Documentation(
-              info="<html>
+    heat.ports.Q_flow = -{0,c.R*i*i};
+    annotation (
+      defaultComponentName="DCpm",
+      Documentation(info="<html>
 <p>The field (stator) winding is replaced by a permanent magnet system, no compensation and commutation poles exist.</p>
 <p>For pu input refer to the (electrical) angular machine velocity pp*w_nom and use</p>
 <pre>  L_base = R_base/(pp*w_nom)</pre>
@@ -217,44 +212,46 @@ It can be determined in several ways,<br>
 </pre>
 or from the induced armature voltage at nominal (compare with the synchronous machine).</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,10},{100,-10}},
-            lineColor={255,255,255},
-            textString=
-                 "pm")}));
+              extent={{-100,10},{100,-10}},
+              lineColor={255,255,255},
+              textString="pm")}));
   end DCpm;
 
   package Partials "Partial models"
-     extends Modelica.Icons.BasesPackage;
+    extends Modelica.Icons.BasesPackage;
 
     partial model DCBase "Base DC machine"
       extends Ports.Port_p;
 
-      parameter Types.Dynamics dynType=system.dynType "transient or steady-state model"
-        annotation(Evaluate=true, Dialog(tab="Initialization"));
-      parameter PS.Voltage v_start = 0 "start value of voltage drop"
-        annotation(Dialog(tab="Initialization"));
-      parameter PS.Current i_start = 0 "start value of current"
-        annotation(Dialog(tab="Initialization"));
+      parameter Types.Dynamics dynType=system.dynType
+        "transient or steady-state model"
+        annotation (Evaluate=true,Dialog(tab="Initialization"));
+      parameter PS.Voltage v_start=0 "start value of voltage drop"
+        annotation (Dialog(tab="Initialization"));
+      parameter PS.Current i_start=0 "start value of current"
+        annotation (Dialog(tab="Initialization"));
       parameter Integer pp=2 "pole-pair number";
       parameter SI.Angle phi_el_start=0 "initial rotor angle electric"
         annotation (Dialog(tab="Initialization"));
       SI.Angle phi_el(start=phi_el_start, stateSelect=StateSelect.always)
         "rotor angle electric";
-      SI.AngularVelocity w_el(stateSelect=StateSelect.prefer) "rotor angular velocity el";
+      SI.AngularVelocity w_el(stateSelect=StateSelect.prefer)
+        "rotor angular velocity el";
       SI.Torque tau_el "electromagnetic torque";
-      PS.Voltage v(start = v_start) "voltage";
-      PS.Current i(start = i_start) "current";
+      PS.Voltage v(start=v_start) "voltage";
+      PS.Current i(start=i_start) "current";
 
-      Interfaces.Rotation_n airgap "electro-mechanical connection"
-        annotation (Placement(transformation(
+      Interfaces.Rotation_n airgap "electro-mechanical connection" annotation (
+          Placement(transformation(
             origin={0,60},
             extent={{-10,-10},{10,10}},
             rotation=270)));
-      Interfaces.ThermalV_n heat(     m=2) "heat source port {stator, rotor}"
+      Interfaces.ThermalV_n heat(m=2) "heat source port {stator, rotor}"
         annotation (Placement(transformation(
             origin={0,100},
             extent={{-10,-10},{10,10}},
@@ -274,8 +271,7 @@ or from the induced armature voltage at nominal (compare with the synchronous ma
       airgap.tau = -pp*tau_el;
       w_el = der(phi_el);
       annotation (
-        Documentation(
-              info="<html>
+        Documentation(info="<html>
 <p>Contains the pole-pair transformation</p>
 <pre>
   pp*airgap.phi = phi_el;
@@ -287,109 +283,91 @@ The connector 'airgap' transfers the electromagnetic rotor-torque to the mechani
         Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Ellipse(
-              extent={{90,90},{-90,-90}},
-              lineColor={175,175,175},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),
-            Ellipse(
-              extent={{70,70},{-70,-70}},
-              lineColor={255,170,85},
-              fillColor={255,170,85},
-              fillPattern=FillPattern.Solid),
-            Ellipse(
-              extent={{50,50},{-50,-50}},
-              lineColor={0,0,0},
-              fillPattern=FillPattern.Sphere,
-              fillColor={215,215,215}),
-            Polygon(
-              points={{-64,-10},{-59,10},{-54,-10},{-64,-10}},
-              lineColor={255,255,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Polygon(
-              points={{55,10},{59,-10},{65,10},{55,10}},
-              lineColor={255,255,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}),
+            grid={2,2}), graphics={Ellipse(
+                  extent={{90,90},{-90,-90}},
+                  lineColor={175,175,175},
+                  fillColor={175,175,175},
+                  fillPattern=FillPattern.Solid),Ellipse(
+                  extent={{70,70},{-70,-70}},
+                  lineColor={255,170,85},
+                  fillColor={255,170,85},
+                  fillPattern=FillPattern.Solid),Ellipse(
+                  extent={{50,50},{-50,-50}},
+                  lineColor={0,0,0},
+                  fillPattern=FillPattern.Sphere,
+                  fillColor={215,215,215}),Polygon(
+                  points={{-64,-10},{-59,10},{-54,-10},{-64,-10}},
+                  lineColor={255,255,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Polygon(
+                  points={{55,10},{59,-10},{65,10},{55,10}},
+                  lineColor={255,255,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-50,-18},{-30,-22}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{-30,-18},{50,-22}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),
-            Text(
-              extent={{-40,40},{40,30}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              textString=
-                   "stator (field)"),
-            Text(
-              extent={{-40,-30},{40,-40}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              textString=
-                   "rotor (armature)"),
-            Rectangle(
-              extent={{-30,1},{50,-1}},
-              lineColor={175,175,175},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid)}));
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-50,-18},{-30,-22}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{-30,-18},{50,-22}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={0,0,255},
+                  fillPattern=FillPattern.Solid),Text(
+                  extent={{-40,40},{40,30}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  textString="stator (field)"),Text(
+                  extent={{-40,-30},{40,-40}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  textString="rotor (armature)"),Rectangle(
+                  extent={{-30,1},{50,-1}},
+                  lineColor={175,175,175},
+                  fillColor={175,175,175},
+                  fillPattern=FillPattern.Solid)}));
     end DCBase;
 
     partial model DCserBase "DC machine series excited, parameter"
       extends DCBase(final pp=par.pp);
 
       replaceable record Data = PowerSystems.AC1ph_DC.Machines.Parameters.DCser
-        "machine parameters" annotation(choicesAllMatching=true);
+        "machine parameters" annotation (choicesAllMatching=true);
       final parameter Data par "machine parameters"
         annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
     protected
-      final parameter Coefficients.DCser c = Utilities.Precalculation.machineDCser(
-                                                                               par);
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Diagram(coordinateSystem(
+      final parameter Coefficients.DCser c=
+          Utilities.Precalculation.machineDCser(par);
+      annotation (Documentation(info="<html>
+</html>"), Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-30,22},{50,18}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{-50,22},{-30,18}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(points={{-50,20},{-70,20},{-70,4},{-80,4}}, color={0,0,255}),
-            Line(points={{50,20},{60,20},{60,12},{-60,12},{-60,-20},{-50,-20}},
-                color={0,0,255}),
-            Line(points={{50,-20},{60,-20},{60,-28},{-70,-28},{-70,-4},{-80,-4}},
-                color={0,0,255})}));
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-30,22},{50,18}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={0,0,255},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{-50,22},{-30,18}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(points={{-50,20},{-70,20},
+              {-70,4},{-80,4}}, color={0,0,255}),Line(points={{50,20},{60,20},{
+              60,12},{-60,12},{-60,-20},{-50,-20}}, color={0,0,255}),Line(
+              points={{50,-20},{60,-20},{60,-28},{-70,-28},{-70,-4},{-80,-4}},
+              color={0,0,255})}));
     end DCserBase;
 
     partial model DCparBase "DC machine parallel excited, parameter"
       extends DCBase(final pp=par.pp);
 
       replaceable record Data = PowerSystems.AC1ph_DC.Machines.Parameters.DCpar
-        "machine parameters" annotation(choicesAllMatching=true);
+        "machine parameters" annotation (choicesAllMatching=true);
       final parameter Data par "machine parameters"
         annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
       PS.Voltage v_f;
@@ -397,192 +375,185 @@ The connector 'airgap' transfers the electromagnetic rotor-torque to the mechani
       Ports.TwoPin_p field
         annotation (Placement(transformation(extent={{-110,-50},{-90,-30}})));
     protected
-      final parameter Coefficients.DCpar c = Utilities.Precalculation.machineDCpar(
-                                                                               par);
+      final parameter Coefficients.DCpar c=
+          Utilities.Precalculation.machineDCpar(par);
     equation
       sum(field.i) = 0;
       v_f = field.v[1] - field.v[2];
       i_f = field.i[1];
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Diagram(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-30,22},{50,18}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{-50,22},{-30,18}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(points={{-80,4},{-60,4},{-60,-20},{-50,-20}}, color={0,0,255}),
-            Line(points={{-80,-4},{-70,-4},{-70,-28},{60,-28},{60,-20},{50,-20}},
-                color={0,0,255}),
-            Line(points={{-50,20},{-60,20},{-60,12},{72,12},{72,-36},{40,-36}},
-                color={0,0,255}),
-            Line(points={{50,20},{80,20},{80,-44},{-80,-44}}, color={0,0,255}),
-            Line(points={{-40,-36},{-80,-36}}, color={0,0,255})}));
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-30,22},{50,18}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={0,0,255},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{-50,22},{-30,18}},
+                  lineColor={0,0,255},
+                  lineThickness=0.5,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(points={{-80,4},{-60,4},{
+              -60,-20},{-50,-20}}, color={0,0,255}),Line(points={{-80,-4},{-70,
+              -4},{-70,-28},{60,-28},{60,-20},{50,-20}}, color={0,0,255}),Line(
+              points={{-50,20},{-60,20},{-60,12},{72,12},{72,-36},{40,-36}},
+              color={0,0,255}),Line(points={{50,20},{80,20},{80,-44},{-80,-44}},
+              color={0,0,255}),Line(points={{-40,-36},{-80,-36}}, color={0,0,
+              255})}));
     end DCparBase;
 
     partial model DCpmBase "DC machine permanent magnet excited, parameter"
       extends DCBase(final pp=par.pp);
 
       replaceable record Data = PowerSystems.AC1ph_DC.Machines.Parameters.DCpm
-        "machine parameters" annotation(choicesAllMatching=true);
+        "machine parameters" annotation (choicesAllMatching=true);
       final parameter Data par "machine parameters"
         annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
     protected
-      final parameter Coefficients.DCpm c = Utilities.Precalculation.machineDCpm(
-                                                                             par);
-      annotation (
-        Documentation(
-              info="<html>
+      final parameter Coefficients.DCpm c=Utilities.Precalculation.machineDCpm(
+          par);
+      annotation (Documentation(info="<html>
 <p>Magnetic flux base for pu-choice is
 <pre>  Psi_base = (1 - r_aq)*V_nom/omega_nom = (1 - r_aq)*V_nom/(pp*w_nom)</pre></p>
-</html>"),
-        Diagram(coordinateSystem(
+</html>"), Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-30,22},{50,18}},
-              lineColor={176,0,0},
-              fillColor={176,0,0},
-              fillPattern=FillPattern.Solid),
-            Line(points={{-80,4},{-60,4},{-60,-20},{-50,-20}}, color={0,0,255}),
-            Line(points={{50,-20},{60,-20},{60,-28},{-70,-28},{-70,-4},{-80,-4}},
-                color={0,0,255})}));
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-30,22},{50,18}},
+                  lineColor={176,0,0},
+                  fillColor={176,0,0},
+                  fillPattern=FillPattern.Solid),Line(points={{-80,4},{-60,4},{
+              -60,-20},{-50,-20}}, color={0,0,255}),Line(points={{50,-20},{60,-20},
+              {60,-28},{-70,-28},{-70,-4},{-80,-4}}, color={0,0,255})}));
 
     end DCpmBase;
 
   end Partials;
 
-package Parameters "Parameter data for interactive use"
-  extends Modelica.Icons.MaterialPropertiesPackage;
+  package Parameters "Parameter data for interactive use"
+    extends Modelica.Icons.MaterialPropertiesPackage;
 
-record DCser "DC machine parameters series excited"
-  extends Common.Nominal.NominalDataDC(
-                                      w_nom=157.079632679489661923);
+    record DCser "DC machine parameters series excited"
+      extends Common.Nominal.NominalDataDC(w_nom=157.079632679489661923);
 
-  Integer pp=2 "pole-pair nb" annotation(Dialog);
-  SIpu.Inductance l_fd=0.15 "inductance field (d-axis)" annotation(Dialog);
-  SIpu.Resistance r_fd=0.01 "resistance field (d-axis)" annotation(Dialog);
-  SIpu.Inductance l_q=0.5 "inductance armature+ (q-axis)" annotation(Dialog);
-  SIpu.Resistance r_q=0.05 "resistance armature+ (q-axis)" annotation(Dialog);
+      Integer pp=2 "pole-pair nb" annotation (Dialog);
+      SIpu.Inductance l_fd=0.15 "inductance field (d-axis)" annotation (Dialog);
+      SIpu.Resistance r_fd=0.01 "resistance field (d-axis)" annotation (Dialog);
+      SIpu.Inductance l_q=0.5 "inductance armature+ (q-axis)"
+        annotation (Dialog);
+      SIpu.Resistance r_q=0.05 "resistance armature+ (q-axis)"
+        annotation (Dialog);
 
-  annotation (defaultComponentName="dc_serPar",
-    defaultComponentPrefixes="parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="dc_serPar",
+        defaultComponentPrefixes="parameter",
+        Documentation(info="<html>
 </html>"));
-end DCser;
+    end DCser;
 
-record DCpar "DC machine parameters parallel excited"
-  extends Common.Nominal.NominalDataDC(
-                                      w_nom=157.079632679489661923);
+    record DCpar "DC machine parameters parallel excited"
+      extends Common.Nominal.NominalDataDC(w_nom=157.079632679489661923);
 
-  SI.Voltage Vf_nom=1 "nom field voltage"
-    annotation(Evaluate=true, Dialog(group="Nominal"));
-  Integer pp=2 "pole-pair nb" annotation(Dialog);
-  SIpu.Inductance l_fd=100*pi "inductance field (d-axis)" annotation(Dialog);
-  SIpu.Resistance r_fd=100 "resistance field (d-axis)" annotation(Dialog);
-  SIpu.Inductance l_q=0.5 "inductance armature+ (q-axis)" annotation(Dialog);
-  SIpu.Resistance r_q=0.05 "resistance armature+ (q-axis)" annotation(Dialog);
+      SI.Voltage Vf_nom=1 "nom field voltage"
+        annotation (Evaluate=true,Dialog(group="Nominal"));
+      Integer pp=2 "pole-pair nb" annotation (Dialog);
+      SIpu.Inductance l_fd=100*pi "inductance field (d-axis)"
+        annotation (Dialog);
+      SIpu.Resistance r_fd=100 "resistance field (d-axis)" annotation (Dialog);
+      SIpu.Inductance l_q=0.5 "inductance armature+ (q-axis)"
+        annotation (Dialog);
+      SIpu.Resistance r_q=0.05 "resistance armature+ (q-axis)"
+        annotation (Dialog);
 
-  annotation (defaultComponentName="dc_parPar",
-    defaultComponentPrefixes="parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="dc_parPar",
+        defaultComponentPrefixes="parameter",
+        Documentation(info="<html>
 </html>"));
-end DCpar;
+    end DCpar;
 
-record DCpm "DC machine parameters permanent magnet excited"
-  extends Common.Nominal.NominalDataDC(
-                                      w_nom=157.079632679489661923);
+    record DCpm "DC machine parameters permanent magnet excited"
+      extends Common.Nominal.NominalDataDC(w_nom=157.079632679489661923);
 
-  Integer pp=2 "pole-pair nb" annotation(Dialog);
-  SIpu.Inductance l_aq=0.5 "inductance armature (q-axis)" annotation(Dialog);
-  SIpu.Resistance r_aq=0.05 "resistance armature (q-axis)" annotation(Dialog);
+      Integer pp=2 "pole-pair nb" annotation (Dialog);
+      SIpu.Inductance l_aq=0.5 "inductance armature (q-axis)"
+        annotation (Dialog);
+      SIpu.Resistance r_aq=0.05 "resistance armature (q-axis)"
+        annotation (Dialog);
 
-  annotation (defaultComponentName="dc_pmPar",
-    defaultComponentPrefixes="parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="dc_pmPar",
+        defaultComponentPrefixes="parameter",
+        Documentation(info="<html>
 </html>"));
-end DCpm;
+    end DCpm;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+    annotation (preferredView="info", Documentation(info="<html>
 <p>Records containing parameters of the corresponding components.</p>
 </html>"));
-end Parameters;
+  end Parameters;
 
-package Coefficients "Coefficient matrices of machine equations"
-  extends Modelica.Icons.MaterialPropertiesPackage;
+  package Coefficients "Coefficient matrices of machine equations"
+    extends Modelica.Icons.MaterialPropertiesPackage;
 
-record DCser "Coefficients of DC machine series excited"
-  extends Modelica.Icons.Record;
+    record DCser "Coefficients of DC machine series excited"
+      extends Modelica.Icons.Record;
 
-  SI.Inductance L "series inductance";
-  SI.Resistance[2] R "resistance {d (field), q (armature)} axis";
-  SI.Inductance L_md "mutual inductance";
+      SI.Inductance L "series inductance";
+      SI.Resistance[2] R "resistance {d (field), q (armature)} axis";
+      SI.Inductance L_md "mutual inductance";
 
-  annotation (defaultComponentName="data",
-    defaultComponentPrefixes="final parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="data",
+        defaultComponentPrefixes="final parameter",
+        Documentation(info="<html>
 </html>"));
-end DCser;
+    end DCser;
 
-record DCpar "Coefficients of DC machine parallel excited"
-  extends Modelica.Icons.Record;
+    record DCpar "Coefficients of DC machine parallel excited"
+      extends Modelica.Icons.Record;
 
-  SI.Inductance[2] L "inductance {d (field), q (armature)} axis";
-  SI.Resistance[2] R "resistance {d (field), q (armature)} axis";
-  SI.Inductance L_md "mutual inductance";
+      SI.Inductance[2] L "inductance {d (field), q (armature)} axis";
+      SI.Resistance[2] R "resistance {d (field), q (armature)} axis";
+      SI.Inductance L_md "mutual inductance";
 
-  annotation (defaultComponentName="data",
-    defaultComponentPrefixes="final parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="data",
+        defaultComponentPrefixes="final parameter",
+        Documentation(info="<html>
 </html>"));
-end DCpar;
+    end DCpar;
 
-record DCpm "Coefficients of DC machine permanent magnet excited"
-  extends Modelica.Icons.Record;
+    record DCpm "Coefficients of DC machine permanent magnet excited"
+      extends Modelica.Icons.Record;
 
-  SI.Resistance R "resistance";
-  SI.Inductance L "inductance";
-  SI.MagneticFlux Psi_pm "flux permanent magnet";
+      SI.Resistance R "resistance";
+      SI.Inductance L "inductance";
+      SI.MagneticFlux Psi_pm "flux permanent magnet";
 
-  annotation (defaultComponentName="data",
-    defaultComponentPrefixes="final parameter",
-    Documentation(
-          info="<html>
+      annotation (
+        defaultComponentName="data",
+        defaultComponentPrefixes="final parameter",
+        Documentation(info="<html>
 </html>"));
-end DCpm;
+    end DCpm;
 
-  annotation (preferredView="info",
-    Documentation(info="<html>
+    annotation (preferredView="info", Documentation(info="<html>
 <p>Records containing the result of precalculation, and used in the dynamical equations of the corresponding components.</p>
 </html>
 "));
-end Coefficients;
+  end Coefficients;
 
-  annotation (preferredView="info",
+  annotation (
+    preferredView="info",
     Documentation(info="<html>
 <p>This package contains the <b>electrical part</b> (electrical equations) of DC machines.<br>
 Complete drives are found in package Drives.</p>
 </html>
-"), Diagram(coordinateSystem(
+"),
+    Diagram(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-100,-100},{100,100}},
         grid={2,2}), graphics={Line(

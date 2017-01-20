@@ -15,7 +15,7 @@ package Precalculation "Precalculation functions"
     else
       V_base := 1;
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-voltage depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -43,7 +43,7 @@ package Precalculation "Precalculation functions"
     else
       I_base := 1;
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-current depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -70,7 +70,7 @@ package Precalculation "Precalculation functions"
     else
       S_base := 1;
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-power depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -99,7 +99,7 @@ package Precalculation "Precalculation functions"
     else
       R_base := scale;
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-resistance depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -128,7 +128,7 @@ package Precalculation "Precalculation functions"
     else
       L_base := 1;
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-inductance depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -156,11 +156,11 @@ Therefore the SI-value is 1 and not 1/omega_nom. The function is needed for DC-m
 
   algorithm
     if puUnits then
-      RL_base := scale*(V_nom*V_nom/S_nom)*{1, 1/omega_nom};
+      RL_base := scale*(V_nom*V_nom/S_nom)*{1,1/omega_nom};
     else
-      RL_base := scale*({1, 1/omega_nom});
+      RL_base := scale*({1,1/omega_nom});
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-resistance and -inductance depending on the choice of units (fist component is R, second is L).</p>
 <p>\"pu\":
 <pre>
@@ -186,11 +186,11 @@ Therefore the SI-value is 1 and not 1/omega_nom. The function is needed for DC-m
 
   algorithm
     if puUnits then
-      GC_base := (S_nom/(V_nom*V_nom))*{1, 1/omega_nom}/scale;
+      GC_base := (S_nom/(V_nom*V_nom))*{1,1/omega_nom}/scale;
     else
-      GC_base := {1, 1/omega_nom}/scale;
+      GC_base := {1,1/omega_nom}/scale;
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates base-conductance and -capacitance depending on the choice of units (fist component is G, second is C).</p>
 <p>\"pu\":
 <pre>
@@ -209,16 +209,16 @@ Therefore the SI-value is 1 and not 1/omega_nom. The function is needed for DC-m
 
     input Boolean puUnits "= true if pu else SI units";
     input SI.Voltage[:] V_nom "nom voltage {prim, sec} or {prim, sec1, sec2}";
-    output SI.Voltage[size(V_nom,1)] V_base
+    output SI.Voltage[size(V_nom, 1)] V_base
       "base voltage {prim,sec} or {prim, sec1, sec2}";
 
   algorithm
     if puUnits then
       V_base := V_nom;
     else
-      V_base := ones(size(V_nom,1));
+      V_base := ones(size(V_nom, 1));
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates transformer base-voltage depending on the choice of units.</p>
 <p>\"pu\":
 <pre>
@@ -239,16 +239,20 @@ Therefore the SI-value is 1 and not 1/omega_nom. The function is needed for DC-m
     input SI.Voltage[:] V_nom "nom voltage {prim, sec} or {prim, sec1, sec2}";
     input SI.ApparentPower S_nom "apparent power";
     input SI.AngularFrequency omega_nom "angular frequency";
-    output Real[size(V_nom,1), 2] RL_base "base [prim res, prim ind; sec res, sec ind] or
+    output Real[size(V_nom, 1), 2] RL_base "base [prim res, prim ind; sec res, sec ind] or
    [prim res, prim ind; sec1 res, sec1 ind; sec2 res, sec2 ind]";
 
   algorithm
     if puUnits then
-      RL_base := fill(V_nom[1]^2/S_nom, size(V_nom,1), 1)*[1, 1/omega_nom];
+      RL_base := fill(
+          V_nom[1]^2/S_nom,
+          size(V_nom, 1),
+          1)*[1, 1/omega_nom];
     else
-      RL_base := [(fill(V_nom[1],size(V_nom,1))./ V_nom).^2]*[1, 1/omega_nom];
+      RL_base := [(fill(V_nom[1], size(V_nom, 1)) ./ V_nom) .^ 2]*[1, 1/
+        omega_nom];
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates transformer base-resistance and -inductance depending on the choice of units (first index: primary, secondary, second index: R, L).<br>
 The secondary side is winding-reduced to the primary, as the equations are written in reduced form.</p>
 <p>\"pu\":
@@ -275,17 +279,20 @@ The secondary side is winding-reduced to the primary, as the equations are writt
   protected
     final parameter SI.AngularVelocity w_el_nom=p.pp*p.w_nom;
     final parameter SI.Resistance R_base=Utilities.Precalculation.baseR(
-                                               p.puUnits, p.V_nom, p.S_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom) "base resistance";
     final parameter SI.Inductance L_base=Utilities.Precalculation.baseL(
-                                               p.puUnits, p.V_nom, p.S_nom, w_el_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          w_el_nom) "base resistance";
 
   algorithm
     c.L := (p.l_fd + p.l_q)*L_base;
-    c.R := {p.r_fd, p.r_q}*R_base;
+    c.R := {p.r_fd,p.r_q}*R_base;
     c.L_md := (p.V_nom^2/p.S_nom - sum(c.R))/w_el_nom;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 </html>
 "));
   end machineDCser;
@@ -300,19 +307,22 @@ The secondary side is winding-reduced to the primary, as the equations are writt
   protected
     final parameter SI.AngularVelocity w_el_nom=p.pp*p.w_nom;
     final parameter SI.Resistance R_base=Utilities.Precalculation.baseR(
-                                               p.puUnits, p.V_nom, p.S_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom) "base resistance";
     final parameter SI.Inductance L_base=Utilities.Precalculation.baseL(
-                                               p.puUnits, p.V_nom, p.S_nom, w_el_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          w_el_nom) "base resistance";
     SI.AngularFrequency w_el_lim;
 
   algorithm
-    c.L := {p.l_fd, p.l_q}*L_base;
-    c.R := {p.r_fd, p.r_q}*R_base;
+    c.L := {p.l_fd,p.l_q}*L_base;
+    c.R := {p.r_fd,p.r_q}*R_base;
     w_el_lim := w_el_nom/(1 - c.R[2]*p.S_nom/p.V_nom^2);
     c.L_md := (c.R[1]/w_el_lim)*(p.V_nom/p.Vf_nom);
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 </html>
 "));
   end machineDCpar;
@@ -325,17 +335,20 @@ The secondary side is winding-reduced to the primary, as the equations are writt
   protected
     final parameter SI.AngularVelocity w_el_nom=p.pp*p.w_nom;
     final parameter SI.Resistance R_base=Utilities.Precalculation.baseR(
-                                               p.puUnits, p.V_nom, p.S_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom) "base resistance";
     final parameter SI.Inductance L_base=Utilities.Precalculation.baseL(
-                                               p.puUnits, p.V_nom, p.S_nom, w_el_nom)
-      "base resistance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          w_el_nom) "base resistance";
 
   algorithm
     c.L := p.l_aq*L_base;
     c.R := p.r_aq*R_base;
     c.Psi_pm := (p.V_nom - c.R*p.S_nom/p.V_nom)/w_el_nom;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 </html>
 "));
   end machineDCpm;
@@ -353,42 +366,67 @@ The secondary side is winding-reduced to the primary, as the equations are writt
     final parameter Integer n_r=p.n_r "number of rotor circuits";
     final parameter SI.AngularFrequency omega_nom=2*pi*p.f_nom;
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
-                                           p.puUnits, p.V_nom, p.S_nom, omega_nom, scale)
-      "base resistance inductance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          omega_nom,
+          scale) "base resistance inductance";
 
     SI.Angle[n_r] Tc "time constant closed-loop";
     SI.Angle[n_r] To "time constant open-loop";
-    SI.Resistance[n_r+1] zr;
-    SI.Reactance[n_r+1,n_r+1] zx;
+    SI.Resistance[n_r + 1] zr;
+    SI.Reactance[n_r + 1, n_r + 1] zx;
     import Modelica.Math.Matrices.solve;
 
   algorithm
     if p.transDat then
       if p.use_xtr then
-        assert(size(p.tc,1) == size(p.xtr,1), "size of tc and xtr must be equal!");
-    else
-        assert(size(p.tc,1) == size(p.to,1), "size of tc and to must be equal!");
+        assert(size(p.tc, 1) == size(p.xtr, 1),
+          "size of tc and xtr must be equal!");
+      else
+        assert(size(p.tc, 1) == size(p.to, 1),
+          "size of tc and to must be equal!");
       end if;
       Tc := omega_nom*p.tc;
-      To := if p.use_xtr then T_open(p.x, p.xtr, Tc) else omega_nom*p.to;
-      (zr, zx) := z_fromTransDat(n_r, Tc, To, p.x, p.xsig_s, p.r_s, 0, 0, 0, false);
+      To := if p.use_xtr then T_open(
+          p.x,
+          p.xtr,
+          Tc) else omega_nom*p.to;
+      (zr,zx) := z_fromTransDat(
+          n_r,
+          Tc,
+          To,
+          p.x,
+          p.xsig_s,
+          p.r_s,
+          0,
+          0,
+          0,
+          false);
     else
-      (zr, zx) := z_fromEqCirc(n_r, p.x, p.xsig_s, p.r_s, zeros(n_r-1), p.xsig_r, p.r_r);
+      (zr,zx) := z_fromEqCirc(
+          n_r,
+          p.x,
+          p.xsig_s,
+          p.r_s,
+          zeros(n_r - 1),
+          p.xsig_r,
+          p.r_r);
     end if;
 
-  //  c.L_s := {p.x, p.x, p.x_0}*RL_base[2];
-    c.L_s := {zx[n_r+1,n_r+1], zx[n_r+1,n_r+1], p.x_0}*RL_base[2];
-    c.L_r := zx[1:n_r,1:n_r]*RL_base[2];
-    c.L_m := zx[n_r+1,1:n_r]*RL_base[2];
+    //  c.L_s := {p.x, p.x, p.x_0}*RL_base[2];
+    c.L_s := {zx[n_r + 1, n_r + 1],zx[n_r + 1, n_r + 1],p.x_0}*RL_base[2];
+    c.L_r := zx[1:n_r, 1:n_r]*RL_base[2];
+    c.L_m := zx[n_r + 1, 1:n_r]*RL_base[2];
     c.R_s := p.r_s*RL_base[1];
-    c.R_r := zr[1:end-1]*RL_base[1];
+    c.R_r := zr[1:end - 1]*RL_base[1];
     c.R_n := p.r_n*RL_base[1];
     if n_r == 1 then
-      c.R_m := c.R_r[1] / c.L_r[1,1] * c.L_m;
+      c.R_m := c.R_r[1]/c.L_r[1, 1]*c.L_m;
     else
       c.R_m := c.R_r .* solve(c.L_r, c.L_m);
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 See also equivalent circuit on 'Diagram layer' of
 <a href=\"modelica://PowerSystems.AC3ph.Machines.Parameters.Asynchron\">AC3ph.Machines.Parameters.Asynchron</a> !</p>
 </html>
@@ -407,16 +445,19 @@ See also equivalent circuit on 'Diagram layer' of
   protected
     final parameter SI.AngularFrequency omega_nom=2*pi*p.f_nom;
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
-                                           p.puUnits, p.V_nom, p.S_nom, omega_nom, scale)
-      "base resistance inductance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          omega_nom,
+          scale) "base resistance inductance";
 
   algorithm
-    c.L_s := {p.x_d, p.x_q, p.x_0}*RL_base[2];
+    c.L_s := {p.x_d,p.x_q,p.x_0}*RL_base[2];
     c.R_s := p.r_s*RL_base[1];
     c.R_n := p.r_n*RL_base[1];
     c.Psi_pm := p.psi_pm*(p.V_nom/omega_nom);
     c.omega_nom := omega_nom;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 See also equivalent circuit on 'Diagram layer' of
 <a href=\"modelica://PowerSystems.AC3ph.Machines.Parameters.Synchron3rd\">AC3ph.Machines.Parameters.Synchron3rd</a> !</p>
 </html>"));
@@ -435,10 +476,13 @@ See also equivalent circuit on 'Diagram layer' of
     final parameter Integer n_q=p.n_q "number of rotor circuits q-axis";
     final parameter SI.AngularFrequency omega_nom=2*pi*p.f_nom;
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
-                                           p.puUnits, p.V_nom, p.S_nom, omega_nom, scale)
-      "base resistance inductance";
+          p.puUnits,
+          p.V_nom,
+          p.S_nom,
+          omega_nom,
+          scale) "base resistance inductance";
     final parameter SI.Current If_base=(p.x_d - p.xsig_s)*p.If_nom;
-    final parameter Real if0_pu= if p.puUnits then p.if0 else p.if0/If_base;
+    final parameter Real if0_pu=if p.puUnits then p.if0 else p.if0/If_base;
     final parameter SI.Angle alpha_if0=(p.alpha_if0 + pi)
       "mathematical sign convention";
 
@@ -446,54 +490,115 @@ See also equivalent circuit on 'Diagram layer' of
     SI.Angle[n_q] Tc_q "time constant closed-loop q-axis";
     SI.Angle[n_d] To_d "time constant open-loop d-axis";
     SI.Angle[n_q] To_q "time constant open-loop q-axis";
-    SI.Resistance[n_d+1] zr_d;
-    SI.Resistance[n_q+1] zr_q;
-    SI.Reactance[n_d+1,n_d+1] zx_d;
-    SI.Reactance[n_q+1,n_q+1] zx_q;
+    SI.Resistance[n_d + 1] zr_d;
+    SI.Resistance[n_q + 1] zr_q;
+    SI.Reactance[n_d + 1, n_d + 1] zx_d;
+    SI.Reactance[n_q + 1, n_q + 1] zx_q;
 
   algorithm
     c.Psi_pm := p.psi_pm*(p.V_nom/omega_nom);
     if p.transDat then
       if p.use_xtr then
-        assert(size(p.tc_d,1) == size(p.xtr_d,1), "size of tc_d and xtr_d must be equal!");
-        assert(size(p.tc_q,1) == size(p.xtr_q,1), "size of tc_q and xtr_q must be equal!");
-    else
-        assert(size(p.tc_d,1) == size(p.to_d,1), "size of tc_d and to_d must be equal!");
-        assert(size(p.tc_q,1) == size(p.to_q,1), "size of tc_q and to_q must be equal!");
+        assert(size(p.tc_d, 1) == size(p.xtr_d, 1),
+          "size of tc_d and xtr_d must be equal!");
+        assert(size(p.tc_q, 1) == size(p.xtr_q, 1),
+          "size of tc_q and xtr_q must be equal!");
+      else
+        assert(size(p.tc_d, 1) == size(p.to_d, 1),
+          "size of tc_d and to_d must be equal!");
+        assert(size(p.tc_q, 1) == size(p.to_q, 1),
+          "size of tc_q and to_q must be equal!");
       end if;
       Tc_d := omega_nom*p.tc_d;
       Tc_q := omega_nom*p.tc_q;
-      To_d := if p.use_xtr then T_open(p.x_d, p.xtr_d, Tc_d) else omega_nom*p.to_d;
-      To_q := if p.use_xtr then T_open(p.x_q, p.xtr_q, Tc_q) else omega_nom*p.to_q;
-      if p.use_if0 and p.excite==1 then
-        (zr_d, zx_d) := z_fromTransDat(n_d, Tc_d, To_d, p.x_d, p.xsig_s, p.r_s, if0_pu, alpha_if0, p.tol, true);
-    else
-        (zr_d, zx_d) := z_fromTransDat(n_d, Tc_d, To_d, p.x_d, p.xsig_s, p.r_s, 0, 0, p.tol, false);
+      To_d := if p.use_xtr then T_open(
+          p.x_d,
+          p.xtr_d,
+          Tc_d) else omega_nom*p.to_d;
+      To_q := if p.use_xtr then T_open(
+          p.x_q,
+          p.xtr_q,
+          Tc_q) else omega_nom*p.to_q;
+      if p.use_if0 and p.excite == 1 then
+        (zr_d,zx_d) := z_fromTransDat(
+            n_d,
+            Tc_d,
+            To_d,
+            p.x_d,
+            p.xsig_s,
+            p.r_s,
+            if0_pu,
+            alpha_if0,
+            p.tol,
+            true);
+      else
+        (zr_d,zx_d) := z_fromTransDat(
+            n_d,
+            Tc_d,
+            To_d,
+            p.x_d,
+            p.xsig_s,
+            p.r_s,
+            0,
+            0,
+            p.tol,
+            false);
       end if;
-        (zr_q, zx_q) := z_fromTransDat(n_q, Tc_q, To_q, p.x_q, p.xsig_s, p.r_s, 0, 0, p.tol, false);
+      (zr_q,zx_q) := z_fromTransDat(
+          n_q,
+          Tc_q,
+          To_q,
+          p.x_q,
+          p.xsig_s,
+          p.r_s,
+          0,
+          0,
+          p.tol,
+          false);
     else
-      if p.use_if0 and p.excite==1 then
-        (zr_d, zx_d) := z_fromEqCirc(n_d, p.x_d, p.xsig_s, p.r_s, p.xm_d, p.xsig_rd, p.r_rd);
-    else
-        (zr_d, zx_d) := z_fromEqCirc(n_d, p.x_d, p.xsig_s, p.r_s, zeros(n_d-1), p.xsig_rd, p.r_rd);
+      if p.use_if0 and p.excite == 1 then
+        (zr_d,zx_d) := z_fromEqCirc(
+            n_d,
+            p.x_d,
+            p.xsig_s,
+            p.r_s,
+            p.xm_d,
+            p.xsig_rd,
+            p.r_rd);
+      else
+        (zr_d,zx_d) := z_fromEqCirc(
+            n_d,
+            p.x_d,
+            p.xsig_s,
+            p.r_s,
+            zeros(n_d - 1),
+            p.xsig_rd,
+            p.r_rd);
       end if;
-        (zr_q, zx_q) := z_fromEqCirc(n_q, p.x_q, p.xsig_s, p.r_s, zeros(n_q-1), p.xsig_rq, p.r_rq);
+      (zr_q,zx_q) := z_fromEqCirc(
+          n_q,
+          p.x_q,
+          p.xsig_s,
+          p.r_s,
+          zeros(n_q - 1),
+          p.xsig_rq,
+          p.r_rq);
     end if;
 
-  //  c.L_s := {p.x_d, p.x_q, p.x_0}*RL_base[2];
-    c.L_s := {zx_d[n_d+1,n_d+1], zx_q[n_q+1,n_q+1], p.x_0}*RL_base[2];
-    c.L_rd := zx_d[1:n_d,1:n_d]*RL_base[2];
-    c.L_rq := zx_q[1:n_q,1:n_q]*RL_base[2];
-    c.L_md := zx_d[n_d+1,1:n_d]*RL_base[2];
-    c.L_mq := zx_q[n_q+1,1:n_q]*RL_base[2];
+    //  c.L_s := {p.x_d, p.x_q, p.x_0}*RL_base[2];
+    c.L_s := {zx_d[n_d + 1, n_d + 1],zx_q[n_q + 1, n_q + 1],p.x_0}*RL_base[2];
+    c.L_rd := zx_d[1:n_d, 1:n_d]*RL_base[2];
+    c.L_rq := zx_q[1:n_q, 1:n_q]*RL_base[2];
+    c.L_md := zx_d[n_d + 1, 1:n_d]*RL_base[2];
+    c.L_mq := zx_q[n_q + 1, 1:n_q]*RL_base[2];
     c.R_s := p.r_s*RL_base[1];
-    c.R_rd := zr_d[1:end-1]*RL_base[1];
-    c.R_rq := zr_q[1:end-1]*RL_base[1];
+    c.R_rd := zr_d[1:end - 1]*RL_base[1];
+    c.R_rq := zr_q[1:end - 1]*RL_base[1];
     c.R_n := p.r_n*RL_base[1];
     c.wf := omega_nom*c.L_md[1]*p.If_nom/p.V_nom;
-    c.Vf_nom := if p.excite==1 then (c.R_rd[1]/(c.wf*c.wf))*p.If_nom else 0;
+    c.Vf_nom := if p.excite == 1 then (c.R_rd[1]/(c.wf*c.wf))*p.If_nom else 0;
     c.omega_nom := omega_nom;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 See also equivalent circuit on 'Diagram layer' of
 <a href=\"modelica://PowerSystems.AC3ph.Machines.Parameters.Synchron\">AC3ph.Machines.Parameters.Synchron</a> !</p>
 </html>"));
@@ -502,16 +607,19 @@ See also equivalent circuit on 'Diagram layer' of
   function polyCoef "Calculates polynome coefficients from time constants"
     extends Modelica.Icons.Function;
     input SI.Angle[:] T "time constant";
-    output Real[size(T,1)] a "coefficients of polynome";
+    output Real[size(T, 1)] a "coefficients of polynome";
   protected
-    parameter Integer n=size(T,1);
+    parameter Integer n=size(T, 1);
 
   algorithm
     a := fill(0, n);
     for k in 1:n loop
-      a[1:k] := cat(1, {a[1] + T[k]}, a[2:k] + a[1:k-1]*T[k]);
+      a[1:k] := cat(
+          1,
+          {a[1] + T[k]},
+          a[2:k] + a[1:k - 1]*T[k]);
     end for;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>This function is related to <a href=\"modelica://PowerSystems.Utilities.Math.polyCoefReal\">Math.polyCoefReal</a>, but modified for polynomes of the form
 <pre>  product(1 + p*T[k]), k in 1:n</pre>
 with real time constants <tt>T</tt>. It calculates the <tt>n</tt> coefficients of the powers 1:n of <tt>p</tt>
@@ -525,25 +633,28 @@ with real time constants <tt>T</tt>. It calculates the <tt>n</tt> coefficients o
     extends Modelica.Icons.Function;
 
     input Real[:] a "coefficients of polynome";
-    output SI.Angle[size(a,1)] T "time constant";
+    output SI.Angle[size(a, 1)] T "time constant";
     output Boolean Tisreal "true if all time constants real";
     import Modelica.Constants.eps;
   protected
-    parameter Integer n=size(a,1);
+    parameter Integer n=size(a, 1);
     Real[n, n] A;
-    Real[n,2] lam "2nd index=1:2, real and imaginary part";
+    Real[n, 2] lam "2nd index=1:2, real and imaginary part";
     import Modelica.Math.Matrices.eigenValues;
     import PowerSystems.Utilities.Math.sortDown;
 
   algorithm
-    A[1, 1:n] := -cat(1, a[n-1:-1:1], {1})/a[n];
-    A[2:n,1:n-1] := diagonal(ones(n-1));
-    A[2:n,n] := zeros(n-1);
+    A[1, 1:n] := -cat(
+        1,
+        a[n - 1:-1:1],
+        {1})/a[n];
+    A[2:n, 1:n - 1] := diagonal(ones(n - 1));
+    A[2:n, n] := zeros(n - 1);
     lam := eigenValues(A);
     Tisreal := max(abs(lam[:, 2])) < eps;
-    T := -ones(n)./lam[n:-1:1,1];
+    T := -ones(n) ./ lam[n:-1:1, 1];
     T := sortDown(T);
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>This function is related to <a href=\"modelica://PowerSystems.Utilities.Math.polyRoots\">Math.polyRoots</a>, but modified for polynomes of the form
 <pre>  product(1 + p*T[k]), k in 1:n</pre>
 It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and herefrom <tt>T</tt>. The time constants are sorted in descending order.</p>
@@ -559,22 +670,25 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
 
     input Real x(unit="1") "total or syn reactance";
     input SI.Angle[:] Tc "time constant closed-loop";
-    input SI.Angle[size(Tc,1)] To "time constant open-loop";
-    output SIpu.Reactance[size(Tc,1)] xtr(each unit="1") "transient reactance";
+    input SI.Angle[size(Tc, 1)] To "time constant open-loop";
+    output SIpu.Reactance[size(Tc, 1)] xtr(each unit="1") "transient reactance";
   protected
-    parameter Integer n=size(Tc,1);
+    parameter Integer n=size(Tc, 1);
     Real[n] y;
-    Real[n-1] Tc_p;
+    Real[n - 1] Tc_p;
 
   algorithm
-    if n==0 then
+    if n == 0 then
       xtr := fill(0, n);
-    elseif n==1 then
+    elseif n == 1 then
       y[1] := -(Tc[1] - To[1])/Tc[1];
       xtr[1] := x/(1 + y[1]);
     else
       for j in 1:n loop
-        Tc_p := fill(Tc[j], n - 1) - cat(1, Tc[1:j - 1], Tc[j + 1:n]);
+        Tc_p := fill(Tc[j], n - 1) - cat(
+            1,
+            Tc[1:j - 1],
+            Tc[j + 1:n]);
         y[j] := -product(fill(Tc[j], n) - To)/(Tc[j]*product(Tc_p));
       end for;
       xtr[1] := x/(1 + y[1]);
@@ -582,7 +696,7 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
     for j in 2:n loop
       xtr[j] := x*xtr[j - 1]/(x + xtr[j - 1]*y[j]);
     end for;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end x_transient;
 
@@ -592,17 +706,17 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
 
     input SIpu.Reactance x(unit="1") "total or syn reactance";
     input SIpu.Reactance[:] xtr(each unit="1") "transient reactance";
-    input SI.Angle[size(xtr,1)] To "time constant open-loop";
-    output SI.Angle[size(xtr,1)] Tc "time constant closed-loop";
+    input SI.Angle[size(xtr, 1)] To "time constant open-loop";
+    output SI.Angle[size(xtr, 1)] Tc "time constant closed-loop";
   protected
-    parameter Integer n=size(xtr,1);
+    parameter Integer n=size(xtr, 1);
     Real[n] y;
     Real[n] ac;
-    Real[n-1,n] A;
+    Real[n - 1, n] A;
 
   algorithm
     // not implemented
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Algorithm not implemented</p>
 </html>"));
   end T_closed;
@@ -613,28 +727,37 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
 
     input SIpu.Reactance x(unit="1") "total or syn reactance";
     input SIpu.Reactance[:] xtr(each unit="1") "transient reactance";
-    input SI.Angle[size(xtr,1)] Tc "time constant closed-loop";
-    output SI.Angle[size(xtr,1)] To "time constant open-loop";
+    input SI.Angle[size(xtr, 1)] Tc "time constant closed-loop";
+    output SI.Angle[size(xtr, 1)] To "time constant open-loop";
   protected
-    parameter Integer n=size(xtr,1);
+    parameter Integer n=size(xtr, 1);
     Real[n] y;
     Real[n] ac;
-    Real[n-1,n] A;
+    Real[n - 1, n] A;
     Boolean Treal;
 
   algorithm
     if n == 0 then
       To := fill(0, n);
     else
-    y := x./xtr;
-    y := y - cat(1, {1}, y[1:end-1]);
-    ac := polyCoef(Tc);
-    for j in 1:n loop
-      A[:,j] := polyCoef(cat(1, Tc[1:j-1], Tc[j+1:n]));
-    end for;
-    (To, Treal) := polyTime(ac*x/xtr[n] - cat(1, A*y, {0}));
+      y := x ./ xtr;
+      y := y - cat(
+          1,
+          {1},
+          y[1:end - 1]);
+      ac := polyCoef(Tc);
+      for j in 1:n loop
+        A[:, j] := polyCoef(cat(
+            1,
+            Tc[1:j - 1],
+            Tc[j + 1:n]));
+      end for;
+      (To,Treal) := polyTime(ac*x/xtr[n] - cat(
+          1,
+          A*y,
+          {0}));
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end T_open;
 
@@ -649,17 +772,17 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
     output Real di_f2 "i_f*conjugate(i_f)";
     output Boolean result "true if Tsig real and convergence tol-ok";
   protected
-    Integer n=size(xm2_n,1) + 1;
-  //x_opt collects the following 9 variables:
-    Real[n] ac = x_opt[1:n];
-    Real[n] ao = x_opt[n+1:2*n];
-    Real[n] Tc = x_opt[2*n+1:3*n];
-    Real[n] To = x_opt[3*n+1:4*n];
-    Real xsig_s = x_opt[4*n+1];
-    Real xm_s = x_opt[4*n+2];
-    Real r_s = x_opt[4*n+3];
-    Real[2] i_f0 = x_opt[4*n+4:4*n+5];
-    Real tol = x_opt[4*n+6];
+    Integer n=size(xm2_n, 1) + 1;
+    //x_opt collects the following 9 variables:
+    Real[n] ac=x_opt[1:n];
+    Real[n] ao=x_opt[n + 1:2*n];
+    Real[n] Tc=x_opt[2*n + 1:3*n];
+    Real[n] To=x_opt[3*n + 1:4*n];
+    Real xsig_s=x_opt[4*n + 1];
+    Real xm_s=x_opt[4*n + 2];
+    Real r_s=x_opt[4*n + 3];
+    Real[2] i_f0=x_opt[4*n + 4:4*n + 5];
+    Real tol=x_opt[4*n + 6];
 
     Real qs;
     Real Tsig_s;
@@ -672,21 +795,32 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
     ComplexType di_f;
 
   algorithm
-    qs :=xsig_s/(xm_s);
+    qs := xsig_s/(xm_s);
     Tsig_s := xsig_s/r_s;
-    (Tsig, xsig, result) := Tsig_xsig(n, ac, ao, xsig_s, cat(1, {0}, xm2_n, {xm_s}), true, tol);
+    (Tsig,xsig,result) := Tsig_xsig(
+        n,
+        ac,
+        ao,
+        xsig_s,
+        cat(
+          1,
+          {0},
+          xm2_n,
+          {xm_s}),
+        true,
+        tol);
 
     for k in 1:n loop
-      Qsig[k,:,:] := re + im*Tsig[k];
-      Qc[k,:,:] := re + im*Tc[k];
-      Qo[k,:,:] := re + im*To[k];
+      Qsig[k, :, :] := re + im*Tsig[k];
+      Qc[k, :, :] := re + im*Tc[k];
+      Qo[k, :, :] := re + im*To[k];
     end for;
 
-    di_f := -im*Tsig_s*Tsig[1]*Complex.prodC(Qsig[2:n,:,:])*
-           Complex.invC(xsig[1]*(qs*Complex.prodC(Qo) + (1 + qs)*im*Tsig_s*Complex.prodC(Qc))) -
-           (re*i_f0[1] + im*i_f0[2]);
+    di_f := -im*Tsig_s*Tsig[1]*Complex.prodC(Qsig[2:n, :, :])*Complex.invC(xsig[
+      1]*(qs*Complex.prodC(Qo) + (1 + qs)*im*Tsig_s*Complex.prodC(Qc))) - (re*
+      i_f0[1] + im*i_f0[2]);
     di_f2 := Complex.detC(di_f);
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Calculates the complex field-current i_f, and outputs di_f2 which is defined as follows:
 <pre>
   i_f   complex field-current for actual impedance-parameters
@@ -705,14 +839,14 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
     input Real[n] ac "polynome coefficient closed loop";
     input Real[n] ao "polynome coefficient open loop";
     input SIpu.Reactance xsig_s(unit="1") "leakage reactance stator";
-    input SIpu.Reactance[n+1] xm(each unit="1") "coupling reactance";
+    input SIpu.Reactance[n + 1] xm(each unit="1") "coupling reactance";
     input Boolean field "field winding yes/no";
     input Real tol "tolerance, iterative solution";
     output SI.Angle[n] Tsig "sig-time constants";
     output SIpu.Reactance[n] xsig(each unit="1") "leakage reactance rotor";
     output Boolean result "true if Tsig real and convergence tol-ok";
   protected
-    final parameter Integer n1=n-1;
+    final parameter Integer n1=n - 1;
     constant Integer maxiter=10;
     Integer iter;
     Real qs;
@@ -722,9 +856,9 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
     Real[n] asig0;
     Real[n] bsig;
     Real[n] gsig;
-    Real[n,n] A;
-    Real[n,n] B;
-    Real[n,n] C;
+    Real[n, n] A;
+    Real[n, n] B;
+    Real[n, n] C;
     Real[n] asig_prx;
     Real[n] gsig_prx;
     Real dasig;
@@ -733,51 +867,63 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
 
   algorithm
     iter := 0;
-    qs := xsig_s/xm[n+1];
-    qm := xm[n]/xm[n+1];
-    qsm :=(xsig_s + xm[n+1])/(xm[n+1]*xm[n+1]);
+    qs := xsig_s/xm[n + 1];
+    qm := xm[n]/xm[n + 1];
+    qsm := (xsig_s + xm[n + 1])/(xm[n + 1]*xm[n + 1]);
 
     bsig := qsm*(ao - ac);
     if not field then
       asig := ac - qs*(ao - ac);
-      (Tsig, result) := polyTime(asig);
+      (Tsig,result) := polyTime(asig);
       for j in 1:n loop
-        B[j,1] := Tsig[j];
-        B[j,2:n] := polyCoef(cat(1, Tsig[1:j-1], Tsig[j+1:n]))*Tsig[j];
+        B[j, 1] := Tsig[j];
+        B[j, 2:n] := polyCoef(cat(
+            1,
+            Tsig[1:j - 1],
+            Tsig[j + 1:n]))*Tsig[j];
       end for;
       gsig := bsig*inv(B);
     elseif field then
       asig := ac - (qs + qm + qs*qm)*(ao - ac);
-      (Tsig, result) :=polyTime(asig);
+      (Tsig,result) := polyTime(asig);
       if n < 3 then
         for j in 1:n loop
-          B[j,1] := Tsig[j];
-          B[j,2:n] := polyCoef(cat(1, Tsig[1:j-1], Tsig[j+1:n]))*Tsig[j];
+          B[j, 1] := Tsig[j];
+          B[j, 2:n] := polyCoef(cat(
+              1,
+              Tsig[1:j - 1],
+              Tsig[j + 1:n]))*Tsig[j];
         end for;
         gsig := bsig*inv(B);
-    else
+      else
         dgsig := 1 + tol;
         dasig := 1 + tol;
         asig0 := asig;
-        gsig :=zeros(n);
+        gsig := zeros(n);
         while (dgsig > tol or dasig > tol) and iter < maxiter and result loop
           iter := iter + 1;
           gsig_prx := gsig;
           asig_prx := asig;
           for j in 1:n loop
-            B[j,1] := Tsig[j];
-            B[j,2:n] := polyCoef(cat(1, Tsig[1:j-1], Tsig[j+1:n]))*Tsig[j];
+            B[j, 1] := Tsig[j];
+            B[j, 2:n] := polyCoef(cat(
+                1,
+                Tsig[1:j - 1],
+                Tsig[j + 1:n]))*Tsig[j];
           end for;
           for j in 1:n1 loop
-            C[j,1:2] := Tsig[j]*Tsig[n]*{0, 1};
-            C[j,3:n] := polyCoef(cat(1, Tsig[1:j-1], Tsig[j+1:n1]))*Tsig[j]*Tsig[n];
+            C[j, 1:2] := Tsig[j]*Tsig[n]*{0,1};
+            C[j, 3:n] := polyCoef(cat(
+                1,
+                Tsig[1:j - 1],
+                Tsig[j + 1:n1]))*Tsig[j]*Tsig[n];
           end for;
-          C[n,1:n] :=zeros(n);
+          C[n, 1:n] := zeros(n);
           A := B + xm[n1]*gsig[n]*C;
-          A[n,:] := A[n, :] + xm[n1]*gsig*C;
-          gsig :=(bsig + xm[n1]*gsig[n]*gsig*C)*inv(A);
-          asig := asig0 - xm[n1]*gsig[1:n1]*B[1:n1,:];
-          (Tsig, result) := polyTime(asig);
+          A[n, :] := A[n, :] + xm[n1]*gsig*C;
+          gsig := (bsig + xm[n1]*gsig[n]*gsig*C)*inv(A);
+          asig := asig0 - xm[n1]*gsig[1:n1]*B[1:n1, :];
+          (Tsig,result) := polyTime(asig);
           dgsig := sum(abs(gsig - gsig_prx))/sum(abs(gsig));
           dasig := sum(abs(asig - asig_prx))/sum(abs(asig));
         end while;
@@ -786,8 +932,8 @@ It determines first the root vector <pre>  r[k] = -1/T[k], k in 1:n</p> and here
         end if;
       end if;
     end if;
-    xsig := ones(n)./gsig;
-  annotation (Documentation(info="<html>
+    xsig := ones(n) ./ gsig;
+    annotation (Documentation(info="<html>
 <p>Calculates rotor leakage reactance xsig and corresponding time constants Tsig.</p>
 <p>If transient order n &gt;  3, the coefficients xm[2:n-2] are assumed to be 0.<br>
 A different choice is not meaningful, as long as we only have 2 parameters (complex field-current) to fit.</p>
@@ -808,49 +954,80 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
       "angle field current (sign: mathematical convention)";
     input Real tol "tolerance, iterative solution";
     input Boolean field "field winding yes/no";
-    output SIpu.Resistance[n+1] zr(each unit="1") "impedance matrix resistive";
-    output SIpu.Reactance[n+1,n+1] zx(each unit="1")
+    output SIpu.Resistance[n + 1] zr(each unit="1")
+      "impedance matrix resistive";
+    output SIpu.Reactance[n + 1, n + 1] zx(each unit="1")
       "impedance matrix reactive";
   protected
     Real[n] ac;
     Real[n] ao;
-    Real[n+1] xm;
+    Real[n + 1] xm;
     Real[n] Tsig;
     Real[n] xsig;
     Boolean result;
     import PowerSystems.Utilities.Math.fminSearch;
 
   algorithm
-    if n==0 then
+    if n == 0 then
       zr := {r_s};
       zx := [x];
     else
       ac := polyCoef(Tc);
       ao := polyCoef(To);
-      xm := cat(1, zeros(n), {x - xsig_s});
-      if field and n>1 then //minimises deviation from desired i_f
-  ///// possible start-values:
-        if n==2 then
+      xm := cat(
+          1,
+          zeros(n),
+          {x - xsig_s});
+      if field and n > 1 then
+        //minimises deviation from desired i_f
+        ///// possible start-values:
+        if n == 2 then
           xm[n] := 0.06;
-      elseif n>2 then
-          xm[n-1:n] := {0.02,0.04};
+        elseif n > 2 then
+          xm[n - 1:n] := {0.02,0.04};
         end if;
-  ///// may be eliminated after modification of fminSearch!
-        (xm[2:n],) := fminSearch(xm[2:n],
-        cat(1, ac, ao, Tc, To, {xsig_s}, {xm[n+1]}, {r_s}, if0*{cos(alpha_if0),sin(alpha_if0)}, {tol}));
+        ///// may be eliminated after modification of fminSearch!
+        (xm[2:n],) := fminSearch(xm[2:n], cat(
+            1,
+            ac,
+            ao,
+            Tc,
+            To,
+            {xsig_s},
+            {xm[n + 1]},
+            {r_s},
+            if0*{cos(alpha_if0),sin(alpha_if0)},
+            {tol}));
       end if;
 
-      (Tsig, xsig, result) := Tsig_xsig(n, ac, ao, xsig_s, xm, field, tol);
-      assert(result, "Tsig and xsig may be false, no convergence, or complex time-constants");
+      (Tsig,xsig,result) := Tsig_xsig(
+          n,
+          ac,
+          ao,
+          xsig_s,
+          xm,
+          field,
+          tol);
+      assert(result,
+        "Tsig and xsig may be false, no convergence, or complex time-constants");
 
-      zr := cat(1, xsig./Tsig, {r_s});
-      zx := diagonal(cat(1, xsig, {xsig_s}));
+      zr := cat(
+          1,
+          xsig ./ Tsig,
+          {r_s});
+      zx := diagonal(cat(
+          1,
+          xsig,
+          {xsig_s}));
 
-      for k in 2:n+1 loop
-        zx[1:k,1:k] := zx[1:k,1:k] + fill(xm[k], k, k);
+      for k in 2:n + 1 loop
+        zx[1:k, 1:k] := zx[1:k, 1:k] + fill(
+            xm[k],
+            k,
+            k);
       end for;
     end if;
-  annotation(Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>See also analog circuit on 'Diagram layer' of 'CoefSynchron' and 'CoefAsynchron'!</p>
 </html>"));
   end z_fromTransDat;
@@ -862,21 +1039,34 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
     input SIpu.Reactance x(unit="1") "total or syn reactance";
     input SIpu.Reactance xsig_s(unit="1") "leakage reactance stator";
     input SIpu.Resistance r_s(unit="1") "resistance stator";
-    input SIpu.Reactance[n-1] xm2_n(each unit="1") "coupling reactance";
+    input SIpu.Reactance[n - 1] xm2_n(each unit="1") "coupling reactance";
     input SIpu.Reactance[n] xsig_r(each unit="1") "leakage reactance rotor";
     input SIpu.Resistance[n] r_r(each unit="1") "resistance rotor";
-    output SIpu.Resistance[n+1] zr(each unit="1") "impedance matrix resistive";
-    output SIpu.Reactance[n+1,n+1] zx(each unit="1")
+    output SIpu.Resistance[n + 1] zr(each unit="1")
+      "impedance matrix resistive";
+    output SIpu.Reactance[n + 1, n + 1] zx(each unit="1")
       "impedance matrix reactive";
 
   algorithm
-    zr := cat(1, r_r, {r_s});
-    zx := diagonal(cat(1, xsig_r, {xsig_s}));
-      for k in 2:n loop
-        zx[1:k,1:k] := zx[1:k,1:k] + fill(xm2_n[k-1], k, k);
-      end for;
-    zx := zx + fill(x - xsig_s, n+1, n+1);
-  annotation (Documentation(info="<html>
+    zr := cat(
+        1,
+        r_r,
+        {r_s});
+    zx := diagonal(cat(
+        1,
+        xsig_r,
+        {xsig_s}));
+    for k in 2:n loop
+      zx[1:k, 1:k] := zx[1:k, 1:k] + fill(
+          xm2_n[k - 1],
+          k,
+          k);
+    end for;
+    zx := zx + fill(
+        x - xsig_s,
+        n + 1,
+        n + 1);
+    annotation (Documentation(info="<html>
 <p>See also analog circuit on 'Diagram layer' of 'CoefSynchron' and 'CoefAsynchron'!</p>
 </html>"));
   end z_fromEqCirc;
@@ -897,7 +1087,7 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
     input Boolean field "field winding yes/no";
     output SIpu.Resistance[n] r_r(each unit="1") "resistance rotor";
     output SIpu.Reactance[n] xsig_r(each unit="1") "leakage reactance rotor";
-    output SIpu.Reactance[n+1] xm(each unit="1") "coupling reactance";
+    output SIpu.Reactance[n + 1] xm(each unit="1") "coupling reactance";
   protected
     Real[n] ac;
     Real[n] ao;
@@ -907,33 +1097,54 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
     import PowerSystems.Utilities.Math.fminSearch;
 
   algorithm
-    xm := cat(1, zeros(n), {x - xsig_s});
-    if n==0 then
+    xm := cat(
+        1,
+        zeros(n),
+        {x - xsig_s});
+    if n == 0 then
       r_r := fill(0, n);
       xsig_r := fill(0, n);
     else
       ac := polyCoef(Tc);
       ao := polyCoef(To);
-      if field and n>1 then //minimises deviation from desired i_f
-  ///// possible start-values:
-        if n==2 then
+      if field and n > 1 then
+        //minimises deviation from desired i_f
+        ///// possible start-values:
+        if n == 2 then
           xm[n] := 0.06;
-      elseif n>2 then
-          xm[n-1:n] := {0.02,0.04};
+        elseif n > 2 then
+          xm[n - 1:n] := {0.02,0.04};
         end if;
-  ///// may be eliminated after modification of fminSearch!
-        (xm[2:n], dif) := fminSearch(xm[2:n],
-        cat(1, ac, ao, Tc, To, {xsig_s}, {xm[n+1]}, {r_s}, if0*{cos(alpha_if0),sin(alpha_if0)}, {tol}));
+        ///// may be eliminated after modification of fminSearch!
+        (xm[2:n],dif) := fminSearch(xm[2:n], cat(
+            1,
+            ac,
+            ao,
+            Tc,
+            To,
+            {xsig_s},
+            {xm[n + 1]},
+            {r_s},
+            if0*{cos(alpha_if0),sin(alpha_if0)},
+            {tol}));
       end if;
 
-      (Tsig, xsig_r, result) := Tsig_xsig(n, ac, ao, xsig_s, xm, field, tol);
-      assert(result, "Tsig and xsig may be false, no convergence, or complex time-constants");
+      (Tsig,xsig_r,result) := Tsig_xsig(
+          n,
+          ac,
+          ao,
+          xsig_s,
+          xm,
+          field,
+          tol);
+      assert(result,
+        "Tsig and xsig may be false, no convergence, or complex time-constants");
 
       for k in 1:n loop
         r_r[k] := xsig_r[k]/Tsig[k];
       end for;
     end if;
-  annotation (Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>This function is added for completeness. It is not used in the machine models.</p>
 <p>See also analog circuit on 'Diagram layer' of 'CoefSynchron' and 'CoefAsynchron'!</p>
 </html>"));
@@ -946,7 +1157,7 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
     input SIpu.Reactance x(unit="1") "total or syn reactance";
     input SIpu.Reactance xsig_s(unit="1") "leakage reactance stator";
     input SIpu.Resistance r_s(unit="1") "resistance stator";
-    input SIpu.Reactance[n-1] xm2_n(each unit="1") "coupling reactance";
+    input SIpu.Reactance[n - 1] xm2_n(each unit="1") "coupling reactance";
     input SIpu.Reactance[n] xsig_r(each unit="1") "leakage reactance rotor";
     input SIpu.Resistance[n] r_r(each unit="1") "resistance rotor";
     output SI.Angle[n] Tc "time constant closed-loop";
@@ -954,46 +1165,56 @@ A different choice is not meaningful, as long as we only have 2 parameters (comp
     output SIpu.Reactance[n] xtr(each unit="1") "transient reactance";
     import Modelica.Constants.eps;
   protected
-    Real[n+1] xm;
-    Real[n+1,n+1] X;
-    Real[n,n] X11;
-    Real[n,n] X11ac;
+    Real[n + 1] xm;
+    Real[n + 1, n + 1] X;
+    Real[n, n] X11;
+    Real[n, n] X11ac;
     Real[n] sRinv;
-    Real[n,2] lam "2nd index=1:2, real and imaginary part";
+    Real[n, 2] lam "2nd index=1:2, real and imaginary part";
     import Modelica.Math.Matrices.eigenValues;
     import PowerSystems.Utilities.Math.sortDown;
 
   algorithm
-    xm := cat(1, {0}, xm2_n, {x - xsig_s});
+    xm := cat(
+        1,
+        {0},
+        xm2_n,
+        {x - xsig_s});
 
-    X := diagonal(cat(1, xsig_r, {xsig_s}));
-    for k in 2:n+1 loop
-      X[1:k,1:k] := X[1:k,1:k] + xm[k]*ones(k,k);
+    X := diagonal(cat(
+        1,
+        xsig_r,
+        {xsig_s}));
+    for k in 2:n + 1 loop
+      X[1:k, 1:k] := X[1:k, 1:k] + xm[k]*ones(k, k);
     end for;
 
     X11 := diagonal(xsig_r);
     for k in 2:n loop
-      X11[1:k,1:k] := X11[1:k,1:k] + xm[k]*ones(k,k);
+      X11[1:k, 1:k] := X11[1:k, 1:k] + xm[k]*ones(k, k);
     end for;
-    X11 := X11 + xm[n+1]*ones(n,n);
+    X11 := X11 + xm[n + 1]*ones(n, n);
 
-    X11ac := transpose(X[n+1:n+1, 1:n])*transpose(X[1:n, n+1:n+1])/X[n + 1, n + 1];
-    sRinv := ones(n)./sqrt(r_r);
+    X11ac := transpose(X[n + 1:n + 1, 1:n])*transpose(X[1:n, n + 1:n + 1])/X[n
+       + 1, n + 1];
+    sRinv := ones(n) ./ sqrt(r_r);
 
     lam := eigenValues(diagonal(sRinv)*X11*diagonal(sRinv));
-    To := sortDown(lam[:,1]);
+    To := sortDown(lam[:, 1]);
     lam := eigenValues(diagonal(sRinv)*(X11 - X11ac)*diagonal(sRinv));
-    Tc := sortDown(lam[:,1]);
-    assert(max(abs(lam[:,2])) < eps, "spectrum open-loop is not real!");
-    assert(max(abs(lam[:,2])) < eps,  "spectrum closed-loop is not real!");
-    xtr := x_transient(x, Tc, To);
-  annotation (Documentation(info="<html>
+    Tc := sortDown(lam[:, 1]);
+    assert(max(abs(lam[:, 2])) < eps, "spectrum open-loop is not real!");
+    assert(max(abs(lam[:, 2])) < eps, "spectrum closed-loop is not real!");
+    xtr := x_transient(
+        x,
+        Tc,
+        To);
+    annotation (Documentation(info="<html>
 <p>This function is added for completeness. It is not used in the machine models.</p>
 <p>See also analog circuit on 'Diagram layer' of 'CoefSynchron' and 'CoefAsynchron'!</p>
 </html>"));
   end transientData;
-    annotation (preferredView="info",
-      Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Functions needed for the determination of coefficient-matrices from a set of phenomenological input parameters.</p>
 <p><a href=\"modelica://PowerSystems.UsersGuide.Introduction.Precalculation\">up users guide</a></p>
 <p>The second part of this package has been written in honour of <b>I. M. Canay</b>, one of the important electrical engeneers of the 20th century. He understood, what he wrote, and his results were exact. The package is based on his ideas and formulated in full mathematical generality.</p>

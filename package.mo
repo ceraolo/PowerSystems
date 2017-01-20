@@ -1,19 +1,19 @@
 within ;
 package PowerSystems "Library for electrical power systems"
-  extends Modelica.Icons.Package;
+extends Modelica.Icons.Package;
 
-  import Modelica.Constants.pi;
-  import PowerSystems.Types.SI "SI types with custom display units";
-  import PowerSystems.Types.SIpu "per-unit types for user interface";
+import Modelica.Constants.pi;
+import PowerSystems.Types.SI "SI types with custom display units";
+import PowerSystems.Types.SIpu "per-unit types for user interface";
 
-  constant String TableDir=Modelica.Utilities.Files.loadResource("modelica://PowerSystems/Resources/Tables/")
-    "Directory of example tables";
+constant String TableDir=Modelica.Utilities.Files.loadResource(
+    "modelica://PowerSystems/Resources/Tables/") "Directory of example tables";
 
-  replaceable package PackagePhaseSystem =
-      PhaseSystems.ThreePhase_dq "Default phase system"
-    annotation (choicesAllMatching=true);
+replaceable package PackagePhaseSystem = PhaseSystems.ThreePhase_dq
+  "Default phase system" annotation (choicesAllMatching=true);
 
-  annotation (preferredView="info",
+annotation (
+  preferredView="info",
   version="0.6.0",
   versionDate="2017-01-18",
   Documentation(info="<html>

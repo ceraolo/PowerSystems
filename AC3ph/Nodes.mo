@@ -9,74 +9,68 @@ package Nodes "Nodes and adaptors"
     term.v = zeros(PS.n);
     annotation (
       defaultComponentName="grd1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Zero voltage on all phases of terminal.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-4,60},{4,-60}},
-            lineColor={128,128,128},
-            fillColor={160,160,164},
-            fillPattern=FillPattern.Solid), Line(
-            points={{-90,0},{-4,0}},
-            color={0,120,120},
-            thickness=0.5)}),
-  Diagram(coordinateSystem(
+              extent={{-4,60},{4,-60}},
+              lineColor={128,128,128},
+              fillColor={160,160,164},
+              fillPattern=FillPattern.Solid),Line(
+              points={{-90,0},{-4,0}},
+              color={0,120,120},
+              thickness=0.5)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
-            points={{-60,0},{-80,0}},
-            color={0,120,120},
-            thickness=0.5), Rectangle(
-            extent={{-60,20},{-54,-20}},
-            lineColor={128,128,128},
-            fillColor={160,160,164},
-            fillPattern=FillPattern.Solid)}));
+              points={{-60,0},{-80,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-60,20},{-54,-20}},
+              lineColor={128,128,128},
+              fillColor={160,160,164},
+              fillPattern=FillPattern.Solid)}));
   end Ground;
 
   model GroundOne "Ground, one conductor"
 
     Interfaces.Electric_p term "positive scalar terminal"
-                               annotation (Placement(transformation(extent={{
-              -110,-10},{-90,10}})));
+      annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
 
   equation
     term.v = 0;
     annotation (
       defaultComponentName="grd1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Zero voltage on terminal.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-100,-90},{100,-130}},
-            lineColor={0,0,0},
-            textString=
-         "%name"),
-          Rectangle(
-            extent={{-4,50},{4,-50}},
-            lineColor={128,128,128},
-            fillColor={160,160,164},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-90,0},{-4,0}}, color={0,0,255})}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Text(
+              extent={{-100,-90},{100,-130}},
+              lineColor={0,0,0},
+              textString="%name"),Rectangle(
+              extent={{-4,50},{4,-50}},
+              lineColor={128,128,128},
+              fillColor={160,160,164},
+              fillPattern=FillPattern.Solid),Line(points={{-90,0},{-4,0}},
+            color={0,0,255})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-60,0},{-80,0}}, color={0,0,255}),
             Rectangle(
-            extent={{-60,20},{-54,-20}},
-            lineColor={128,128,128},
-            fillColor={160,160,164},
-            fillPattern=FillPattern.Solid)}));
+              extent={{-60,20},{-54,-20}},
+              lineColor={128,128,128},
+              fillColor={160,160,164},
+              fillPattern=FillPattern.Solid)}));
   end GroundOne;
 
   model BusBar "Busbar, 3-phase dq0"
@@ -85,9 +79,9 @@ package Nodes "Nodes and adaptors"
     output PS.Voltage v_norm(stateSelect=StateSelect.never);
     output SI.Angle alpha_v(stateSelect=StateSelect.never);
     Ports.ACdq0_p term "bus bar"
-  annotation (Placement(transformation(extent={{-8,-66},{8,66}})));
+      annotation (Placement(transformation(extent={{-8,-66},{8,66}})));
   protected
-    Real[2,2] R=Utilities.Transforms.rotation_dq(term.theta[1]);
+    Real[2, 2] R=Utilities.Transforms.rotation_dq(term.theta[1]);
     function atan2 = Modelica.Math.atan2;
 
   equation
@@ -96,27 +90,25 @@ package Nodes "Nodes and adaptors"
     alpha_v = atan2(R[:, 2]*term.v[1:2], R[:, 1]*term.v[1:2]);
     annotation (
       defaultComponentName="bus1",
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,-90},{100,-130}},
-            lineColor={0,0,0},
-            textString=
-         "%name"), Rectangle(
-            extent={{-10,80},{10,-80}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
-  Documentation(
-          info="<html>
+              extent={{-100,-90},{100,-130}},
+              lineColor={0,0,0},
+              textString="%name"),Rectangle(
+              extent={{-10,80},{10,-80}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
+      Documentation(info="<html>
 <p>Calculates norm and phase-angle of voltage.</p>
 </html>
 "));
   end BusBar;
 
-/*
+  /*
   model Y_Delta "Y_Delta switch, 3-phase dq0"
     extends Ports.PortBase;
 
@@ -269,51 +261,42 @@ package Nodes "Nodes and adaptors"
 
   equation
     term.v[3] = sqrt(3)*neutral.v;
-    term.i[1:2] = {0, 0};
+    term.i[1:2] = {0,0};
     neutral.i + sqrt(3)*term.i[3] = 0;
-  annotation (
-    defaultComponentName="Ynode",
-      Documentation(
-        info="<html>
+    annotation (
+      defaultComponentName="Ynode",
+      Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,80},{80,-80}},
-            lineColor={255,255,255},
-            pattern=LinePattern.None,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{14,6},{26,-6}},
-            lineColor={0,100,100},
-            fillColor={0,100,100},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-80,60},{-40,60},{20,0},{-40,-60},{-80,-60}}, color={0,
-                100,100}),
-          Line(points={{-80,0},{20,0}}, color={0,100,100}),
-          Line(points={{26,0},{90,0}})}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,80},{80,-80}},
+              lineColor={255,255,255},
+              pattern=LinePattern.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{14,6},{26,-6}},
+              lineColor={0,100,100},
+              fillColor={0,100,100},
+              fillPattern=FillPattern.Solid),Line(points={{-80,60},{-40,60},{20,
+            0},{-40,-60},{-80,-60}}, color={0,100,100}),Line(points={{-80,0},{
+            20,0}}, color={0,100,100}),Line(points={{26,0},{90,0}})}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-80,0},{20,0}}, color={0,100,100}),
-          Line(points={{-80,60},{-40,60},{20,0},{-40,-60},{-80,-60}}, color={0,
-                100,100}),
-          Ellipse(
-            extent={{14,6},{26,-6}},
-            lineColor={0,100,100},
-            fillColor={0,100,100},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{10,-10},{50,-30}},
-            lineColor={0,100,100},
-            textString=
-           "neutral point"),
-          Line(points={{26,0},{90,0}})}));
+          grid={2,2}), graphics={Line(points={{-80,0},{20,0}}, color={0,100,100}),
+            Line(points={{-80,60},{-40,60},{20,0},{-40,-60},{-80,-60}}, color={
+            0,100,100}),Ellipse(
+              extent={{14,6},{26,-6}},
+              lineColor={0,100,100},
+              fillColor={0,100,100},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{10,-10},{50,-30}},
+              lineColor={0,100,100},
+              textString="neutral point"),Line(points={{26,0},{90,0}})}));
   end Ynode;
 
   model ResistiveGround "Y-node with neutral-access, 3-phase dq0"
@@ -333,69 +316,59 @@ package Nodes "Nodes and adaptors"
     R_n*i_n = v_n "equation neutral to ground";
     annotation (
       defaultComponentName="resGrd",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{94,30},{100,-30}},
-            lineColor={128,128,128},
-            fillColor={128,128,128},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-80,0},{-40,0}}, color={0,100,100}),
-          Rectangle(
-            extent={{-20,30},{94,-30}},
-            lineColor={0,0,0},
-            fillColor={255,255,255}),
-          Line(points={{-80,60},{-60,60},{-40,0},{-60,-60},{-80,-60}}, color={0,
-                100,100}),
-          Ellipse(
-            extent={{-46,6},{-34,-6}},
-            lineColor={0,100,100},
-            fillColor={0,100,100},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-34,0},{-20,0}})}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Rectangle(
+              extent={{94,30},{100,-30}},
+              lineColor={128,128,128},
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid),Line(points={{-80,0},{-40,0}},
+            color={0,100,100}),Rectangle(
+              extent={{-20,30},{94,-30}},
+              lineColor={0,0,0},
+              fillColor={255,255,255}),Line(points={{-80,60},{-60,60},{-40,0},{
+            -60,-60},{-80,-60}}, color={0,100,100}),Ellipse(
+              extent={{-46,6},{-34,-6}},
+              lineColor={0,100,100},
+              fillColor={0,100,100},
+              fillPattern=FillPattern.Solid),Line(points={{-34,0},{-20,0}})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{96,4},{100,-4}},
-            lineColor={128,128,128},
-            lineThickness=0.5,
-            fillColor={128,128,128},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{70,4},{96,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{59,2},{63,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{40,-20},{80,-40}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid,
-            textString=
-           "neutral point")}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{96,4},{100,-4}},
+              lineColor={128,128,128},
+              lineThickness=0.5,
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{70,4},{96,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{59,2},{63,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{40,-20},{80,-40}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid,
+              textString="neutral point")}));
   end ResistiveGround;
 
   model InductiveGround "Y-node with neutral-access, 3-phase dq0"
     extends Ports.Yport_p;
     extends Common.Nominal.NominalAC;
 
-    parameter Types.Dynamics dynType=system.dynType "transient or steady-state model"
-      annotation(Evaluate=true, Dialog(tab="Initialization"));
+    parameter Types.Dynamics dynType=system.dynType
+      "transient or steady-state model"
+      annotation (Evaluate=true,Dialog(tab="Initialization"));
 
     parameter SIpu.Reactance x_n=1 "reactance neutral to grd";
     parameter SIpu.Resistance r_n=0 "resistance neutral to grd";
@@ -421,80 +394,68 @@ package Nodes "Nodes and adaptors"
     end if;
     annotation (
       defaultComponentName="indGrd",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-80,0},{-40,0}}, color={0,100,100}),
-          Line(points={{-80,60},{-60,60},{-40,0},{-60,-60},{-80,-60}}, color={0,
-                100,100}),
-          Ellipse(
-            extent={{-46,6},{-34,-6}},
-            lineColor={0,100,100},
-            fillColor={0,100,100},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{94,30},{100,-30}},
-            lineColor={128,128,128},
-            fillColor={128,128,128},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,30},{10,-30}},
-            lineColor={0,0,0},
-            fillColor={255,255,255}),
-          Rectangle(
-            extent={{10,30},{94,-30}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-34,0},{-20,0}})}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Line(points={{-80,0},{-40,0}}, color={0,100,
+            100}),Line(points={{-80,60},{-60,60},{-40,0},{-60,-60},{-80,-60}},
+            color={0,100,100}),Ellipse(
+              extent={{-46,6},{-34,-6}},
+              lineColor={0,100,100},
+              fillColor={0,100,100},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{94,30},{100,-30}},
+              lineColor={128,128,128},
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,30},{10,-30}},
+              lineColor={0,0,0},
+              fillColor={255,255,255}),Rectangle(
+              extent={{10,30},{94,-30}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-34,0},{-20,0}})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{70,4},{76,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{76,4},{96,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{96,4},{100,-4}},
-            lineColor={128,128,128},
-            lineThickness=0.5,
-            fillColor={128,128,128},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{59,2},{63,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{40,-20},{80,-40}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid,
-            textString=
-           "neutral point")}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{70,4},{76,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{76,4},{96,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{96,4},{100,-4}},
+              lineColor={128,128,128},
+              lineThickness=0.5,
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{59,2},{63,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{40,-20},{80,-40}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid,
+              textString="neutral point")}));
   end InductiveGround;
 
   model CapacitiveGround "Y-node with neutral-access, 3-phase dq0"
     extends Ports.Yport_p;
     extends Common.Nominal.NominalAC;
 
-    parameter Types.Dynamics dynType=system.dynType "transient or steady-state model"
-      annotation(Evaluate=true, Dialog(tab="Initialization"));
+    parameter Types.Dynamics dynType=system.dynType
+      "transient or steady-state model"
+      annotation (Evaluate=true,Dialog(tab="Initialization"));
 
     parameter SIpu.Susceptance b_n=1 "susceptance neutral to grd";
     parameter SIpu.Conductance g_n=0 "conductance neutral to grd";
@@ -520,138 +481,131 @@ package Nodes "Nodes and adaptors"
     end if;
     annotation (
       defaultComponentName="capGrd",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-80,0},{-40,0}}, color={0,100,100}),
-          Line(points={{-80,60},{-60,60},{-40,0},{-60,-60},{-80,-60}}, color={0,
-                100,100}),
-          Ellipse(
-            extent={{-46,6},{-34,-6}},
-            lineColor={0,100,100},
-            fillColor={0,100,100},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-34,0},{0,0}}),
-          Rectangle(
-            extent={{8,60},{32,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{0,60},{8,-60}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{32,60},{40,-60}},
-            lineColor={135,135,135},
-            fillColor={135,135,135},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Line(points={{-80,0},{-40,0}}, color={0,100,
+            100}),Line(points={{-80,60},{-60,60},{-40,0},{-60,-60},{-80,-60}},
+            color={0,100,100}),Ellipse(
+              extent={{-46,6},{-34,-6}},
+              lineColor={0,100,100},
+              fillColor={0,100,100},
+              fillPattern=FillPattern.Solid),Line(points={{-34,0},{0,0}}),
+            Rectangle(
+              extent={{8,60},{32,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{0,60},{8,-60}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{32,60},{40,-60}},
+              lineColor={135,135,135},
+              fillColor={135,135,135},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{92,16},{96,-16}},
-            lineColor={215,215,215},
-            pattern=LinePattern.None,
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{88,16},{92,-16}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{96,16},{100,-16}},
-            lineColor={128,128,128},
-            lineThickness=0.5,
-            fillColor={128,128,128},
-            fillPattern=FillPattern.Solid),
-          Line(points={{70,0},{88,0}}, color={0,0,255}),
-          Ellipse(
-            extent={{59,2},{63,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{40,-20},{80,-40}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid,
-            textString=
-           "neutral point")}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{92,16},{96,-16}},
+              lineColor={215,215,215},
+              pattern=LinePattern.None,
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{88,16},{92,-16}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{96,16},{100,-16}},
+              lineColor={128,128,128},
+              lineThickness=0.5,
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid),Line(points={{70,0},{88,0}}, color
+            ={0,0,255}),Ellipse(
+              extent={{59,2},{63,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{40,-20},{80,-40}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid,
+              textString="neutral point")}));
   end CapacitiveGround;
 
-model Y_OnePhase "Terminator, ACdq0 to an, bn, cn"
-  extends Ports.Port_p;
-  extends Icons.Adaptor_dq0;
+  model Y_OnePhase "Terminator, ACdq0 to an, bn, cn"
+    extends Ports.Port_p;
+    extends Icons.Adaptor_dq0;
 
-  Interfaces.Electric_p neutral "neutral Y"
-                                annotation (Placement(transformation(
+    Interfaces.Electric_p neutral "neutral Y" annotation (Placement(
+          transformation(
           origin={0,-80},
           extent={{-10,-10},{10,10}},
           rotation=90)));
-  AC1ph_DC.Ports.TwoPin_n plug_a "phase a and neutral"
-                                                 annotation (Placement(
-          transformation(extent={{90,30},{110,50}})));
-  AC1ph_DC.Ports.TwoPin_n plug_b "phase b and neutral"
-                                                 annotation (Placement(
-          transformation(extent={{90,-10},{110,10}})));
-  AC1ph_DC.Ports.TwoPin_n plug_c "phase c and neutral"
-                                                 annotation (Placement(
-          transformation(extent={{90,-50},{110,-30}})));
+    AC1ph_DC.Ports.TwoPin_n plug_a "phase a and neutral"
+      annotation (Placement(transformation(extent={{90,30},{110,50}})));
+    AC1ph_DC.Ports.TwoPin_n plug_b "phase b and neutral"
+      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+    AC1ph_DC.Ports.TwoPin_n plug_c "phase c and neutral"
+      annotation (Placement(transformation(extent={{90,-50},{110,-30}})));
   protected
-    Real[3,3] P=Utilities.Transforms.park(term.theta[2]);
+    Real[3, 3] P=Utilities.Transforms.park(term.theta[2]);
 
-equation
-  plug_a.v = cat(1, transpose(P[:, 1:1])*term.v, {neutral.v});
-  plug_b.v = cat(1, transpose(P[:, 2:2])*term.v, {neutral.v});
-  plug_c.v = cat(1, transpose(P[:, 3:3])*term.v, {neutral.v});
-  term.i + P*{plug_a.i[1], plug_b.i[1], plug_c.i[1]} = zeros(3);
-annotation (defaultComponentName = "Y_abcn",
+  equation
+    plug_a.v = cat(
+        1,
+        transpose(P[:, 1:1])*term.v,
+        {neutral.v});
+    plug_b.v = cat(
+        1,
+        transpose(P[:, 2:2])*term.v,
+        {neutral.v});
+    plug_c.v = cat(
+        1,
+        transpose(P[:, 3:3])*term.v,
+        {neutral.v});
+    term.i + P*{plug_a.i[1],plug_b.i[1],plug_c.i[1]} = zeros(3);
+    annotation (
+      defaultComponentName="Y_abcn",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,100},{100,80}},
-            lineColor={0,120,120},
-            textString=
-                 "> 1-phase")}),
+              extent={{-100,100},{100,80}},
+              lineColor={0,120,120},
+              textString="> 1-phase")}),
       Documentation(info="<html>
 </html>
 "));
-end Y_OnePhase;
+  end Y_OnePhase;
 
-model ACdq0_a_b_c "Adaptor ACdq0 to pins a, b, c"
-  extends Ports.Port_p;
-  extends PowerSystems.Icons.Adaptor_dq0;
+  model ACdq0_a_b_c "Adaptor ACdq0 to pins a, b, c"
+    extends Ports.Port_p;
+    extends PowerSystems.Icons.Adaptor_dq0;
 
-  Interfaces.Electric_n term_a "phase a"
+    Interfaces.Electric_n term_a "phase a"
       annotation (Placement(transformation(extent={{90,30},{110,50}})));
-  Interfaces.Electric_n term_b "phase b"
+    Interfaces.Electric_n term_b "phase b"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
-  Interfaces.Electric_n term_c "phase c"
+    Interfaces.Electric_n term_c "phase c"
       annotation (Placement(transformation(extent={{90,-50},{110,-30}})));
   protected
-    Real[3,3] P=Utilities.Transforms.park(term.theta[2]);
+    Real[3, 3] P=Utilities.Transforms.park(term.theta[2]);
 
-equation
-  {term_a.v,term_b.v,term_c.v} = transpose(P)*term.v;
-  term.i + P*{term_a.i,term_b.i,term_c.i} = zeros(3);
-  annotation (defaultComponentName = "acdq0_a_b_c",
-      Documentation(info="<html>
+  equation
+    {term_a.v,term_b.v,term_c.v} = transpose(P)*term.v;
+    term.i + P*{term_a.i,term_b.i,term_c.i} = zeros(3);
+    annotation (defaultComponentName="acdq0_a_b_c", Documentation(info="<html>
 </html>
 "));
-end ACdq0_a_b_c;
+  end ACdq0_a_b_c;
 
-/*
+  /*
 model ACdq0_abc "Adaptor ACdq0 to 3-vector abc"
   extends Ports.Port_p;
   extends Basic.Icons.Adaptor_dq0;
@@ -678,9 +632,9 @@ end ACdq0_abc;
     outer System system;
 
     Ports.ACdq0_p term "bus bar"
-  annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-    Modelica.Blocks.Interfaces.RealInput theta "absolute angle"
-      annotation (Placement(transformation(
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+    Modelica.Blocks.Interfaces.RealInput theta "absolute angle" annotation (
+        Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -689,28 +643,25 @@ end ACdq0_abc;
     term.i = zeros(PS.n);
     Connections.potentialRoot(term.theta);
     if Connections.isRoot(term.theta) then
-      term.theta = if system.synRef then {0, theta} else {theta, 0};
+      term.theta = if system.synRef then {0,theta} else {theta,0};
     end if;
-    annotation (defaultComponentName="reference",
+    annotation (
+      defaultComponentName="reference",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-100,-90},{100,-130}},
-            lineColor={0,0,0},
-            textString=
-                 "%name"),
-          Rectangle(
-            extent={{-10,80},{10,-80}},
-            lineColor={0,0,0},
-            fillPattern=FillPattern.HorizontalCylinder,
-            fillColor={255,85,85}),
-          Rectangle(
-            extent={{-20,120},{20,80}},
-            lineColor={213,170,255},
-            fillColor={213,170,255},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Text(
+              extent={{-100,-90},{100,-130}},
+              lineColor={0,0,0},
+              textString="%name"),Rectangle(
+              extent={{-10,80},{10,-80}},
+              lineColor={0,0,0},
+              fillPattern=FillPattern.HorizontalCylinder,
+              fillColor={255,85,85}),Rectangle(
+              extent={{-20,120},{20,80}},
+              lineColor={213,170,255},
+              fillColor={213,170,255},
+              fillPattern=FillPattern.Solid)}),
       Documentation(info="<html>
 <p>Explicit definition of relative-angle term.theta[1] and reference-angle term.theta[2]<br>
 (only for advanced use needed).</p>
@@ -721,26 +672,26 @@ end ACdq0_abc;
     extends Ports.PortBase;
 
     Ports.ACdq0_p term_p "positive terminal"
-  annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
     Ports.ACdq0_n term_n "negative terminal"
-  annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
 
   equation
     term_p.v = term_n.v;
     term_p.i + term_n.i = zeros(PS.n);
-    annotation (defaultComponentName="break1",
+    annotation (
+      defaultComponentName="break1",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,-90},{100,-130}},
-            lineColor={0,0,0},
-            textString=
-                 "%name"), Rectangle(
-            extent={{-10,80},{10,-80}},
-            lineColor={0,0,0},
-            fillPattern=FillPattern.HorizontalCylinder,
-            fillColor={255,255,0})}),
+              extent={{-100,-90},{100,-130}},
+              lineColor={0,0,0},
+              textString="%name"),Rectangle(
+              extent={{-10,80},{10,-80}},
+              lineColor={0,0,0},
+              fillPattern=FillPattern.HorizontalCylinder,
+              fillColor={255,255,0})}),
       Documentation(info="<html>
 <p>Breaks explicitly transfer of angle theta from term_p to term_n.</p>
 <p>The electric connections remain the same as in Base.PortsACdq0.Port_pn, whereas the equation</p>
@@ -751,25 +702,20 @@ end ACdq0_abc;
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-50,60},{50,40}},
-            lineColor={0,0,0},
-            textString=
-                 "theta not transmitted"),
-          Line(
-            points={{-25,0},{-10,0}},
-            color={0,0,0},
-            arrow={Arrow.None,Arrow.Filled}),
-          Line(
-            points={{25,0},{10,0}},
-            color={0,0,0},
-            arrow={Arrow.None,Arrow.Filled}),
-          Line(points={{0,20},{0,-20}}, color={0,0,0})}));
+          grid={2,2}), graphics={Text(
+              extent={{-50,60},{50,40}},
+              lineColor={0,0,0},
+              textString="theta not transmitted"),Line(
+              points={{-25,0},{-10,0}},
+              color={0,0,0},
+              arrow={Arrow.None,Arrow.Filled}),Line(
+              points={{25,0},{10,0}},
+              color={0,0,0},
+              arrow={Arrow.None,Arrow.Filled}),Line(points={{0,20},{0,-20}},
+            color={0,0,0})}));
   end Break;
 
-annotation (preferredView="info",
-    Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 </html>
 "));
 end Nodes;

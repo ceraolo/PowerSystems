@@ -1,9 +1,8 @@
 within PowerSystems;
 package AC1ph_DC "AC 1-phase and DC components from Spot AC1ph_DC"
-  extends Modelica.Icons.VariantsPackage;
+extends Modelica.Icons.VariantsPackage;
 
-annotation (preferredView="info",
-Documentation(info="<html>
+annotation (preferredView="info", Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.UsersGuide\">up users guide</a></p>
 </html>
 "));

@@ -4,8 +4,8 @@ package Complex "Complex functions (auxiliary sub-package)"
 
   type ComplexType = Real[2, 2] "matrix representation of complex number";
 
-  constant ComplexType re = [1,0;0,1] "matrix representation of real unit";
-  constant ComplexType im = [0,-1;1,0]
+  constant ComplexType re=[1, 0; 0, 1] "matrix representation of real unit";
+  constant ComplexType im=[0, -1; 1, 0]
     "matrix representation of imaginary unit";
 
   function conjC "Conjugate value of complex number"
@@ -39,7 +39,7 @@ package Complex "Complex functions (auxiliary sub-package)"
     output Real det_z "determinant of z";
 
   algorithm
-    det_z := z[1,1]*z[2,2] - z[1,2]*z[2,1];
+    det_z := z[1, 1]*z[2, 2] - z[1, 2]*z[2, 1];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
   end detC;
@@ -59,13 +59,13 @@ package Complex "Complex functions (auxiliary sub-package)"
   function sumC "Sum of complex numbers"
     extends Modelica.Icons.Function;
 
-    input ComplexType[          :] z "complex vector";
+    input ComplexType[:] z "complex vector";
     output ComplexType s "sum of components of z";
 
   algorithm
     s := z[1, :, :];
-    for k in 2:size(z,1) loop
-      s := s + z[k,:,:];
+    for k in 2:size(z, 1) loop
+      s := s + z[k, :, :];
     end for;
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -74,13 +74,13 @@ package Complex "Complex functions (auxiliary sub-package)"
   function prodC "Product of complex numbers"
     extends Modelica.Icons.Function;
 
-    input ComplexType[          :] z "complex vector";
+    input ComplexType[:] z "complex vector";
     output ComplexType p "product of components of z";
 
   algorithm
     p := z[1, :, :];
-    for k in 2:size(z,1) loop
-      p := p*z[k,:,:];
+    for k in 2:size(z, 1) loop
+      p := p*z[k, :, :];
     end for;
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -110,7 +110,7 @@ package Complex "Complex functions (auxiliary sub-package)"
     output ComplexType exp_z "exponential of z";
 
   algorithm
-    exp_z := exp(z[1,1])*expI(z[2,1]);
+    exp_z := exp(z[1, 1])*expI(z[2, 1]);
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
   end expC;
@@ -122,10 +122,10 @@ package Complex "Complex functions (auxiliary sub-package)"
     input Real alpha "exponent";
     output ComplexType pow_z "power of z";
   protected
-    function atan2=Modelica.Math.atan2;
+    function atan2 = Modelica.Math.atan2;
 
   algorithm
-    pow_z := detC(z)^(0.5*alpha)*expI(alpha*atan2(z[2,1], z[1,1]));
+    pow_z := detC(z)^(0.5*alpha)*expI(alpha*atan2(z[2, 1], z[1, 1]));
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
   end powerC;
@@ -136,10 +136,10 @@ package Complex "Complex functions (auxiliary sub-package)"
     input ComplexType z "complex argument";
     output ComplexType sqrt_z "square-root of z";
   protected
-    function atan2=Modelica.Math.atan2;
+    function atan2 = Modelica.Math.atan2;
 
   algorithm
-    sqrt_z := sqrt(absC(z))*expI(0.5*atan2(z[2,1], z[1,1]));
+    sqrt_z := sqrt(absC(z))*expI(0.5*atan2(z[2, 1], z[1, 1]));
     annotation (Documentation(Inline=true, info="<html>
 </html>"));
   end sqrtC;
@@ -152,12 +152,12 @@ package Complex "Complex functions (auxiliary sub-package)"
   protected
     Real re;
     Real im;
-    function atan2=Modelica.Math.atan2;
-    function log=Modelica.Math.log;
+    function atan2 = Modelica.Math.atan2;
+    function log = Modelica.Math.log;
 
   algorithm
     re := 0.5*log(detC(z));
-    im := atan2(z[2,1], z[1,1]);
+    im := atan2(z[2, 1], z[1, 1]);
     log_z := [re, -im; im, re];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -173,8 +173,8 @@ package Complex "Complex functions (auxiliary sub-package)"
     Real im;
 
   algorithm
-    re := cos(z[1,1])*cosh(z[2,1]);
-    im := -sin(z[1,1])*sinh(z[2,1]);
+    re := cos(z[1, 1])*cosh(z[2, 1]);
+    im := -sin(z[1, 1])*sinh(z[2, 1]);
     cos_z := [re, -im; im, re];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -190,8 +190,8 @@ package Complex "Complex functions (auxiliary sub-package)"
     Real im;
 
   algorithm
-    re := sin(z[1,1])*cosh(z[2,1]);
-    im := cos(z[1,1])*sinh(z[2,1]);
+    re := sin(z[1, 1])*cosh(z[2, 1]);
+    im := cos(z[1, 1])*sinh(z[2, 1]);
     sin_z := [re, -im; im, re];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -219,8 +219,8 @@ package Complex "Complex functions (auxiliary sub-package)"
 
   algorithm
     a := 0.5*(1 - detC(z));
-    atan_z := 0.5*logC([a, -z[1,1]; z[1,1], a]/(1 - a + z[2,1]));
-    atan_z := [atan_z[2,1], atan_z[2,2]; -atan_z[1,1], -atan_z[1,2]];
+    atan_z := 0.5*logC([a, -z[1, 1]; z[1, 1], a]/(1 - a + z[2, 1]));
+    atan_z := [atan_z[2, 1], atan_z[2, 2]; -atan_z[1, 1], -atan_z[1, 2]];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
   end atanC;
@@ -235,8 +235,8 @@ package Complex "Complex functions (auxiliary sub-package)"
     Real im;
 
   algorithm
-    re := cosh(z[1,1])*cos(z[2,1]);
-    im := sinh(z[1,1])*sin(z[2,1]);
+    re := cosh(z[1, 1])*cos(z[2, 1]);
+    im := sinh(z[1, 1])*sin(z[2, 1]);
     cosh_z := [re, -im; im, re];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -252,8 +252,8 @@ package Complex "Complex functions (auxiliary sub-package)"
     Real im;
 
   algorithm
-    re := sinh(z[1,1])*cos(z[2,1]);
-    im := cosh(z[1,1])*sin(z[2,1]);
+    re := sinh(z[1, 1])*cos(z[2, 1]);
+    im := cosh(z[1, 1])*sin(z[2, 1]);
     sinh_z := [re, -im; im, re];
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
@@ -281,12 +281,11 @@ package Complex "Complex functions (auxiliary sub-package)"
 
   algorithm
     a := 0.5*(1 - detC(z));
-    atan_z := 0.5*logC([a, -z[2,1]; z[2,1], a]/(1 - a - z[1,1]));
+    atan_z := 0.5*logC([a, -z[2, 1]; z[2, 1], a]/(1 - a - z[1, 1]));
     annotation (Inline=true, Documentation(info="<html>
 </html>"));
   end atanhC;
-    annotation (preferredView="info",
-  Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Auxiliary sub-package for didactic purposes showing the treatment of complex numbers with rotation matrices.
 Complex numbers are represented as 2x2 matrix, such that arithmetic operations on complex numbers become equivalent to arithmetic operations on their matrix representations.</p>
 <p>Complex number <tt>(x + jy)</tt>, considered as an element of an algebra, and represented by the real 2x2 matrix z:</p>

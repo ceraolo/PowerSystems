@@ -5,8 +5,10 @@ package Sources "DC voltage sources"
   model ACvoltage "Ideal AC voltage, 1-phase"
     extends Partials.ACvoltageBase;
 
-    parameter SIpu.Voltage v0eff=1 "fixed effective voltage" annotation(Dialog(enable=not use_vPhasor_in));
-    parameter SI.Angle alpha0=0 "fixed phase angle" annotation(Dialog(enable=not use_vPhasor_in));
+    parameter SIpu.Voltage v0eff=1 "fixed effective voltage"
+      annotation (Dialog(enable=not use_vPhasor_in));
+    parameter SI.Angle alpha0=0 "fixed phase angle"
+      annotation (Dialog(enable=not use_vPhasor_in));
   protected
     PS.Voltage V;
     SI.Angle alpha;
@@ -14,16 +16,14 @@ package Sources "DC voltage sources"
 
   equation
     if not use_vPhasor_in then
-      vPhasor_internal = {v0eff, alpha0};
+      vPhasor_internal = {v0eff,alpha0};
     end if;
     V = vPhasor_internal[1]*sqrt(2)*V_base;
     alpha = vPhasor_internal[2];
 
     phi = theta + alpha + system.alpha0;
     term.v[1] - term.v[2] = V*cos(phi);
-    annotation (defaultComponentName = "voltage1",
-      Documentation(
-              info="<html>
+    annotation (defaultComponentName="voltage1", Documentation(info="<html>
 <p>AC voltage with constant amplitude and phase when 'vType' is 'parameter',<br>
 with variable amplitude and phase when 'vType' is 'signal'.</p>
 <p>Optional input:
@@ -51,16 +51,16 @@ with variable amplitude and phase when 'vType' is 'signal'.</p>
 
   equation
     if not use_vPhasor_in then
-      vPhasor_internal = {1, 0};
+      vPhasor_internal = {1,0};
     end if;
     V = vPhasor_internal[1]*sqrt(2)*V_base;
     alpha = vPhasor_internal[2];
 
-    phi = h*(theta + alpha + system.alpha0) + h.*alpha0;
+    phi = h*(theta + alpha + system.alpha0) + h .* alpha0;
     term.v[1] - term.v[2] = V*v0eff*cos(phi);
-    annotation (defaultComponentName = "voltage1",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="voltage1",
+      Documentation(info="<html>
 <p>AC voltage spectrum with constant amplitude and phase when 'vType' is 'parameter',<br>
 with variable amplitude and phase when 'vType' is 'signal'.</p>
 <p>The voltage-spectrum is given by the expression
@@ -84,19 +84,19 @@ where
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-40,60},{40,-20}},
-            lineColor={176,0,0},
-            lineThickness=0.5,
-            fillColor={127,0,255},
-            fillPattern=FillPattern.Solid,
-            textString=
-                 "~~~")}));
+              extent={{-40,60},{40,-20}},
+              lineColor={176,0,0},
+              lineThickness=0.5,
+              fillColor={127,0,255},
+              fillPattern=FillPattern.Solid,
+              textString="~~~")}));
   end Vspectrum;
 
   model DCvoltage "Ideal DC voltage"
     extends Partials.DCvoltageBase(pol=-1);
 
-    parameter SIpu.Voltage v0=1 "fixed DC voltage"   annotation(Dialog(enable=not use_vDC_in));
+    parameter SIpu.Voltage v0=1 "fixed DC voltage"
+      annotation (Dialog(enable=not use_vDC_in));
   protected
     PS.Voltage v;
 
@@ -106,9 +106,7 @@ where
     end if;
     v = vDC_internal*V_base;
     term.v[1] - term.v[2] = v;
-    annotation (defaultComponentName = "voltage1",
-      Documentation(
-              info="<html>
+    annotation (defaultComponentName="voltage1", Documentation(info="<html>
 <p>DC voltage with constant amplitude when 'vType' is 'parameter',<br>
 with variable amplitude when 'vType' is 'signal'.</p>
 <p>Optional input:
@@ -132,37 +130,33 @@ with variable amplitude when 'vType' is 'signal'.</p>
     term.v[2] = 0;
     term.v[1] - term.v[2] = v;
     term.i[1] = -i;
-    annotation (defaultComponentName = "battery1",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="battery1",
+      Documentation(info="<html>
 <p><b>Preliminary:</b> Battery is DC voltage with constant amplitude.<br>
 To be completed later with charging and discharging characteristic.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Ellipse(
-            extent={{-70,-70},{70,70}},
-            lineColor={0,0,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{-70,0},{70,0}},
-            color={176,0,0},
-            thickness=0.5),
-          Line(points={{-34,40},{-34,-40}}, color={176,0,0}),
-          Line(points={{-20,20},{-20,-20}}, color={176,0,0}),
-          Line(points={{20,40},{20,-40}}, color={176,0,0}),
-          Line(points={{34,20},{34,-20}}, color={176,0,0}),
-          Line(
-            points={{-34,0},{-20,0}},
-            color={255,255,255},
-            thickness=0.5),
-          Line(
-            points={{20,0},{34,0}},
-            color={255,255,255},
-            thickness=0.5)}));
+          grid={2,2}), graphics={Ellipse(
+              extent={{-70,-70},{70,70}},
+              lineColor={0,0,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(
+              points={{-70,0},{70,0}},
+              color={176,0,0},
+              thickness=0.5),Line(points={{-34,40},{-34,-40}}, color={176,0,0}),
+            Line(points={{-20,20},{-20,-20}}, color={176,0,0}),Line(points={{20,
+            40},{20,-40}}, color={176,0,0}),Line(points={{34,20},{34,-20}},
+            color={176,0,0}),Line(
+              points={{-34,0},{-20,0}},
+              color={255,255,255},
+              thickness=0.5),Line(
+              points={{20,0},{34,0}},
+              color={255,255,255},
+              thickness=0.5)}));
   end Battery;
 
   package Partials "Partial models"
@@ -170,14 +164,14 @@ To be completed later with charging and discharging characteristic.</p>
 
     partial model VoltageBase "Voltage base"
       extends Ports.Port_n;
-      extends Common.Nominal.Nominal(
-                                 final S_nom=1);
+      extends Common.Nominal.Nominal(final S_nom=1);
 
-      parameter Integer pol(min=-1,max=1)=-1 "grounding scheme"
-        annotation(Evaluate=true,
-        choices(choice=1 "positive",
-        choice=0 "symmetrical",
-        choice=-1 "negative"));
+      parameter Integer pol(
+        min=-1,
+        max=1) = -1 "grounding scheme" annotation (Evaluate=true, choices(
+          choice=1 "positive",
+          choice=0 "symmetrical",
+          choice=-1 "negative"));
 
       Interfaces.Electric_p neutral "(use for grounding)"
         annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
@@ -185,32 +179,29 @@ To be completed later with charging and discharging characteristic.</p>
       final parameter Real V_base=Utilities.Precalculation.baseV(puUnits, V_nom);
 
     equation
-      if pol==1 then
+      if pol == 1 then
         term.v[1] = neutral.v;
-      elseif pol==-1 then
+      elseif pol == -1 then
         term.v[2] = neutral.v;
       else
         term.v[1] + term.v[2] = neutral.v;
       end if;
 
       sum(term.i) + neutral.i = 0;
-      annotation (
-        Documentation(
-              info="<html>
+      annotation (Documentation(info="<html>
 <p>Allows positive, symmetrical, and negativ grounding according to the choice of parameter 'pol'.<br>
 If the connector 'neutral' remains unconnected, then the source is NOT grounded. In all other cases connect 'neutral' to the desired circuit or ground.</p>
-</html>"),
-        Icon(coordinateSystem(
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Ellipse(
-              extent={{-70,-70},{70,70}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid), Line(
-              points={{-70,0},{70,0}},
-              color={176,0,0},
-              thickness=0.5)}));
+                  extent={{-70,-70},{70,70}},
+                  lineColor={0,0,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(
+                  points={{-70,0},{70,0}},
+                  color={176,0,0},
+                  thickness=0.5)}));
     end VoltageBase;
 
     partial model ACvoltageBase "AC voltage base"
@@ -219,18 +210,18 @@ If the connector 'neutral' remains unconnected, then the source is NOT grounded.
       parameter Types.SourceFrequency fType=PowerSystems.Types.SourceFrequency.System
         "frequency type" annotation (Evaluate=true, Dialog(group="Frequency"));
       parameter SI.Frequency f=system.f "frequency if type is parameter"
-        annotation(Dialog(group="Frequency", enable=fType == PowerSystems.Types.SourceFrequency.Parameter));
+        annotation (Dialog(group="Frequency",enable=fType == PowerSystems.Types.SourceFrequency.Parameter));
 
-      parameter Boolean use_vPhasor_in = false
+      parameter Boolean use_vPhasor_in=false
         "= true to use input signal vPhasor_in, otherwise use fixed values"
-       annotation(Evaluate=true, choices(checkBox=true));
+        annotation (Evaluate=true, choices(checkBox=true));
       Modelica.Blocks.Interfaces.RealInput[2] vPhasor_in if use_vPhasor_in
         "{abs(voltage), phase(voltage)}" annotation (Placement(transformation(
             origin={60,100},
             extent={{-10,-10},{10,10}},
             rotation=270)));
-      Modelica.Blocks.Interfaces.RealInput omega_in(final unit="rad/s") if fType
-         == PowerSystems.Types.SourceFrequency.Signal
+      Modelica.Blocks.Interfaces.RealInput omega_in(final unit="rad/s") if
+        fType == PowerSystems.Types.SourceFrequency.Signal
         "Angular frequency of source" annotation (Placement(transformation(
             origin={-60,100},
             extent={{-10,-10},{10,10}},
@@ -254,7 +245,7 @@ If the connector 'neutral' remains unconnected, then the source is NOT grounded.
       connect(omega_in, omega_internal);
       connect(vPhasor_in, vPhasor_internal);
       if fType <> Types.SourceFrequency.Signal then
-         omega_internal = 0.0;
+        omega_internal = 0.0;
       end if;
 
       if fType == Types.SourceFrequency.System then
@@ -264,38 +255,34 @@ If the connector 'neutral' remains unconnected, then the source is NOT grounded.
       elseif fType == Types.SourceFrequency.Signal then
         der(theta) = omega_internal;
       end if;
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
-              extent={{-50,30},{50,-70}},
-              lineColor={176,0,0},
-              lineThickness=0.5,
-              fillColor={127,0,255},
-              fillPattern=FillPattern.Solid,
-              textString=
-           "~")}));
+                  extent={{-50,30},{50,-70}},
+                  lineColor={176,0,0},
+                  lineThickness=0.5,
+                  fillColor={127,0,255},
+                  fillPattern=FillPattern.Solid,
+                  textString="~")}));
     end ACvoltageBase;
 
     partial model DCvoltageBase "DC voltage base"
       extends VoltageBase;
 
-      parameter Integer pol(min=-1,max=1)=-1 "grounding scheme"
-        annotation(Evaluate=true,
-        choices(choice=1 "positive",
-        choice=0 "symmetrical",
-        choice=-1 "negative"));
+      parameter Integer pol(
+        min=-1,
+        max=1) = -1 "grounding scheme" annotation (Evaluate=true, choices(
+          choice=1 "positive",
+          choice=0 "symmetrical",
+          choice=-1 "negative"));
 
-      parameter Boolean use_vDC_in = false
+      parameter Boolean use_vDC_in=false
         "= true to use input signal vDC_in, otherwise use fixed value"
-       annotation(Evaluate=true, choices(checkBox=true));
-      Modelica.Blocks.Interfaces.RealInput vDC_in if
-                                                  use_vDC_in "DC voltage" annotation (
-          Placement(transformation(
+        annotation (Evaluate=true, choices(checkBox=true));
+      Modelica.Blocks.Interfaces.RealInput vDC_in if use_vDC_in "DC voltage"
+        annotation (Placement(transformation(
             origin={60,100},
             extent={{-10,-10},{10,10}},
             rotation=270)));
@@ -305,27 +292,22 @@ If the connector 'neutral' remains unconnected, then the source is NOT grounded.
     equation
       connect(vDC_in, vDC_internal);
 
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
-              extent={{-50,10},{50,-60}},
-              lineColor={176,0,0},
-              lineThickness=0.5,
-              fillColor={127,0,255},
-              fillPattern=FillPattern.Solid,
-              textString=
-                   "=")}));
+                  extent={{-50,10},{50,-60}},
+                  lineColor={176,0,0},
+                  lineThickness=0.5,
+                  fillColor={127,0,255},
+                  fillPattern=FillPattern.Solid,
+                  textString="=")}));
     end DCvoltageBase;
 
   end Partials;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>AC sources have the optional inputs:</p>
 <pre>
   vPhasor_in:   voltage {norm, phase}

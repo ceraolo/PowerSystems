@@ -19,18 +19,18 @@ package Transforms "Auxiliary blocks"
     Real[3] s;
 
   equation
-    c =  cos({theta, theta - dph_b, theta - dph_c});
-    s =  sin({theta, theta - dph_b, theta - dph_c});
-    y = transpose([s23*c, -s23*s, {s13, s13, s13}])*u;
-    annotation (defaultComponentName = "park",
+    c = cos({theta,theta - dph_b,theta - dph_c});
+    s = sin({theta,theta - dph_b,theta - dph_c});
+    y = transpose([s23*c, -s23*s, {s13,s13,s13}])*u;
+    annotation (
+      defaultComponentName="park",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,40},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "park")}),
+              extent={{-80,40},{80,-40}},
+              lineColor={128,128,128},
+              textString="park")}),
       Documentation(info="<html>
 <p>The block <tt>Park</tt> transforms abc variables (u) into dq0 variables (y) with arbitrary angular orientation
 <pre>  y = P*u</pre>
@@ -67,8 +67,8 @@ and
   block Rotation_dq "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=2, final nout=2);
 
-    Modelica.Blocks.Interfaces.RealInput theta "rotation angle"
-      annotation (Placement(transformation(
+    Modelica.Blocks.Interfaces.RealInput theta "rotation angle" annotation (
+        Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -77,18 +77,18 @@ and
     Real s;
 
   equation
-    c =   cos(theta);
-    s =   sin(theta);
+    c = cos(theta);
+    s = sin(theta);
     y = [c, -s; s, c]*u;
-    annotation (defaultComponentName = "rot_dq",
+    annotation (
+      defaultComponentName="rot_dq",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-75,40},{75,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "rot_dq")}),
+              extent={{-75,40},{75,-40}},
+              lineColor={128,128,128},
+              textString="rot_dq")}),
       Documentation(info="<html>
 <p>The block <tt>Rotation_dq</tt> rotates u by an arbitrary angle <tt>theta</tt> into y according to
 <pre>  y = R_dq*u</pre>
@@ -120,8 +120,8 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
   block Rotation_abc "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=3, final nout=3);
 
-    Modelica.Blocks.Interfaces.RealInput theta "rotation angle"
-      annotation (Placement(transformation(
+    Modelica.Blocks.Interfaces.RealInput theta "rotation angle" annotation (
+        Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -133,17 +133,17 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
     Real[3] g;
 
   equation
-    g =  {q13, q13, q13} + q23*cos({theta, theta - dph_b, theta - dph_c});
-    y =  [g[{1,2,3}], g[{3,1,2}], g[{2,3,1}]]*u;
-    annotation (defaultComponentName = "rot_abc",
+    g = {q13,q13,q13} + q23*cos({theta,theta - dph_b,theta - dph_c});
+    y = [g[{1,2,3}], g[{3,1,2}], g[{2,3,1}]]*u;
+    annotation (
+      defaultComponentName="rot_abc",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-75,40},{75,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "rot_abc")}),
+              extent={{-75,40},{75,-40}},
+              lineColor={128,128,128},
+              textString="rot_abc")}),
       Documentation(info="<html>
 <p>The block <tt>Rotation_abc</tt> rotates u by an arbitrary angle <tt>theta</tt> into y according to
 <pre>  y = R_abc*u</pre>
@@ -177,23 +177,23 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
   block RotationPhasor "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=2, final nout=2);
 
-    Modelica.Blocks.Interfaces.RealInput theta "rotation angle"
-      annotation (Placement(transformation(
+    Modelica.Blocks.Interfaces.RealInput theta "rotation angle" annotation (
+        Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
 
   equation
-    y = {u[1], u[2] + theta};
-    annotation (defaultComponentName = "rot_Phasor",
+    y = {u[1],u[2] + theta};
+    annotation (
+      defaultComponentName="rot_Phasor",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-75,40},{75,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "rot_Ph")}),
+              extent={{-75,40},{75,-40}},
+              lineColor={128,128,128},
+              textString="rot_Ph")}),
       Documentation(info="<html>
 <p>Rotates phasor u in polar representation by angle theta.</p>
 <p>Input u:
@@ -212,8 +212,8 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
   block PhasorToAlphaBeta "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=2, final nout=2);
 
-    Modelica.Blocks.Interfaces.RealInput theta "rotation angle"
-      annotation (Placement(transformation(
+    Modelica.Blocks.Interfaces.RealInput theta "rotation angle" annotation (
+        Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -221,27 +221,22 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
     constant Real s23=sqrt(2/3);
 
   equation
-    y = sqrt(2/3)*u[1]*{cos(u[2] + theta), sin(u[2] + theta)};
-    annotation (defaultComponentName = "phToAlphaBeta",
+    y = sqrt(2/3)*u[1]*{cos(u[2] + theta),sin(u[2] + theta)};
+    annotation (
+      defaultComponentName="phToAlphaBeta",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-70,18},{-10,-18}},
-            lineColor={128,128,128},
-            textString=
-                 "uPh"),
-          Text(
-            extent={{-10,40},{80,10}},
-            lineColor={128,128,128},
-            textString=
-                 "alpha"),
-          Text(
-            extent={{-10,-10},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "beta")}),
+          grid={2,2}), graphics={Text(
+              extent={{-70,18},{-10,-18}},
+              lineColor={128,128,128},
+              textString="uPh"),Text(
+              extent={{-10,40},{80,10}},
+              lineColor={128,128,128},
+              textString="alpha"),Text(
+              extent={{-10,-10},{80,-40}},
+              lineColor={128,128,128},
+              textString="beta")}),
       Documentation(info="<html>
 <p>Transforms phasor u to amplitudes {alpha, beta}.<br>
 i.e. rotates phasor in polar representation by angle theta and transforms to Euclidean {y[1], y[2]} coordinates.</p>
@@ -256,7 +251,6 @@ i.e. rotates phasor in polar representation by angle theta and transforms to Euc
 </pre></p>
 </html>"));
   end PhasorToAlphaBeta;
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 </html>"));
 end Transforms;

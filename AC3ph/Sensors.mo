@@ -7,29 +7,29 @@ package Sensors "Sensors and meters 3-phase"
 
     parameter Integer n_eval(
       min=2,
-      max=3) = 2 "dq- or dq0-norm" annotation(choices(
-      choice=2 "2: dq-norm",
-      choice=3 "3: dq0-norm"));
+      max=3) = 2 "dq- or dq0-norm"
+      annotation (choices(choice=2 "2: dq-norm", choice=3 "3: dq0-norm"));
     Modelica.Blocks.Interfaces.RealOutput v "voltage norm, phase-to-ground"
-    annotation (Placement(transformation(
+      annotation (Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
     v = sqrt(term.v[1:n_eval]*term.v[1:n_eval]);
-  annotation (defaultComponentName = "Vsensor1",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="Vsensor1",
+      Documentation(info="<html>
 </html>
-"), Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-20,24},{20,20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+              extent={{-20,24},{20,20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end VnormSensor;
 
   model InormSensor "Current-norm sensor, 3-phase dq0"
@@ -37,20 +37,17 @@ package Sensors "Sensors and meters 3-phase"
 
     parameter Integer n_eval(
       min=2,
-      max=3) = 2 "dq- or dq0-norm" annotation(choices(
-      choice=2 "2: dq-norm",
-      choice=3 "3: dq0-norm"));
+      max=3) = 2 "dq- or dq0-norm"
+      annotation (choices(choice=2 "2: dq-norm", choice=3 "3: dq0-norm"));
     Modelica.Blocks.Interfaces.RealOutput i "current norm, term_p to term_n"
-                                       annotation (Placement(transformation(
+      annotation (Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
     i = sqrt(term_p.i[1:n_eval]*term_p.i[1:n_eval]);
-  annotation (defaultComponentName = "Isensor1",
-    Documentation(
-            info="<html>
+    annotation (defaultComponentName="Isensor1", Documentation(info="<html>
 </html>
 "));
   end InormSensor;
@@ -59,24 +56,34 @@ package Sensors "Sensors and meters 3-phase"
     extends Partials.Sensor1Base;
 
     Modelica.Blocks.Interfaces.RealOutput[3] v "voltage, phase-to-ground"
-    annotation (Placement(transformation(
+      annotation (Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
     if signalTrsf == 0 then
-      v = term.v; // actual
+      v = term.v;
+      // actual
     elseif signalTrsf == 1 then
-      v = cat(1, transpose(rot_dq(term.theta[1]))*term.v[1:2], term.v[3:3]); // dq0
+      v = cat(
+          1,
+          transpose(rot_dq(term.theta[1]))*term.v[1:2],
+          term.v[3:3]);
+      // dq0
     elseif signalTrsf == 2 then
-      v = cat(1, rot_dq(term.theta[2])*term.v[1:2], term.v[3:3]); // alpha-beta_o
+      v = cat(
+          1,
+          rot_dq(term.theta[2])*term.v[1:2],
+          term.v[3:3]);
+      // alpha-beta_o
     elseif signalTrsf == 3 then
-      v = transpose(park(term.theta[2]))*term.v; // abc
+      v = transpose(park(term.theta[2]))*term.v;
+      // abc
     end if;
-  annotation (defaultComponentName = "Vsensor1",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="Vsensor1",
+      Documentation(info="<html>
 <p>The parameter 'signalTrsf' allows the choice of different reference systems for the output signal<br>
 <pre>
   signalTrsf=0     voltage in actual ref frame
@@ -85,25 +92,23 @@ package Sensors "Sensors and meters 3-phase"
   signalTrsf=3     voltage in abc inertial frame
 </pre>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-20,24},{20,20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-20,60},{20,80}}, color={135,135,135}),
-          Line(points={{-20,50},{20,70}}, color={135,135,135}),
-          Line(points={{-20,40},{20,60}}, color={135,135,135})}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-20,24},{20,20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(points={{-20,60},{20,80}},
+            color={135,135,135}),Line(points={{-20,50},{20,70}}, color={135,135,
+            135}),Line(points={{-20,40},{20,60}}, color={135,135,135})}));
   end Vsensor;
 
   model Isensor "Current sensor, 3-phase dq0"
     extends Partials.Sensor2Base;
 
-    Modelica.Blocks.Interfaces.RealOutput[3] i "current, term_p to term_n"              annotation (Placement(
-          transformation(
+    Modelica.Blocks.Interfaces.RealOutput[3] i "current, term_p to term_n"
+      annotation (Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
@@ -111,16 +116,26 @@ package Sensors "Sensors and meters 3-phase"
   equation
     if signalTrsf == 0 then
       i = term_p.i;
-    elseif signalTrsf == 1 then // actual
-      i = cat(1, transpose(rot_dq(term_p.theta[1]))*term_p.i[1:2], term_p.i[3:3]); // dq0
+    elseif signalTrsf == 1 then
+      // actual
+      i = cat(
+          1,
+          transpose(rot_dq(term_p.theta[1]))*term_p.i[1:2],
+          term_p.i[3:3]);
+      // dq0
     elseif signalTrsf == 2 then
-      i = cat(1, rot_dq(term_p.theta[2])*term_p.i[1:2], term_p.i[3:3]); // alpha-beta_o
+      i = cat(
+          1,
+          rot_dq(term_p.theta[2])*term_p.i[1:2],
+          term_p.i[3:3]);
+      // alpha-beta_o
     elseif signalTrsf == 3 then
-      i = transpose(park(term_p.theta[2]))*term_p.i; // abc
+      i = transpose(park(term_p.theta[2]))*term_p.i;
+      // abc
     end if;
-  annotation (defaultComponentName = "Isensor1",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="Isensor1",
+      Documentation(info="<html>
 <p>The parameter 'signalTrsf' allows the choice of different reference systems for the output signal<br>
 <pre>
   signalTrsf=0     current in actual ref frame
@@ -129,43 +144,42 @@ package Sensors "Sensors and meters 3-phase"
   signalTrsf=3     current in abc inertial frame
 </pre>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-20,60},{20,80}}, color={135,135,135}),
-          Line(points={{-20,50},{20,70}}, color={135,135,135}),
-          Line(points={{-20,40},{20,60}}, color={135,135,135})}));
+          grid={2,2}), graphics={Line(points={{-20,60},{20,80}}, color={135,135,
+            135}),Line(points={{-20,50},{20,70}}, color={135,135,135}),Line(
+            points={{-20,40},{20,60}}, color={135,135,135})}));
   end Isensor;
 
   model Psensor "Power sensor, 3-phase dq0"
     extends Partials.Sensor2Base(final signalTrsf=0);
 
     Modelica.Blocks.Interfaces.RealOutput[PS.n] p
-      "{active, reactive, DC} power, term_p to term_n"
-    annotation (Placement(transformation(
+      "{active, reactive, DC} power, term_p to term_n" annotation (Placement(
+          transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
     p = PS.phasePowers_vi(term_p.v, term_p.i);
-  annotation (defaultComponentName = "Psensor1",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="Psensor1",
+      Documentation(info="<html>
 <p><i>Comment on the sign-definition of reactive power see</i> ACdq0.Sensors.</p>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
-            extent={{-20,20},{20,-20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid), Line(
-            points={{0,0},{20,0}},
-            color={0,100,100},
-            thickness=0.5)}));
+              extent={{-20,20},{20,-20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,0},{20,0}},
+              color={0,100,100},
+              thickness=0.5)}));
   end Psensor;
 
   model Vmeter "Voltage meter, 3-phase dq0"
@@ -174,36 +188,35 @@ package Sensors "Sensors and meters 3-phase"
     output SIpu.Voltage[PS.n] v(each stateSelect=StateSelect.never);
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=transpose(Park)*v if abc;
-    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never)=
-      {v_abc[2],v_abc[3],v_abc[1]} - {v_abc[3],v_abc[1],v_abc[2]} if abc;
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
+      transpose(Park)*v if abc;
+    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) = {v_abc[
+      2],v_abc[3],v_abc[1]} - {v_abc[3],v_abc[1],v_abc[2]} if abc;
 
     output SIpu.Voltage v_norm(stateSelect=StateSelect.never);
     output SI.Angle alpha_v(stateSelect=StateSelect.never);
   protected
-    final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(
-                                                                 puUnits, V_nom);
+    final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(puUnits,
+        V_nom);
 
   equation
     v = term.v/V_base;
     vpp = sqrt(3)*{v[2],-v[1]};
     v_norm = sqrt(v*v);
-    alpha_v = atan2(Rot_dq[:,2]*v[1:2], Rot_dq[:,1]*v[1:2]);
-    annotation (defaultComponentName = "Vmeter1",
+    alpha_v = atan2(Rot_dq[:, 2]*v[1:2], Rot_dq[:, 1]*v[1:2]);
+    annotation (
+      defaultComponentName="Vmeter1",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-20,24},{20,20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-15,50},{15,64}}, color={135,135,135}),
-          Line(points={{-15,40},{15,54}}, color={135,135,135}),
-          Line(points={{-15,30},{15,44}}, color={135,135,135})}),
-      Documentation(
-              info="<html>
+          grid={2,2}), graphics={Rectangle(
+              extent={{-20,24},{20,20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(points={{-15,50},{15,64}},
+            color={135,135,135}),Line(points={{-15,40},{15,54}}, color={135,135,
+            135}),Line(points={{-15,30},{15,44}}, color={135,135,135})}),
+      Documentation(info="<html>
 <p>'Meters' are intended as diagnostic instruments. They allow displaying signals in alternative representations, both in SI-units or in 'pu'.<br>
 As they use time-dependent coordinate transforms, use them only when and where needed. Otherwise use 'Sensors'.</p>
 <p>Output variables in the chosen reference system:</p>
@@ -227,21 +240,24 @@ As they use time-dependent coordinate transforms, use them only when and where n
 
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=transpose(Park)*i if abc;
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
+      transpose(Park)*i if abc;
 
     output SIpu.Current i_norm(stateSelect=StateSelect.never);
     output SI.Angle alpha_i(stateSelect=StateSelect.never);
   protected
     final parameter PS.Current I_base=Utilities.Precalculation.baseI(
-                                                                 puUnits, V_nom, S_nom);
+          puUnits,
+          V_nom,
+          S_nom);
 
   equation
     i = term_p.i/I_base;
     i_norm = sqrt(i*i);
-    alpha_i = atan2(Rot_dq[:,2]*i[1:2], Rot_dq[:,1]*i[1:2]);
-    annotation (defaultComponentName = "Imeter1",
-      Documentation(
-              info="<html>
+    alpha_i = atan2(Rot_dq[:, 2]*i[1:2], Rot_dq[:, 1]*i[1:2]);
+    annotation (
+      defaultComponentName="Imeter1",
+      Documentation(info="<html>
 <p>'Meters' are intended as diagnostic instruments. They allow displaying signals in alternative representations, both in SI-units or in 'pu'.<br>
 As they use time-dependent coordinate transforms, use them only when and where needed. Otherwise use 'Sensors'.</p>
 <p>Output variables in the chosen reference system:</p>
@@ -253,20 +269,21 @@ As they use time-dependent coordinate transforms, use them only when and where n
   alpha_i    phase(i)
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-15,50},{15,64}}, color={135,135,135}),
-          Line(points={{-15,40},{15,54}}, color={135,135,135}),
-          Line(points={{-15,30},{15,44}}, color={135,135,135})}));
+          grid={2,2}), graphics={Line(points={{-15,50},{15,64}}, color={135,135,
+            135}),Line(points={{-15,40},{15,54}}, color={135,135,135}),Line(
+            points={{-15,30},{15,44}}, color={135,135,135})}));
   end Imeter;
 
   model Pmeter "Power meter, 3-phase dq0"
 
-    parameter Boolean av=false "time average power"  annotation(Evaluate=true,Dialog(group="Options"));
-    parameter SI.Time tcst(min=1e-9)=1 "average time-constant"
-                                                    annotation(Evaluate=true, Dialog(group="Options",enable=av));
+    parameter Boolean av=false "time average power"
+      annotation (Evaluate=true, Dialog(group="Options"));
+    parameter SI.Time tcst(min=1e-9) = 1 "average time-constant"
+      annotation (Evaluate=true, Dialog(group="Options", enable=av));
     extends Partials.Meter2Base(final V_nom=1, final abc=false);
 
     output SIpu.Power[PS.n] p(each stateSelect=StateSelect.never);
@@ -289,23 +306,21 @@ As they use time-dependent coordinate transforms, use them only when and where n
     else
       pav = zeros(PS.n);
     end if;
-    annotation (defaultComponentName = "Pmeter1",
+    annotation (
+      defaultComponentName="Pmeter1",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Ellipse(
-            extent={{-20,20},{20,-20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{0,0},{20,0}},
-            color={0,100,100},
-            thickness=0.5),
-          Ellipse(extent={{-70,70},{70,-70}}, lineColor={135,135,135})}),
-      Documentation(
-              info="<html>
+          grid={2,2}), graphics={Ellipse(
+              extent={{-20,20},{20,-20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,0},{20,0}},
+              color={0,100,100},
+              thickness=0.5),Ellipse(extent={{-70,70},{70,-70}}, lineColor={135,
+            135,135})}),
+      Documentation(info="<html>
 <p>'Meters' are intended as diagnostic instruments. They allow displaying signals in alternative representations, both in SI-units or in 'pu'.<br>
 Use them only when and where needed. Otherwise use 'Sensors'.</p>
 <p>Output variables:</p>
@@ -320,9 +335,10 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
   model PVImeter "Power-voltage-current meter, 3-phase dq0"
     extends Partials.Meter2Base;
 
-    parameter Boolean av=false "time average power"  annotation(Evaluate=true,Dialog(group="Options"));
-    parameter SI.Time tcst(min=1e-9)=1 "average time-constant"
-                                                    annotation(Evaluate=true, Dialog(group="Options",enable=av));
+    parameter Boolean av=false "time average power"
+      annotation (Evaluate=true, Dialog(group="Options"));
+    parameter SI.Time tcst(min=1e-9) = 1 "average time-constant"
+      annotation (Evaluate=true, Dialog(group="Options", enable=av));
 
     function v2vpp_abc
       input SIpu.Voltage[3] v_abc;
@@ -337,9 +353,12 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=transpose(Park)*v if abc;
-    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never)=v2vpp_abc(transpose(Park)*v) if abc;
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=transpose(Park)*i if abc;
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
+      transpose(Park)*v if abc;
+    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) =
+      v2vpp_abc(transpose(Park)*v) if abc;
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
+      transpose(Park)*i if abc;
 
     output SIpu.Voltage v_norm(stateSelect=StateSelect.never);
     output SI.Angle alpha_v(stateSelect=StateSelect.never);
@@ -349,10 +368,12 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
 
   protected
     outer System system;
-    final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(
-                                                                 puUnits, V_nom);
+    final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(puUnits,
+        V_nom);
     final parameter PS.Current I_base=Utilities.Precalculation.baseI(
-                                                                 puUnits, V_nom, S_nom);
+          puUnits,
+          V_nom,
+          S_nom);
     SIpu.Power[PS.n] pav;
 
   initial equation
@@ -371,34 +392,30 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
       pav = zeros(PS.n);
     end if;
     v_norm = sqrt(v*v);
-    alpha_v = atan2(Rot_dq[:,2]*v[1:2], Rot_dq[:,1]*v[1:2]);
+    alpha_v = atan2(Rot_dq[:, 2]*v[1:2], Rot_dq[:, 1]*v[1:2]);
     i_norm = sqrt(i*i);
-    alpha_i = atan2(Rot_dq[:,2]*i[1:2], Rot_dq[:,1]*i[1:2]);
+    alpha_i = atan2(Rot_dq[:, 2]*i[1:2], Rot_dq[:, 1]*i[1:2]);
     cos_phi = cos(alpha_v - alpha_i);
-    annotation (defaultComponentName = "PVImeter1",
+    annotation (
+      defaultComponentName="PVImeter1",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-20,24},{20,20}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{-8,8},{8,-8}},
-            lineColor={135,135,135},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{0,0},{20,0}},
-            color={0,100,100},
-            thickness=0.5),
-          Line(points={{-15,50},{15,64}}, color={135,135,135}),
-          Line(points={{-15,40},{15,54}}, color={135,135,135}),
-          Line(points={{-15,30},{15,44}}, color={135,135,135})}),
-      Documentation(
-              info="<html>
+          grid={2,2}), graphics={Rectangle(
+              extent={{-20,24},{20,20}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{-8,8},{8,-8}},
+              lineColor={135,135,135},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,0},{20,0}},
+              color={0,100,100},
+              thickness=0.5),Line(points={{-15,50},{15,64}}, color={135,135,135}),
+            Line(points={{-15,40},{15,54}}, color={135,135,135}),Line(points={{
+            -15,30},{15,44}}, color={135,135,135})}),
+      Documentation(info="<html>
 <p>'Meters' are intended as diagnostic instruments. They allow displaying signals in alternative representations, both in SI-units or in 'pu'.<br>
 As they use time-dependent coordinate transforms, use them only when and where needed. Otherwise use 'Sensors'.</p>
 <p>Output variables in the chosen reference system:</p>
@@ -428,18 +445,19 @@ As they use time-dependent coordinate transforms, use them only when and where n
   model Efficiency "Power sensor, 3-phase dq0"
     extends Partials.Sensor2Base(final signalTrsf=0);
 
-    Interfaces.ThermalV_p heat(     m=m) "vector heat port"
-      annotation (Placement(transformation(
+    Interfaces.ThermalV_p heat(m=m) "vector heat port" annotation (Placement(
+          transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=270)));
-    parameter Boolean dir_in=true "direction" annotation(Evaluate=true, choices(
-      choice=true "points into the component",
-      choice=false "point out of the component"));
-    parameter Integer m(final min=1)=1 "dimension of heat port";
-    parameter Boolean av=false "time average efficiency" annotation(Evaluate=true,Dialog(group="Options"));
-    parameter SI.Time tcst(min=1e-9)=1 "average time-constant"
-      annotation(Evaluate=true, Dialog(group="Options",enable=av));
+    parameter Boolean dir_in=true "direction" annotation (Evaluate=true,choices(
+          choice=true "points into the component", choice=false
+          "point out of the component"));
+    parameter Integer m(final min=1) = 1 "dimension of heat port";
+    parameter Boolean av=false "time average efficiency"
+      annotation (Evaluate=true, Dialog(group="Options"));
+    parameter SI.Time tcst(min=1e-9) = 1 "average time-constant"
+      annotation (Evaluate=true,Dialog(group="Options",enable=av));
     parameter SI.Temperature T_amb=300 "ambient temperature";
     output Real eta "efficiency";
   protected
@@ -476,9 +494,9 @@ As they use time-dependent coordinate transforms, use them only when and where n
     else
       eta = 0;
     end if;
-  annotation (defaultComponentName = "efficiency",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="efficiency",
+      Documentation(info="<html>
 <p>Measures the electric power <tt>p</tt> flowing from 'term_p' to 'term_n' and the total heat inflow <tt>q</tt> at term 'heat'. The efficiency eta in % is then defined by
 <pre>
   eta = 100*(p - q)/p     if arrow points into the measured component and q &lt;  abs(p)
@@ -490,17 +508,18 @@ negative values of eta indicate powerflow against direction of arrow.</p>
 <p>Note: Take care about the above definitions if approximations are used in measured components.<br>
 In problematic cases use power sensors electrical and mechanical.</p>
 </html>
-"), Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
-            extent={{-20,20},{20,-20}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid), Line(
-            points={{0,0},{20,0}},
-            color={0,100,100},
-            thickness=0.5)}));
+              extent={{-20,20},{20,-20}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,0},{20,0}},
+              color={0,100,100},
+              thickness=0.5)}));
   end Efficiency;
 
   model Phasor "Visualiser of voltage and current phasor, 3-phase dq0"
@@ -508,8 +527,9 @@ In problematic cases use power sensors electrical and mechanical.</p>
 
     Types.Color color_p;
     Types.Color color_n;
-    extends Icons.LeftBar(          colorL={0,127,127}, xL=x_norm*abs(p[1])/V_base/I_base);
-    extends Icons.RightBar(          colorR={127,0,127}, xR=x_norm*abs(p[2])/V_base/I_base);
+    extends Icons.LeftBar(colorL={0,127,127}, xL=x_norm*abs(p[1])/V_base/I_base);
+    extends Icons.RightBar(colorR={127,0,127}, xR=x_norm*abs(p[2])/V_base/
+          I_base);
     extends Icons.DoubleNeedle(
       color1={255,0,0},
       color2={0,0,255},
@@ -519,20 +539,17 @@ In problematic cases use power sensors electrical and mechanical.</p>
       y2=r_norm*i_dq[2]/I_base);
 
   equation
-    color_p = if p[1]>0 then {0,127,127} else {215,215,215};
-    color_n = if p[1]<0 then {0,127,127} else {215,215,215};
-  annotation (
-    defaultComponentName="phasor",
+    color_p = if p[1] > 0 then {0,127,127} else {215,215,215};
+    color_n = if p[1] < 0 then {0,127,127} else {215,215,215};
+    annotation (
+      defaultComponentName="phasor",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}),
-          graphics={Line(points={{4,100},{84,100},{54,88}},
-              color=DynamicSelect({128,128,128}, color_p)),
-            Line(points={{-4,100},{-84,100},{-54,88}},
-              color=DynamicSelect({128,128,128}, color_n))}),
-      Documentation(
-        info="<html>
+          grid={2,2}), graphics={Line(points={{4,100},{84,100},{54,88}}, color=
+            DynamicSelect({128,128,128}, color_p)),Line(points={{-4,100},{-84,
+            100},{-54,88}}, color=DynamicSelect({128,128,128}, color_n))}),
+      Documentation(info="<html>
 <p>Phase representation of voltage and current in 3-phase networks:</p>
 <pre>
   red needle      voltage
@@ -558,79 +575,73 @@ In problematic cases use power sensors electrical and mechanical.</p>
       extends Ports.Port_p;
 
       parameter Integer signalTrsf=0 "signal in which reference frame?"
-       annotation(Evaluate=true,Dialog(group="Options"), choices(
-         choice=0 "0: actual ref frame",
-         choice=1 "1: dq0 synchronous",
-         choice=2 "2: alpha_beta_o",
-         choice=3 "3: abc inertial"));
+        annotation (
+        Evaluate=true,
+        Dialog(group="Options"),
+        choices(
+          choice=0 "0: actual ref frame",
+          choice=1 "1: dq0 synchronous",
+          choice=2 "2: alpha_beta_o",
+          choice=3 "3: abc inertial"));
     protected
       function park = Utilities.Transforms.park;
       function rot_dq = Utilities.Transforms.rotation_dq;
 
     equation
       term.i = zeros(PS.n);
-    annotation (
-      Documentation(
-            info="<html>
-</html>"),
-      Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Ellipse(
-              extent={{-70,70},{70,-70}},
-              lineColor={255,255,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(
-              points={{-90,0},{40,0}},
-              color={0,100,100},
-              thickness=0.5),
-            Line(points={{0,20},{0,90}}, color={135,135,135})}));
+            grid={2,2}), graphics={Ellipse(
+                  extent={{-70,70},{70,-70}},
+                  lineColor={255,255,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(
+                  points={{-90,0},{40,0}},
+                  color={0,100,100},
+                  thickness=0.5),Line(points={{0,20},{0,90}}, color={135,135,
+              135})}));
     end Sensor1Base;
 
     partial model Sensor2Base "Sensor 2 terminal base, 3-phase dq0"
       extends Ports.Port_pn;
 
       parameter Integer signalTrsf=0 "signal in which reference frame?"
-       annotation(Evaluate=true,Dialog(group="Options"), choices(
-         choice=0 "0: actual ref frame",
-         choice=1 "1: dq0 synchronous",
-         choice=2 "2: alpha_beta_o",
-         choice=3 "3: abc inertial"));
+        annotation (
+        Evaluate=true,
+        Dialog(group="Options"),
+        choices(
+          choice=0 "0: actual ref frame",
+          choice=1 "1: dq0 synchronous",
+          choice=2 "2: alpha_beta_o",
+          choice=3 "3: abc inertial"));
     protected
       function park = Utilities.Transforms.park;
       function rot_dq = Utilities.Transforms.rotation_dq;
 
     equation
       term_p.v = term_n.v;
-    annotation (
-      Documentation(
-            info="<html>
-</html>"),
-      Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Ellipse(
-              extent={{-70,70},{70,-70}},
-              lineColor={255,255,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(points={{0,20},{0,90}}, color={135,135,135}),
-            Line(
-              points={{-90,0},{-20,0}},
-              color={0,100,100},
-              thickness=0.5),
-            Line(
-              points={{0,0},{90,0}},
-              color={0,100,100},
-              thickness=0.5),
-            Line(
-              points={{30,20},{70,0},{30,-20}},
-              color={0,100,100},
-              thickness=0.5),
-            Ellipse(extent={{-20,20},{20,-20}}, lineColor={135,135,135})}));
+            grid={2,2}), graphics={Ellipse(
+                  extent={{-70,70},{70,-70}},
+                  lineColor={255,255,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(points={{0,20},{0,90}},
+              color={135,135,135}),Line(
+                  points={{-90,0},{-20,0}},
+                  color={0,100,100},
+                  thickness=0.5),Line(
+                  points={{0,0},{90,0}},
+                  color={0,100,100},
+                  thickness=0.5),Line(
+                  points={{30,20},{70,0},{30,-20}},
+                  color={0,100,100},
+                  thickness=0.5),Ellipse(extent={{-20,20},{20,-20}}, lineColor=
+              {135,135,135})}));
     end Sensor2Base;
 
     partial model Meter1Base "Meter 1 terminal base, 3-phase dq0"
@@ -638,27 +649,24 @@ In problematic cases use power sensors electrical and mechanical.</p>
       extends Common.Nominal.Nominal;
 
       parameter Boolean abc=false "abc inertial"
-        annotation(Evaluate=true,Dialog(group="Options"));
+        annotation (Evaluate=true, Dialog(group="Options"));
     protected
-      Real[3,3] Park;
-      Real[2,2] Rot_dq;
+      Real[3, 3] Park;
+      Real[2, 2] Rot_dq;
       function atan2 = Modelica.Math.atan2;
     equation
       if abc then
         Park = park(term.theta[2]);
       else
-        Park = zeros(3,3);
+        Park = zeros(3, 3);
       end if;
       Rot_dq = rot_dq(term.theta[1]);
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Ellipse(extent={{-70,70},{70,-70}},
-                lineColor={135,135,135})}));
+              lineColor={135,135,135})}));
     end Meter1Base;
 
     partial model Meter2Base "Meter 2 terminal base, 3-phase dq0"
@@ -666,114 +674,97 @@ In problematic cases use power sensors electrical and mechanical.</p>
       extends Common.Nominal.Nominal;
 
       parameter Boolean abc=false "abc inertial"
-        annotation(Evaluate=true,Dialog(group="Options"));
+        annotation (Evaluate=true, Dialog(group="Options"));
     protected
-      Real[3,3] Park;
-      Real[2,2] Rot_dq;
+      Real[3, 3] Park;
+      Real[2, 2] Rot_dq;
       function atan2 = Modelica.Math.atan2;
     equation
       if abc then
         Park = park(term_p.theta[2]);
       else
-        Park = zeros(3,3);
+        Park = zeros(3, 3);
       end if;
       Rot_dq = rot_dq(term_p.theta[1]);
-      annotation (
-        Documentation(
-              info="<html>
-</html>"),
-        Icon(coordinateSystem(
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Ellipse(extent={{-70,70},{70,-70}},
-                lineColor={135,135,135})}));
+              lineColor={135,135,135})}));
     end Meter2Base;
 
-  partial model PhasorBase "Phasor base, 3-phase dq0"
-    extends Ports.Port_pn;
-    extends Common.Nominal.Nominal(final puUnits=true);
+    partial model PhasorBase "Phasor base, 3-phase dq0"
+      extends Ports.Port_pn;
+      extends Common.Nominal.Nominal(final puUnits=true);
 
-    PS.Voltage[2] v_dq;
-    PS.Current[2] i_dq;
-    SI.Power[2] p;
+      PS.Voltage[2] v_dq;
+      PS.Current[2] i_dq;
+      SI.Power[2] p;
     protected
-    constant Real r_norm(unit="1")=0.8 "norm radius phasor";
-    constant Real x_norm(unit="1")=0.8 "norm amplitude power";
-    final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(
-                                                                 puUnits, V_nom);
-    final parameter PS.Current I_base=Utilities.Precalculation.baseI(
-                                                                 puUnits, V_nom, S_nom);
-      Real[2,2] Rot_dq=Utilities.Transforms.rotation_dq(term_p.theta[1]);
+      constant Real r_norm(unit="1") = 0.8 "norm radius phasor";
+      constant Real x_norm(unit="1") = 0.8 "norm amplitude power";
+      final parameter PS.Voltage V_base=Utilities.Precalculation.baseV(puUnits,
+          V_nom);
+      final parameter PS.Current I_base=Utilities.Precalculation.baseI(
+              puUnits,
+              V_nom,
+              S_nom);
+      Real[2, 2] Rot_dq=Utilities.Transforms.rotation_dq(term_p.theta[1]);
 
-  equation
-    term_p.v = term_n.v;
-    v_dq = transpose(Rot_dq)*term_p.v[1:2];
-    i_dq = transpose(Rot_dq)*term_p.i[1:2];
-    p = {v_dq*i_dq, -j_dq0(v_dq)*i_dq};
-    annotation (
-      Documentation(
-      info="<html>
-</html>"),
-      Icon(coordinateSystem(
+    equation
+      term_p.v = term_n.v;
+      v_dq = transpose(Rot_dq)*term_p.v[1:2];
+      i_dq = transpose(Rot_dq)*term_p.i[1:2];
+      p = {v_dq*i_dq,-j_dq0(v_dq)*i_dq};
+      annotation (Documentation(info="<html>
+</html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-100,100},{100,-100}},
-              lineColor={215,215,215},
-              fillColor={215,215,215},
-              fillPattern=FillPattern.Solid),
-            Ellipse(
-              extent={{-90,90},{90,-90}},
-              lineColor={0,0,255},
-              pattern=LinePattern.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Ellipse(
-              extent={{-80,80},{80,-80}},
-              lineColor={0,0,0},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Ellipse(
-              extent={{-2,2},{2,-2}},
-              lineColor={95,95,95},
-              fillColor={95,95,95},
-              fillPattern=FillPattern.Solid),
-            Line(
-              points={{-90,0},{90,0}},
-              color={135,135,135},
-              pattern=LinePattern.Dot),
-            Line(
-              points={{-64,-64},{64,64}},
-              color={135,135,135},
-              pattern=LinePattern.Dot),
-            Line(
-              points={{0,-90},{0,90}},
-              color={135,135,135},
-              pattern=LinePattern.Dot),
-            Line(
-              points={{-64,64},{64,-64}},
-              color={135,135,135},
-              pattern=LinePattern.Dot),
-            Line(
-              points={{-94,60},{-84,60}},
-              color={0,0,0},
-              thickness=0.5),
-            Line(
-              points={{84,60},{94,60}},
-              color={0,0,0},
-              thickness=0.5),
-            Text(
-              extent={{-100,-90},{100,-130}},
-              lineColor={0,0,0},
-              textString=
-             "%name")}));
-  end PhasorBase;
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-100,100},{100,-100}},
+                  lineColor={215,215,215},
+                  fillColor={215,215,215},
+                  fillPattern=FillPattern.Solid),Ellipse(
+                  extent={{-90,90},{90,-90}},
+                  lineColor={0,0,255},
+                  pattern=LinePattern.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Ellipse(
+                  extent={{-80,80},{80,-80}},
+                  lineColor={0,0,0},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Ellipse(
+                  extent={{-2,2},{2,-2}},
+                  lineColor={95,95,95},
+                  fillColor={95,95,95},
+                  fillPattern=FillPattern.Solid),Line(
+                  points={{-90,0},{90,0}},
+                  color={135,135,135},
+                  pattern=LinePattern.Dot),Line(
+                  points={{-64,-64},{64,64}},
+                  color={135,135,135},
+                  pattern=LinePattern.Dot),Line(
+                  points={{0,-90},{0,90}},
+                  color={135,135,135},
+                  pattern=LinePattern.Dot),Line(
+                  points={{-64,64},{64,-64}},
+                  color={135,135,135},
+                  pattern=LinePattern.Dot),Line(
+                  points={{-94,60},{-84,60}},
+                  color={0,0,0},
+                  thickness=0.5),Line(
+                  points={{84,60},{94,60}},
+                  color={0,0,0},
+                  thickness=0.5),Text(
+                  extent={{-100,-90},{100,-130}},
+                  lineColor={0,0,0},
+                  textString="%name")}));
+    end PhasorBase;
 
   end Partials;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Sensors output terminal signals (voltage, current, power) in a defined reference system chosen by the user.</p>
 <p>Meters allow choosing base-units for output variables.</p>
 <p><i>Comment on the sign-definition of reactive power:</i></p>

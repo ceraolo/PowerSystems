@@ -4,8 +4,7 @@ package Interfaces
 
   connector Terminal "General power terminal"
     replaceable package PhaseSystem = PhaseSystems.PartialPhaseSystem
-      "Phase system"
-      annotation (choicesAllMatching=true);
+      "Phase system" annotation (choicesAllMatching=true);
     PhaseSystem.Voltage v[PhaseSystem.n] "voltage vector";
     flow PhaseSystem.Current i[PhaseSystem.n] "current vector";
     PhaseSystem.ReferenceAngle theta[PhaseSystem.m]
@@ -14,24 +13,21 @@ package Interfaces
 
   connector TerminalDC "Power terminal for pure DC models"
     replaceable package PhaseSystem = PhaseSystems.PartialPhaseSystem
-      "Phase system"
-      annotation (choicesAllMatching=true);
+      "Phase system" annotation (choicesAllMatching=true);
     PhaseSystem.Voltage v[PhaseSystem.n] "voltage vector";
     flow PhaseSystem.Current i[PhaseSystem.n] "current vector";
   end TerminalDC;
 
   connector Electric_p "Electric terminal ('positive')"
     extends Modelica.Electrical.Analog.Interfaces.PositivePin;
-    annotation (defaultComponentName = "term_p",
-  Documentation(info="<html>
+    annotation (defaultComponentName="term_p", Documentation(info="<html>
 </html>
 "));
   end Electric_p;
 
   connector Electric_n "Electric terminal ('negative')"
     extends Modelica.Electrical.Analog.Interfaces.NegativePin;
-    annotation (defaultComponentName = "term_n",
-  Documentation(info="<html>
+    annotation (defaultComponentName="term_n", Documentation(info="<html>
 </html>"));
   end Electric_n;
 
@@ -41,24 +37,24 @@ package Interfaces
   connector Thermal_p "Thermal heat port ('positive')"
     extends Modelica.Thermal.HeatTransfer.Interfaces.HeatPort;
 
-  annotation (defaultComponentName = "heat_p",
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+    annotation (
+      defaultComponentName="heat_p",
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics={Rectangle(
-            extent={{0,50},{100,-50}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-120,120},{100,60}},
-            lineColor={176,0,0},
-            textString=
-                 "%name")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              extent={{0,50},{100,-50}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-120,120},{100,60}},
+              lineColor={176,0,0},
+              textString="%name")}),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-            extent={{-100,100},{100,-100}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid)}),
-    Documentation(info="<html>
+              extent={{-100,100},{100,-100}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid)}),
+      Documentation(info="<html>
 </html>
 "));
   end Thermal_p;
@@ -66,24 +62,26 @@ package Interfaces
   connector Thermal_n "Thermal heat port ('negative')"
     extends Modelica.Thermal.HeatTransfer.Interfaces.HeatPort;
 
-  annotation (defaultComponentName = "heat_n",
-    Documentation(info="<html>
+    annotation (
+      defaultComponentName="heat_n",
+      Documentation(info="<html>
 </html>
-"), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+"),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics={Rectangle(
-            extent={{-100,50},{0,-50}},
-            lineColor={176,0,0},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-100,120},{120,60}},
-            lineColor={176,0,0},
-            textString="%name")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              extent={{-100,50},{0,-50}},
+              lineColor={176,0,0},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-100,120},{120,60}},
+              lineColor={176,0,0},
+              textString="%name")}),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-            extent={{-100,100},{100,-100}},
-            lineColor={176,0,0},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}));
+              extent={{-100,100},{100,-100}},
+              lineColor={176,0,0},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
   end Thermal_n;
 
   connector ThermalV_p "Thermal vector heat port ('positive')"
@@ -91,34 +89,32 @@ package Interfaces
     Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a[m] ports
       "vector of single heat ports";
 
-  annotation (defaultComponentName = "heat_p",
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics={
-          Text(
-            extent={{-120,120},{100,60}},
-            lineColor={176,0,0},
-            textString="%name"),
-          Polygon(
-            points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{-10,50},{90,-50}},
-            lineColor={235,235,235},
-            pattern=LinePattern.None,
-            textString="%m")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+    annotation (
+      defaultComponentName="heat_p",
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={Text(
+              extent={{-120,120},{100,60}},
+              lineColor={176,0,0},
+              textString="%name"),Polygon(
+              points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-10,50},{90,-50}},
+              lineColor={235,235,235},
+              pattern=LinePattern.None,
+              textString="%m")}),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Polygon(
-            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-60,60},{60,-60}},
-            lineColor={255,255,255},
-            pattern=LinePattern.None,
-            textString="%m")}),
-    Documentation(info="<html>
+              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-60,60},{60,-60}},
+              lineColor={255,255,255},
+              pattern=LinePattern.None,
+              textString="%m")}),
+      Documentation(info="<html>
 <p>Thermal connector with a vector of 'port's, positive.</p>
 </html>
 "));
@@ -129,51 +125,49 @@ package Interfaces
     Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b[m] ports
       "vector of single heat ports";
 
-  annotation (defaultComponentName = "heat_n",
-    Documentation(info="<html>
+    annotation (
+      defaultComponentName="heat_n",
+      Documentation(info="<html>
 <p>Thermal connector with a vector of 'port's, negative.</p>
 </html>
-"), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics={
-          Text(
-            extent={{-100,120},{120,60}},
-            lineColor={176,0,0},
-            textString="%name"),
-          Polygon(
-            points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
-            lineColor={176,0,0},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{-90,50},{10,-50}},
-            lineColor={176,0,0},
-            textString="%m")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+"),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={Text(
+              extent={{-100,120},{120,60}},
+              lineColor={176,0,0},
+              textString="%name"),Polygon(
+              points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
+              lineColor={176,0,0},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-90,50},{10,-50}},
+              lineColor={176,0,0},
+              textString="%m")}),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Polygon(
-            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-            lineColor={176,0,0},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-60,60},{60,-60}},
-            lineColor={176,0,0},
-            textString="%m")}));
+              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+              lineColor={176,0,0},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-60,60},{60,-60}},
+              lineColor={176,0,0},
+              textString="%m")}));
   end ThermalV_n;
 
   partial model AddHeat "Additional heat port"
 
     SI.Temperature T "Temperature of conductor";
     SI.HeatFlowRate Q_flow "Dissipated heat of conductor";
-    Thermal_p heat "heat port"
-      annotation (Placement(transformation(
+    Thermal_p heat "heat port" annotation (Placement(transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
-      T = heat.T;
-      Q_flow = -heat.Q_flow;
+    T = heat.T;
+    Q_flow = -heat.Q_flow;
 
-      annotation (                           Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Adds a heat-port to an electrical component.</p>
 <p>Copper data at 20degC.</p>
 <pre>
@@ -188,19 +182,18 @@ package Interfaces
 
     parameter Integer m_heat(final min=1) = 1 "number of heat conductors";
     SI.Temperature[m_heat] T "Temperature of heat conductors";
-    SI.HeatFlowRate[m_heat] Q_flow
-      "Dissipated heat of conductors";
-    ThermalV_p heat(final m=m_heat) "vector heat port"
-      annotation (Placement(transformation(
+    SI.HeatFlowRate[m_heat] Q_flow "Dissipated heat of conductors";
+    ThermalV_p heat(final m=m_heat) "vector heat port" annotation (Placement(
+          transformation(
           origin={0,100},
           extent={{-10,-10},{10,10}},
           rotation=90)));
 
   equation
-      T = heat.ports.T;
-      Q_flow = -heat.ports.Q_flow;
+    T = heat.ports.T;
+    Q_flow = -heat.ports.Q_flow;
 
-      annotation (                           Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>Adds a vector heat-port to an electrical component.</p>
 <p>Copper data at 20degC.</p>
 <pre>
@@ -217,8 +210,9 @@ package Interfaces
     Real h "Dummy potential-variable to balance flow-variable H";
     Real w_h "Dummy potential-variable to balance flow-variable w_H";
 
-  annotation (defaultComponentName = "frequency",
-    Icon(coordinateSystem(
+    annotation (
+      defaultComponentName="frequency",
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -231,19 +225,18 @@ package Interfaces
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid,
             textString="f")}),
-    Diagram(coordinateSystem(
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
             extent={{-120,120},{120,60}},
             lineColor={120,0,120},
-            textString=
-               "%name"), Ellipse(
+            textString="%name"), Ellipse(
             extent={{-40,40},{40,-40}},
             lineColor={120,0,120},
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid)}),
-    Documentation(info="<html>
+      Documentation(info="<html>
 <p>System frequency reference.<br>
 Used in 'System' for sending/receiving weighted frequency-data.</p>
 <pre>
@@ -254,33 +247,32 @@ Used in 'System' for sending/receiving weighted frequency-data.</p>
   end Frequency;
 
   model Sender "Sender of weighted frequency"
-    input SI.Time H "inertia constant" annotation(Dialog);
-    input SI.AngularVelocity w "angular velocity" annotation(Dialog);
-    Frequency sendFreq annotation (Placement(transformation(extent={{
-              -60,-92},{60,28}}), iconTransformation(extent={{-60,-92},
-              {60,28}})));
+    input SI.Time H "inertia constant" annotation (Dialog);
+    input SI.AngularVelocity w "angular velocity" annotation (Dialog);
+    Frequency sendFreq annotation (Placement(transformation(extent={{-60,-92},{
+              60,28}}), iconTransformation(extent={{-60,-92},{60,28}})));
   equation
     sendFreq.H = -H;
     sendFreq.w_H = -H*w;
-    annotation (defaultComponentName = "sendFreq",
-      Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="sendFreq",
+      Documentation(info="<html>
 <p>Contains system frequency reference.<br>
 Needed within certain models to establish the connection to 'system' for sending/receiving weighted frequency-data.</p>
 <p>Used in generator models.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-100,-100},{100,-140}},
-            lineColor={120,0,120},
-            textString=
-                   "%name"), Polygon(
-            points={{-100,-100},{0,100},{100,-100},{100,-100},{-100,-100}},
-            lineColor={120,0,120},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}));
+              extent={{-100,-100},{100,-140}},
+              lineColor={120,0,120},
+              textString="%name"),Polygon(
+              points={{-100,-100},{0,100},{100,-100},{100,-100},{-100,-100}},
+              lineColor={120,0,120},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
   end Sender;
 
 end Interfaces;

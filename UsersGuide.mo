@@ -4,8 +4,7 @@ package UsersGuide "User's Guide"
 
   package Overview "Overview"
     extends Modelica.Icons.Information;
-    annotation (
-        Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p>PowerSystems combines a generic concept for the modeling of electrical power systems at different levels of detail with the extensive component models of the former SPOT library. </p>
 <p>PowerSystems uses replaceable PhaseSystems to define the voltage and current variables as well as optional supporting reference angles in the connectors. The aim is to have different single and polyphase systems and different mathematical formulations in one framework. In particular this shall cover systems like: </p>
 <p><ul>
@@ -51,8 +50,7 @@ The following table summerizes the PhaseSystems that are predefined in the Power
 
   package Examples "Examples"
     extends Modelica.Icons.Information;
-    annotation (
-        Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.Network\">Examples.Network</a>: The examples NetworkLoop and NetworkOpened are taken from the textbook Oeding, Oswald: Elektrische Kraftwerke und Netze, section 14.2.5: Leistungsfluss in Ringnetzen. The example NetworkControlled additionally investigates frequency/power control in conjunction with the Modelica.Rotational library and a basic EMF (Electro-Motoric Force). </p>
 <p><a href=\"modelica://PowerSystems.Examples.PowerWorld\">Examples.PowerWorld</a> models a control area for power distribution in island mode. It was used to demonstrate &quot;Stabilization of wind power&quot; in the Eurosyslib work package 5.3. See . </p>
 <p><a href=\"modelica://PowerSystems.Examples.Spot\">Examples.Spot</a> serve as tutorial and interactive documentation for the detailed component models in AC1ph_DC and AC3ph. </p>
@@ -61,8 +59,7 @@ The following table summerizes the PhaseSystems that are predefined in the Power
 
   package ReleaseNotes "Release notes"
     extends Modelica.Icons.ReleaseNotes;
-    annotation (
-        Documentation(info="<html>
+    annotation (Documentation(info="<html>
 <p><b>Contributors</b></p>
 <ul>
 <li>Hansj&uuml;rg Wiesmann (&dagger; 2015):<br>
@@ -188,8 +185,10 @@ The following table summerizes the PhaseSystems that are predefined in the Power
 </html>"));
   end ReleaseNotes;
 
-  annotation(DocumentationClass=true, preferredView="info",
-      Documentation(info="<html>
+  annotation (
+    DocumentationClass=true,
+    preferredView="info",
+    Documentation(info="<html>
 <p>See the subsections below and the linked examples.</p>
 <p>See also the publication <a href=\"https://www.modelica.org/events/modelica2014/proceedings/html/submissions/ECP14096515_FrankeWiesmann.pdf\">Franke, Wiesmann: Flexible modeling of electrical power systems -- the Modelica PowerSystems library, Modelica conference 2014</a>.</p>
 </html>"));

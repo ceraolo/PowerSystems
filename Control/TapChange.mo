@@ -2,8 +2,7 @@ within PowerSystems.Control;
 package TapChange "Tap changers"
   extends Modelica.Icons.VariantsPackage;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Here one could add an updated version of
 <ul>
 <li>TCULContinuous</li>

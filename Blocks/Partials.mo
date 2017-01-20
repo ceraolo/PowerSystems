@@ -7,9 +7,7 @@ package Partials "Partial models"
 
     Modelica.Blocks.Interfaces.RealOutput y "output signal"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
-    annotation (
-      Documentation(
-              info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end SO;
 
@@ -19,9 +17,7 @@ package Partials "Partial models"
     Modelica.Blocks.Interfaces.RealOutput[n] y "output signal-vector"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     parameter Integer n=1 "dim of output signal-vector";
-    annotation (
-      Documentation(
-              info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end MO;
 
@@ -32,9 +28,7 @@ package Partials "Partial models"
       annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
     Modelica.Blocks.Interfaces.RealOutput y "output signal"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
-    annotation (
-      Documentation(
-              info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end SISO;
 
@@ -46,9 +40,7 @@ package Partials "Partial models"
     Modelica.Blocks.Interfaces.RealOutput y "output signal"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     parameter Integer n=1 "dim of input signal-vector";
-    annotation (
-      Documentation(
-              info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end MISO;
 
@@ -61,9 +53,7 @@ package Partials "Partial models"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     parameter Integer nin=1 "dim of input signal-vector";
     parameter Integer nout=1 "dim of output signal-vector";
-    annotation (
-      Documentation(
-              info="<html>
+    annotation (Documentation(info="<html>
 </html>"));
   end MIMO;
   annotation (Documentation(info="<html>

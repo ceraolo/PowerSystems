@@ -4,7 +4,6 @@ System
 PackagePhaseSystem
 Examples
 PhaseSystems
-Generic
 AC1ph_DC
 AC3ph
 Blocks

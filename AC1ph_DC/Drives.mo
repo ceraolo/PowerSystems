@@ -17,25 +17,22 @@ package Drives "DC-drives"
       annotation (Line(points={{-30,6},{10,6}}, color={0,0,0}));
     connect(term, motor.term)
       annotation (Line(points={{-100,0},{-40,0}}, color={0,0,255}));
-  annotation (defaultComponentName = "dcm_ser",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="dcm_ser",
+      Documentation(info="<html>
 <p>Complete DC drive series connected.</p>
 <p>Note: for machines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-60,20},{80,-20}},
-            lineColor={128,128,128},
-            textString=
-               "DC ser"),
-          Line(points={{-90,-10},{-60,-10}}, color={0,0,255}),
-          Line(points={{-90,10},{-80,10},{-80,50},{-60,50}}, color={0,0,255}),
-          Line(points={{-60,10},{-70,10},{-70,-6}}, color={0,0,255}),
-          Line(points={{-70,-14},{-70,-50},{-60,-50}}, color={0,0,255})}));
+          grid={2,2}), graphics={Text(
+              extent={{-60,20},{80,-20}},
+              lineColor={128,128,128},
+              textString="DC ser"),Line(points={{-90,-10},{-60,-10}}, color={0,
+            0,255}),Line(points={{-90,10},{-80,10},{-80,50},{-60,50}}, color={0,
+            0,255}),Line(points={{-60,10},{-70,10},{-70,-6}}, color={0,0,255}),
+            Line(points={{-70,-14},{-70,-50},{-60,-50}}, color={0,0,255})}));
   end DCMser;
 
   model DCMpar "DC machine, parallel connected"
@@ -44,7 +41,7 @@ package Drives "DC-drives"
     replaceable model Motor = PowerSystems.AC1ph_DC.Machines.DCpar
       "DC motor parallel" annotation (choicesAllMatching=true);
     Motor motor "DC motor parallel"
-       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
     AC1ph_DC.Ports.TwoPin_p field
       annotation (Placement(transformation(extent={{-110,-50},{-90,-30}})));
 
@@ -57,26 +54,22 @@ package Drives "DC-drives"
       annotation (Line(points={{-100,0},{-40,0}}, color={0,0,255}));
     connect(field, motor.field) annotation (Line(points={{-100,-40},{-60,-40},{
             -60,-4},{-40,-4}}, color={0,0,255}));
-  annotation (defaultComponentName = "dcm_par",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="dcm_par",
+      Documentation(info="<html>
 <p>Complete DC drive parallel connected.</p>
 <p>Note: for machines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-90,10},{-60,10}}, color={0,0,255}),
-          Line(points={{-90,-10},{-60,-10}}, color={0,0,255}),
-          Text(
-            extent={{-60,20},{80,-20}},
-            lineColor={128,128,128},
-            textString=
-               "DC par"),
-          Line(points={{-90,-50},{-60,-50}}, color={0,0,255}),
-          Line(points={{-60,50},{-68,50},{-68,14}}, color={0,0,255}),
-          Line(points={{-68,-14},{-68,-30},{-90,-30}}, color={0,0,255})}));
+          grid={2,2}), graphics={Line(points={{-90,10},{-60,10}}, color={0,0,
+            255}),Line(points={{-90,-10},{-60,-10}}, color={0,0,255}),Text(
+              extent={{-60,20},{80,-20}},
+              lineColor={128,128,128},
+              textString="DC par"),Line(points={{-90,-50},{-60,-50}}, color={0,
+            0,255}),Line(points={{-60,50},{-68,50},{-68,14}}, color={0,0,255}),
+            Line(points={{-68,-14},{-68,-30},{-90,-30}}, color={0,0,255})}));
   end DCMpar;
 
   model DCMpm "DC machine, permanent magnet"
@@ -94,82 +87,74 @@ package Drives "DC-drives"
       annotation (Line(points={{-30,6},{10,6}}, color={0,0,0}));
     connect(term, motor.term)
       annotation (Line(points={{-100,0},{-40,0}}, color={0,0,255}));
-  annotation (defaultComponentName = "dcm_pm",
-    Documentation(
-            info="<html>
+    annotation (
+      defaultComponentName="dcm_pm",
+      Documentation(info="<html>
 <p>Complete DC drive permanent magnet excited.</p>
 <p>Note: for machines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-60,20},{80,-20}},
-            lineColor={128,128,128},
-            textString=
-               "DC pm"),
-          Line(points={{-90,10},{-60,10}}, color={0,0,255}),
-          Line(points={{-90,-10},{-60,-10}}, color={0,0,255}),
-          Rectangle(
-            extent={{-60,44},{80,40}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-60,-40},{80,-44}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Text(
+              extent={{-60,20},{80,-20}},
+              lineColor={128,128,128},
+              textString="DC pm"),Line(points={{-90,10},{-60,10}}, color={0,0,
+            255}),Line(points={{-90,-10},{-60,-10}}, color={0,0,255}),Rectangle(
+              extent={{-60,44},{80,40}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-60,-40},{80,-44}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid)}));
   end DCMpm;
 
   model BLDC "BLDC machine"
     extends Partials.DriveBase(heat(final m=sum(heat_adapt.m)));
 
     replaceable model Inverter = PowerSystems.AC3ph.Inverters.InverterAverage (
-      modulation=3) constrainedby
+          modulation=3) constrainedby
       PowerSystems.AC3ph.Inverters.Partials.AC_DC_base
-      "inverter (average or modulated)" annotation (choices(
-      choice(redeclare model Inverter =
-        PowerSystems.AC3ph.Inverters.InverterAverage(final modulation=3)
-            "inverter time-average"),
-      choice(redeclare model Inverter =
-        PowerSystems.AC3ph.Inverters.Inverter(redeclare final model Modulator
-                =
-          Control.Modulation.BlockM "block modulation (no PWM)")
-            "inverter with modulator")));
+      "inverter (average or modulated)" annotation (choices(choice(redeclare
+            model Inverter = PowerSystems.AC3ph.Inverters.InverterAverage (
+                final modulation=3) "inverter time-average"), choice(redeclare
+            model Inverter = PowerSystems.AC3ph.Inverters.Inverter (redeclare
+                final model Modulator = Control.Modulation.BlockM
+                "block modulation (no PWM)") "inverter with modulator")));
     Inverter inverter "inverter (average or modulated)"
       annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     replaceable model Motor =
-      PowerSystems.AC1ph_DC.Drives.Partials.Synchron3rd_bldc
-      "BLDC motor (syn pm machine)" annotation (choices(
-        choice(redeclare model Motor =
-          PowerSystems.AC3ph.Machines.Synchron3rd_bldc "synchron 3rd order")));
+        PowerSystems.AC1ph_DC.Drives.Partials.Synchron3rd_bldc
+      "BLDC motor (syn pm machine)" annotation (choices(choice(redeclare model
+            Motor = PowerSystems.AC3ph.Machines.Synchron3rd_bldc
+            "synchron 3rd order")));
     Motor motor "BLDC motor (syn pm machine)"
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
     Common.Thermal.HeatV_a_b_ab heat_adapt(final m={2,inverter.heat.m})
       annotation (Placement(transformation(extent={{10,60},{-10,80}})));
 
   equation
-    connect(motor.heat, heat_adapt.port_a) annotation (Line(points={{-30,10},{
-            -30,54},{4,54},{4,64}}, color={176,0,0}));
-    connect(inverter.heat, heat_adapt.port_b) annotation (Line(points={{-70,10},
-            {-70,64},{-4,64}}, color={176,0,0}));
+    connect(motor.heat, heat_adapt.port_a) annotation (Line(points={{-30,10},{-30,
+            54},{4,54},{4,64}}, color={176,0,0}));
+    connect(inverter.heat, heat_adapt.port_b)
+      annotation (Line(points={{-70,10},{-70,64},{-4,64}}, color={176,0,0}));
     connect(heat_adapt.port_ab, heat)
       annotation (Line(points={{0,76},{0,100}}, color={176,0,0}));
     connect(motor.airgap, rotor.rotor)
       annotation (Line(points={{-30,6},{10,6}}, color={0,0,0}));
     connect(term, inverter.DC)
       annotation (Line(points={{-100,0},{-80,0}}, color={0,0,255}));
-    connect(inverter.AC, motor.term) annotation (Line(points={{-60,0},{-40,0}},
-          color={0,120,120}));
+    connect(inverter.AC, motor.term)
+      annotation (Line(points={{-60,0},{-40,0}}, color={0,120,120}));
     connect(motor.rotorAngle, inverter.theta) annotation (Line(points={{-20,10},
             {-16,10},{-16,20},{-84,20},{-84,10},{-76,10}}, color={0,0,127}));
-    connect(motor.vPhasor,inverter.vPhasor)  annotation (Line(points={{-40,10},
-            {-64,10}}, color={0,0,127}));
-  annotation (defaultComponentName = "bldcm",
-    Documentation(
-            info="<html>
+    connect(motor.vPhasor, inverter.vPhasor)
+      annotation (Line(points={{-40,10},{-64,10}}, color={0,0,127}));
+    annotation (
+      defaultComponentName="bldcm",
+      Documentation(info="<html>
 <p>Complete brushless DC drive with inverter.</p>
 <p>For block (rectangular) non-pulsed modulation the input to vPhasor[1] is arbitrary and has no influence.</p>
 <p>For pulsed rectangles vPhasor[1] can be used<br>
@@ -179,150 +164,133 @@ where 0 &lt;  vPhasor[1] &lt;  1.</p>
 <p>The rectangle width is a parameter with default value 2/3, corresponding to '2 phases on, 1 phase off' at a time.</p>
 <p>Note: for machines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>"),
-    Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-60,30},{80,26}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-60,-26},{80,-30}},
-            lineColor={176,0,0},
-            fillColor={176,0,0},
-            fillPattern=FillPattern.Solid),
-          Text(
-            extent={{-60,20},{80,-20}},
-            lineColor={128,128,128},
-            textString=
-                 "BLDC")}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-60,30},{80,26}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-60,-26},{80,-30}},
+              lineColor={176,0,0},
+              fillColor={176,0,0},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-60,20},{80,-20}},
+              lineColor={128,128,128},
+              textString="BLDC")}));
   end BLDC;
 
   package Partials "Partial models"
     extends Modelica.Icons.BasesPackage;
 
-  partial model DriveBase "DC drives base"
+    partial model DriveBase "DC drives base"
 
-    parameter SI.AngularVelocity  w_start = 0
+      parameter SI.AngularVelocity w_start=0
         "initial rpm (start-value if steady init)"
-      annotation(Dialog(tab="Initialization"));
-    AC1ph_DC.Ports.TwoPin_p term "electric terminal"
-      annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-    Interfaces.Rotation_n flange "mechanical flange"
-      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
-    replaceable model Rotor = PowerSystems.Mechanics.Rotational.ElectricRotor
-        "machine rotor"
-                      annotation (choicesAllMatching=true);
-    Rotor rotor(w(start=w_start)) "machine rotor"
-      annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-    replaceable model Gear = PowerSystems.Mechanics.Rotational.NoGear
-        "type of gear"
-      annotation (choices(
-        choice(redeclare model Gear = PowerSystems.Mechanics.Rotational.Joint
+        annotation (Dialog(tab="Initialization"));
+      AC1ph_DC.Ports.TwoPin_p term "electric terminal"
+        annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
+      Interfaces.Rotation_n flange "mechanical flange"
+        annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+      replaceable model Rotor = PowerSystems.Mechanics.Rotational.ElectricRotor
+        "machine rotor" annotation (choicesAllMatching=true);
+      Rotor rotor(w(start=w_start)) "machine rotor"
+        annotation (Placement(transformation(extent={{0,-10},{20,10}})));
+      replaceable model Gear = PowerSystems.Mechanics.Rotational.NoGear
+        "type of gear" annotation (choices(
+          choice(redeclare model Gear = PowerSystems.Mechanics.Rotational.Joint
               "no gear"),
-        choice(redeclare model Gear =
-                PowerSystems.Mechanics.Rotational.GearNoMass
-                                                           "massless gear"),
-        choice(redeclare model Gear = PowerSystems.Mechanics.Rotational.Gear
+          choice(redeclare model Gear =
+                PowerSystems.Mechanics.Rotational.GearNoMass "massless gear"),
+          choice(redeclare model Gear = PowerSystems.Mechanics.Rotational.Gear
               "massive gear")));
-    Gear gear "type of gear"
-      annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-    Interfaces.ThermalV_n heat(     m=2) "heat source port {stator, rotor}"
-      annotation (Placement(transformation(
+      Gear gear "type of gear"
+        annotation (Placement(transformation(extent={{40,-10},{60,10}})));
+      Interfaces.ThermalV_n heat(m=2) "heat source port {stator, rotor}"
+        annotation (Placement(transformation(
             origin={0,100},
             extent={{-10,-10},{10,10}},
             rotation=90)));
     protected
-    outer System system;
+      outer System system;
 
-  equation
-    connect(rotor.flange_b,gear.flange_a)
+    equation
+      connect(rotor.flange_b, gear.flange_a)
         annotation (Line(points={{20,0},{40,0}}, color={0,0,0}));
-    connect(gear.flange_b, flange)
+      connect(gear.flange_b, flange)
         annotation (Line(points={{60,0},{100,0}}, color={0,0,0}));
-    annotation (
-  Icon(coordinateSystem(
+      annotation (
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Rectangle(
-              extent={{-90,80},{90,-80}},
-              lineColor={95,95,95},
-              fillColor={184,189,116},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{80,10},{100,-10}},
-              lineColor={0,0,0},
-              fillPattern=FillPattern.HorizontalCylinder,
-              fillColor={235,235,235}),
-            Rectangle(
-              extent={{-60,60},{80,40}},
-              lineColor={175,175,175},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{-60,30},{80,-30}},
-              lineColor={0,0,0},
-              fillPattern=FillPattern.HorizontalCylinder,
-              fillColor={215,215,215}),
-            Rectangle(
-              extent={{-60,-40},{80,-60}},
-              lineColor={175,175,175},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),
-            Text(
-              extent={{-100,-90},{100,-130}},
-              lineColor={0,0,0},
-              textString=
-                   "%name"),
-            Rectangle(
-              extent={{-60,40},{80,30}},
-              lineColor={255,170,85},
-              fillColor={255,170,85},
-              fillPattern=FillPattern.Solid),
-            Rectangle(
-              extent={{-60,-30},{80,-40}},
-              lineColor={255,170,85},
-              fillColor={255,170,85},
-              fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+            grid={2,2}), graphics={Rectangle(
+                  extent={{-90,80},{90,-80}},
+                  lineColor={95,95,95},
+                  fillColor={184,189,116},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{80,10},{100,-10}},
+                  lineColor={0,0,0},
+                  fillPattern=FillPattern.HorizontalCylinder,
+                  fillColor={235,235,235}),Rectangle(
+                  extent={{-60,60},{80,40}},
+                  lineColor={175,175,175},
+                  fillColor={175,175,175},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{-60,30},{80,-30}},
+                  lineColor={0,0,0},
+                  fillPattern=FillPattern.HorizontalCylinder,
+                  fillColor={215,215,215}),Rectangle(
+                  extent={{-60,-40},{80,-60}},
+                  lineColor={175,175,175},
+                  fillColor={175,175,175},
+                  fillPattern=FillPattern.Solid),Text(
+                  extent={{-100,-90},{100,-130}},
+                  lineColor={0,0,0},
+                  textString="%name"),Rectangle(
+                  extent={{-60,40},{80,30}},
+                  lineColor={255,170,85},
+                  fillColor={255,170,85},
+                  fillPattern=FillPattern.Solid),Rectangle(
+                  extent={{-60,-30},{80,-40}},
+                  lineColor={255,170,85},
+                  fillColor={255,170,85},
+                  fillPattern=FillPattern.Solid)}),
+        Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
-              extent={{-100,-60},{100,-80}},
-              lineColor={175,175,175},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid,
-              textString=
-          "stator reaction torque- and friction-models may be added here")}),
-  Documentation(info="<html>
+                  extent={{-100,-60},{100,-80}},
+                  lineColor={175,175,175},
+                  fillColor={175,175,175},
+                  fillPattern=FillPattern.Solid,
+                  textString=
+                "stator reaction torque- and friction-models may be added here")}),
+
+        Documentation(info="<html>
 </html>"));
-  end DriveBase;
+    end DriveBase;
 
-  model Synchron3rd_bldc
+    model Synchron3rd_bldc
       "Synchronous machine, torque-control, 3rd order model, 3-phase dq0"
-    extends AC3ph.Machines.Synchron3rd_pm(i_s(start={0,1,0}));
+      extends AC3ph.Machines.Synchron3rd_pm(i_s(start={0,1,0}));
 
-    Modelica.Blocks.Interfaces.RealOutput rotorAngle=
-                      phi_el "rotor angle el"
-      annotation (Placement(transformation(
+      Modelica.Blocks.Interfaces.RealOutput rotorAngle=phi_el "rotor angle el"
+        annotation (Placement(transformation(
             origin={100,100},
             extent={{10,-10},{-10,10}},
             rotation=180)));
-    Modelica.Blocks.Interfaces.RealOutput[2] vPhasor
-        "desired {abs(u), phase(u)}"
-      annotation (Placement(transformation(
+      Modelica.Blocks.Interfaces.RealOutput[2] vPhasor
+        "desired {abs(u), phase(u)}" annotation (Placement(transformation(
             origin={-100,100},
             extent={{-10,-10},{10,10}},
             rotation=180)));
 
-  equation
-    vPhasor[1] = 1; //not used if no PWM
-    vPhasor[2] = atan2(c.R_s*i_s[2] + w_el*psi_e, -w_el*c.L_s[2]*i_s[2]);
-    annotation (
-  Documentation(info="<html>
+    equation
+      vPhasor[1] = 1;
+      //not used if no PWM
+      vPhasor[2] = atan2(c.R_s*i_s[2] + w_el*psi_e, -w_el*c.L_s[2]*i_s[2]);
+      annotation (Documentation(info="<html>
 <p>The model is valid for permanent magnet (<tt>excite=2</tt>) machines.</p>
 <p>For rectangular voltage without additional PWM the only degree of freedom is the voltage phase. It is chosen such that the d-axis current (magnetising current) is zero <tt> i_s[1] = 0</tt>.<br>
 Under theese assumptions the torque-speed characteristic is different from that of a DC-machine. In order to obtain a 'true' DC-characteristic with linear dependence of torque and i_s[2] from w_el, a second degree of freedom is needed.</p>
@@ -343,16 +311,15 @@ Using a pu-current <tt>i_sd_pu</tt> we obtain
 </pre></p>
 <p>More information see Partials.Synchron3rdBase.</p>
 </html>"), Icon(graphics={Rectangle(
-              extent={{-90,112},{90,88}},
-              lineColor={0,0,127},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid)}));
-  end Synchron3rd_bldc;
+                  extent={{-90,112},{90,88}},
+                  lineColor={0,0,127},
+                  fillColor={170,213,255},
+                  fillPattern=FillPattern.Solid)}));
+    end Synchron3rd_bldc;
 
   end Partials;
 
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Contains both electrical and mechanical parts of DC-drives.</p>
 <p>Heat ports must be connected. In cases where they are not needed, use 'Common.Thermal.BdCond(V)'.</p><p><a <p><a href=\"modelica://PowerSystems.UsersGuide.Overview\">up users guide</a></p>
 </html>

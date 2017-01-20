@@ -18,41 +18,37 @@ package ImpedancesYD
     R*i = v;
     annotation (
       defaultComponentName="resYD1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Info see package ACdq0.ImpedancesYD.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{70,-30}},
-            lineColor={0,0,0},
-            lineThickness=0.5,
-            fillColor={255,255,255})}),
-  Diagram(coordinateSystem(
+              extent={{-80,30},{70,-30}},
+              lineColor={0,0,0},
+              lineThickness=0.5,
+              fillColor={255,255,255})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-70,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-70,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
   end Resistor;
 
   model Conductor "Conductor, 3-phase dq0"
@@ -70,40 +66,36 @@ package ImpedancesYD
     G*v = i;
     annotation (
       defaultComponentName="resYD1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Info see package ACdq0.ImpedancesYD.</p>
 </html>"),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{70,-30}},
-            lineColor={0,0,0},
-            lineThickness=0.5,
-            fillColor={255,255,255})}),
-  Diagram(coordinateSystem(
+              extent={{-80,30},{70,-30}},
+              lineColor={0,0,0},
+              lineThickness=0.5,
+              fillColor={255,255,255})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-70,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-70,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
   end Conductor;
 
   model Inductor "Inductor with series resistor, 3-phase dq0"
@@ -120,8 +112,8 @@ package ImpedancesYD
           2*pi*f_nom,
           top.scale);
     final parameter SI.Resistance R=r*RL_base[1];
-    final parameter SI.Inductance L=(x_s-x_m)*RL_base[2];
-    final parameter SI.Inductance L0=(x_s+2*x_m)*RL_base[2];
+    final parameter SI.Inductance L=(x_s - x_m)*RL_base[2];
+    final parameter SI.Inductance L0=(x_s + 2*x_m)*RL_base[2];
 
   initial equation
     if dynType == Types.Dynamics.SteadyInitial then
@@ -136,79 +128,69 @@ package ImpedancesYD
     end if;
     annotation (
       defaultComponentName="indYD1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Info see package ACdq0.ImpedancesYD.</p>
 </html>"),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Rectangle(
-            extent={{-40,30},{70,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{70,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-50,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{-50,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,20},{-50,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{-50,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,9},{30,7}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-8},{30,-10}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-23},{30,-25}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-50,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{-50,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,20},{-50,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{-50,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,9},{30,7}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-8},{30,-10}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-23},{30,-25}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end Inductor;
 
   model Capacitor "Capacitor with parallel conductor, 3-phase dq0"
@@ -239,98 +221,80 @@ package ImpedancesYD
     end if;
     annotation (
       defaultComponentName="capYD1",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>No phase to phase capacitance.</p>
 <p>Info see package ACdq0.ImpedancesYD.</p>
 </html>"),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(
-            points={{-90,0},{-20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Rectangle(
-            extent={{-12,60},{12,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,60},{-12,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{12,60},{20,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Line(
+              points={{-90,0},{-20,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-12,60},{12,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,60},{-12,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{12,60},{20,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-70,0},{-4,0}}),
-          Rectangle(
-            extent={{-4,21},{-2,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,21},{4,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-4,5},{-2,-5}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,5},{4,-5}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-4,-11},{-2,-21}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,-11},{4,-21}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-70,16},{-4,16}}),
-          Line(points={{-70,-16},{-4,-16}}),
-          Line(points={{4,16},{30,16}}),
-          Line(points={{4,0},{30,0}}),
-          Line(points={{4,-16},{30,-16}}),
-          Rectangle(
-            extent={{-20,10},{-10,6}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,-6},{-10,-10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,-22},{-10,-26}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-30,16},{-30,8},{-20,8}}, color={0,0,255}),
-          Line(points={{-30,0},{-30,-8},{-20,-8}}, color={0,0,255}),
-          Line(points={{-30,-16},{-30,-24},{-20,-24}}, color={0,0,255}),
-          Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-          Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),
-          Line(points={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+          grid={2,2}), graphics={Line(points={{-70,0},{-4,0}}),Rectangle(
+              extent={{-4,21},{-2,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,21},{4,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-4,5},{-2,-5}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,5},{4,-5}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-4,-11},{-2,-21}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,-11},{4,-21}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-70,16},{-4,16}}),
+            Line(points={{-70,-16},{-4,-16}}),Line(points={{4,16},{30,16}}),
+            Line(points={{4,0},{30,0}}),Line(points={{4,-16},{30,-16}}),
+            Rectangle(
+              extent={{-20,10},{-10,6}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,-6},{-10,-10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,-22},{-10,-26}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
+            8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
+            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
+            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end Capacitor;
 
   model ResistorNonSym "Resistor non symmetric, 3-phase dq0"
@@ -350,47 +314,43 @@ package ImpedancesYD
     R*i = v;
     annotation (
       defaultComponentName="resYDnonSym",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Resistor with general resistance matrix, defined in abc inertial system.<br>
 Use only if 'non symmetric' is really desired because this component needs a time dependent transform of the coefficient matrix.</p>
 <p>More info see package ACdq0.ImpedancesYD.</p>
 </html>"),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{70,-30}},
-            lineColor={0,0,0},
-            lineThickness=0.5,
-            fillColor={255,255,255}), Polygon(
-            points={{-80,30},{-80,0},{-50,30},{-80,30}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+              extent={{-80,30},{70,-30}},
+              lineColor={0,0,0},
+              lineThickness=0.5,
+              fillColor={255,255,255}),Polygon(
+              points={{-80,30},{-80,0},{-50,30},{-80,30}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-70,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-70,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
   end ResistorNonSym;
 
   model InductorNonSym
@@ -427,89 +387,76 @@ Use only if 'non symmetric' is really desired because this component needs a tim
     der(psi) + omega[2]*j_dq0(psi) + R*i = v;
     annotation (
       defaultComponentName="indYDnonSym",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Inductor with general reactance matrix, defined in abc inertial system.<br>
 Use only if 'non symmetric' is really desired because this component needs a time dependent transform of the coefficient matrix.</p>
 <p>More info see package ACdq0.ImpedancesYD.</p>
 </html>"),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,30},{70,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-80,30},{-80,0},{-50,30},{-80,30}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{70,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-80,30},{-80,0},{-50,30},{-80,30}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-50,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{-50,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,20},{-50,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{-50,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,9},{30,7}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-8},{30,-10}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-50,-23},{30,-25}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-50,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{-50,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,20},{-50,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{-50,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,9},{30,7}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-8},{30,-10}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-50,-23},{30,-25}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end InductorNonSym;
 
   model CapacitorNonSym
@@ -546,107 +493,88 @@ Use only if 'non symmetric' is really desired because this component needs a tim
     der(q) + omega[2]*j_dq0(q) + G*v = i;
     annotation (
       defaultComponentName="capYDnonSym",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Capacitor with general susceptance matrix, defined in abc inertial system.<br>
 Use only if 'non symmetric' is really desired because this component needs a time dependent transform of the coefficient matrix.</p>
 <p>No phase to phase capacitance.</p>
 <p> More info see package ACdq0.ImpedancesYD.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(
-            points={{-90,0},{-20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Rectangle(
-            extent={{-12,60},{12,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-12,60},{-12,30},{12,60},{-12,60}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,60},{-12,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{12,60},{20,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
-  Diagram(coordinateSystem(
+          grid={2,2}), graphics={Line(
+              points={{-90,0},{-20,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-12,60},{12,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-12,60},{-12,30},{12,60},{-12,60}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,60},{-12,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{12,60},{20,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-70,0},{-4,0}}),
-          Rectangle(
-            extent={{-4,21},{-2,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,21},{4,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-4,5},{-2,-5}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,5},{4,-5}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-4,-11},{-2,-21}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{2,-11},{4,-21}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-70,16},{-4,16}}),
-          Line(points={{-70,-16},{-4,-16}}),
-          Line(points={{4,16},{30,16}}),
-          Line(points={{4,0},{30,0}}),
-          Line(points={{4,-16},{30,-16}}),
-          Rectangle(
-            extent={{-20,10},{-10,6}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,-6},{-10,-10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,-22},{-10,-26}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-30,16},{-30,8},{-20,8}}, color={0,0,255}),
-          Line(points={{-30,0},{-30,-8},{-20,-8}}, color={0,0,255}),
-          Line(points={{-30,-16},{-30,-24},{-20,-24}}, color={0,0,255}),
-          Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-          Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),
-          Line(points={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+          grid={2,2}), graphics={Line(points={{-70,0},{-4,0}}),Rectangle(
+              extent={{-4,21},{-2,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,21},{4,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-4,5},{-2,-5}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,5},{4,-5}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-4,-11},{-2,-21}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{2,-11},{4,-21}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-70,16},{-4,16}}),
+            Line(points={{-70,-16},{-4,-16}}),Line(points={{4,16},{30,16}}),
+            Line(points={{4,0},{30,0}}),Line(points={{4,-16},{30,-16}}),
+            Rectangle(
+              extent={{-20,10},{-10,6}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,-6},{-10,-10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,-22},{-10,-26}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
+            8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
+            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
+            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end CapacitorNonSym;
 
   model Varistor "Varistor, 3-phase dq0"
@@ -669,47 +597,43 @@ Use only if 'non symmetric' is really desired because this component needs a tim
     v = Park*v_abc;
     annotation (
       defaultComponentName="varistorYD",
-  Documentation(
-          info="<html>
+      Documentation(info="<html>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package ACdq0.ImpedancesYD.</p>
 </html>
 "),
-  Icon(coordinateSystem(
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{70,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Line(points={{30,25},{26,2},{-26,-2},
-                {-30,-26}}, color={0,0,0})}),
-  Diagram(coordinateSystem(
+              extent={{-80,30},{70,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{30,25},{26,2},{-26,-2},
+            {-30,-26}}, color={0,0,0})}),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-70,20},{30,13}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,3},{30,-4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-13},{30,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{8,22},{6,18},{-46,16},{-48,12}}, color={0,0,0}),
-          Line(points={{8,5},{6,1},{-46,-1},{-48,-5}}, color={0,0,0}),
-          Line(points={{8,-11},{6,-15},{-46,-17},{-48,-21}}, color={0,0,0})}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-70,20},{30,13}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,3},{30,-4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-13},{30,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{8,22},{6,18},{-46,16},
+            {-48,12}}, color={0,0,0}),Line(points={{8,5},{6,1},{-46,-1},{-48,-5}},
+            color={0,0,0}),Line(points={{8,-11},{6,-15},{-46,-17},{-48,-21}},
+            color={0,0,0})}));
   end Varistor;
 
   package Partials "Partial models"
@@ -719,10 +643,11 @@ Use only if 'non symmetric' is really desired because this component needs a tim
       extends Ports.YDport_p;
       extends Common.Nominal.NominalAC;
 
-      parameter Types.Dynamics dynType=system.dynType "transient or steady-state model"
-        annotation(Evaluate=true, Dialog(tab="Initialization"));
+      parameter Types.Dynamics dynType=system.dynType
+        "transient or steady-state model"
+        annotation (Evaluate=true,Dialog(tab="Initialization"));
       parameter SIpu.Resistance r_n=1 "resistance neutral to grd"
-        annotation(Dialog(enable));
+        annotation (Dialog(enable));
     protected
       final parameter SI.Resistance R_n=r_n*Utilities.Precalculation.baseR(
               puUnits,
@@ -734,8 +659,7 @@ Use only if 'non symmetric' is really desired because this component needs a tim
       omega = der(term.theta);
       v_n = R_n*i_n "equation neutral to ground (if Y-topology)";
       annotation (
-        Documentation(
-      info="<html>
+        Documentation(info="<html>
 <p>Y-topology: contains an equation for neutral to ground</p>
 <p>Delta-topology: <tt>i[3] = 0</tt></p>
 </html>"),
@@ -743,19 +667,19 @@ Use only if 'non symmetric' is really desired because this component needs a tim
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
-              extent={{70,20},{76,-20}},
-              lineColor={128,128,128},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid)}),
+                  extent={{70,20},{76,-20}},
+                  lineColor={128,128,128},
+                  fillColor={128,128,128},
+                  fillPattern=FillPattern.Solid)}),
         Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
-              extent={{70,30},{80,-30}},
-              lineColor={135,135,135},
-              lineThickness=0.5,
-              fillColor={135,135,135},
-              fillPattern=FillPattern.Solid)}));
+                  extent={{70,30},{80,-30}},
+                  lineColor={135,135,135},
+                  lineThickness=0.5,
+                  fillColor={135,135,135},
+                  fillPattern=FillPattern.Solid)}));
     end ImpedYDBase;
 
     partial model ImpedYDNonSymBase
@@ -763,10 +687,8 @@ Use only if 'non symmetric' is really desired because this component needs a tim
       extends ImpedYDBase;
 
     protected
-      Real[3,3] Park=Utilities.Transforms.park(term.theta[2]);
-      annotation (
-        Documentation(
-      info="<html>
+      Real[3, 3] Park=Utilities.Transforms.park(term.theta[2]);
+      annotation (Documentation(info="<html>
 <p>Same as ImpedYDBase, but contains additionally a Park-transform which is needed for
 transformation of general impedance matrices from abc rest to general dq0-system.
 (for example when coefficients of non symmetric systems are defined in abc representation.)</p>
@@ -781,9 +703,7 @@ transformation of general impedance matrices from abc rest to general dq0-system
 
     equation
       Q_flow = v*i;
-      annotation (
-        Documentation(
-      info="<html>
+      annotation (Documentation(info="<html>
 <p>Same as ImpedYDBase, but contains an additional heat port.</p>
 <p>Does not contain mass and specific heat. These parameters are expected to belong to the corresponding thermal model. The heat-flow at the connector is given by the total dissipated electric energy of all conductors (not included neutral-to-ground!).</p>
 </html>
@@ -793,17 +713,14 @@ transformation of general impedance matrices from abc rest to general dq0-system
     partial model ImpedYDNonSymHeat
       "One terminal impedance base non symmetric with heat port, 3-phase dq0"
       extends ImpedYDNonSymBase;
-      extends PowerSystems.Interfaces.AddHeatV(
-                                       final m_heat=3);
+      extends PowerSystems.Interfaces.AddHeatV(final m_heat=3);
 
       PS.Voltage[3] v_abc=Park*top.v_cond;
       PS.Current[3] i_abc=Park*top.i_cond;
 
     equation
-      Q_flow = v_abc.*i_abc;
-      annotation (
-        Documentation(
-      info="<html>
+      Q_flow = v_abc .* i_abc;
+      annotation (Documentation(info="<html>
 <p>Same as ImpedYDNonSymBase, but contains an additional vector heat port.</p>
 <p>Does not contain mass and specific heat. These parameters are expected to belong to the corresponding thermal model. The heat-flow at the connectors is given by the dissipated electric power per conductor (not included neutral-to-ground!).</p>
 </html>"));
@@ -811,8 +728,7 @@ transformation of general impedance matrices from abc rest to general dq0-system
 
   end Partials;
 
-annotation (preferredView="info",
-    Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 <p>Contains lumped impedance models for Y and Delta topology.</p>
 <p>General relations see 'Impedances'.</p>
 <p>All elements allow the choice between Y- and Delta-topology.<br>

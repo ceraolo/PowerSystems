@@ -2,101 +2,97 @@ within PowerSystems.Blocks;
 package Math "Auxiliary blocks"
   extends Modelica.Icons.VariantsPackage;
 
-block Integrator "Integral of input-signal"
-  extends Partials.SISO(y(start=y_start, fixed=true));
+  block Integrator "Integral of input-signal"
+    extends Partials.SISO(y(start=y_start, fixed=true));
 
-  parameter Real y_start=0 "initial value";
+    parameter Real y_start=0 "initial value";
 
-equation
-  der(y) = u;
-  annotation (
-    Documentation(info="<html>
+  equation
+    der(y) = u;
+    annotation (Documentation(info="<html>
 <p/>Calculates:
 <pre>  y_start + Integral dt u</pre>
 </html>
 "), Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-70,40},{90,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "dt u"),
-          Line(
-            points={{-61,31},{-59,41},{-55,45},{-49,47}},
-            color={135,135,135},
-            thickness=0.5),
-          Line(
-            points={{-61,-31},{-63,-41},{-67,-45},{-73,-47}},
-            color={135,135,135},
-            thickness=0.5),
-          Line(
-            points={{-61,31},{-61,-31}},
-            color={135,135,135},
-            thickness=0.5)}));
-end Integrator;
+          grid={2,2}), graphics={Text(
+              extent={{-70,40},{90,-40}},
+              lineColor={128,128,128},
+              textString="dt u"),Line(
+              points={{-61,31},{-59,41},{-55,45},{-49,47}},
+              color={135,135,135},
+              thickness=0.5),Line(
+              points={{-61,-31},{-63,-41},{-67,-45},{-73,-47}},
+              color={135,135,135},
+              thickness=0.5),Line(
+              points={{-61,31},{-61,-31}},
+              color={135,135,135},
+              thickness=0.5)}));
+  end Integrator;
 
   block TimeAverage "Time average of input signal"
     extends Partials.MIMO(final nin=n, final nout=n);
 
     parameter Integer n=1 "dim of input/output signal";
-    parameter SI.Time tcst(min=Modelica.Constants.eps)=1 "memory time constant";
+    parameter SI.Time tcst(min=Modelica.Constants.eps) = 1
+      "memory time constant";
 
   initial equation
     y = u;
 
   equation
     der(y) = (u - y)/tcst;
-    annotation (defaultComponentName = "time_av",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="time_av",
+      Documentation(info="<html>
 <p>Calculates the time-average of the input-signal u with exponential memory function (first order transfer function with initial condition).</p>
 <p>This block does NOT need the delay operator. It may be replaced by something more specific in context with inverters/modulation.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,40},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "(...)"), Text(
-            extent={{-80,80},{80,40}},
-            lineColor={128,128,128},
-            textString=
-                 "_____")}));
+              extent={{-80,40},{80,-40}},
+              lineColor={128,128,128},
+              textString="(...)"),Text(
+              extent={{-80,80},{80,40}},
+              lineColor={128,128,128},
+              textString="_____")}));
   end TimeAverage;
 
   block TimeAvInterval "Time average over interval of input signal"
     extends Partials.MIMO(final nin=n, final nout=n);
 
     parameter Integer n=1 "dim of input/output signal";
-    parameter SI.Time tcst(min=1e-9)=1 "average time";
+    parameter SI.Time tcst(min=1e-9) = 1 "average time";
   protected
-    Real[n] U(start=zeros(n), fixed=true, each stateSelect=StateSelect.always);
+    Real[n] U(
+      start=zeros(n),
+      fixed=true,
+      each stateSelect=StateSelect.always);
 
   equation
     der(U) = u;
     y = (U - delay(U, tcst))/tcst;
-    annotation (defaultComponentName = "time_avI",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="time_avI",
+      Documentation(info="<html>
 <p>Calculates the time-average of the input-signal u over the interval {time - tau, time}.</p>
 <p>This block needs the delay operator!</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,80},{80,40}},
-            lineColor={128,128,128},
-            textString=
-                 "_____"), Text(
-            extent={{-80,40},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "[...]")}));
+              extent={{-80,80},{80,40}},
+              lineColor={128,128,128},
+              textString="_____"),Text(
+              extent={{-80,40},{80,-40}},
+              lineColor={128,128,128},
+              textString="[...]")}));
   end TimeAvInterval;
 
   block ComponentAverage "Component average of input signal"
@@ -104,17 +100,16 @@ end Integrator;
 
   algorithm
     y := sum(u)/n;
-    annotation (defaultComponentName = "average",
+    annotation (
+      defaultComponentName="average",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,40},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-                 "av(..)")}),
-      Documentation(
-              info="<html>
+              extent={{-80,40},{80,-40}},
+              lineColor={128,128,128},
+              textString="av(..)")}),
+      Documentation(info="<html>
 <p>Calculates the average over the components of the input-signal u.</p>
 </html>"));
   end ComponentAverage;
@@ -128,41 +123,42 @@ end Integrator;
 
   equation
     y = sqrt(u[1:n_eval]*u[1:n_eval]);
-    annotation (defaultComponentName = "norm",
-      Documentation(
-              info="<html>
+    annotation (
+      defaultComponentName="norm",
+      Documentation(info="<html>
 <p>Allows in particular to calculate the dq0-norm (n_eval=3) or dq-norm (n_eval=2) of the input signal.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,40},{80,-40}},
-            lineColor={128,128,128},
-            textString=
-           "|u|")}));
+              extent={{-80,40},{80,-40}},
+              lineColor={128,128,128},
+              textString="|u|")}));
   end Norm;
 
   block ToPolar "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=2, final nout=2);
 
-    parameter Integer sig(min=-1, max=1)=1 "+u or -u as input"
-                                           annotation(Evaluate=true);
+    parameter Integer sig(
+      min=-1,
+      max=1) = 1 "+u or -u as input" annotation (Evaluate=true);
   protected
-    function atan2=Modelica.Math.atan2;
+    function atan2 = Modelica.Math.atan2;
 
   equation
     y[1] = sqrt(u*u);
     y[2] = atan2(sig*u[2], sig*u[1]);
-    annotation (defaultComponentName = "toPolar",
+    annotation (
+      defaultComponentName="toPolar",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-70,36},{80,-44}},
-            lineColor={128,128,128},
-            textString=
-                 "polar >")}),
+              extent={{-70,36},{80,-44}},
+              lineColor={128,128,128},
+              textString="polar >")}),
       Documentation(info="<html>
 <p>Converts Euclidean {u[1], u[2]} to  polar {y[1], y[2]} coordinates, where
 <pre>
@@ -177,32 +173,34 @@ end Integrator;
   block ToPolarR "Rotation of input signal-vector"
     extends Partials.MIMO(final nin=2, final nout=2);
 
-    parameter Integer sig(min=-1, max=1)=1 "+u or -u as input"
-                                           annotation(Evaluate=true);
+    parameter Integer sig(
+      min=-1,
+      max=1) = 1 "+u or -u as input" annotation (Evaluate=true);
   protected
     SI.Angle alpha(stateSelect=StateSelect.always);
     SI.AngularVelocity omega;
-    function atan2=Modelica.Math.atan2;
-    function atanV=Utilities.Math.atanVarCut;
-    function angVelocity=Utilities.Math.angVelocity;
+    function atan2 = Modelica.Math.atan2;
+    function atanV = Utilities.Math.atanVarCut;
+    function angVelocity = Utilities.Math.angVelocity;
 
   initial equation
-    alpha =  atan2(sig*u[2], sig*u[1]); // leads to troubles with GNU-compiler.
+    alpha = atan2(sig*u[2], sig*u[1]);
+    // leads to troubles with GNU-compiler.
 
   equation
-    omega =  angVelocity(u, der(u));
+    omega = angVelocity(u, der(u));
     der(alpha) = omega;
     y[1] = sqrt(u*u);
     y[2] = atanV(sig*u, alpha);
-    annotation (defaultComponentName = "toPolar",
+    annotation (
+      defaultComponentName="toPolar",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-70,36},{80,-44}},
-            lineColor={255,85,85},
-            textString=
-                 "polar >")}),
+              extent={{-70,36},{80,-44}},
+              lineColor={255,85,85},
+              textString="polar >")}),
       Documentation(info="<html>
 <p>Converts Euclidean {u[1], u[2]} to  polar {y[1], y[2]} coordinates, where
 <pre>
@@ -218,16 +216,16 @@ end Integrator;
     extends Partials.MIMO(final nin=2, final nout=2);
 
   equation
-    y = u[1]*{cos(u[2]), sin(u[2])};
-    annotation (defaultComponentName = "fromPolar",
+    y = u[1]*{cos(u[2]),sin(u[2])};
+    annotation (
+      defaultComponentName="fromPolar",
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-            extent={{-80,36},{70,-44}},
-            lineColor={128,128,128},
-            textString=
-                 "< polar")}),
+              extent={{-80,36},{70,-44}},
+              lineColor={128,128,128},
+              textString="< polar")}),
       Documentation(info="<html>
 <p>Converts polar {u[1], u[2]} to Euclidean {y[1], y[2]} coordinates, where
 <pre>
@@ -237,7 +235,6 @@ end Integrator;
 </html>
 "));
   end FromPolar;
-  annotation (preferredView="info",
-Documentation(info="<html>
+  annotation (preferredView="info", Documentation(info="<html>
 </html>"));
 end Math;

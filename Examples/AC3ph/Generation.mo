@@ -1171,6 +1171,7 @@ public
 
       w_start=1130.9733552923)
       annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
+
     PowerSystems.AC1ph_DC.Impedances.CapacitorSym capSym(
       G=1e-4,
       V_start=vDC_nom,

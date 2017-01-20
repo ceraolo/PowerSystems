@@ -3,39 +3,38 @@ model System "System reference"
   parameter Types.SystemFrequency fType=PowerSystems.Types.SystemFrequency.Parameter
     "system frequency type"
     annotation (Evaluate=true, Dialog(group="Frequency"));
-  parameter SI.Frequency f = f_nom
-    "frequency if type is parameter, else initial frequency"
-    annotation(Evaluate=true, Dialog(group="Frequency",
-      enable=fType == PowerSystems.Types.SystemFrequency.Parameter));
-  parameter SI.Frequency f_nom = 50 "nominal frequency"
-   annotation(Evaluate=true, Dialog(group="Nominal"), choices(choice=50 "50 Hz", choice=60 "60 Hz"));
-  parameter SI.Frequency f_lim[2]={0.5*f_nom, 2*f_nom}
-    "limit frequencies (for supervision of average frequency)"
-   annotation(Evaluate=true, Dialog(group="Frequency",
-     enable=fType <> PowerSystems.Types.SystemFrequency.Parameter));
-  parameter SI.Angle alpha0 = 0 "phase angle"
-   annotation(Evaluate=true, Dialog(group="System"));
-  parameter Types.ReferenceFrame refType = PowerSystems.Types.ReferenceFrame.Synchron
-    "reference frame (3-phase)"
-    annotation(Evaluate=true, Dialog(group="System", enable=dynType<>PowerSystems.Types.Dynamics.SteadyState));
-  parameter Types.Dynamics dynType = PowerSystems.Types.Dynamics.SteadyInitial
+  parameter SI.Frequency f=f_nom
+    "frequency if type is parameter, else initial frequency" annotation (
+      Evaluate=true, Dialog(group="Frequency", enable=fType == PowerSystems.Types.SystemFrequency.Parameter));
+  parameter SI.Frequency f_nom=50 "nominal frequency" annotation (
+    Evaluate=true,
+    Dialog(group="Nominal"),
+    choices(choice=50 "50 Hz", choice=60 "60 Hz"));
+  parameter SI.Frequency f_lim[2]={0.5*f_nom,2*f_nom}
+    "limit frequencies (for supervision of average frequency)" annotation (
+      Evaluate=true, Dialog(group="Frequency", enable=fType <> PowerSystems.Types.SystemFrequency.Parameter));
+  parameter SI.Angle alpha0=0 "phase angle"
+    annotation (Evaluate=true, Dialog(group="System"));
+  parameter Types.ReferenceFrame refType=PowerSystems.Types.ReferenceFrame.Synchron
+    "reference frame (3-phase)" annotation (Evaluate=true, Dialog(group=
+          "System", enable=dynType <> PowerSystems.Types.Dynamics.SteadyState));
+  parameter Types.Dynamics dynType=PowerSystems.Types.Dynamics.SteadyInitial
     "transient or steady-state model"
-    annotation(Evaluate=true, Dialog(group="Initialization"));
+    annotation (Evaluate=true,Dialog(group="Initialization"));
 
-  final parameter SI.AngularFrequency omega_nom = 2*pi*f_nom
-    "nominal angular frequency" annotation(Evaluate=true);
-  final parameter SI.AngularVelocity w_nom = 2*pi*f_nom "nom r.p.m."
-                 annotation(Evaluate=true, Dialog(group="Nominal"));
-  final parameter Boolean synRef = refType==PowerSystems.Types.ReferenceFrame.Synchron
-    or dynType==PowerSystems.Types.Dynamics.SteadyState
-    annotation(Evaluate=true);
+  final parameter SI.AngularFrequency omega_nom=2*pi*f_nom
+    "nominal angular frequency" annotation (Evaluate=true);
+  final parameter SI.AngularVelocity w_nom=2*pi*f_nom "nom r.p.m."
+    annotation (Evaluate=true, Dialog(group="Nominal"));
+  final parameter Boolean synRef=refType == PowerSystems.Types.ReferenceFrame.Synchron
+       or dynType == PowerSystems.Types.Dynamics.SteadyState
+    annotation (Evaluate=true);
 
   discrete SI.Time initime;
-  SI.Angle theta(final start=0,
-    stateSelect=if fType==Types.SystemFrequency.Parameter then StateSelect.default else StateSelect.always)
-    "system angle";
-  SI.Angle thetaRel = theta - thetaRef "angle relative to reference frame";
-  SI.Angle thetaRef = if synRef then theta else 0 "angle of reference frame";
+  SI.Angle theta(final start=0, stateSelect=if fType == Types.SystemFrequency.Parameter
+         then StateSelect.default else StateSelect.always) "system angle";
+  SI.Angle thetaRel=theta - thetaRef "angle relative to reference frame";
+  SI.Angle thetaRef=if synRef then theta else 0 "angle of reference frame";
   SI.AngularFrequency omega(final start=2*pi*f);
   Modelica.Blocks.Interfaces.RealInput omega_in(min=0) if fType == PowerSystems.Types.SystemFrequency.Signal
     "system angular frequency (optional if fType==Signal)"
@@ -43,7 +42,7 @@ model System "System reference"
 
   Interfaces.Frequency receiveFreq
     "receives weighted frequencies from generators"
-   annotation (Placement(transformation(extent={{-96,64},{-64,96}})));
+    annotation (Placement(transformation(extent={{-96,64},{-64,96}})));
 protected
   Modelica.Blocks.Interfaces.RealInput omega_internal;
 initial equation
@@ -74,12 +73,12 @@ equation
   receiveFreq.h = 0.0;
   receiveFreq.w_h = 0.0;
   annotation (
-  preferredView="info",
-  defaultComponentName="system",
-  defaultComponentPrefixes="inner",
-  missingInnerMessage="No \"system\" component is defined.
+    preferredView="info",
+    defaultComponentName="system",
+    defaultComponentPrefixes="inner",
+    missingInnerMessage="No \"system\" component is defined.
     Drag PowerSystems.System into the top level of your model.",
-  Icon(coordinateSystem(
+    Icon(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-100,-100},{100,100}},
         grid={2,2}), graphics={
@@ -113,7 +112,7 @@ equation
           extent={{-100,-70},{100,-100}},
           lineColor={176,0,0},
           textString="%dynType")}),
-  Documentation(info="<html>
+    Documentation(info="<html>
 <p>The model <b>System</b> represents a global reference for the following purposes:</p>
 <p>It allows the choice of </p>
 <ul>

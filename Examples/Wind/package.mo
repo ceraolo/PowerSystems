@@ -22,7 +22,7 @@ model WindTurbine_IG
           extent={{-50,-90},{-30,-70}}, rotation=0)));
   PowerSystems.AC3ph.Lines.PIline line(len=1000, redeclare record Data =
         PowerSystems.AC3ph.Lines.Parameters.Line (V_nom=15e3, S_nom=3e6))
-    annotation (Placement(transformation(extent={{20,-90},{40,-70}},rotation=0)));
+    annotation (Placement(transformation(extent={{20,-90},{40,-70}}, rotation=0)));
   PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=15e3) annotation (Placement(
         transformation(extent={{80,-90},{60,-70}}, rotation=0)));
   PowerSystems.AC3ph.Nodes.GroundOne grd annotation (Placement(transformation(
@@ -106,7 +106,7 @@ model WindTurbine_DFIG
           extent={{-50,-90},{-30,-70}}, rotation=0)));
   PowerSystems.AC3ph.Lines.PIline line(len=1000, redeclare record Data =
         PowerSystems.AC3ph.Lines.Parameters.Line (V_nom=15e3, S_nom=3e6))
-    annotation (Placement(transformation(extent={{20,-90},{40,-70}},rotation=0)));
+    annotation (Placement(transformation(extent={{20,-90},{40,-70}}, rotation=0)));
   PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=15e3) annotation (Placement(
         transformation(extent={{80,-90},{60,-70}}, rotation=0)));
   PowerSystems.AC3ph.Nodes.GroundOne grd annotation (Placement(transformation(
@@ -185,6 +185,7 @@ model WindTurbine_DFIG
 
       color={0,0,127},
       smooth=Smooth.None));
+
   connect(bdCond2.heat, inverter2.heat) annotation (Line(
       points={{40,-18},{40,-24}},
       color={176,0,0},
@@ -265,7 +266,7 @@ model WindTurbine_PSGR
           extent={{-50,-90},{-30,-70}}, rotation=0)));
   PowerSystems.AC3ph.Lines.PIline line(len=1000, redeclare record Data =
         PowerSystems.AC3ph.Lines.Parameters.Line (V_nom=15e3, S_nom=3e6))
-    annotation (Placement(transformation(extent={{20,-90},{40,-70}},rotation=0)));
+    annotation (Placement(transformation(extent={{20,-90},{40,-70}}, rotation=0)));
   PowerSystems.AC3ph.Sources.InfBus infBus(V_nom=15e3) annotation (Placement(
         transformation(extent={{80,-90},{60,-70}}, rotation=0)));
   PowerSystems.AC3ph.Nodes.GroundOne grd annotation (Placement(transformation(
@@ -783,6 +784,7 @@ package Components
 
         color={0,0,127},
         smooth=Smooth.None));
+
     connect(bdCond2.heat, inverter2.heat) annotation (Line(
         points={{40,-18},{40,-24}},
         color={176,0,0},
