@@ -12,7 +12,7 @@ package SIpu "Additional types for power systems"
   type ReactivePower = Real (final quantity="ReactivePower", unit="var/var");
   type Resistance = Real (
       final quantity="Resistance",
-      unit="Ohm/(V.V/VA)",
+      unit="Ohm/Ohm",
       final min=0);
   type Reactance = Real (final quantity="Reactance", unit="Ohm/Ohm");
   type Impedance = Real (final quantity="Impedance", unit="Ohm/Ohm");

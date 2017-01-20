@@ -5,7 +5,7 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
   model Resistor "Resistor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Resistance r=1 "resistance";
+    parameter Generic.Resistance r=1 "resistance";
   protected
     final parameter SI.Resistance R=r*Utilities.Precalculation.baseR(
           puUnits,
@@ -23,25 +23,25 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-80,30},{80,-30}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-80,30},{80,-30}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-10,60},{10,-60}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}));
+            extent={{-10,60},{10,-60}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}));
   end Resistor;
 
   model Conductor "Conductor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Conductance g=1 "conductance";
+    parameter Generic.Conductance g=1 "conductance";
   protected
     final parameter SI.Conductance G=g/Utilities.Precalculation.baseR(
           puUnits,
@@ -59,26 +59,26 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-80,30},{80,-30}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-80,30},{80,-30}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-10,60},{10,-60}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}));
+            extent={{-10,60},{10,-60}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}));
   end Conductor;
 
   model Inductor "Inductor with series resistor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Resistance r=0 "resistance";
-    parameter SIpu.Reactance x=1 "reactance matrix";
+    parameter Generic.Resistance r=0 "resistance";
+    parameter Generic.Reactance x=1 "reactance matrix";
   protected
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
           puUnits,
@@ -106,35 +106,35 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-80,30},{-40,-30}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-40,30},{80,-30}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-80,30},{-40,-30}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Rectangle(
+            extent={{-40,30},{80,-30}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-10,60},{10,40}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-10,40},{10,-60}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid)}));
+            extent={{-10,60},{10,40}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Rectangle(
+            extent={{-10,40},{10,-60}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid)}));
   end Inductor;
 
   model Capacitor "Capacitor with parallel conductor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Conductance g=0 "conductance";
-    parameter SIpu.Susceptance b=1 "susceptance";
+    parameter Generic.Conductance g=0 "conductance";
+    parameter Generic.Susceptance b=1 "susceptance";
   protected
     final parameter Real[2] GC_base=Utilities.Precalculation.baseGC(
           puUnits,
@@ -161,37 +161,44 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Line(points={{-90,0},{-20,0}}, color={0,0,255}),
-            Rectangle(
-              extent={{-12,60},{12,-60}},
-              lineColor={215,215,215},
-              fillColor={215,215,215},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-20,60},{-12,-60}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{12,60},{20,-60}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={
+          Line(points={{-90,0},{-20,0}}, color={0,0,255}),
+          Rectangle(
+            extent={{-12,60},{12,-60}},
+            lineColor={215,215,215},
+            fillColor={215,215,215},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-20,60},{-12,-60}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{12,60},{20,-60}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Rectangle(
-              extent={{-50,16},{50,10}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-50,10},{50,-10}},
-              lineColor={215,215,215},
-              fillColor={215,215,215},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-50,-10},{50,-16}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Line(points={{0,60},{0,16}}, color
-            ={0,0,255}),Line(points={{0,-60},{0,-16}}, color={0,0,255})}));
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-50,16},{50,10}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-50,10},{50,-10}},
+            lineColor={215,215,215},
+            fillColor={215,215,215},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-50,-10},{50,-16}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Line(points={{0,60},{0,16}}, color={0,0,255}),
+          Line(points={{0,-60},{0,-16}}, color={0,0,255})}));
   end Capacitor;
 
   model Varistor "Varistor, 1-phase"
@@ -219,11 +226,11 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-80,30},{80,-30}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(points={{30,25},{26,2},{-26,-2},
-            {-30,-26}}, color={0,0,0})}),
+            extent={{-80,30},{80,-30}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Line(points={{30,25},{26,2},{-26,-2},
+                {-30,-26}}, color={0,0,0})}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -264,8 +271,8 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-80,20},{-60,20},{-60,80},{0,
-              80},{0,60}}, color={0,0,255}),Line(points={{-80,-20},{-60,-20},{-60,
-              -80},{0,-80},{0,-60}}, color={0,0,255})}));
+                  80},{0,60}}, color={0,0,255}), Line(points={{-80,-20},{-60,-20},
+                  {-60,-80},{0,-80},{0,-60}}, color={0,0,255})}));
     end ImpedBase;
 
     partial model ImpedBaseHeat

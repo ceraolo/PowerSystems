@@ -5,7 +5,7 @@ package Impedances "Impedance and admittance two terminal"
   model Resistor "Resistor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Resistance[2] r={1,1} "resistance";
+    parameter Generic.Resistance[2] r={1,1} "resistance";
   protected
     final parameter SI.Resistance[2] R=r*Utilities.Precalculation.baseR(
           puUnits,
@@ -46,7 +46,7 @@ package Impedances "Impedance and admittance two terminal"
   model Conductor "Conductor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Conductance[2] g={1,1} "conductance";
+    parameter Generic.Conductance[2] g={1,1} "conductance";
   protected
     final parameter SI.Conductance[2] G=g/Utilities.Precalculation.baseR(
           puUnits,
@@ -87,8 +87,8 @@ package Impedances "Impedance and admittance two terminal"
   model Inductor "Inductor with series resistor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Resistance[2] r={0,0} "resistance";
-    parameter SIpu.Reactance[2, 2] x=[1, 0; 0, 1] "reactance matrix";
+    parameter Generic.Resistance[2] r={0,0} "resistance";
+    parameter Generic.Reactance[2, 2] x=[1, 0; 0, 1] "reactance matrix";
   protected
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
           puUnits,
@@ -157,8 +157,8 @@ package Impedances "Impedance and admittance two terminal"
   model Capacitor "Capacitor with parallel conductor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Conductance[2] g={0,0} "conductance";
-    parameter SIpu.Susceptance[2] b={1,1} "susceptance";
+    parameter Generic.Conductance[2] g={0,0} "conductance";
+    parameter Generic.Susceptance[2] b={1,1} "susceptance";
   protected
     final parameter Real[2] GC_base=Utilities.Precalculation.baseGC(
           puUnits,
@@ -239,7 +239,7 @@ package Impedances "Impedance and admittance two terminal"
   model Impedance "Impedance (inductive) with series resistor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Impedance z_abs=1 "impedance-value";
+    parameter Generic.Impedance z_abs=1 "impedance-value";
     parameter Real cos_phi(
       min=0,
       max=1) = 0.1 "cos-phi of impedance";
@@ -340,7 +340,7 @@ Instead of x and r the parameters z_abs and cos(phi) are used.</p>
   model Admittance "Admittance (capacitive) with parallel conductor, 1-phase"
     extends Partials.ImpedBase;
 
-    parameter SIpu.Admittance y_abs=1 "abs value of admittance";
+    parameter Generic.Admittance y_abs=1 "abs value of admittance";
     parameter Real cos_phi(
       min=0,
       max=1) = 0.1 "cos-phi of admittance";
@@ -439,8 +439,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
   model Varistor "Varistor, 1-phase"
     extends Partials.ImpedBase(final f_nom=0);
 
-    parameter SIpu.Resistance r0=100 "small voltage resistance";
-    parameter SIpu.Voltage v0=1 "saturation voltage";
+    parameter Generic.Resistance r0=100 "small voltage resistance";
+    parameter Generic.Voltage v0=1 "saturation voltage";
   protected
     final parameter Real V0=(v0*Utilities.Precalculation.baseV(puUnits, V_nom));
     final parameter Real H0=(r0*Utilities.Precalculation.baseR(

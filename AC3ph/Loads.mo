@@ -17,12 +17,12 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-98,28},{-18,-32}},
-              lineColor={176,0,0},
-              lineThickness=0.5,
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="Z")}),
+            extent={{-98,28},{-18,-32}},
+            lineColor={176,0,0},
+            lineThickness=0.5,
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="Z")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -62,7 +62,7 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
   model PQindLoad "PQ inductive load, 3-phase dq0"
     extends Partials.IndLoadBase;
 
-    parameter SIpu.Current imax(unit="1") = 2 "maximum current";
+    parameter Generic.Current imax(unit="1") = 2 "maximum current";
     parameter SI.Time tcst=0.01 "time constant Z";
   protected
     Real v2=v*v;
@@ -83,46 +83,52 @@ Consumes the desired active and reactive power independent of voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-96,36},{44,-24}},
-              lineColor={176,0,0},
-              lineThickness=0.5,
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="p   q")}),
+            extent={{-96,36},{44,-24}},
+            lineColor={176,0,0},
+            lineThickness=0.5,
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="p   q")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Rectangle(
-              extent={{-50,3},{30,-4}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-70,3},{-50,-4}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-50,20},{30,13}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-70,20},{-50,13}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-50,-13},{30,-20}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-70,-13},{-50,-20}},
-              lineColor={0,0,255},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-50,3},{30,-4}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-70,3},{-50,-4}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-50,20},{30,13}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-70,20},{-50,13}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-50,-13},{30,-20}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-70,-13},{-50,-20}},
+            lineColor={0,0,255},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}));
   end PQindLoad;
 
   model Yload "Admittance load, 3-phase dq0"
@@ -140,11 +146,11 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,28},{-20,-32}},
-              lineColor={176,0,0},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="Y")}),
+            extent={{-100,28},{-20,-32}},
+            lineColor={176,0,0},
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="Y")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -222,11 +228,11 @@ Consumes the desired active and reactive power independent of voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,36},{40,-24}},
-              lineColor={176,0,0},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="p   q")}),
+            extent={{-100,36},{40,-24}},
+            lineColor={176,0,0},
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="p   q")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -310,11 +316,11 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-80,26},{20,-34}},
-              lineColor={176,0,0},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="ZIP")}),
+            extent={{-80,26},{20,-34}},
+            lineColor={176,0,0},
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="ZIP")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -382,11 +388,11 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,26},{-20,-34}},
-              lineColor={176,0,0},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="f")}),
+            extent={{-100,26},{-20,-34}},
+            lineColor={176,0,0},
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="f")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -464,11 +470,11 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-70,28},{10,-32}},
-              lineColor={176,0,0},
-              fillColor={128,128,128},
-              fillPattern=FillPattern.Solid,
-              textString="dyn")}),
+            extent={{-70,28},{10,-32}},
+            lineColor={176,0,0},
+            fillColor={128,128,128},
+            fillPattern=FillPattern.Solid,
+            textString="dyn")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -520,10 +526,10 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
         "= true to use input signal pq_in, otherwise use parameter pq0"
         annotation (Evaluate=true,choices(checkBox=true));
 
-      parameter SIpu.Power[2] pq0(each min=0) = {sqrt(3),1}/2
+      parameter Generic.Power[2] pq0(each min=0) = {sqrt(3),1}/2
         "fixed {active, reactive} power (start value if use_pq_in)"
         annotation (Dialog(enable=not use_pq_in));
-      parameter SIpu.Resistance r_n=0 "resistance neutral to grd";
+      parameter Generic.Resistance r_n=0 "resistance neutral to grd";
       Modelica.Blocks.Interfaces.RealInput[2] pq_in(each min=0) if use_pq_in
         "desired {active, reactive} power" annotation (Placement(transformation(
             origin={0,100},
@@ -558,19 +564,19 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
-                  extent={{70,20},{76,-20}},
-                  lineColor={128,128,128},
-                  fillColor={128,128,128},
-                  fillPattern=FillPattern.Solid)}),
+              extent={{70,20},{76,-20}},
+              lineColor={128,128,128},
+              fillColor={128,128,128},
+              fillPattern=FillPattern.Solid)}),
         Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Polygon(
-                  points={{-80,-60},{-80,60},{80,0},{-80,-60}},
-                  lineColor={0,120,120},
-                  lineThickness=0.5,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}));
+              points={{-80,-60},{-80,60},{80,0},{-80,-60}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
     end LoadBase;
 
     partial model IndLoadBase "Inductive load base, 3-phase dq0"
@@ -610,11 +616,11 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Polygon(
-                  points={{-40,-45},{-40,45},{80,0},{-40,-45}},
-                  lineColor={0,120,120},
-                  lineThickness=0.5,
-                  fillColor={0,120,120},
-                  fillPattern=FillPattern.Solid)}));
+              points={{-40,-45},{-40,45},{80,0},{-40,-45}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}));
     end IndLoadBase;
 
     partial model CapLoadBase "Capacitive load base, 3-phase dq0"
@@ -651,20 +657,23 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
 "), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Polygon(
-                  points={{-40,44},{-40,-44},{-20,-36},{-20,36},{-40,44}},
-                  lineColor={0,0,255},
-                  pattern=LinePattern.None,
-                  fillColor={215,215,215},
-                  fillPattern=FillPattern.Solid),Polygon(
-                  points={{-50,48},{-50,-48},{-40,-44},{-40,44},{-50,48}},
-                  lineColor={0,120,120},
-                  fillColor={0,120,120},
-                  fillPattern=FillPattern.Solid),Polygon(
-                  points={{-20,36},{-20,-36},{-10,-33},{-10,33},{-20,36}},
-                  lineColor={0,120,120},
-                  fillColor={0,120,120},
-                  fillPattern=FillPattern.Solid)}));
+            grid={2,2}), graphics={
+            Polygon(
+              points={{-40,44},{-40,-44},{-20,-36},{-20,36},{-40,44}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),
+            Polygon(
+              points={{-50,48},{-50,-48},{-40,-44},{-40,44},{-50,48}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),
+            Polygon(
+              points={{-20,36},{-20,-36},{-10,-33},{-10,33},{-20,36}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}));
     end CapLoadBase;
 
   end Partials;
