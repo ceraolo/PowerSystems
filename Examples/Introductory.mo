@@ -5,48 +5,49 @@ package Introductory "Introductory examples for overall concepts"
   model Units "SI and pu units"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.AC3ph.Sources.Voltage voltage_SI(v0=408)
-      annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
+      annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
     PowerSystems.AC3ph.Nodes.GroundOne grdV1
-      annotation (Placement(transformation(extent={{-70,20},{-90,40}})));
+      annotation (Placement(transformation(extent={{-70,10},{-90,30}})));
     PowerSystems.AC3ph.Sources.Voltage voltage_pu(V_nom=400, v0=1.02)
-      annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
+      annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grdV2
-      annotation (Placement(transformation(extent={{-70,-40},{-90,-20}})));
+      annotation (Placement(transformation(extent={{-70,-30},{-90,-10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_SI
-      annotation (Placement(transformation(extent={{-20,20},{0,40}})));
+      annotation (Placement(transformation(extent={{-20,10},{0,30}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_pu(V_nom=400, S_nom=10e3)
-      annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+      annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
     PowerSystems.AC3ph.Impedances.Resistor load_SI(r=20)
-      annotation (Placement(transformation(extent={{20,20},{40,40}})));
+      annotation (Placement(transformation(extent={{20,10},{40,30}})));
     PowerSystems.AC3ph.Impedances.Resistor load_pu(
       V_nom=400,
       S_nom=10e3,
-      r=1.25) annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
+      r=1.25) annotation (Placement(transformation(extent={{20,-30},{40,-10}})));
     PowerSystems.AC3ph.Nodes.Ground grd1
-      annotation (Placement(transformation(extent={{50,20},{70,40}})));
+      annotation (Placement(transformation(extent={{50,10},{70,30}})));
     PowerSystems.AC3ph.Nodes.Ground grd2
-      annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
+      annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
 
   equation
     connect(voltage_SI.term, meter_SI.term_p)
-      annotation (Line(points={{-40,30},{-20,30}}, color={0,130,175}));
+      annotation (Line(points={{-40,20},{-20,20}}, color={0,130,175}));
     connect(meter_SI.term_n, load_SI.term_p)
-      annotation (Line(points={{0,30},{20,30}}, color={0,130,175}));
+      annotation (Line(points={{0,20},{20,20}}, color={0,130,175}));
     connect(load_SI.term_n, grd1.term)
-      annotation (Line(points={{40,30},{50,30}}, color={0,130,175}));
+      annotation (Line(points={{40,20},{50,20}}, color={0,130,175}));
     connect(voltage_pu.term, meter_pu.term_p)
-      annotation (Line(points={{-40,-30},{-20,-30}}, color={0,130,175}));
+      annotation (Line(points={{-40,-20},{-20,-20}}, color={0,130,175}));
     connect(meter_pu.term_n, load_pu.term_p)
-      annotation (Line(points={{0,-30},{20,-30}}, color={0,130,175}));
+      annotation (Line(points={{0,-20},{20,-20}}, color={0,130,175}));
     connect(load_pu.term_n, grd2.term)
-      annotation (Line(points={{40,-30},{50,-30}}, color={0,130,175}));
+      annotation (Line(points={{40,-20},{50,-20}}, color={0,130,175}));
     connect(grdV1.term, voltage_SI.neutral)
-      annotation (Line(points={{-70,30},{-60,30}}, color={0,0,255}));
+      annotation (Line(points={{-70,20},{-60,20}}, color={0,0,255}));
     connect(grdV2.term, voltage_pu.neutral)
-      annotation (Line(points={{-70,-30},{-60,-30}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-70,-20},{-60,-20}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>This example shows, how input-parameters can be defined in SI- or in pu-units (V, A or 'per unit').<br>
 Values are scaled with the respective nominal values. Parameters are scaled if 'puUnits = true'.
 <pre>
@@ -83,13 +84,16 @@ Quantities in 'meter_pu' are displayed in pu.</p>
 </pre>
 and other meter-signals.</p>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=0.1));
+</html>"),
+      experiment(StopTime=0.1),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Units;
 
   model Frequency "System and autonomous frequency"
 
     inner PowerSystems.System system(f_nom=60, refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
     PowerSystems.Blocks.Signals.TransientFreq theta_dq0(f_end=50, f_start=10)
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage1(v0eff=230)
@@ -128,7 +132,8 @@ and other meter-signals.</p>
       annotation (Line(points={{-50,-30},{-40,-30}}, color={0,0,255}));
     connect(theta_dq0.y, voltage2.omega_in) annotation (Line(points={{-60,-10},
             {-36,-10},{-36,-20}}, color={0,0,127}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>Example of two frequency-independent parts, one with system- and one with autonomous frequency.</p>
 <p>The input 'omega_in' of voltage2 is connected to a signal source and the parameter <tt>fType</tt> is set to <tt>\"Signal\"</tt>. The source delivers an angular frequency <tt>omega</tt> which is independent of the actual system frequency.</p>
 <p>Note: the 'dynType'-parameter in 'system' only influences AC3ph components.</p>
@@ -139,37 +144,41 @@ and other meter-signals.</p>
   meter2     v and i-signal, variable frequency (10 to 50 Hz)
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=1, Interval=1e-3));
+</html>"),
+      experiment(StopTime=1, Interval=1e-3),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end Frequency;
 
   model ReferenceInertial "Inertial reference system (non rotating)"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial,
         refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.Voltage voltage_dq0(V_nom=400, v0=1.02)
-      annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
+      annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
     PowerSystems.AC3ph.Nodes.GroundOne grdV_dq0
-      annotation (Placement(transformation(extent={{-70,-40},{-90,-20}})));
+      annotation (Placement(transformation(extent={{-70,-20},{-90,0}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_dq0(V_nom=400, S_nom=10e3)
-      annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+      annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
     PowerSystems.AC3ph.Impedances.Inductor load_dq0(
       V_nom=400,
       S_nom=10e3,
-      r=0.1) annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
+      r=0.1) annotation (Placement(transformation(extent={{20,-20},{40,0}})));
     PowerSystems.AC3ph.Nodes.Ground grd_dq0
-      annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
+      annotation (Placement(transformation(extent={{50,-20},{70,0}})));
 
   equation
     connect(voltage_dq0.term, meter_dq0.term_p)
-      annotation (Line(points={{-40,-30},{-20,-30}}, color={0,120,120}));
+      annotation (Line(points={{-40,-10},{-20,-10}}, color={0,120,120}));
     connect(meter_dq0.term_n, load_dq0.term_p)
-      annotation (Line(points={{0,-30},{20,-30}}, color={0,120,120}));
+      annotation (Line(points={{0,-10},{20,-10}}, color={0,120,120}));
     connect(load_dq0.term_n, grd_dq0.term)
-      annotation (Line(points={{40,-30},{50,-30}}, color={0,120,120}));
+      annotation (Line(points={{40,-10},{50,-10}}, color={0,120,120}));
     connect(grdV_dq0.term, voltage_dq0.neutral)
-      annotation (Line(points={{-70,-30},{-60,-30}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-70,-10},{-60,-10}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>This example shows a system in the inertial, non rotating reference frame (<tt>refType=Inertial</tt>).
 Signals oscillate with the source frequency.</p>
 <p>
@@ -178,39 +187,43 @@ Signals oscillate with the source frequency.</p>
   meter_dq0.i     standard notation: 'alpha beta gamma'-system
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=0.1, Interval=0.1e-3));
+</html>"),
+      experiment(StopTime=0.1, Interval=0.1e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ReferenceInertial;
 
   model ReferenceSynchron "Synchronous reference system (rotating)"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
     PowerSystems.AC3ph.Sources.Voltage voltage_dq0(V_nom=400, v0=1.02)
-      annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
+      annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grdV_dq0
-      annotation (Placement(transformation(extent={{-70,-40},{-90,-20}})));
+      annotation (Placement(transformation(extent={{-70,-30},{-90,-10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_dq0(
       V_nom=400,
       S_nom=10e3,
       abc=true)
-      annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+      annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
     PowerSystems.AC3ph.Impedances.Inductor load_dq0(
       V_nom=400,
       S_nom=10e3,
-      r=0.1) annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
+      r=0.1) annotation (Placement(transformation(extent={{20,-30},{40,-10}})));
     PowerSystems.AC3ph.Nodes.Ground grd_dq0
-      annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
+      annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
 
   equation
     connect(voltage_dq0.term, meter_dq0.term_p)
-      annotation (Line(points={{-40,-30},{-20,-30}}, color={0,120,120}));
+      annotation (Line(points={{-40,-20},{-20,-20}}, color={0,120,120}));
     connect(meter_dq0.term_n, load_dq0.term_p)
-      annotation (Line(points={{0,-30},{20,-30}}, color={0,120,120}));
+      annotation (Line(points={{0,-20},{20,-20}}, color={0,120,120}));
     connect(load_dq0.term_n, grd_dq0.term)
-      annotation (Line(points={{40,-30},{50,-30}}, color={0,120,120}));
+      annotation (Line(points={{40,-20},{50,-20}}, color={0,120,120}));
     connect(grdV_dq0.term, voltage_dq0.neutral)
-      annotation (Line(points={{-70,-30},{-60,-30}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-70,-20},{-60,-20}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>This example shows a system in the synchronous, rotating reference frame (<tt>refType=Synchron</tt>).
 Stationary signals are constant after an initial oscillation.</p>
 <p>
@@ -220,39 +233,43 @@ Stationary signals are constant after an initial oscillation.</p>
 </pre>
 <p>Compare with <tt>meter_dq0.i_abc</tt>, showing oscillating stationary signals.</p><br>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=0.1, Interval=0.1e-3));
+</html>"),
+      experiment(StopTime=0.1, Interval=0.1e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,20}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,20}})));
   end ReferenceSynchron;
 
   model InitialSteadyState "Steady-state initialisation"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
     PowerSystems.AC3ph.Sources.Voltage voltage_dq0(V_nom=400, v0=1.02)
-      annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
+      annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grdV_dq0
-      annotation (Placement(transformation(extent={{-70,-40},{-90,-20}})));
+      annotation (Placement(transformation(extent={{-70,-30},{-90,-10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_dq0(
       V_nom=400,
       S_nom=10e3,
       abc=true)
-      annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+      annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
     PowerSystems.AC3ph.Impedances.Inductor load_dq0(
       V_nom=400,
       S_nom=10e3,
-      r=0.1) annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
+      r=0.1) annotation (Placement(transformation(extent={{20,-30},{40,-10}})));
     PowerSystems.AC3ph.Nodes.Ground grd_dq0
-      annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
+      annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
 
   equation
     connect(voltage_dq0.term, meter_dq0.term_p)
-      annotation (Line(points={{-40,-30},{-20,-30}}, color={0,120,120}));
+      annotation (Line(points={{-40,-20},{-20,-20}}, color={0,120,120}));
     connect(meter_dq0.term_n, load_dq0.term_p)
-      annotation (Line(points={{0,-30},{20,-30}}, color={0,120,120}));
+      annotation (Line(points={{0,-20},{20,-20}}, color={0,120,120}));
     connect(load_dq0.term_n, grd_dq0.term)
-      annotation (Line(points={{40,-30},{50,-30}}, color={0,120,120}));
+      annotation (Line(points={{40,-20},{50,-20}}, color={0,120,120}));
     connect(grdV_dq0.term, voltage_dq0.neutral)
-      annotation (Line(points={{-70,-30},{-60,-30}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+      annotation (Line(points={{-70,-20},{-60,-20}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
 <p>With 'system.dynType = SteadyInitial' (using the steady-state initial conditions) no inrush is observed as in the previous two examples. The solution is steady-state from the beginning.</p>
 <p>The example illustrates the choice <tt>refType=Inertial</tt>, but is valid for other choices too.</p>
 <p>
@@ -261,7 +278,10 @@ Stationary signals are constant after an initial oscillation.</p>
   meter_dq0.i_abc
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=0.1, Interval=0.1e-3));
+</html>"),
+      experiment(StopTime=0.1, Interval=0.1e-3),
+      Diagram(coordinateSystem(extent={{-100,-40},{100,20}})),
+      Icon(coordinateSystem(extent={{-100,-40},{100,20}})));
   end InitialSteadyState;
 
   model SimulationFixedInitial
@@ -404,7 +424,7 @@ and other meter-signals.</p>
   model Display "Display of phasors and power"
 
     inner PowerSystems.System system(f=50)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       a_end=1.2,
       ph_start=-pi,
@@ -467,7 +487,8 @@ and other meter-signals.</p>
       annotation (Line(points={{-80,0},{-70,0}}, color={0,0,255}));
     connect(voltageR.neutral, grdV2.term)
       annotation (Line(points={{80,40},{90,40}}, color={0,0,255}));
-    annotation (Documentation(info="<html>
+    annotation (
+      Documentation(info="<html>
 <p>The example shows the use of a display element for voltage and current 'phasors' with additional power bars.</p>
 <p>The phase of 'voltageL' moves in positive sense with increasing amplitude.<br>
 Inductive current (blue) is behind, capacitive ahead of voltage (red).</p>
@@ -476,7 +497,10 @@ The left bar (green) displays the active power,<br>
 the right bar (violet) displays the reactive power.<br>
 An additional arrow indicates the direction of active power flow.</p>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>"), experiment(StopTime=30, Interval=0.02));
+</html>"),
+      experiment(StopTime=30, Interval=0.02),
+      Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end Display;
 
   model Tables "Using tables"
