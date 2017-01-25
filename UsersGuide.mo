@@ -11,7 +11,7 @@ package UsersGuide "User's Guide"
 <p><b>2) Models that are available under the &QUOT;AC1ph_DC&QUOT; package</b>. These models allow time-domain simulations of singhe-phase systems, with shape of current and voltage that can be arbitrary: no need to have sines. possibly containing DC components and non-sinusoidal voltages and currents. They are somewhat similar to the models included in Modelica.Electric.Analog, but they are written having electric power engineer in mind.</p>
 <p><b>3) Models that are available under the &QUOT;AC3ph&QUOT; package</b>. These models take advantage of the DQ0 transform (Power-invariant Parks&apos;s transform). In this way, when vurrents and voltages are balanged (the three quantities are wines which are equal in amplitude and equallyspaced in phases) the correspoding DQ0 components then a system operates with balanc</p>
 <p><b>4)</b> <b>Models that are available under the &QUOT;PowerWorld&QUOT; package</b>. The electric models used here are taken from the &QUOT;Generic&QUOT; package. They are completed with specific components that make it easier to simulate large systems based on the Generic Package.</p>
-<p><br><h4>THE UNITS OF MEASURE</h4></p>
+<h4>THE UNITS OF MEASURE</h4>
 <p>The so-called p.u. (or PU) System is largely used in Power System analysis, and in power system components databases. In short it consists in using units of measure of quantities (currents, voltages, powers, etc.) that are not those of the S.I, or any other general system, but are specific to the problem considered. If ron instance We have a problem in qhich the majority of voltages are around 230 V (230 times a volt), the unit of measure chosen might be 230 V. In such a way a voltage equal to 1.1 PU simply means 1.1 times the reference times, in turn 230 V.</p>
 <p>The PU system is very largely used by power System Engineers, because of advantages that are descussed in any book of Power System Analysis.</p>
 <p>In the Power System Library there is always a choice, for both input and output quantities, between PU or SI; tt is important to note, however, that that PU is only used for parameterization and for sensors. All internal variables are S.I. and phase systems define as the standard display unit kV. </p>
@@ -74,63 +74,6 @@ package UsersGuide "User's Guide"
 <p>This a very important advantage of the DQ0 approach adopted. </p>
 <p>When in the System menu the option &ldquo;FixedInitial&rdquo; is chosen, simulation starts with fixed initial conditions. Default values for line currents are zero. </p>
 <p><span style=\"color: #ff0000;\">When I wrote these notes I was not able to change these defaults, and therefore I cannot explain how to do this (M. Ceraolo)</span> </p>
-<p><br>*****************************************************************************************************</p>
-<p><br><span style=\"color: #ee2e2f;\">THE FOLLOWING PART IS UNTOUCHED, TO BE POSSIBLY REVISED BY FRANKE</span></p>
-<p>PowerSystems combines a generic concept for the modeling of electrical power systems at different levels of detail with the extensive component models of the former SPOT library. </p>
-<p>PowerSystems uses replaceable PhaseSystems to define the voltage and current variables as well as optional supporting reference angles in the connectors. The aim is to have different single and polyphase systems and different mathematical formulations in one framework. In particular this shall cover systems like: </p>
-<ul>
-<li>AC power systems, including dc power flow, steady-state, transient, and unsymmetric,</li>
-<li>Variable frequency systems, e.g. in wind turbines or for drive control, and </li>
-<li>DC power systems, like HVDC </li>
-</ul>
-<p>A general terminal for electrical power systems can be defined as:</p>
-<pre>connector Terminal &QUOT;General power terminal&QUOT;
-  replaceable package PhaseSystem = PhaseSystems.PartialPhaseSystem &QUOT;Phase system&QUOT;;
-  PhaseSystem.Voltage v[PhaseSystem.n] &QUOT;voltage vector&QUOT;;
-  flow PhaseSystem.Current i[PhaseSystem.n] &QUOT;current vector&QUOT;;
-  PhaseSystem.ReferenceAngle theta[PhaseSystem.m] &QUOT;optional vector of phase angles&QUOT;;
-end Terminal;</pre>
-<p>The replaceable PhaseSystem defines the number <code><b>n</b></code> of independent voltage and current components and their representation in the connector. Moreover it defines types for the physical quantities so that terminals of different phase systems cannot be directly connected. </p>
-<p>The vector of reference angles <code><b>theta[m]</b></code> allows the definition of a rotating reference system for the description of AC systems with modal components. It is known from the Spot library that this enables the treatment of modal quantities in the time domain, covering transient and unsymmetric systems as well. </p>
-<p>The power Terminal is overdetermined with the reference angles though. The operators Connections.root, Connections.potentialRoot, Connections.isRoot and Connections.branch are used for their implementation. A Modelica tool needs to analyze connection graphs and eliminate redundant equations. </p>
-<p>The following table summarizes the PhaseSystems that are predefined in the PowerSystems library: </p>
-<table cellspacing=\"0\" cellpadding=\"1\" border=\"1\"><tr>
-<td><p align=\"center\"><h4>PhaseSystem</h4></p></td>
-<td><p align=\"center\"><h4>n</h4></p></td>
-<td><p align=\"center\"><h4>m</h4></p></td>
-<td><p align=\"center\"><h4>Comment</h4></p></td>
-</tr>
-<tr>
-<td><p>DirectCurrent</p></td>
-<td><p>1</p></td>
-<td><p>0</p></td>
-<td><p>One voltage and one current component in natural coordinates</p></td>
-</tr>
-<tr>
-<td><p>TwoConductor</p></td>
-<td><p>2</p></td>
-<td><p>0</p></td>
-<td><p>Two voltage and two current components for Spot AC1ph_DC components</p></td>
-</tr>
-<tr>
-<td><p>ThreePhase_d</p></td>
-<td><p>1</p></td>
-<td><p>0</p></td>
-<td><p>One modal component for active power &mdash; like DirectCurrent, but converting voltage values to three phase</p></td>
-</tr>
-<tr>
-<td><p>ThreePhase_dq</p></td>
-<td><p>2</p></td>
-<td><p>1</p></td>
-<td><p>Two modal components for active and reactive power; one reference angle for frequency &mdash; cf. complex phasors with variable frequency</p></td>
-</tr>
-<tr>
-<td><p>ThreePhase_dq0</p></td>
-<td><p>3</p></td>
-<td><p>2</p></td>
-<td><p>Three modal components for active, reactive and dc power; two reference angles for Spot dq0 components</p></td>
-</tr>
-</table>
 </html>"));
   end ShortGuide;
   extends Modelica.Icons.Information;
