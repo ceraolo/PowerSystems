@@ -221,8 +221,7 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
 <p> Voltage limiter with hyperbolic tangent characteristic.</p>
 <p> More info see package AC1ph_DC.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

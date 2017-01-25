@@ -21,8 +21,7 @@ package ImpedancesYD
       Documentation(info="<html>
 <p>Info see package ACdq0.ImpedancesYD.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -307,10 +306,10 @@ package ImpedancesYD
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end Capacitor;
 
   model ResistorNonSym "Resistor non symmetric, 3-phase dq0"
@@ -518,8 +517,7 @@ Use only if 'non symmetric' is really desired because this component needs a tim
 <p>No phase to phase capacitance.</p>
 <p> More info see package ACdq0.ImpedancesYD.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -595,10 +593,10 @@ Use only if 'non symmetric' is really desired because this component needs a tim
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end CapacitorNonSym;
 
   model Varistor "Varistor, 3-phase dq0"
@@ -625,8 +623,7 @@ Use only if 'non symmetric' is really desired because this component needs a tim
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package ACdq0.ImpedancesYD.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

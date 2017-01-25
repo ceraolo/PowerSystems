@@ -46,8 +46,7 @@ package PhaseModules "Phase modules"
       Documentation(info="<html>
 <p>Diode-module for passive AC-DC rectifiers.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -130,8 +129,7 @@ package PhaseModules "Phase modules"
 </pre>
 for all times.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{30,46},{30,-48}}, color={0,0,255}),

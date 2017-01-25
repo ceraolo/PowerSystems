@@ -21,8 +21,7 @@ package Sensors "Sensors and meters 3-phase"
       defaultComponentName="Vsensor1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -188,7 +187,7 @@ package Sensors "Sensors and meters 3-phase"
     output SIpu.Voltage[PS.n] v(each stateSelect=StateSelect.never);
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=
       transpose(Park)*v if abc;
     output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) = {v_abc[
       2],v_abc[3],v_abc[1]} - {v_abc[3],v_abc[1],v_abc[2]} if abc;
@@ -240,7 +239,7 @@ As they use time-dependent coordinate transforms, use them only when and where n
 
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=
       transpose(Park)*i if abc;
 
     output SIpu.Current i_norm(stateSelect=StateSelect.never);
@@ -269,8 +268,7 @@ As they use time-dependent coordinate transforms, use them only when and where n
   alpha_i    phase(i)
 </pre>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-15,50},{15,64}}, color={135,135,
@@ -353,11 +351,11 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=
       transpose(Park)*v if abc;
-    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) =
+    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never)=
       v2vpp_abc(transpose(Park)*v) if abc;
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=
       transpose(Park)*i if abc;
 
     output SIpu.Voltage v_norm(stateSelect=StateSelect.never);
@@ -508,8 +506,7 @@ negative values of eta indicate powerflow against direction of arrow.</p>
 <p>Note: Take care about the above definitions if approximations are used in measured components.<br>
 In problematic cases use power sensors electrical and mechanical.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(

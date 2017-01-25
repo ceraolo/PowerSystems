@@ -51,8 +51,7 @@ Alternatively one can look at a variation of amplitude ratios.</p>
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=60),
+"),   experiment(StopTime=60),
       Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end PowerTransfer;
@@ -220,8 +219,7 @@ Compare with PIline.</p>
 <pre>  meter.p[1:2]     active and reactive power</pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1),
+"),   experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end RXline;
@@ -288,8 +286,7 @@ Compare with RXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1, Interval=2.5e-5),
+"),   experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end Tline;
@@ -360,8 +357,7 @@ Compare with FaultPIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1),
+"),   experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultRXline;
@@ -377,8 +373,8 @@ Compare with FaultPIline.</p>
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC3ph.Breakers.Breaker breaker1(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data
-        = PowerSystems.AC3ph.Lines.Parameters.Line (
+    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data =
+          PowerSystems.AC3ph.Lines.Parameters.Line (
           V_nom=400e3,
           x=0.25e-3,
           r=0.02e-3))
@@ -433,8 +429,7 @@ Compare with FaultRXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1, Interval=2.5e-5),
+"),   experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultTline;
@@ -519,8 +514,7 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.5, Interval=2.5e-5),
+"),   experiment(StopTime=0.5, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXline;
@@ -708,8 +702,7 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.5),
+"),   experiment(StopTime=0.5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXlineTG;

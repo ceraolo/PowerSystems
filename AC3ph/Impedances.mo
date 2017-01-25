@@ -367,8 +367,7 @@ Instead of x_s, x_m, and r the parameters z_abs, cos(phi), and x_o are used.</p>
 </pre>
 <p> More info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -476,8 +475,7 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>No phase to phase capacitance.</p>
 <p> More info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -872,8 +870,7 @@ a time dependent transform of the coefficient matrix.</p>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -938,8 +935,8 @@ a time dependent transform of the coefficient matrix.</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-80,50},{-60,50}}, color={0,0,
-              255}),Line(points={{-80,0},{-60,0}}, color={0,0,255}),Line(points
-              ={{-80,-50},{-60,-50}}, color={0,0,255}),Line(points={{60,50},{80,
+              255}),Line(points={{-80,0},{-60,0}}, color={0,0,255}),Line(points=
+               {{-80,-50},{-60,-50}}, color={0,0,255}),Line(points={{60,50},{80,
               50}}, color={0,0,255}),Line(points={{60,0},{80,0}}, color={0,0,
               255}),Line(points={{60,-50},{80,-50}}, color={0,0,255})}));
     end ImpedBase;

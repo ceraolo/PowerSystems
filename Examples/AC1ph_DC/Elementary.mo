@@ -80,8 +80,8 @@ package Elementary "AC 1-phase and DC components"
           PowerSystems.AC1ph_DC.Lines.Parameters.RXline (V_nom=10e3, S_nom=1e6))
       annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter(V_nom=10e3, S_nom=1e6)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation
-            =90)));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation=
+             90)));
     replaceable PowerSystems.AC1ph_DC.Faults.Fault_Ab fault_Ab
       annotation (Placement(transformation(extent={{-10,30},{10,50}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
@@ -114,8 +114,7 @@ package Elementary "AC 1-phase and DC components"
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=1e-4),
+"),   experiment(StopTime=0.2, Interval=1e-4),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end Fault;
@@ -247,8 +246,8 @@ package Elementary "AC 1-phase and DC components"
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage1(V_nom=20e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
-    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data
-        = PowerSystems.Examples.Data.Transformers.TrafoStray1ph (
+    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data =
+          PowerSystems.Examples.Data.Transformers.TrafoStray1ph (
           V_nom={20e3,132e3},
           S_nom=100e6,
           f_nom=50))
@@ -457,8 +456,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1),
+"),   experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Machines;
@@ -492,8 +490,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=2.7e-4),
+"),   experiment(StopTime=0.2, Interval=2.7e-4),
       Diagram(coordinateSystem(extent={{-100,-20},{80,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{80,60}})));
   end Sensor;
@@ -523,8 +520,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=2.7e-4),
+"),   experiment(StopTime=0.2, Interval=2.7e-4),
       Diagram(coordinateSystem(extent={{-60,-20},{80,60}})),
       Icon(coordinateSystem(extent={{-60,-20},{80,60}})));
   end Source;
@@ -589,8 +585,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=3, Interval=4e-4),
+"),   experiment(StopTime=3, Interval=4e-4),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Transformer;
@@ -644,8 +639,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=0.2e-3),
+"),   experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Rectifier;
@@ -705,8 +699,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=0.2e-3),
+"),   experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Inverter;

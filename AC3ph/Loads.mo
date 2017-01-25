@@ -198,10 +198,10 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end Yload;
 
   model PQcapLoad "PQ capacitive load, 3-phase dq0"
@@ -280,10 +280,10 @@ Consumes the desired active and reactive power independent of voltage.</p>
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end PQcapLoad;
 
   model ZIPload "ZIP inductive load, 3-phase dq0"

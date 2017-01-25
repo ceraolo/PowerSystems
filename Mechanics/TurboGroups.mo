@@ -47,8 +47,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -141,8 +140,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -280,8 +278,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -494,8 +491,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -572,8 +568,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -657,8 +652,7 @@ No pole pair reduction of equations of motion is performed.<br>
 Therefore phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -728,8 +722,7 @@ It does neither contain thermal nor hydraulic forces, but it may be replaced by 
 torque control for speed &lt;  speed_thr (speed threshold)
 <pre>  speed_thr*torq = power</pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -801,8 +794,7 @@ torque control for speed &lt;  speed_thr (speed threshold)
       Documentation(info="<html>
 <p>This is a default model. The torque is directly determined by the pu torque-signal. It does not contain aerodynamic forces, but it may be replaced by appropriate physical models.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

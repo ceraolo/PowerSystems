@@ -30,8 +30,8 @@ type SystemFrequency = enumeration(
 type ReferenceFrame = enumeration(
     Synchron "Synchronously rotating",
     Inertial "Inertial (signals oscillate)")
-  "Options for specification of reference frame" annotation (Documentation(info
-      ="<html>
+  "Options for specification of reference frame" annotation (Documentation(info=
+       "<html>
 <p><pre>
   Synchron: synchronously rotating (stationary signals are constant)
   Inertial: inertial (stationary signals are oscillating)
@@ -77,12 +77,12 @@ type ReferenceAngle "Reference angle"
     input ReferenceAngle theta1[:];
     input ReferenceAngle theta2[:];
     output Real[0] residue "No constraints";
-    algorithm
+  algorithm
     for i in 1:size(theta1, 1) loop
       assert(abs(theta1[i] - theta2[i]) < Modelica.Constants.eps,
         "angles theta1 and theta2 not equal over connection!");
     end for;
-    end equalityConstraint;
+  end equalityConstraint;
 
   annotation (Documentation(info="<html>
 <p>Type ReferenceAngle specifies the variable-type that contains relative frequency and angular orientation of a rotating electrical reference system.
@@ -95,7 +95,7 @@ In the case of three phase AC models we have:</p>
   der(theta[1] + theta[2])  absolute frequency
 </pre>
 </html>"));
-  end ReferenceAngle;
+end ReferenceAngle;
 
 type Color = Integer[3] (each min=0, each max=255) "RGB color" annotation (
     choices(

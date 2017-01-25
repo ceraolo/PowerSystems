@@ -7,7 +7,7 @@ package Elementary "AC 3-phase components dq0"
     inner PowerSystems.System system
       annotation (Placement(transformation(extent={{-20,20},{0,40}})));
     PowerSystems.AC3ph.Nodes.Ground grd2
-      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+      annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC3ph.Sources.Voltage voltage(V_nom=10e3, use_vPhasor_in=true)
@@ -41,7 +41,7 @@ package Elementary "AC 3-phase components dq0"
     connect(meter.term_n, breaker.term_p)
       annotation (Line(points={{10,0},{40,0}}, color={0,110,110}));
     connect(breaker.term_n, grd2.term)
-      annotation (Line(points={{60,0},{90,0}}, color={0,110,110}));
+      annotation (Line(points={{60,0},{80,0}}, color={0,110,110}));
     connect(grd1.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     annotation (

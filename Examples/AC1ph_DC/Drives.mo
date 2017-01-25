@@ -59,8 +59,7 @@ package Drives "DC drives"
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=60),
+"),   experiment(StopTime=60),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end DCmotor_ser;
@@ -186,8 +185,7 @@ package Drives "DC drives"
 <p>See also example DCcharSpeed.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=3),
+"),   experiment(StopTime=3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end DCmotor_pm;
@@ -263,8 +261,7 @@ package Drives "DC drives"
 <p>See also example BLDCcharSpeed.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=3, Tolerance=1e-005),
+"),   experiment(StopTime=3, Tolerance=1e-005),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end BLDC;

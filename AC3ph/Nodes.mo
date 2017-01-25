@@ -12,8 +12,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Zero voltage on all phases of terminal.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -49,8 +48,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Zero voltage on terminal.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -268,8 +266,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -319,8 +316,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -397,8 +393,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-80,0},{-40,0}}, color={0,100,
@@ -484,8 +479,7 @@ package Nodes "Nodes and adaptors"
       Documentation(info="<html>
 <p>Can be used for grounding neutral of AC dq0 3phase components.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-80,0},{-40,0}}, color={0,100,
@@ -525,8 +519,8 @@ package Nodes "Nodes and adaptors"
               lineColor={128,128,128},
               lineThickness=0.5,
               fillColor={128,128,128},
-              fillPattern=FillPattern.Solid),Line(points={{70,0},{88,0}}, color
-            ={0,0,255}),Ellipse(
+              fillPattern=FillPattern.Solid),Line(points={{70,0},{88,0}}, color=
+             {0,0,255}),Ellipse(
               extent={{59,2},{63,-2}},
               lineColor={0,0,255},
               fillColor={0,0,255},

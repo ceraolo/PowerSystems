@@ -14,8 +14,7 @@ package Ports "Strandard electric ports"
       Documentation(info="<html>
 <p>Electric connector with a vector of 'pin's, positive.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(

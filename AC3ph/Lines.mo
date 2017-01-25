@@ -129,8 +129,7 @@ package Lines "Transmission lines 3-phase"
       Documentation(info="<html>
 <p>Transmission line modelled as concentrated RX-impedance.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -368,8 +367,8 @@ The minimum of ne is 1.</p>
             Line(
               points={{42,0},{82,0}},
               color={0,0,255},
-              pattern=LinePattern.Dot),Line(points={{-30,-18},{-20,-18}}, color
-            ={0,0,255}),Line(points={{12,-18},{84,-18}}, color={0,0,255}),Line(
+              pattern=LinePattern.Dot),Line(points={{-30,-18},{-20,-18}}, color=
+             {0,0,255}),Line(points={{12,-18},{84,-18}}, color={0,0,255}),Line(
             points={{31,12},{31,18}}, color={0,0,255}),Line(points={{31,-18},{
             31,-12}}, color={0,0,255}),Line(points={{31,7},{31,-7}}, color={0,0,
             255}),Line(points={{51,18},{51,2}}, color={0,0,255}),Line(points={{
@@ -434,8 +433,8 @@ The minimum of ne is 1.</p>
               extent={{-8,-26},{14,-28}},
               lineColor={175,175,175},
               fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Line(points={{78,0},{84,0}}, color
-            ={0,0,255}),Rectangle(
+              fillPattern=FillPattern.Solid),Line(points={{78,0},{84,0}}, color=
+             {0,0,255}),Rectangle(
               extent={{-76,13},{-66,11}},
               lineColor={0,0,255},
               fillColor={0,0,255},
@@ -478,8 +477,8 @@ The minimum of ne is 1.</p>
             color={0,0,255}),Line(
               points={{-60,0},{-16,0}},
               color={0,0,255},
-              pattern=LinePattern.Dot),Line(points={{-84,-18},{-16,-18}}, color
-            ={0,0,255}),Line(points={{-71,12},{-71,18}}, color={0,0,255}),Line(
+              pattern=LinePattern.Dot),Line(points={{-84,-18},{-16,-18}}, color=
+             {0,0,255}),Line(points={{-71,12},{-71,18}}, color={0,0,255}),Line(
             points={{-71,-18},{-71,-12}}, color={0,0,255}),Line(points={{-71,7},
             {-71,-7}}, color={0,0,255}),Line(points={{-51,18},{-51,2}}, color={
             0,0,255}),Line(points={{-51,-2},{-51,-18}}, color={0,0,255}),Line(
@@ -908,8 +907,7 @@ The set of equations of two series connected lines of length len1 and len2 is id
 <p>The fault is at relative length <tt>p(0&lt; p&lt; 1)</tt>:<br>
 <pre>  p*len = distance to fault from terminal term_p</pre>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={

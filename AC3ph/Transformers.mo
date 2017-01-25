@@ -244,8 +244,7 @@ Delta topology: impedance is defined as winding-impedance (see info package Tran
 <pre>  R_nom[k] = V_nom[k]^2/S_nom,  k = 1(primary), 2(secondary)</pre>
 <p>Saturation needs high-precision integration!</p>
 </html>
-"),
-      Diagram(coordinateSystem(
+"),   Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(

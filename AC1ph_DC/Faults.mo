@@ -16,8 +16,7 @@ package Faults "Line-faults "
 <p>This all-phase short to ground acts directly on the non-transformed variables v and i.<br>
 The transformation to inertial abc is only needed to determine the correct phase-angle.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -47,8 +46,7 @@ The transformation to inertial abc is only needed to determine the correct phase
       Documentation(info="<html>
 <p>Connect to 'fault'-terminal of faulted line.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -70,8 +68,7 @@ The transformation to inertial abc is only needed to determine the correct phase
       Documentation(info="<html>
 <p>Connect to 'fault'-terminal of faulted line.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -93,8 +90,7 @@ The transformation to inertial abc is only needed to determine the correct phase
       Documentation(info="<html>
 <p>Connect to 'fault'-terminal of faulted line.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -116,8 +112,7 @@ The transformation to inertial abc is only needed to determine the correct phase
       Documentation(info="<html>
 <p>Connect to 'fault'-terminal of faulted line.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -139,8 +134,7 @@ The transformation to inertial abc is only needed to determine the correct phase
       Documentation(info="<html>
 <p>Connect to 'fault'-terminal of faulted line.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
