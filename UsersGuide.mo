@@ -222,7 +222,7 @@ package UsersGuide "User's Guide"
 <p>The User&apos;s guide is composed by a &QUOT;<b>ShortGuide</b>&QUOT; and &QUOT;<b>Examples</b>&QUOT;.</p>
 <p>The <u>ShortGuide</u> package contains very basic information that is higly recommended to any new user of the library.</p>
 <p>To get more detailed info the following scientific papers are recommended:</p>
-<p>1) <a href=\"https://www.modelica.org/events/modelica2014/proceedings/html/submissions/ECP14096515_FrankeWiesmann.pdf\">Bachmann, Wiesmann: Adcanced Modeling of Electromagnetic Transients in Power Systems -- Modelica Workshop 2000 Proceedings, pp93-97</a>.</p>
+<p>1) <a href=\"https://www.modelica.org/events/modelica2014/proceedings/html/submissions/ECP14096515_FrankeWiesmann.pdf\">Bachmann, Wiesmann: Advanced Modeling of Electromagnetic Transients in Power Systems -- Modelica Workshop 2000 Proceedings, pp93-97</a>.</p>
 <p>2) <a href=\"https://www.modelica.org/events/modelica2014/proceedings/html/submissions/ECP14096515_FrankeWiesmann.pdf\">Franke, Wiesmann: Flexible modeling of electrical power systems -- the Modelica PowerSystems library, Modelica conference 2014</a>.</p>
 <p><br>The <u>Examples</u> package of the user&apos;s guide supplies very simple examples that are intended to operate as a &QUOT;hands-on&QUOT; tutorial to the user to understand the library basic concepts.</p>
 </html>"));
