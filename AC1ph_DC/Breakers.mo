@@ -232,8 +232,8 @@ with
               thickness=0.5),Line(
               points={{-12,-30},{12,-40}},
               color={0,0,255},
-              pattern=LinePattern.Dot),Line(points={{-80,-30},{-30,-30}}, color=
-             {0,0,255}),Line(points={{80,34},{50,34},{50,-20},{30,-20}}, color=
+              pattern=LinePattern.Dot),Line(points={{-80,-30},{-30,-30}}, color
+            ={0,0,255}),Line(points={{80,34},{50,34},{50,-20},{30,-20}}, color=
             {0,0,255}),Line(points={{30,20},{46,20}}, color={0,0,255})}));
   end ForcedCommSwitch;
 
@@ -257,7 +257,8 @@ with
 Electrically the switch is on if it is 'closed', whereas it is switched off, if it is mechanically 'open' and the corresponding phase-current crosses zero.</p>
 <p>Contains no plasma-arc, in contrast to Breaker.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -295,7 +296,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off, if 
 <p>Contains replaceable single-line breaker with replaceable tanh arc-voltage, i.e. a constant electric field strength E for large currents and a small-signal Ohmic resistance R.</p>
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -310,8 +312,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off, if 
     parameter SI.Time t_relax=10e-3 "switch relaxation time";
     parameter Integer p_relax(min=2) = 4 "power of relaxation exponent";
   protected
-    SI.Time[2] t0(start=-{Modelica.Constants.inf,Modelica.Constants.inf}, fixed=
-         true);
+    SI.Time[2] t0(start=-{Modelica.Constants.inf,Modelica.Constants.inf}, fixed
+        =true);
     Real[2] r_1(start={0,1});
     Real[2] r_2(start={0,1});
     Real[2] s;
@@ -441,7 +443,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off,
 if it is mechanically 'open' and the corresponding phase-current crosses zero.</p>
 <p>Contains no plasma-arc, in contrast to Breaker.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -491,7 +494,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off,
 if it is mechanically fully 'open' (after a given opening duration) and the corresponding phase-current crosses zero.</p>
 <p>Contains replaceable single-line breakers with replaceable tanh arc-voltage, i.e. a constant electric field strength E for large currents and a small-signal Ohmic resistance R.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -575,7 +579,8 @@ if it is mechanically fully 'open' (after a given opening duration) and the corr
         Documentation(info="<html>
 <p>Both of two conductors are switched.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-80,-10},{80,-10}}, color={0,0,

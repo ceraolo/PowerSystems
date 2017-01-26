@@ -24,7 +24,8 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="r2mux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -137,7 +138,8 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="r2demux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,40},{-20,40},{-60,0},{-20,-40},
@@ -174,7 +176,8 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="r3demux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,40},{-20,40},{-60,0},{-20,-40},
@@ -249,7 +252,8 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="b2mux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -326,7 +330,8 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="gate2demux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,50},{-38,12},{-38,-8}}, color=
@@ -373,11 +378,12 @@ package Multiplex "Multiplexer and AD converter"
       defaultComponentName="gate3demux1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Line(points={{0,50},{-60,14},{-60,-10}}, color=
-             {255,0,255}),Line(points={{0,50},{0,-10}}, color={255,0,255}),Line(
+          grid={2,2}), graphics={Line(points={{0,50},{-60,14},{-60,-10}}, color
+            ={255,0,255}),Line(points={{0,50},{0,-10}}, color={255,0,255}),Line(
             points={{0,50},{60,14},{60,-10}}, color={255,0,255}),Text(
               extent={{50,-10},{70,-50}},
               lineColor={255,0,255},
@@ -447,7 +453,8 @@ package Multiplex "Multiplexer and AD converter"
   n = 1 if gates[2] = true else n = 0
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -556,7 +563,8 @@ package Multiplex "Multiplexer and AD converter"
   c_n = 1 if gates[6] = true else c_n = 0
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

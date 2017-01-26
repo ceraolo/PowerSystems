@@ -49,7 +49,8 @@ package Math "Auxiliary blocks"
 <p>Calculates the time-average of the input-signal u with exponential memory function (first order transfer function with initial condition).</p>
 <p>This block does NOT need the delay operator. It may be replaced by something more specific in context with inverters/modulation.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -81,7 +82,8 @@ package Math "Auxiliary blocks"
 <p>Calculates the time-average of the input-signal u over the interval {time - tau, time}.</p>
 <p>This block needs the delay operator!</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -126,7 +128,8 @@ package Math "Auxiliary blocks"
       Documentation(info="<html>
 <p>Allows in particular to calculate the dq0-norm (n_eval=3) or dq-norm (n_eval=2) of the input signal.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

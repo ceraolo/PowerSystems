@@ -23,11 +23,11 @@ package Impedances "Impedance and admittance two terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -70,11 +70,11 @@ package Impedances "Impedance and admittance two terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -134,16 +134,16 @@ package Impedances "Impedance and admittance two terminal"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Rectangle(
-            extent={{-40,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -228,30 +228,25 @@ package Impedances "Impedance and admittance two terminal"
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(
-            points={{-90,0},{-20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Line(
-            points={{90,0},{20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Rectangle(
-            extent={{-12,60},{12,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,60},{-12,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{12,60},{20,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Line(
+              points={{-90,0},{-20,0}},
+              color={0,120,120},
+              thickness=0.5),Line(
+              points={{90,0},{20,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-12,60},{12,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,60},{-12,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{12,60},{20,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -367,20 +362,21 @@ Instead of x_s, x_m, and r the parameters z_abs, cos(phi), and x_o are used.</p>
 </pre>
 <p> More info see package ACdq0.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{-20,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Polygon(
-            points={{-80,-30},{80,-30},{80,30},{-20,30},{-80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{-20,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-80,-30},{80,-30},{80,30},{-20,30},{-80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -475,38 +471,33 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>No phase to phase capacitance.</p>
 <p> More info see package ACdq0.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(
-            points={{-90,0},{-20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Line(
-            points={{90,0},{20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Rectangle(
-            extent={{-12,60},{12,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-12,60},{12,60},{-12,-60},{-12,60}},
-            lineColor={255,255,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,60},{-12,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{12,60},{20,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Line(
+              points={{-90,0},{-20,0}},
+              color={0,120,120},
+              thickness=0.5),Line(
+              points={{90,0},{20,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-12,60},{12,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-12,60},{12,60},{-12,-60},{-12,60}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,60},{-12,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{12,60},{20,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -583,16 +574,16 @@ Use only if 'non symmetric' is really desired because this component needs a tim
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Polygon(
-            points={{-80,30},{-80,0},{-50,30},{-80,30}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-80,30},{-80,0},{-50,30},{-80,30}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -655,25 +646,22 @@ Use only if 'non symmetric' is really desired because this component needs a tim
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-80,30},{-80,0},{-50,30},{-80,30}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-80,30},{-80,0},{-50,30},{-80,30}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -765,36 +753,30 @@ a time dependent transform of the coefficient matrix.</p>
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(
-            points={{-90,0},{-20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Line(
-            points={{90,0},{20,0}},
-            color={0,120,120},
-            thickness=0.5),
-          Rectangle(
-            extent={{-12,60},{12,-60}},
-            lineColor={215,215,215},
-            fillColor={215,215,215},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-12,60},{-12,30},{12,60},{-12,60}},
-            lineColor={0,0,255},
-            pattern=LinePattern.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,60},{-12,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{12,60},{20,-60}},
-            lineColor={0,120,120},
-            fillColor={0,120,120},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Line(
+              points={{-90,0},{-20,0}},
+              color={0,120,120},
+              thickness=0.5),Line(
+              points={{90,0},{20,0}},
+              color={0,120,120},
+              thickness=0.5),Rectangle(
+              extent={{-12,60},{12,-60}},
+              lineColor={215,215,215},
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-12,60},{-12,30},{12,60},{-12,60}},
+              lineColor={0,0,255},
+              pattern=LinePattern.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,60},{-12,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{12,60},{20,-60}},
+              lineColor={0,120,120},
+              fillColor={0,120,120},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -870,16 +852,17 @@ a time dependent transform of the coefficient matrix.</p>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package ACdq0.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{80,-30}},
-            lineColor={0,120,120},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Line(points={{30,25},{26,2},{-26,-2},
-                {-30,-26}}, color={0,0,0})}),
+              extent={{-80,30},{80,-30}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{30,25},{26,2},{-26,-2},
+            {-30,-26}}, color={0,0,0})}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -935,8 +918,8 @@ a time dependent transform of the coefficient matrix.</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-80,50},{-60,50}}, color={0,0,
-              255}),Line(points={{-80,0},{-60,0}}, color={0,0,255}),Line(points=
-               {{-80,-50},{-60,-50}}, color={0,0,255}),Line(points={{60,50},{80,
+              255}),Line(points={{-80,0},{-60,0}}, color={0,0,255}),Line(points
+              ={{-80,-50},{-60,-50}}, color={0,0,255}),Line(points={{60,50},{80,
               50}}, color={0,0,255}),Line(points={{60,0},{80,0}}, color={0,0,
               255}),Line(points={{60,-50},{80,-50}}, color={0,0,255})}));
     end ImpedBase;

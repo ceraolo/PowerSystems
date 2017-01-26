@@ -71,7 +71,8 @@ package Inverters "Inverters 1 phase and DC"
 <p>1-phase rectifier. Compare 'equation' and 'modular' version.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.2, Interval=0.2e-3),
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Rectifier;
@@ -89,8 +90,8 @@ package Inverters "Inverters 1 phase and DC"
       V_nom=100,
       S_nom=1e3)
       annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
-    PowerSystems.AC1ph_DC.Inverters.Inverter inverter(redeclare model Inverter =
-          PowerSystems.AC1ph_DC.Inverters.Components.InverterEquation (
+    PowerSystems.AC1ph_DC.Inverters.Inverter inverter(redeclare model Inverter
+        = PowerSystems.AC1ph_DC.Inverters.Components.InverterEquation (
             redeclare record Data =
               PowerSystems.Examples.Data.Semiconductors.IdealSC100V_10A)
         "equation, with losses")
@@ -148,7 +149,8 @@ package Inverters "Inverters 1 phase and DC"
 <p>1-phase inverter, feeding load at constant 100Hz with increasing amplitude.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.2, Interval=0.2e-3),
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{80,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{80,60}})));
   end InverterToLoad;
@@ -168,8 +170,8 @@ package Inverters "Inverters 1 phase and DC"
       V_nom=100,
       S_nom=1e3)
       annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
-    PowerSystems.AC1ph_DC.Inverters.Inverter inverter(redeclare model Inverter =
-          PowerSystems.AC1ph_DC.Inverters.Components.InverterEquation (
+    PowerSystems.AC1ph_DC.Inverters.Inverter inverter(redeclare model Inverter
+        = PowerSystems.AC1ph_DC.Inverters.Components.InverterEquation (
             redeclare record Data =
               PowerSystems.Examples.Data.Semiconductors.IdealSC100V_10A)
         "equation, with losses")
@@ -365,7 +367,8 @@ package Inverters "Inverters 1 phase and DC"
 <p>One quadrant chopper.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Inverters\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.2, Interval=0.2e-3),
+"),
+      experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{80,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{80,40}})));
   end Chopper;

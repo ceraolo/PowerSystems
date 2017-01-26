@@ -86,15 +86,15 @@ The component is not needed, if specific control components are available.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,20},{100,-20}},
-              lineColor={0,0,127},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              textString="%name"),Rectangle(
-              extent={{-80,-80},{-40,-120}},
-              lineColor={213,170,255},
-              fillColor={213,170,255},
-              fillPattern=FillPattern.Solid)}));
+            extent={{-100,20},{100,-20}},
+            lineColor={0,0,127},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            textString="%name"), Rectangle(
+            extent={{-80,-80},{-40,-120}},
+            lineColor={213,170,255},
+            fillColor={213,170,255},
+            fillPattern=FillPattern.Solid)}));
   end Select;
 
   model Rectifier "Rectifier, 3-phase dq0"
@@ -152,9 +152,9 @@ The component is not needed, if specific control components are available.</p>
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,-70},{100,-90}},
-              lineColor={176,0,0},
-              textString="average")}),
+            extent={{-100,-70},{100,-90}},
+            lineColor={176,0,0},
+            textString="average")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -217,6 +217,7 @@ AC_power = DC_power.</p>
               PowerSystems.Control.Modulation.PWMsyn "sine PWM syn"),
         choice(redeclare model Modulator =
               PowerSystems.Control.Modulation.PWMtab "sine PWM syn tabulated"),
+
         choice(redeclare model Modulator =
               PowerSystems.Control.Modulation.SVPWMasyn "SV PWM asyn"),
         choice(redeclare model Modulator =
@@ -375,13 +376,13 @@ For block modulation:
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,-70},{100,-90}},
-              lineColor={176,0,0},
-              textString="average"),Rectangle(
-              extent={{-80,120},{-40,80}},
-              lineColor={213,170,255},
-              fillColor={213,170,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-100,-70},{100,-90}},
+            lineColor={176,0,0},
+            textString="average"), Rectangle(
+            extent={{-80,120},{-40,80}},
+            lineColor={213,170,255},
+            fillColor={213,170,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -577,7 +578,8 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
         Documentation(info="<html>
 <p>Passive rectifier, using diode-modules.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
@@ -896,7 +898,8 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
 <p>Gates:
 <pre>  true=on, false=off.</pre></p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(

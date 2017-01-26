@@ -14,33 +14,37 @@ package Ports "Strandard electric ports"
       Documentation(info="<html>
 <p>Electric connector with a vector of 'pin's, positive.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
-              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-60,60},{60,-60}},
-              lineColor={255,255,255},
-              pattern=LinePattern.None,
-              textString="")}),
+            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-60,60},{60,-60}},
+            lineColor={255,255,255},
+            pattern=LinePattern.None,
+            textString="")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Text(
-              extent={{-120,120},{100,60}},
-              lineColor={0,0,255},
-              textString="%name"),Polygon(
-              points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
-              lineColor={0,0,255},
-              fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-10,50},{90,-50}},
-              lineColor={255,255,255},
-              pattern=LinePattern.None,
-              textString="")}));
+          grid={2,2}), graphics={
+          Text(
+            extent={{-120,120},{100,60}},
+            lineColor={0,0,255},
+            textString="%name"),
+          Polygon(
+            points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
+            lineColor={0,0,255},
+            fillColor={0,0,255},
+            fillPattern=FillPattern.Solid),
+          Text(
+            extent={{-10,50},{90,-50}},
+            lineColor={255,255,255},
+            pattern=LinePattern.None,
+            textString="")}));
   end TwoPin_p;
 
   connector TwoPin_n "AC1/DC terminal ('negative')"
@@ -55,31 +59,34 @@ package Ports "Strandard electric ports"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
-              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-60,60},{60,-60}},
-              lineColor={0,0,255},
-              pattern=LinePattern.None,
-              lineThickness=0.5,
-              textString="")}),
+            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-60,60},{60,-60}},
+            lineColor={0,0,255},
+            pattern=LinePattern.None,
+            lineThickness=0.5,
+            textString="")}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Text(
-              extent={{-100,120},{120,60}},
-              lineColor={0,0,255},
-              textString="%name"),Polygon(
-              points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
-              lineColor={0,0,255},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-90,50},{10,-50}},
-              lineColor={0,0,255},
-              pattern=LinePattern.None,
-              lineThickness=0.5,
-              textString="")}));
+          grid={2,2}), graphics={
+          Text(
+            extent={{-100,120},{120,60}},
+            lineColor={0,0,255},
+            textString="%name"),
+          Polygon(
+            points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
+            lineColor={0,0,255},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Text(
+            extent={{-90,50},{10,-50}},
+            lineColor={0,0,255},
+            pattern=LinePattern.None,
+            lineThickness=0.5,
+            textString="")}));
   end TwoPin_n;
 
   partial model Port_p "One port, 'positive'"
@@ -125,9 +132,9 @@ package Ports "Strandard electric ports"
     Ports.TwoPin_n term_n "negative terminal"
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     annotation (Icon(graphics={Text(
-              extent={{-100,-90},{100,-130}},
-              lineColor={0,0,0},
-              textString="%name")}), Documentation(info="<html>
+            extent={{-100,-90},{100,-130}},
+            lineColor={0,0,0},
+            textString="%name")}), Documentation(info="<html>
 </html>"));
   end Port_p_n;
 

@@ -294,7 +294,8 @@ Instead of x and r the parameters z_abs and cos(phi) are used.</p>
 </pre>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -377,7 +378,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>No pair capacitance.</p>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-90,0},{-20,0}}, color={0,0,255}),
@@ -454,7 +456,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -516,7 +519,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="resSym",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,10},{0,-10}}, color={0,0,255}),
@@ -581,7 +585,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="capSym",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -693,7 +698,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="dcLink",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -783,7 +789,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="dcLink",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

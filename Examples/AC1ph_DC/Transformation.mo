@@ -12,8 +12,8 @@ package Transformation "Transformation 1 phase"
       annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
     PowerSystems.AC1ph_DC.Nodes.BusBar bus
       annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data =
-          PowerSystems.AC1ph_DC.Transformers.Parameters.TrafoStray1ph (V_nom={1,
+    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data
+        = PowerSystems.AC1ph_DC.Transformers.Parameters.TrafoStray1ph (V_nom={1,
               10}))
       annotation (Placement(transformation(extent={{0,-10},{20,10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter2(V_nom=10)
@@ -54,7 +54,8 @@ Both sides have to choose a grounding scheme. In this example grounding is perfo
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Transformation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1, Interval=1e-3),
+"),
+      experiment(StopTime=1, Interval=1e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end OnePhase;
@@ -159,7 +160,8 @@ Note that the primary voltage source is fixed.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Transformation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=4, Interval=1e-3),
+"),
+      experiment(StopTime=4, Interval=1e-3),
       Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
       Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TapChanger;

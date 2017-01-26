@@ -306,7 +306,8 @@ package ImpedancesSingle "Simple mpedance and admittance two terminal"
       annotation (
         Documentation(info="<html>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(

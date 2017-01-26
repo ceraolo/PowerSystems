@@ -67,7 +67,8 @@ with
   t_relax     relaxation time
   p           power of exponent
 </pre></p></html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -203,7 +204,8 @@ with
   t_relax     relaxation time
   p           power of exponent
 </pre></p></html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -300,7 +302,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off, if 
 <p>Contains no plasma-arc, in contrast to Breaker.</p>
 <p>Note: currently not suitable for steady-state simulation. In this case use ForcedSwitch.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -363,7 +366,8 @@ Electrically the switch is on if it is 'closed', whereas it is switched off, if 
 <p>Contains replaceable single-line breakers with replaceable tanh arc-voltage, i.e. a constant electric field strength E for large currents and a small-signal Ohmic resistance R.</p>
 <p>Note: currently not suitable for steady-state simulation. In this case use ForcedSwitch.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(

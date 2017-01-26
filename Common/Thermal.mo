@@ -404,15 +404,17 @@ The total of all vector-heat in-flows is equal to the scalar out-flow.
       annotation (
         defaultComponentName="bdCond",
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Text(
-                  extent={{-100,0},{100,-40}},
-                  lineColor={0,0,0},
-                  textString="%name"),Rectangle(
-                  extent={{-80,-50},{80,-80}},
-                  lineColor={0,0,0},
-                  fillColor={192,192,192},
-                  fillPattern=FillPattern.Backward),Line(points={{-80,-50},{80,
-              -50}}, color={255,255,255})}),
+                100,100}}), graphics={
+            Text(
+              extent={{-100,0},{100,-40}},
+              lineColor={0,0,0},
+              textString="%name"),
+            Rectangle(
+              extent={{-80,-50},{80,-80}},
+              lineColor={0,0,0},
+              fillColor={192,192,192},
+              fillPattern=FillPattern.Backward),
+            Line(points={{-80,-50},{80,-50}}, color={255,255,255})}),
         Documentation(info="<html>
 <p>Deault thermal boundary condition for applications where the thermal output of heat-producing components is not needed.<br>
 Boundary has fixed temperature T = 0.</p>

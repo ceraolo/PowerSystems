@@ -12,7 +12,8 @@ package Nodes "Nodes "
       Documentation(info="<html>
 <p>Zero voltage on both conductors of terminal.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-90,0},{-4,0}}, color={0,0,255}),
@@ -65,7 +66,8 @@ package Nodes "Nodes "
   pol = -1     conductor 2 grounded (DC: negative)
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-50,0},{-4,0}}, color={0,0,255}),
@@ -117,7 +119,8 @@ package Nodes "Nodes "
       Documentation(info="<html>
 <p>Zero voltage on terminal.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -201,7 +204,8 @@ package Nodes "Nodes "
             {-10,40},{40,40}}, color={0,0,255})}),
       Documentation(info="<html>
 </html>
-"),   Diagram(coordinateSystem(
+"),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-40,5},{0,5},{0,40},{40,40}},

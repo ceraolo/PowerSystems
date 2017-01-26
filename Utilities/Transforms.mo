@@ -290,6 +290,7 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
     annotation (
       Inline=true,
       derivative(order=2) = PowerSystems.Utilities.Transforms.der2_rotation_dq,
+
       Documentation(info="<html>
 <p>First derivative of function rotation_dq(theta) with respect to time.</p>
 </html>"));
@@ -396,6 +397,7 @@ with P0 the orthogonal transform 'Transforms.P0'.</p>
     annotation (
       Inline=true,
       derivative(order=2) = PowerSystems.Utilities.Transforms.der2_rotation_abc,
+
       Documentation(info="<html>
 <p>First derivative of function rotation_abc(theta) with respect to time.</p>
 </html>"));

@@ -9,10 +9,10 @@ package Icons "Icons"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-80,60},{80,-60}},
-              lineColor={0,0,127},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}));
+            extent={{-80,60},{80,-60}},
+            lineColor={0,0,127},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid)}));
   end Block;
 
   partial block Block0 "Block icon 0"
@@ -22,9 +22,9 @@ package Icons "Icons"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-100,-80},{100,-120}},
-              lineColor={0,0,0},
-              textString="%name")}));
+            extent={{-100,-80},{100,-120}},
+            lineColor={0,0,0},
+            textString="%name")}));
   end Block0;
 
   partial block Block1 "Block icon 1"
@@ -240,27 +240,33 @@ package Icons "Icons"
     annotation (Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Rectangle(
-              extent={{-80,60},{80,-60}},
-              lineColor={0,120,120},
-              lineThickness=0.5,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(points={{-80,-60},{80,60}},
-            color={0,120,120}),Text(
-              extent={{10,20},{70,-10}},
-              lineColor={0,120,120},
-              lineThickness=0.5,
-              textString="~"),Text(
-              extent={{10,0},{70,-30}},
-              lineColor={0,120,120},
-              lineThickness=0.5,
-              textString="~"),Line(points={{24,0},{56,0}}, color={0,120,120}),
-            Line(points={{24,-20},{56,-20}}, color={0,120,120}),Line(points={{
-            24,-40},{56,-40}}, color={0,120,120}),Text(
-              extent={{-100,-90},{100,-130}},
-              lineColor={0,0,0},
-              textString="%name"),Text(extent={{-80,40},{0,0}}, textString="=")}),
-        Documentation(info=""));
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-80,60},{80,-60}},
+            lineColor={0,120,120},
+            lineThickness=0.5,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Line(points={{-80,-60},{80,60}}, color={0,120,120}),
+          Text(
+            extent={{10,20},{70,-10}},
+            lineColor={0,120,120},
+            lineThickness=0.5,
+            textString="~"),
+          Text(
+            extent={{10,0},{70,-30}},
+            lineColor={0,120,120},
+            lineThickness=0.5,
+            textString="~"),
+          Line(points={{24,0},{56,0}}, color={0,120,120}),
+          Line(points={{24,-20},{56,-20}}, color={0,120,120}),
+          Line(points={{24,-40},{56,-40}}, color={0,120,120}),
+          Text(
+            extent={{-100,-90},{100,-130}},
+            lineColor={0,0,0},
+            textString="%name"),
+          Text(extent={{-80,40},{0,0}}, textString="=")}), Documentation(info=
+            ""));
 
   end Inverter_dq0;
 

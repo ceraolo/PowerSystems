@@ -745,20 +745,24 @@ package PhaseSystems "Phase systems used in power connectors"
       annotation (Inline=true);
     end activePower;
 
-    annotation (Icon(graphics={Line(
-              points={{-70,28},{-58,48},{-38,68},{-22,48},{-10,28},{2,8},{22,-12},
-              {40,8},{50,28}},
-              color={95,95,95},
-              smooth=Smooth.Bezier),Line(
-              points={{-70,-54},{50,-54}},
-              color={95,95,95},
-              smooth=Smooth.None),Line(
-              points={{-70,-78},{50,-78}},
-              color={95,95,95},
-              smooth=Smooth.None),Line(
-              points={{-70,-28},{50,-28}},
-              color={95,95,95},
-              smooth=Smooth.None)}), Diagram(graphics={Ellipse(
+    annotation (Icon(graphics={
+          Line(
+            points={{-70,28},{-58,48},{-38,68},{-22,48},{-10,28},{2,8},{22,-12},
+                {40,8},{50,28}},
+            color={95,95,95},
+            smooth=Smooth.Bezier),
+          Line(
+            points={{-70,-54},{50,-54}},
+            color={95,95,95},
+            smooth=Smooth.None),
+          Line(
+            points={{-70,-78},{50,-78}},
+            color={95,95,95},
+            smooth=Smooth.None),
+          Line(
+            points={{-70,-28},{50,-28}},
+            color={95,95,95},
+            smooth=Smooth.None)}), Diagram(graphics={Ellipse(
               extent={{-60,60},{60,-60}},
               fillColor={215,215,215},
               fillPattern=FillPattern.Solid,

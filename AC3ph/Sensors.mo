@@ -21,7 +21,8 @@ package Sensors "Sensors and meters 3-phase"
       defaultComponentName="Vsensor1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -172,13 +173,13 @@ package Sensors "Sensors and meters 3-phase"
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
-              extent={{-20,20},{20,-20}},
-              lineColor={135,135,135},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Line(
-              points={{0,0},{20,0}},
-              color={0,100,100},
-              thickness=0.5)}));
+            extent={{-20,20},{20,-20}},
+            lineColor={135,135,135},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid), Line(
+            points={{0,0},{20,0}},
+            color={0,100,100},
+            thickness=0.5)}));
   end Psensor;
 
   model Vmeter "Voltage meter, 3-phase dq0"
@@ -187,7 +188,7 @@ package Sensors "Sensors and meters 3-phase"
     output SIpu.Voltage[PS.n] v(each stateSelect=StateSelect.never);
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
       transpose(Park)*v if abc;
     output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) = {v_abc[
       2],v_abc[3],v_abc[1]} - {v_abc[3],v_abc[1],v_abc[2]} if abc;
@@ -239,7 +240,7 @@ As they use time-dependent coordinate transforms, use them only when and where n
 
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
       transpose(Park)*i if abc;
 
     output SIpu.Current i_norm(stateSelect=StateSelect.never);
@@ -268,7 +269,8 @@ As they use time-dependent coordinate transforms, use them only when and where n
   alpha_i    phase(i)
 </pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-15,50},{15,64}}, color={135,135,
@@ -351,11 +353,11 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
     output SIpu.Voltage[2] vpp(each stateSelect=StateSelect.never);
     output SIpu.Current[PS.n] i(each stateSelect=StateSelect.never);
 
-    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never)=
+    output SIpu.Voltage[3] v_abc(each stateSelect=StateSelect.never) =
       transpose(Park)*v if abc;
-    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never)=
+    output SIpu.Voltage[3] vpp_abc(each stateSelect=StateSelect.never) =
       v2vpp_abc(transpose(Park)*v) if abc;
-    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never)=
+    output SIpu.Current[3] i_abc(each stateSelect=StateSelect.never) =
       transpose(Park)*i if abc;
 
     output SIpu.Voltage v_norm(stateSelect=StateSelect.never);
@@ -399,20 +401,24 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Rectangle(
-              extent={{-20,24},{20,20}},
-              lineColor={135,135,135},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-8,8},{8,-8}},
-              lineColor={135,135,135},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Line(
-              points={{0,0},{20,0}},
-              color={0,100,100},
-              thickness=0.5),Line(points={{-15,50},{15,64}}, color={135,135,135}),
-            Line(points={{-15,40},{15,54}}, color={135,135,135}),Line(points={{
-            -15,30},{15,44}}, color={135,135,135})}),
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-20,24},{20,20}},
+            lineColor={135,135,135},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-8,8},{8,-8}},
+            lineColor={135,135,135},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Line(
+            points={{0,0},{20,0}},
+            color={0,100,100},
+            thickness=0.5),
+          Line(points={{-15,50},{15,64}}, color={135,135,135}),
+          Line(points={{-15,40},{15,54}}, color={135,135,135}),
+          Line(points={{-15,30},{15,44}}, color={135,135,135})}),
       Documentation(info="<html>
 <p>'Meters' are intended as diagnostic instruments. They allow displaying signals in alternative representations, both in SI-units or in 'pu'.<br>
 As they use time-dependent coordinate transforms, use them only when and where needed. Otherwise use 'Sensors'.</p>
@@ -506,7 +512,8 @@ negative values of eta indicate powerflow against direction of arrow.</p>
 <p>Note: Take care about the above definitions if approximations are used in measured components.<br>
 In problematic cases use power sensors electrical and mechanical.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -623,22 +630,26 @@ In problematic cases use power sensors electrical and mechanical.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{-70,70},{70,-70}},
-                  lineColor={255,255,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(points={{0,20},{0,90}},
-              color={135,135,135}),Line(
-                  points={{-90,0},{-20,0}},
-                  color={0,100,100},
-                  thickness=0.5),Line(
-                  points={{0,0},{90,0}},
-                  color={0,100,100},
-                  thickness=0.5),Line(
-                  points={{30,20},{70,0},{30,-20}},
-                  color={0,100,100},
-                  thickness=0.5),Ellipse(extent={{-20,20},{20,-20}}, lineColor=
-              {135,135,135})}));
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{-70,70},{70,-70}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(points={{0,20},{0,90}}, color={135,135,135}),
+            Line(
+              points={{-90,0},{-20,0}},
+              color={0,100,100},
+              thickness=0.5),
+            Line(
+              points={{0,0},{90,0}},
+              color={0,100,100},
+              thickness=0.5),
+            Line(
+              points={{30,20},{70,0},{30,-20}},
+              color={0,100,100},
+              thickness=0.5),
+            Ellipse(extent={{-20,20},{20,-20}}, lineColor={135,135,135})}));
     end Sensor2Base;
 
     partial model Meter1Base "Meter 1 terminal base, 3-phase dq0"
@@ -688,7 +699,7 @@ In problematic cases use power sensors electrical and mechanical.</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Ellipse(extent={{-70,70},{70,-70}},
-              lineColor={135,135,135})}));
+                lineColor={135,135,135})}));
     end Meter2Base;
 
     partial model PhasorBase "Phasor base, 3-phase dq0"

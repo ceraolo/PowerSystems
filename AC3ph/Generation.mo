@@ -31,7 +31,8 @@ The machine inertia is determined by the inertia time constant H.</p>
 <p>Steady-state initialisation:<br>
 If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <tt>p_set</tt> and <tt>v_set</tt> are determined at initialisation from initial active power and voltage. The corresponding value for the speed <tt>w_set</tt> is determined by the system frequency <tt>system.f0</tt>.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -79,7 +80,8 @@ Turbo-group, with turbines and generator-rotor elastically coupled.</p>
 <p>Steady-state initialisation:<br>
 If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <tt>p_set</tt> and <tt>v_set</tt> are determined at initialisation from initial active power and voltage. The corresponding value for the speed <tt>w_set</tt> is determined by the system frequency <tt>system.f0</tt>.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -137,7 +139,8 @@ Gas turbine with gear and generator-rotor, elastically coupled.</p>
 If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <tt>p_set</tt> and <tt>v_set</tt> are determined at initialisation from initial active power and voltage. The corresponding value for the speed <tt>w_set</tt> is determined by the system frequency <tt>system.f0</tt>.</p>
 <p>Note: for turbines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -199,7 +202,8 @@ Hydro turbine and generator-rotor, elastically coupled.</p>
 <p>Steady-state initialisation:<br>
 If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <tt>p_set</tt> and <tt>v_set</tt> are determined at initialisation from initial active power and voltage. The corresponding value for the speed <tt>w_set</tt> is determined by the system frequency <tt>system.f0</tt>.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -256,7 +260,8 @@ Diesel-engine and generator-rotor, elastically coupled.</p>
 <p>Steady-state initialisation:<br>
 If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <tt>p_set</tt> and <tt>v_set</tt> are determined at initialisation from initial active power and voltage. The corresponding value for the speed <tt>w_set</tt> is determined by the system frequency <tt>system.f0</tt>.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -284,8 +289,8 @@ If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <
     Modelica.Blocks.Interfaces.RealInput[2] setpts
       "setpoints {speed, power} pu"
       annotation (Placement(transformation(extent={{-110,10},{-90,-10}})));
-    Modelica.Blocks.Interfaces.RealOutput phiRotor "rotor angle el" annotation (
-       Placement(transformation(
+    Modelica.Blocks.Interfaces.RealOutput phiRotor "rotor angle el" annotation
+      (Placement(transformation(
           origin={100,100},
           extent={{10,-10},{-10,10}},
           rotation=180)));
@@ -297,8 +302,8 @@ If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <
     Generator generator "synchron pm generator"
       annotation (Placement(transformation(extent={{60,-10},{40,10}})));
     replaceable model Governor = PowerSystems.Control.Governors.GovernorConst
-      "governor (control)" annotation (choices(choice(redeclare model Governor =
-              PowerSystems.Control.Governors.GovernorConst "constant"), choice(
+      "governor (control)" annotation (choices(choice(redeclare model Governor
+            = PowerSystems.Control.Governors.GovernorConst "constant"), choice(
             redeclare model Governor =
               PowerSystems.Control.Governors.Governor1st "1st order")));
     Governor governor "governor (control)"
@@ -341,7 +346,8 @@ If combined with 'Control.Setpoints.Set_w_p_v' or similar, the setpoint values <
 One-mass model, turbine- and generator-rotor represent one single rigid mass.<br>
 The machine inertia is determined by the inertia time constant H.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -396,7 +402,8 @@ The machine inertia is determined by the inertia time constant H.</p>
 <p>Generator with pm excitation and inverter for current-control. To be coupled to a mechanical engine. May contain a gear.</p>
 <p>Note: for machines with gear <tt>w_start</tt> denotes the initial angular velocity at the generator-side!</p>
 </html>
-"),   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+"),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
               extent={{-50,14},{-40,-14}},
               lineColor={0,0,0},
@@ -445,8 +452,8 @@ The machine inertia is determined by the inertia time constant H.</p>
     Torque turbTorq "table: wind speed, torque"
       annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
     replaceable model Gear = PowerSystems.Mechanics.TurboGroups.WindTurbineGear
-        (final w_start=w_start) "wind turbine with generator-rotor" annotation (
-       choicesAllMatching=true);
+        (final w_start=w_start) "wind turbine with generator-rotor" annotation
+      (choicesAllMatching=true);
     Gear WT "wind turbine with generator-rotor"
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     Modelica.Blocks.Interfaces.RealInput windSpeed "wind speed m/s"
@@ -568,8 +575,8 @@ Turbine with gear and generator-rotor, elastically coupled, asynchronous generat
         annotation (Placement(transformation(extent={{60,-10},{40,10}})));
 
       replaceable model Exciter = Control.Exciters.ExciterConst
-        "exciter (control)" annotation (choices(choice(redeclare model Exciter =
-                Control.Exciters.ExciterConst "constant"), choice(redeclare
+        "exciter (control)" annotation (choices(choice(redeclare model Exciter
+              = Control.Exciters.ExciterConst "constant"), choice(redeclare
               model Exciter = Control.Exciters.Exciter1st "1st order")));
       Exciter exciter "exciter (control)"
         annotation (Placement(transformation(extent={{60,50},{40,70}})));

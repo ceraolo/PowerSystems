@@ -66,7 +66,8 @@ package Interfaces
       defaultComponentName="heat_n",
       Documentation(info="<html>
 </html>
-"),   Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+"),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics={Rectangle(
               extent={{-100,50},{0,-50}},
               lineColor={176,0,0},
@@ -91,28 +92,31 @@ package Interfaces
     annotation (
       defaultComponentName="heat_p",
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics={Text(
-              extent={{-120,120},{100,60}},
-              lineColor={176,0,0},
-              textString="%name"),Polygon(
-              points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
-              lineColor={176,0,0},
-              fillColor={176,0,0},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-10,50},{90,-50}},
-              lineColor={235,235,235},
-              pattern=LinePattern.None,
-              textString="%m")}),
+              100,100}}), graphics={
+          Text(
+            extent={{-120,120},{100,60}},
+            lineColor={176,0,0},
+            textString="%name"),
+          Polygon(
+            points={{-20,0},{40,-60},{100,0},{40,60},{-20,0}},
+            lineColor={176,0,0},
+            fillColor={176,0,0},
+            fillPattern=FillPattern.Solid),
+          Text(
+            extent={{-10,50},{90,-50}},
+            lineColor={235,235,235},
+            pattern=LinePattern.None,
+            textString="%m")}),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Polygon(
-              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-              lineColor={176,0,0},
-              fillColor={176,0,0},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-60,60},{60,-60}},
-              lineColor={255,255,255},
-              pattern=LinePattern.None,
-              textString="%m")}),
+            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+            lineColor={176,0,0},
+            fillColor={176,0,0},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-60,60},{60,-60}},
+            lineColor={255,255,255},
+            pattern=LinePattern.None,
+            textString="%m")}),
       Documentation(info="<html>
 <p>Thermal connector with a vector of 'port's, positive.</p>
 </html>
@@ -129,27 +133,31 @@ package Interfaces
       Documentation(info="<html>
 <p>Thermal connector with a vector of 'port's, negative.</p>
 </html>
-"),   Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics={Text(
-              extent={{-100,120},{120,60}},
-              lineColor={176,0,0},
-              textString="%name"),Polygon(
-              points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
-              lineColor={176,0,0},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-90,50},{10,-50}},
-              lineColor={176,0,0},
-              textString="%m")}),
+"),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={
+          Text(
+            extent={{-100,120},{120,60}},
+            lineColor={176,0,0},
+            textString="%name"),
+          Polygon(
+            points={{-100,0},{-40,-60},{20,0},{-40,60},{-100,0}},
+            lineColor={176,0,0},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Text(
+            extent={{-90,50},{10,-50}},
+            lineColor={176,0,0},
+            textString="%m")}),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Polygon(
-              points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
-              lineColor={176,0,0},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-60,60},{60,-60}},
-              lineColor={176,0,0},
-              textString="%m")}));
+            points={{-120,0},{0,-120},{120,0},{0,120},{-120,0}},
+            lineColor={176,0,0},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-60,60},{60,-60}},
+            lineColor={176,0,0},
+            textString="%m")}));
   end ThermalV_n;
 
   partial model AddHeat "Additional heat port"
@@ -259,7 +267,8 @@ Used in 'System' for sending/receiving weighted frequency-data.</p>
 Needed within certain models to establish the connection to 'system' for sending/receiving weighted frequency-data.</p>
 <p>Used in generator models.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

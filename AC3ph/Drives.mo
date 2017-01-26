@@ -332,6 +332,7 @@ package Drives "AC-drives dq0"
                   fillPattern=FillPattern.Solid,
                   textString=
                 "stator reaction torque- and friction-models may be added here")}),
+
         Documentation(info="<html>
 </html>"));
     end DriveBase0;
@@ -388,6 +389,7 @@ package Drives "AC-drives dq0"
                   fillPattern=FillPattern.Solid,
                   textString=
                 "stator reaction torque- and friction-models may be added here")}),
+
         Documentation(info="<html>
 </html>"));
 

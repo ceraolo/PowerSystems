@@ -109,7 +109,8 @@ The mapping from current demand to voltage demand is based on the steady-state e
 <p>Equivalent circuit is on <b>diagram layer</b> of parameter record ACdq0.Machines.Parameters.*</p>
 <p>More information see Partials.AsynchronBase.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -145,14 +146,15 @@ A wide range of rotor speeds can be achieved by controlling the AC voltage of te
 Doubly fed induction generators are popular for wind turbines.
 <p>For more information see Partials.AsynchronBase.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=true,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-90,112},{90,88}},
-              lineColor={0,0,127},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-90,112},{90,88}},
+            lineColor={0,0,127},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=true,
           extent={{-100,-100},{100,100}},
@@ -325,7 +327,8 @@ Doubly fed induction generators are popular for wind turbines.
 </pre></p>
 <p>More information see Partials.SynchronBase.</p>
 </html>
-"),   Diagram(coordinateSystem(
+"),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -467,14 +470,15 @@ The mapping from current demand to voltage demand is based on the steady-state e
 <p>Limit velocity for pm-excitation without field weakening (d-axis current i_s[1]=0).
 <pre>  w_lim = omega_nom/psi_pm</pre></p><p>More information see Partials.SynchronBase.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-              extent={{-90,112},{90,88}},
-              lineColor={0,0,127},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid)}),
+            extent={{-90,112},{90,88}},
+            lineColor={0,0,127},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -543,30 +547,36 @@ not allowing steady-state initialisation for asynchronous machines. Note that
 <pre>  phi_el = pole_pair_number*phi_mechanical</pre>
 More info see at 'Machines.Asynchron' and 'Machines.Synchron'.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{90,90},{-90,-90}},
-                  lineColor={175,175,175},
-                  fillColor={175,175,175},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{70,70},{-70,-70}},
-                  lineColor={255,170,85},
-                  fillColor={255,170,85},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{50,50},{-50,-50}},
-                  lineColor={0,0,0},
-                  fillPattern=FillPattern.Sphere,
-                  fillColor={215,215,215}),Polygon(
-                  points={{-64,-10},{-59,10},{-54,-10},{-64,-10}},
-                  lineColor={255,255,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Polygon(
-                  points={{55,10},{59,-10},{65,10},{55,10}},
-                  lineColor={255,255,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}),
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{90,90},{-90,-90}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{70,70},{-70,-70}},
+              lineColor={255,170,85},
+              fillColor={255,170,85},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{50,50},{-50,-50}},
+              lineColor={0,0,0},
+              fillPattern=FillPattern.Sphere,
+              fillColor={215,215,215}),
+            Polygon(
+              points={{-64,-10},{-59,10},{-54,-10},{-64,-10}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Polygon(
+              points={{55,10},{59,-10},{65,10},{55,10}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
@@ -726,9 +736,9 @@ Special choices are</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
-                  extent={{-100,10},{100,-10}},
-                  lineColor={255,255,255},
-                  textString="asyn")}),
+              extent={{-100,10},{100,-10}},
+              lineColor={255,255,255},
+              textString="asyn")}),
         Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
@@ -1030,9 +1040,9 @@ where <tt>psi_pm</tt> relates to the induced armature voltage <tt>v_op</tt> at o
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
-                  extent={{-100,10},{100,-10}},
-                  lineColor={255,255,255},
-                  textString="syn")}),
+              extent={{-100,10},{100,-10}},
+              lineColor={255,255,255},
+              textString="syn")}),
         Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
@@ -1112,7 +1122,8 @@ where <tt>psi_pm</tt> relates to the induced armature voltage <tt>v_op</tt> at o
 <p>This is a default model. The excitation-voltage is directly determined by the pu field-voltage control-signal.<br>
 It does not contain any electronic component.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
@@ -1131,8 +1142,8 @@ It does not contain any electronic component.</p>
                   textString="field"),Text(
                   extent={{-100,-10},{100,-30}},
                   lineColor={0,0,255},
-                  textString="voltage"),Line(points={{-80,-40},{40,-40}}, color=
-               {0,0,255})}));
+                  textString="voltage"),Line(points={{-80,-40},{40,-40}}, color
+              ={0,0,255})}));
     end Excitation;
 
     model PowerAngle "Direct determination of generator power angle"
@@ -1166,7 +1177,8 @@ Generator rotates at given power angle delta. Replaces turbine and generator-rot
 Connector 'term' to be connected to 'generator.term'.</p>
 <p>Note: initial equations in synchronous machine must be omitted.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
@@ -1332,8 +1344,8 @@ txt
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{50,80},{50,10}}, color={0,0,
-              255}),Line(points={{90,50},{90,40}}, color={0,0,255}),Line(points=
-               {{-40,10},{90,10},{90,20}}, color={0,0,255}),Line(points={{50,-20},
+              255}),Line(points={{90,50},{90,40}}, color={0,0,255}),Line(points
+              ={{-40,10},{90,10},{90,20}}, color={0,0,255}),Line(points={{50,-20},
               {50,-90}}, color={0,0,255}),Line(points={{-40,-90},{90,-90},{90,-80}},
               color={0,0,255}),Line(points={{90,-50},{90,-60}}, color={0,0,255}),
               Line(points={{-40,80},{90,80},{90,70}}, color={0,0,255}),
@@ -1586,8 +1598,8 @@ txt
 
       Boolean transDat "use transient data?" annotation (Dialog,choices(choice=
               true "transient data", choice=false "equivalent circuit data"));
-      Boolean use_xtr "use x_transient and t_closed?" annotation (Dialog(enable=
-             transDat), choices(choice=true "x_tr and t_closed", choice=false
+      Boolean use_xtr "use x_transient and t_closed?" annotation (Dialog(enable
+            =transDat), choices(choice=true "x_tr and t_closed", choice=false
             "t_closed and t_open"));
       SIpu.Reactance[n_d] xtr_d "trans reactance d-axis {xtr_d', xtr_d'', ..}"
         annotation (Dialog(enable=transDat and use_xtr));
@@ -1671,10 +1683,10 @@ Therefore we have to use the following definition for the phase-angle of i_f:
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{10,80},{10,10}}, color={0,0,
-              255}),Line(points={{50,80},{50,10}}, color={0,0,255}),Line(points=
-               {{90,50},{90,40}}, color={0,0,255}),Line(points={{-40,10},{90,10},
-              {90,20}}, color={0,0,255}),Line(points={{50,-20},{50,-90}}, color=
-               {0,0,255}),Line(points={{10,-20},{10,-90}}, color={0,0,255}),
+              255}),Line(points={{50,80},{50,10}}, color={0,0,255}),Line(points
+              ={{90,50},{90,40}}, color={0,0,255}),Line(points={{-40,10},{90,10},
+              {90,20}}, color={0,0,255}),Line(points={{50,-20},{50,-90}}, color
+              ={0,0,255}),Line(points={{10,-20},{10,-90}}, color={0,0,255}),
               Line(points={{-40,-90},{90,-90},{90,-80}}, color={0,0,255}),Line(
               points={{-40,-20},{90,-20},{90,-30}}, color={0,0,255}),Line(
               points={{90,-50},{90,-60}}, color={0,0,255}),Text(

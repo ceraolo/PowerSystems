@@ -17,6 +17,7 @@ package Transformation "Transformation dq0"
     PowerSystems.AC3ph.Transformers.TrafoStray trafo1(
       redeclare record Data =
           PowerSystems.AC3ph.Transformers.Parameters.TrafoStray (V_nom={1,10}),
+
       redeclare model Topology_p = PowerSystems.AC3ph.Ports.Topology.Y,
       redeclare model Topology_n = PowerSystems.AC3ph.Ports.Topology.Y)
       annotation (Placement(transformation(extent={{0,50},{20,70}})));
@@ -95,7 +96,8 @@ PAR-Y configuration:<br>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
       Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end PhaseShifts;
@@ -193,7 +195,8 @@ if primary side is changed at fixed source.
 if secondary side is changed at fixed source.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=4),
+"),
+      experiment(StopTime=4),
       Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
       Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TapChanger;
@@ -259,7 +262,8 @@ Delta_Y configuration:<br>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transformation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end TreeWinding;

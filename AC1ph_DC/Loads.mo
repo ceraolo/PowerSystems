@@ -11,7 +11,8 @@ package Loads "Loads"
 <p>Resistive load AC or DC with impedance characteristic.<br>
 Consumes the desired power at <b>nominal</b> voltage.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -34,7 +35,8 @@ Consumes the desired power at <b>nominal</b> voltage.</p>
 <p>Inductive load AC with impedance characteristic.<br>
 Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -89,7 +91,8 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
 <p>Resistive-inductive load DC with impedance characteristic.<br>
 Consumes the desired power at <b>nominal</b> voltage.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

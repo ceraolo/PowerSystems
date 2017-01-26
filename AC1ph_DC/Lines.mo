@@ -26,18 +26,19 @@ package Lines "Transmission lines 1-phase"
       Documentation(info="<html>
 <p>Transmission line modelled as concentrated RX-impedance.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,0,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Rectangle(
-            extent={{-40,30},{80,-30}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid)}),
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,0,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{80,-30}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -105,35 +106,31 @@ It is composed of <tt>ne-1</tt> interior elements of length delta and at each en
 Therefore it contains <tt>ne</tt> interior nodes. Each element corresponds to a series resistor-inductor with values R and L corresponding to its length. A shunt parallel capacitor-conductor is linked to each node.<br>
 The minimum of <tt>ne</tt> is <tt>1</tt>.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,30},{80,-32}},
-            lineColor={255,255,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,16},{90,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,-11},{90,-16}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-80,4},{-40,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{40,4},{80,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,30},{80,-32}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,16},{90,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,-11},{90,-16}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-80,4},{-40,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{40,4},{80,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -309,30 +306,27 @@ The minimum of <tt>ne</tt> is <tt>1</tt>.</p>
 <p>This kind of discretisation is slightly more complicated than the division of the line into n identical elements, but it results in a symmetric model with respect to interchanging positive and negative terminal.
 The set of equations of two series connected lines of length len1 and len2 is identical to the set of equations for one line of length len1 + len2 if delta1 = delta2. Otherwise differences occur from the different discretisation length.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,30},{80,-32}},
-            lineColor={255,255,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,16},{90,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,-11},{90,-16}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-20,4},{20,-2}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid)}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,30},{80,-32}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,16},{90,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,-11},{90,-16}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-20,4},{20,-2}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -377,8 +371,8 @@ The set of equations of two series connected lines of length len1 and len2 is id
               fillPattern=FillPattern.Solid),Line(points={{-34,10},{36,10}},
             color={0,0,255}),Line(points={{-84,-10},{-74,-10}}, color={0,0,255}),
             Line(points={{-34,-10},{36,-10}}, color={0,0,255}),Line(points={{-4,
-            10},{-4,3}}, color={0,0,255}),Line(points={{-4,-3},{-4,-10}}, color=
-             {0,0,255}),Line(points={{10,10},{10,6}}, color={0,0,255}),Line(
+            10},{-4,3}}, color={0,0,255}),Line(points={{-4,-3},{-4,-10}}, color
+            ={0,0,255}),Line(points={{10,10},{10,6}}, color={0,0,255}),Line(
             points={{10,-6},{10,-10}}, color={0,0,255}),Rectangle(
               extent={{-25,-28},{-15,-30}},
               lineColor={0,0,255},
@@ -476,24 +470,22 @@ The set of equations of two series connected lines of length len1 and len2 is id
 <p>The fault is at relative length <tt>p(0&lt; p&lt; 1)</tt>:<br>
 <pre>  p*len = distance to fault from terminal term_p</pre>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-40,30},{80,-30}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-80,30},{-40,-30}},
-            lineColor={0,0,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{0,80},{-20,0},{20,30},{0,-40}},
-            color={255,255,0},
-            thickness=0.5)}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-40,30},{80,-30}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-80,30},{-40,-30}},
+              lineColor={0,0,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,80},{-20,0},{20,30},{0,-40}},
+              color={255,255,0},
+              thickness=0.5)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
@@ -625,74 +617,60 @@ The minimum of <tt>ne</tt> is <tt>1</tt>.</p>
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-80,30},{80,-30}},
-            lineColor={255,255,255},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,16},{90,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-90,-11},{90,-16}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{0,80},{-20,0},{20,30},{0,-40}},
-            color={255,255,0},
-            thickness=0.5)}),
+          grid={2,2}), graphics={Rectangle(
+              extent={{-80,30},{80,-30}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,16},{90,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-90,-11},{90,-16}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(
+              points={{0,80},{-20,0},{20,30},{0,-40}},
+              color={255,255,0},
+              thickness=0.5)}),
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Text(
-            extent={{-50,-80},{-29,-100}},
-            lineColor={95,95,95},
-            textString="p"),
-          Text(
-            extent={{20,-80},{60,-100}},
-            lineColor={95,95,95},
-            textString="(1-p)"),
-          Line(
-            points={{-60,-70},{-20,-70}},
-            color={95,95,95},
-            arrow={Arrow.Filled,Arrow.Filled}),
-          Line(
-            points={{20,-70},{60,-70}},
-            color={95,95,95},
-            arrow={Arrow.Filled,Arrow.Filled}),
-          Rectangle(
-            extent={{-60,11},{-20,9}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-60,-9},{-20,-11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{20,11},{60,9}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{20,-9},{60,-11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-20,10},{20,10}}, color={0,0,255}),
-          Line(points={{-20,-10},{20,-10}}, color={0,0,255}),
-          Line(points={{-10,10},{-10,80}}, color={0,0,255}),
-          Line(points={{10,-10},{10,80}}, color={0,0,255}),
-          Line(points={{-80,10},{-60,10}}, color={0,0,255}),
-          Line(points={{-80,-10},{-60,-10}}, color={0,0,255}),
-          Line(points={{60,10},{80,10}}, color={0,0,255}),
-          Line(points={{60,-11},{80,-11}}, color={0,0,255})}));
+          grid={2,2}), graphics={Text(
+              extent={{-50,-80},{-29,-100}},
+              lineColor={95,95,95},
+              textString="p"),Text(
+              extent={{20,-80},{60,-100}},
+              lineColor={95,95,95},
+              textString="(1-p)"),Line(
+              points={{-60,-70},{-20,-70}},
+              color={95,95,95},
+              arrow={Arrow.Filled,Arrow.Filled}),Line(
+              points={{20,-70},{60,-70}},
+              color={95,95,95},
+              arrow={Arrow.Filled,Arrow.Filled}),Rectangle(
+              extent={{-60,11},{-20,9}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-60,-9},{-20,-11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{20,11},{60,9}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{20,-9},{60,-11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-20,10},{20,10}},
+            color={0,0,255}),Line(points={{-20,-10},{20,-10}}, color={0,0,255}),
+            Line(points={{-10,10},{-10,80}}, color={0,0,255}),Line(points={{10,
+            -10},{10,80}}, color={0,0,255}),Line(points={{-80,10},{-60,10}},
+            color={0,0,255}),Line(points={{-80,-10},{-60,-10}}, color={0,0,255}),
+            Line(points={{60,10},{80,10}}, color={0,0,255}),Line(points={{60,-11},
+            {80,-11}}, color={0,0,255})}));
   end FaultTline;
 
   package Partials "Partial models"

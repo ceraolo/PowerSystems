@@ -244,7 +244,8 @@ Delta topology: impedance is defined as winding-impedance (see info package Tran
 <pre>  R_nom[k] = V_nom[k]^2/S_nom,  k = 1(primary), 2(secondary)</pre>
 <p>Saturation needs high-precision integration!</p>
 </html>
-"),   Diagram(coordinateSystem(
+"),
+      Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -396,31 +397,38 @@ Delta topology: impedance is defined as winding-impedance (see info package Tran
         Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{-80,60},{40,-60}},
-                  lineColor={44,0,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{-40,60},{80,-60}},
-                  lineColor={0,120,120},
-                  lineThickness=0.5,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{-80,60},{40,-60}},
-                  lineColor={0,120,120},
-                  lineThickness=0.5),Text(
-                  extent={{-120,80},{-80,40}},
-                  lineColor={0,0,0},
-                  textString="1"),Text(
-                  extent={{80,80},{120,40}},
-                  lineColor={0,0,0},
-                  textString="2"),Line(
-                  points={{-80,0},{-40,0}},
-                  color={176,0,0},
-                  thickness=0.5),Line(
-                  points={{40,0},{80,0}},
-                  color={176,0,0},
-                  thickness=0.5)}),
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{-80,60},{40,-60}},
+              lineColor={44,0,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{-40,60},{80,-60}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{-80,60},{40,-60}},
+              lineColor={0,120,120},
+              lineThickness=0.5),
+            Text(
+              extent={{-120,80},{-80,40}},
+              lineColor={0,0,0},
+              textString="1"),
+            Text(
+              extent={{80,80},{120,40}},
+              lineColor={0,0,0},
+              textString="2"),
+            Line(
+              points={{-80,0},{-40,0}},
+              color={176,0,0},
+              thickness=0.5),
+            Line(
+              points={{40,0},{80,0}},
+              color={176,0,0},
+              thickness=0.5)}),
         Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},

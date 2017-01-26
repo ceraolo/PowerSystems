@@ -136,7 +136,8 @@ with variable amplitude when 'vType' is 'signal'.</p>
 <p><b>Preliminary:</b> Battery is DC voltage with constant amplitude.<br>
 To be completed later with charging and discharging characteristic.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(

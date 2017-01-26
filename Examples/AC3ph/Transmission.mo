@@ -2,10 +2,76 @@ within PowerSystems.Examples.AC3ph;
 package Transmission "AC transmission, dq0"
   extends Modelica.Icons.ExamplesPackage;
 
+  model PowerTransferRXY "Power transfer between two nodes"
+    import PowerSystems;
+
+    inner PowerSystems.System system
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+    PowerSystems.Blocks.Signals.TransientPhasor transPh(
+      t_change=30,
+      t_duration=60,
+      ph_end=2*pi,
+      ph_start=0)
+      annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
+    PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
+      annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
+    PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
+          PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=130e3, S_nom=100e6))
+      annotation (Placement(transformation(extent={{18,-10},{38,10}})));
+    PowerSystems.AC3ph.Sensors.Psensor rxPsens
+      annotation (Placement(transformation(extent={{-22,-10},{-2,10}})));
+    PowerSystems.AC3ph.Sources.InfBus infBus2(V_nom=130e3)
+      annotation (Placement(transformation(extent={{78,-10},{58,10}})));
+    PowerSystems.AC3ph.Nodes.GroundOne grd1
+      annotation (Placement(transformation(extent={{-62,-10},{-82,10}})));
+    PowerSystems.AC3ph.Nodes.GroundOne grd2
+      annotation (Placement(transformation(extent={{78,-10},{98,10}})));
+
+    PowerSystems.AC3ph.Lines.PIline line1(redeclare record Data =
+          PowerSystems.AC3ph.Lines.Parameters.RXline (S_nom=100e6, V_nom=130000))
+      annotation (Placement(transformation(extent={{18,-46},{38,-26}})));
+    PowerSystems.AC3ph.Sensors.Psensor rxyPsens
+      annotation (Placement(transformation(extent={{-24,-46},{-4,-26}})));
+  equation
+    connect(transPh.y, infBus1.vPhasor_in)
+      annotation (Line(points={{-62,20},{-46,20},{-46,10}}, color={0,0,127}));
+    connect(infBus1.term, rxPsens.term_p)
+      annotation (Line(points={{-42,0},{-22,0}}, color={0,110,110}));
+    connect(rxPsens.term_n, line.term_p)
+      annotation (Line(points={{-2,0},{18,0}}, color={0,110,110}));
+    connect(line.term_n, infBus2.term)
+      annotation (Line(points={{38,0},{58,0}}, color={0,110,110}));
+    connect(grd1.term, infBus1.neutral)
+      annotation (Line(points={{-62,0},{-62,0}}, color={0,0,255}));
+    connect(grd2.term, infBus2.neutral)
+      annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
+    connect(rxyPsens.term_n, line1.term_p)
+      annotation (Line(points={{-4,-36},{7,-36},{18,-36}}, color={0,120,120}));
+    connect(line1.term_n, infBus2.term) annotation (Line(points={{38,-36},{48,
+            -36},{48,0},{58,0}}, color={0,120,120}));
+    connect(rxyPsens.term_p, infBus1.term) annotation (Line(points={{-24,-36},{
+            -34,-36},{-34,-36},{-42,-36},{-42,0}}, color={0,120,120}));
+    annotation (
+      Documentation(info="<html>
+<p>Shows the influence of phase-difference on power flow.<br>
+Alternatively one can look at a variation of amplitude ratios.</p>
+<p><i>See for example:</i>
+<pre>
+  sensor1.p[1]     active power
+  sensor1.p[2]     reactive power.
+</pre>
+<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
+</html>
+"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
+  end PowerTransferRXY;
+
   model PowerTransfer "Power transfer between two nodes"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       t_change=30,
       t_duration=60,
@@ -51,9 +117,10 @@ Alternatively one can look at a variation of amplitude ratios.</p>
 </pre>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=60),
-      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
-      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
+"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end PowerTransfer;
 
   model VoltageStability "Voltage stability"
@@ -219,7 +286,8 @@ Compare with PIline.</p>
 <pre>  meter.p[1:2]     active and reactive power</pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end RXline;
@@ -286,7 +354,8 @@ Compare with RXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1, Interval=2.5e-5),
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end Tline;
@@ -357,7 +426,8 @@ Compare with FaultPIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultRXline;
@@ -373,8 +443,8 @@ Compare with FaultPIline.</p>
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC3ph.Breakers.Breaker breaker1(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.Line (
+    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data
+        = PowerSystems.AC3ph.Lines.Parameters.Line (
           V_nom=400e3,
           x=0.25e-3,
           r=0.02e-3))
@@ -429,7 +499,8 @@ Compare with FaultRXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1, Interval=2.5e-5),
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultTline;
@@ -514,7 +585,8 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.5, Interval=2.5e-5),
+"),
+      experiment(StopTime=0.5, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXline;
@@ -702,7 +774,8 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.5),
+"),
+      experiment(StopTime=0.5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXlineTG;

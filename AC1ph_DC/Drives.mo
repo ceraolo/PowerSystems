@@ -266,6 +266,7 @@ where 0 &lt;  vPhasor[1] &lt;  1.</p>
                   fillPattern=FillPattern.Solid,
                   textString=
                 "stator reaction torque- and friction-models may be added here")}),
+
         Documentation(info="<html>
 </html>"));
     end DriveBase;

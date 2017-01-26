@@ -20,7 +20,8 @@ package Plasma "Plasma arcs"
 The 'arc voltage vs current' characteristic is a hyperbolic tangent.
 </p>
 </html>
-"),   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+"),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Line(
               points={{-100,0},{-76,-4},{-58,2},{-44,10},{-34,6},{-22,-2},{-16,
               -4},{-8,-4},{-2,0},{-2,0},{2,4},{10,6},{10,6},{16,2},{22,6},{30,4},
@@ -46,7 +47,8 @@ The 'arc voltage vs current' characteristic is a hyperbolic tangent.
 The 'arc voltage vs current' characteristic is a hyperbolic tangent.
 </p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

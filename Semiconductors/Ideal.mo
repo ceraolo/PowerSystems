@@ -95,7 +95,8 @@ A generalisation to powers of i and v is straightforward.</p>
       defaultComponentName="thyristor1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(

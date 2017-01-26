@@ -75,7 +75,8 @@ package Relays "Relays"
 and the neutral position for nominal voltage are defined in the transformer data.</p>
 <p>The switching times can be chosen arbitrarily.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -130,7 +131,8 @@ and the neutral position for nominal voltage are defined in the transformer data
 and the neutral position for nominal voltage are defined in the transformer data.</p>
 <p>The switching times can be chosen arbitrarily.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

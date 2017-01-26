@@ -444,16 +444,16 @@ The method must be improved in this case (in particular in context with inductiv
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-70,-10},{-50,-10},{
             -50,-46},{50,-46},{50,-10},{70,-10}}, color={0,0,255}),Line(points=
-            {{-70,10},{-50,10},{-50,27},{-40,27}}, color={0,0,255}),Line(points=
-             {{20,27},{50,27},{50,10},{70,10}}, color={0,0,255}),Line(points={{
+            {{-70,10},{-50,10},{-50,27},{-40,27}}, color={0,0,255}),Line(points
+            ={{20,27},{50,27},{50,10},{70,10}}, color={0,0,255}),Line(points={{
             30,27},{30,-46}}, color={0,0,255}),Polygon(
               points={{20,-30},{30,-10},{40,-30},{20,-30}},
               lineColor={0,0,255},
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{20,-10},{40,-10}},
             color={0,0,255}),Line(points={{-20,40},{-40,40},{-40,10},{-20,10}},
-            color={0,0,255}),Line(points={{0,40},{20,40},{20,10},{0,10}}, color=
-             {0,0,255}),Line(points={{0,10},{12,-4}}, color={176,0,0}),Ellipse(
+            color={0,0,255}),Line(points={{0,40},{20,40},{20,10},{0,10}}, color
+            ={0,0,255}),Line(points={{0,10},{12,-4}}, color={176,0,0}),Ellipse(
               extent={{-72,8},{-68,12}},
               lineColor={0,0,255},
               fillColor={0,0,255},
@@ -630,7 +630,8 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
         Documentation(info="<html>
 <p>Passive rectifier, using diode-modules.</p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
@@ -857,8 +858,8 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
                   fillPattern=FillPattern.Solid),Line(points={{-40,-34},{-20,-34}},
               color={0,0,255}),Line(points={{-30,-34},{-42,-46}}, color={176,0,
               0}),Line(points={{-70,10},{-60,10},{-60,46},{30,46}}, color={0,0,
-              255}),Line(points={{-70,-10},{-60,-10},{-60,-46},{30,-46}}, color=
-               {0,0,255})}),
+              255}),Line(points={{-70,-10},{-60,-10},{-60,-46},{30,-46}}, color
+              ={0,0,255})}),
         Documentation(info="<html>
 <p>Four quadrant switched inverter, based on switch equation. Fulfills the power balance:
 <pre>  vAC*iAC = vDC*iDC</pre></p>
@@ -988,7 +989,8 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
 <p>Gates:
 <pre>  true=on, false=off.</pre></p>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(

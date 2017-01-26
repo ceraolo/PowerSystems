@@ -44,7 +44,8 @@ package Sensors "Sensors n-phase or DC"
       defaultComponentName="Isensor1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(extent={{-20,20},{20,-20}}, lineColor=
@@ -95,7 +96,8 @@ package Sensors "Sensors n-phase or DC"
       defaultComponentName="Isensor1",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(extent={{-20,20},{20,-20}}, lineColor=
@@ -311,14 +313,16 @@ Use them only when and where needed. Otherwise use 'Sensors'.</p>
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(extent={{-20,20},{20,-20}}, lineColor=
-            {135,135,135}),Ellipse(
-              extent={{-8,8},{8,-8}},
-              lineColor={135,135,135},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Line(points={{0,0},{20,0}}, color=
-            {0,0,255}),Line(points={{-15,45},{15,59}}, color={135,135,135}),
-            Line(points={{-15,35},{15,49}}, color={135,135,135})}));
+          grid={2,2}), graphics={
+          Ellipse(extent={{-20,20},{20,-20}}, lineColor={135,135,135}),
+          Ellipse(
+            extent={{-8,8},{8,-8}},
+            lineColor={135,135,135},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Line(points={{0,0},{20,0}}, color={0,0,255}),
+          Line(points={{-15,45},{15,59}}, color={135,135,135}),
+          Line(points={{-15,35},{15,49}}, color={135,135,135})}));
   end PVImeter;
 
   model Efficiency "Power sensor, 3-phase dq0"
@@ -387,7 +391,8 @@ negative values of eta indicate powerflow against direction of arrow.</p>
 <p>Note: Take care about the above definitions if approximations are used in measured components.<br>
 In problematic cases use power sensors electrical and mechanical.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -427,14 +432,16 @@ In problematic cases use power sensors electrical and mechanical.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{-70,70},{70,-70}},
-                  lineColor={255,255,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(points={{0,20},{0,90}},
-              color={135,135,135}),Line(points={{-88,0},{-20,0}}, color={0,0,
-              255}),Line(points={{0,0},{88,0}}, color={0,0,255}),Line(points={{
-              30,20},{70,0},{30,-20}}, color={0,0,255})}));
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{-70,70},{70,-70}},
+              lineColor={255,255,255},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(points={{0,20},{0,90}}, color={135,135,135}),
+            Line(points={{-88,0},{-20,0}}, color={0,0,255}),
+            Line(points={{0,0},{88,0}}, color={0,0,255}),
+            Line(points={{30,20},{70,0},{30,-20}}, color={0,0,255})}));
     end Sensor2Base;
 
     partial model Meter1Base "Meter base 1 terminal, 1-phase"
@@ -454,7 +461,7 @@ In problematic cases use power sensors electrical and mechanical.</p>
       extends Common.Nominal.Nominal;
 
       annotation (Icon(graphics={Ellipse(extent={{-70,70},{70,-70}}, lineColor=
-              {135,135,135})}));
+                  {135,135,135})}));
     end Meter2Base;
 
   end Partials;

@@ -22,7 +22,8 @@ Cleared at first current-zero after opening.</p>
 When open and <tt>i</tt> crosses zero: <tt>arc</tt> becomes false (<tt>open</tt> does not change).<br>
 When closing: <tt>arc</tt> becomes false (<tt>open</tt> changes from true to false).</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(
@@ -229,7 +230,8 @@ Clearing criterion: balance heating-cooling.</p>
       annotation (
         Documentation(info="<html>
 </html>
-"),     Icon(coordinateSystem(
+"),
+        Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(

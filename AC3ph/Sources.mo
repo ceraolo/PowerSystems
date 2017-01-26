@@ -97,7 +97,8 @@ where
    vPhasor_in[2]      in rad
 </pre></p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -158,16 +159,16 @@ with variable amplitude and phase when 'vPhasor_in' connected to a signal-input.
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
-              extent={{-60,54},{60,14}},
-              lineColor={215,215,215},
-              fillColor={127,0,255},
-              fillPattern=FillPattern.Solid,
-              textString="V"),Text(
-              extent={{-60,54},{60,14}},
-              lineColor={128,128,128},
-              fillColor={127,0,255},
-              fillPattern=FillPattern.Solid,
-              textString="slack")}));
+            extent={{-60,54},{60,14}},
+            lineColor={215,215,215},
+            fillColor={127,0,255},
+            fillPattern=FillPattern.Solid,
+            textString="V"), Text(
+            extent={{-60,54},{60,14}},
+            lineColor={128,128,128},
+            fillColor={127,0,255},
+            fillPattern=FillPattern.Solid,
+            textString="slack")}));
   end InfBus;
 
   model VsourceRX "Voltage behind reactance source, 3-phase dq0"
@@ -183,8 +184,8 @@ with variable amplitude and phase when 'vPhasor_in' connected to a signal-input.
         Dialog(enable=initType == PowerSystems.Types.Init.v_alpha or initType
              == PowerSystems.Types.Init.v_p or initType == PowerSystems.Types.Init.v_q,
           tab="Initialization"));
-    parameter SI.Angle alpha_start=0 "initial terminal phase angle" annotation (
-       Dialog(enable=initType == PowerSystems.Types.Init.v_alpha, tab=
+    parameter SI.Angle alpha_start=0 "initial terminal phase angle" annotation
+      (Dialog(enable=initType == PowerSystems.Types.Init.v_alpha, tab=
             "Initialization"));
     parameter SIpu.ApparentPower p_start=1 "initial terminal active power"
       annotation (Dialog(enable=initType == PowerSystems.Types.Init.v_p,tab=
@@ -391,7 +392,8 @@ with variable (active, reactive) power when 'pq' connected to a signal-input.</p
 <p>Frequency: the source has always <i>system</i>-frequency.</p>
 <p>Use only if prescibed values for pq are compatible with the properties of the connected system.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -514,21 +516,24 @@ with variable (active, reactive) power when 'pq' connected to a signal-input.</p
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{-70,-70},{70,70}},
-                  lineColor={0,120,120},
-                  lineThickness=0.5,
-                  fillColor={215,215,215},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-70,0},{70,0}},
-                  color={176,0,0},
-                  thickness=0.5),Text(
-                  extent={{-50,30},{50,-70}},
-                  lineColor={176,0,0},
-                  lineThickness=0.5,
-                  fillColor={127,0,255},
-                  fillPattern=FillPattern.Solid,
-                  textString="~")}));
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{-70,-70},{70,70}},
+              lineColor={0,120,120},
+              lineThickness=0.5,
+              fillColor={215,215,215},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-70,0},{70,0}},
+              color={176,0,0},
+              thickness=0.5),
+            Text(
+              extent={{-50,30},{50,-70}},
+              lineColor={176,0,0},
+              lineThickness=0.5,
+              fillColor={127,0,255},
+              fillPattern=FillPattern.Solid,
+              textString="~")}));
     end PowerBase;
 
   end Partials;
