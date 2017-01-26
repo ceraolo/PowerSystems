@@ -5,7 +5,7 @@ package Transmission "AC transmission, dq0"
   model PowerTransferRXY "Power transfer between two nodes"
     import PowerSystems;
 
-    inner PowerSystems.System system
+    inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.SteadyState)
       annotation (Placement(transformation(extent={{-10,20},{10,40}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       t_change=30,
@@ -14,43 +14,45 @@ package Transmission "AC transmission, dq0"
       ph_start=0)
       annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
+      annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
     PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=130e3, S_nom=100e6))
+          PowerSystems.Examples.Data.Lines.ItOHline_132kV, len=200000)
       annotation (Placement(transformation(extent={{18,-10},{38,10}})));
     PowerSystems.AC3ph.Sensors.Psensor rxPsens
-      annotation (Placement(transformation(extent={{-22,-10},{-2,10}})));
+      annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
     PowerSystems.AC3ph.Sources.InfBus infBus2(V_nom=130e3)
       annotation (Placement(transformation(extent={{78,-10},{58,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-62,-10},{-82,10}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
       annotation (Placement(transformation(extent={{78,-10},{98,10}})));
 
-    PowerSystems.AC3ph.Lines.PIline line1(redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.RXline (S_nom=100e6, V_nom=130000))
-      annotation (Placement(transformation(extent={{18,-46},{38,-26}})));
+    PowerSystems.AC3ph.Lines.PIline line1(
+      ne=1,
+      redeclare record Data = PowerSystems.Examples.Data.Lines.ItOHline_132kV,
+      len=200000)
+      annotation (Placement(transformation(extent={{18,-50},{38,-30}})));
     PowerSystems.AC3ph.Sensors.Psensor rxyPsens
-      annotation (Placement(transformation(extent={{-24,-46},{-4,-26}})));
+      annotation (Placement(transformation(extent={{-20,-50},{0,-30}})));
   equation
     connect(transPh.y, infBus1.vPhasor_in)
-      annotation (Line(points={{-62,20},{-46,20},{-46,10}}, color={0,0,127}));
+      annotation (Line(points={{-62,20},{-44,20},{-44,10}}, color={0,0,127}));
     connect(infBus1.term, rxPsens.term_p)
-      annotation (Line(points={{-42,0},{-22,0}}, color={0,110,110}));
+      annotation (Line(points={{-40,0},{-20,0}}, color={0,110,110}));
     connect(rxPsens.term_n, line.term_p)
-      annotation (Line(points={{-2,0},{18,0}}, color={0,110,110}));
+      annotation (Line(points={{0,0},{18,0}}, color={0,110,110}));
     connect(line.term_n, infBus2.term)
       annotation (Line(points={{38,0},{58,0}}, color={0,110,110}));
     connect(grd1.term, infBus1.neutral)
-      annotation (Line(points={{-62,0},{-62,0}}, color={0,0,255}));
+      annotation (Line(points={{-70,0},{-60,0}}, color={0,0,255}));
     connect(grd2.term, infBus2.neutral)
       annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
     connect(rxyPsens.term_n, line1.term_p)
-      annotation (Line(points={{-4,-36},{7,-36},{18,-36}}, color={0,120,120}));
-    connect(line1.term_n, infBus2.term) annotation (Line(points={{38,-36},{48,
-            -36},{48,0},{58,0}}, color={0,120,120}));
-    connect(rxyPsens.term_p, infBus1.term) annotation (Line(points={{-24,-36},{
-            -34,-36},{-34,-36},{-42,-36},{-42,0}}, color={0,120,120}));
+      annotation (Line(points={{0,-40},{0,-40},{18,-40}}, color={0,120,120}));
+    connect(line1.term_n, infBus2.term) annotation (Line(points={{38,-40},{48,-40},
+            {48,0},{58,0}}, color={0,120,120}));
+    connect(rxyPsens.term_p, infBus1.term) annotation (Line(points={{-20,-40},{
+            -40,-40},{-40,0}}, color={0,120,120}));
     annotation (
       Documentation(info="<html>
 <p>Shows the influence of phase-difference on power flow.<br>
@@ -67,61 +69,6 @@ Alternatively one can look at a variation of amplitude ratios.</p>
       Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
   end PowerTransferRXY;
-
-  model PowerTransfer "Power transfer between two nodes"
-
-    inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
-    PowerSystems.Blocks.Signals.TransientPhasor transPh(
-      t_change=30,
-      t_duration=60,
-      ph_end=2*pi,
-      ph_start=0)
-      annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
-    PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
-    PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=130e3, S_nom=100e6),
-        len=100e3)
-      annotation (Placement(transformation(extent={{18,-10},{38,10}})));
-    PowerSystems.AC3ph.Sensors.Psensor sensor
-      annotation (Placement(transformation(extent={{-22,-10},{-2,10}})));
-    PowerSystems.AC3ph.Sources.InfBus infBus2(V_nom=130e3)
-      annotation (Placement(transformation(extent={{78,-10},{58,10}})));
-    PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-62,-10},{-82,10}})));
-    PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{78,-10},{98,10}})));
-
-  equation
-    connect(transPh.y, infBus1.vPhasor_in)
-      annotation (Line(points={{-62,20},{-46,20},{-46,10}}, color={0,0,127}));
-    connect(infBus1.term, sensor.term_p)
-      annotation (Line(points={{-42,0},{-22,0}}, color={0,110,110}));
-    connect(sensor.term_n, line.term_p)
-      annotation (Line(points={{-2,0},{18,0}}, color={0,110,110}));
-    connect(line.term_n, infBus2.term)
-      annotation (Line(points={{38,0},{58,0}}, color={0,110,110}));
-    connect(grd1.term, infBus1.neutral)
-      annotation (Line(points={{-62,0},{-62,0}}, color={0,0,255}));
-    connect(grd2.term, infBus2.neutral)
-      annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
-    annotation (
-      Documentation(info="<html>
-<p>Shows the influence of phase-difference on power flow.<br>
-Alternatively one can look at a variation of amplitude ratios.</p>
-<p><i>See for example:</i>
-<pre>
-  sensor1.p[1]     active power
-  sensor1.p[2]     reactive power.
-</pre>
-<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>
-"),
-      experiment(StopTime=60),
-      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
-      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
-  end PowerTransfer;
 
   model VoltageStability "Voltage stability"
 
@@ -605,8 +552,8 @@ Compare with DoublePIline.</p>
       redeclare model Topology_p = PowerSystems.AC3ph.Ports.Topology.Delta,
       redeclare model Topology_n = PowerSystems.AC3ph.Ports.Topology.Y)
       annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
-    PowerSystems.AC3ph.Lines.PIline line(len=480000,redeclare record Data =
-          PowerSystems.Examples.Data.Lines.OHline_400kV)
+    PowerSystems.AC3ph.Lines.PIline line(redeclare record Data =
+          PowerSystems.Examples.Data.Lines.OHline_400kV, len=480000)
       annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
     PowerSystems.AC3ph.Breakers.Switch switch1(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
@@ -879,8 +826,11 @@ Compare with DoublePIline.</p>
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleLineTG;
+
   annotation (preferredView="info", Documentation(info="<html>
-<p>Transmission line models and faults.</p>
+<p>Compares RX and RXY line models with a line having a 250 km length.</p>
+<p>Particularly interensting is the comparison with analytic formulas for active and reactive powers, and between the RX version (transverse admittances neglected) and the RXY (Y considered).</p>
+<p>Detailed documentation is under way.</p>
 <p><a href=\"modelica://PowerSystems.Examples\">up users guide</a></p>
 </html>"));
 end Transmission;

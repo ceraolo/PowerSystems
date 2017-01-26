@@ -104,7 +104,7 @@ package Lines "Transmission lines 3-phase"
 
     PS.Voltage[PS.n] v(start=v_start);
     PS.Current[PS.n] i(start=i_start);
-  protected
+    // protected
     SI.AngularFrequency[2] omega;
 
   initial equation
@@ -213,7 +213,7 @@ package Lines "Transmission lines 3-phase"
 
     PS.Voltage[PS.n, ne1] v(start=transpose(fill(v_start, ne1)));
     PS.Current[PS.n, ne] i(start=transpose(fill(i_start, ne)));
-  protected
+    //protected
     final parameter Integer ne1=ne + 1;
     SI.AngularFrequency[2] omega;
 
@@ -697,245 +697,201 @@ The set of equations of two series connected lines of length len1 and len2 is id
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Line(points={{-80,18},{-70,18}}, color={0,0,255}),
-          Rectangle(
-            extent={{-70,20},{-62,16}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,20},{-40,16}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,10},{-40,8}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,2},{-62,-2}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,2},{-40,-2}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,-8},{-40,-10}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,-16},{-40,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-70,-16},{-62,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-30,13},{-20,11}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-30,9},{-20,7}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-30,-7},{-20,-9}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-30,-11},{-20,-13}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-6,3},{4,1}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-6,-1},{4,-3}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-14,16},{-10,4}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-14,-4},{-10,-16}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{10,6},{14,-6}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-40,18},{40,18}}, color={0,0,255}),
-          Line(points={{-80,0},{-70,0}}, color={0,0,255}),
-          Line(
-            points={{-10,0},{40,0}},
-            color={0,0,255},
-            pattern=LinePattern.Dot),
-          Line(points={{-80,-18},{-70,-18}}, color={0,0,255}),
-          Line(points={{-40,-18},{40,-18}}, color={0,0,255}),
-          Line(points={{-25,12},{-25,18}}, color={0,0,255}),
-          Line(points={{-25,-18},{-25,-12}}, color={0,0,255}),
-          Line(points={{-25,7},{-25,-7}}, color={0,0,255}),
-          Line(points={{-1,18},{-1,2}}, color={0,0,255}),
-          Line(points={{-1,-2},{-1,-18}}, color={0,0,255}),
-          Line(points={{12,18},{12,6}}, color={0,0,255}),
-          Line(points={{12,-6},{12,-18}}, color={0,0,255}),
-          Line(points={{70,0},{80,0}}, color={0,0,255}),
-          Line(points={{-12,18},{-12,16}}, color={0,0,255}),
-          Line(points={{-12,-16},{-12,-18}}, color={0,0,255}),
-          Line(points={{-12,4},{-12,-4}}, color={0,0,255}),
-          Line(points={{-40,0},{-8,0}}, color={0,0,255}),
-          Rectangle(
-            extent={{-36,-37},{-26,-39}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-36,-41},{-26,-43}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-30,-60},{-30,-42}}, color={0,0,255}),
-          Rectangle(
-            extent={{-22,-34},{-18,-46}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-20,-46},{-20,-60}}, color={0,0,255}),
-          Line(points={{-20,-18},{-20,-34}}, color={0,0,255}),
-          Line(points={{-31,-18},{-31,-37}}, color={0,0,255}),
-          Rectangle(
-            extent={{-12,-37},{-2,-39}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-12,-41},{-2,-43}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-7,-60},{-7,-42}}, color={0,0,255}),
-          Rectangle(
-            extent={{4,-34},{8,-46}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{6,-46},{6,-60}}, color={0,0,255}),
-          Rectangle(
-            extent={{13,-37},{23,-39}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{13,-41},{23,-43}},
-            lineColor={0,0,255},
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{18,-60},{18,-42}}, color={0,0,255}),
-          Rectangle(
-            extent={{27,-34},{31,-46}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{29,-46},{29,-60}}, color={0,0,255}),
-          Line(points={{29,18},{29,-34}}, color={0,0,255}),
-          Line(points={{18,18},{18,-37}}, color={0,0,255}),
-          Line(points={{6,0},{6,-28},{6,-28},{6,-34}}, color={0,0,255}),
-          Line(points={{-7,0},{-7,-28},{-7,-28},{-7,-38}}, color={0,0,255}),
-          Rectangle(
-            extent={{-33,-60},{34,-62}},
-            lineColor={135,135,135},
-            fillColor={135,135,135},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{40,20},{48,16}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{48,20},{70,16}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-62,-26},{-40,-28}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Line(points={{70,-18},{80,-18}}, color={0,0,255}),
-          Line(points={{70,18},{80,18}}, color={0,0,255}),
-          Rectangle(
-            extent={{48,10},{70,8}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{40,2},{48,-2}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{48,2},{70,-2}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{48,-8},{70,-10}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{48,-16},{70,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{40,-16},{48,-20}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{48,-26},{70,-28}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Line(points={{-80,18},{-70,18}}, color={0,0,
+            255}),Rectangle(
+              extent={{-70,20},{-62,16}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,20},{-40,16}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,10},{-40,8}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,2},{-62,-2}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,2},{-40,-2}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,-8},{-40,-10}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,-16},{-40,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-70,-16},{-62,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-30,13},{-20,11}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-30,9},{-20,7}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-30,-7},{-20,-9}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-30,-11},{-20,-13}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-6,3},{4,1}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-6,-1},{4,-3}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-14,16},{-10,4}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-14,-4},{-10,-16}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{10,6},{14,-6}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{-40,18},{40,18}},
+            color={0,0,255}),Line(points={{-80,0},{-70,0}}, color={0,0,255}),
+            Line(
+              points={{-10,0},{40,0}},
+              color={0,0,255},
+              pattern=LinePattern.Dot),Line(points={{-80,-18},{-70,-18}}, color
+            ={0,0,255}),Line(points={{-40,-18},{40,-18}}, color={0,0,255}),Line(
+            points={{-25,12},{-25,18}}, color={0,0,255}),Line(points={{-25,-18},
+            {-25,-12}}, color={0,0,255}),Line(points={{-25,7},{-25,-7}}, color=
+            {0,0,255}),Line(points={{-1,18},{-1,2}}, color={0,0,255}),Line(
+            points={{-1,-2},{-1,-18}}, color={0,0,255}),Line(points={{12,18},{
+            12,6}}, color={0,0,255}),Line(points={{12,-6},{12,-18}}, color={0,0,
+            255}),Line(points={{70,0},{80,0}}, color={0,0,255}),Line(points={{-12,
+            18},{-12,16}}, color={0,0,255}),Line(points={{-12,-16},{-12,-18}},
+            color={0,0,255}),Line(points={{-12,4},{-12,-4}}, color={0,0,255}),
+            Line(points={{-40,0},{-8,0}}, color={0,0,255}),Rectangle(
+              extent={{-36,-37},{-26,-39}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-36,-41},{-26,-43}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-30,-60},{-30,-42}},
+            color={0,0,255}),Rectangle(
+              extent={{-22,-34},{-18,-46}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{-20,-46},{-20,-60}},
+            color={0,0,255}),Line(points={{-20,-18},{-20,-34}}, color={0,0,255}),
+            Line(points={{-31,-18},{-31,-37}}, color={0,0,255}),Rectangle(
+              extent={{-12,-37},{-2,-39}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-12,-41},{-2,-43}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{-7,-60},{-7,-42}},
+            color={0,0,255}),Rectangle(
+              extent={{4,-34},{8,-46}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{6,-46},{6,-60}},
+            color={0,0,255}),Rectangle(
+              extent={{13,-37},{23,-39}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{13,-41},{23,-43}},
+              lineColor={0,0,255},
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Line(points={{18,-60},{18,-42}},
+            color={0,0,255}),Rectangle(
+              extent={{27,-34},{31,-46}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(points={{29,-46},{29,-60}},
+            color={0,0,255}),Line(points={{29,18},{29,-34}}, color={0,0,255}),
+            Line(points={{18,18},{18,-37}}, color={0,0,255}),Line(points={{6,0},
+            {6,-28},{6,-28},{6,-34}}, color={0,0,255}),Line(points={{-7,0},{-7,
+            -28},{-7,-28},{-7,-38}}, color={0,0,255}),Rectangle(
+              extent={{-33,-60},{34,-62}},
+              lineColor={135,135,135},
+              fillColor={135,135,135},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{40,20},{48,16}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{48,20},{70,16}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-62,-26},{-40,-28}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Line(points={{70,-18},{80,-18}},
+            color={0,0,255}),Line(points={{70,18},{80,18}}, color={0,0,255}),
+            Rectangle(
+              extent={{48,10},{70,8}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{40,2},{48,-2}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{48,2},{70,-2}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{48,-8},{70,-10}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{48,-16},{70,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{40,-16},{48,-20}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{48,-26},{70,-28}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end Tline;
 
   model FaultRXline "Faulted RX transmission line, 3-phase dq0"

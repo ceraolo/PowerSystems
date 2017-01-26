@@ -148,6 +148,26 @@ package Lines "Line example data"
 </html>"));
   end OHline_132kV;
 
+  record ItOHline_132kV "Overhead line 132kV typical Italian Geometry"
+    extends PowerSystems.AC3ph.Lines.Parameters.Line(
+      puUnits=true,
+      V_nom=132e3,
+      S_nom=100e6,
+      f_nom=50,
+      r=0.02866,
+      x=0.2938,
+      x0=1.2,
+      g_pg=1e-10,
+      g_pp=1e-10,
+      b_pg=2.03e-6,
+      b_pp=3.81e-6);
+    annotation (
+      defaultComponentName="OH_132kV",
+      defaultComponentPrefixes="parameter",
+      Documentation(info="<html>
+</html>"));
+  end ItOHline_132kV;
+
   record OHline400kV "Overhead RX-line 400kV 3-phase, example"
     extends PowerSystems.AC3ph.Lines.Parameters.RXline(
       puUnits=true,
