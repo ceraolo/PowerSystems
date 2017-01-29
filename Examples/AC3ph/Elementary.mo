@@ -232,44 +232,53 @@ package Elementary "AC 3-phase components dq0"
   end Line;
 
   model Load "Load"
+    import PowerSystems;
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-    PowerSystems.Blocks.Signals.TransientPhasor transPh
-      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
-    PowerSystems.AC3ph.Sources.Voltage voltage(use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter
-      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+    PowerSystems.AC3ph.Sources.Voltage voltage(use_vPhasor_in=false, V_nom=100)
+      annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
+    PowerSystems.AC3ph.Sensors.PVImeter pviMeter(
+      puUnits=true,
+      V_nom=load.V_nom,
+      S_nom=load.S_nom)
+      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
     replaceable PowerSystems.AC3ph.Loads.PQindLoad load(tcst=0.01, use_pq_in=
-          true)
-      annotation (Placement(transformation(extent={{30,-10},{50,10}})));
-    PowerSystems.Blocks.Signals.Transient[2] trsSignal(s_start={sqrt(3)/2,1/2},
-        s_end={1,0.2}) annotation (Placement(transformation(
-          origin={40,30},
+          true,
+      V_nom=100,
+      S_nom=1000)
+      annotation (Placement(transformation(extent={{50,-10},{70,10}})));
+    PowerSystems.Blocks.Signals.Transient[2] trsSignal(s_start={1,0.5}, s_end={
+          0.5,0.25})   annotation (Placement(transformation(
+          origin={60,30},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC3ph.Nodes.GroundOne grd
-      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
+      annotation (Placement(transformation(extent={{-60,-10},{-80,10}})));
 
+    PowerSystems.AC3ph.Sensors.Psensor powSens
+      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
   equation
-    connect(transPh.y, voltage.vPhasor_in)
-      annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
-    connect(trsSignal.y, load.pq_in) annotation (Line(points={{40,20},{40,20},{
-            40,30},{40,10}}, color={0,0,127}));
-    connect(voltage.term, meter.term_p)
-      annotation (Line(points={{-50,0},{-40,0}}, color={0,110,110}));
-    connect(meter.term_n, load.term)
-      annotation (Line(points={{-20,0},{30,0}}, color={0,110,110}));
+    connect(trsSignal.y, load.pq_in) annotation (Line(points={{60,20},{60,20},{
+            60,30},{60,10}}, color={0,0,127}));
+    connect(voltage.term, pviMeter.term_p)
+      annotation (Line(points={{-40,0},{-30,0}}, color={0,110,110}));
     connect(grd.term, voltage.neutral)
-      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
+      annotation (Line(points={{-60,0},{-60,0}}, color={0,0,255}));
+    connect(powSens.term_p, pviMeter.term_n)
+      annotation (Line(points={{10,0},{-10,0}}, color={0,120,120}));
+    connect(powSens.term_n, load.term)
+      annotation (Line(points={{30,0},{40,0},{50,0}}, color={0,120,120}));
     annotation (
       Documentation(info="<html>
+<p>Shows usage of P-Q load, as well as meters and Systems of Measure.</p>
+<p>The load goes from 1 kW, 0.5kvar (inductive) to 0.5 kW 0.25 kvar (still inductive). </p>
+<p>Variables in terminals and components, as standard in Power System Library, are in SI. However, the presence of meter allows view of results either in SI or PU. The sensor powMeter instead, since it just reports what is flowing in the wires, always reports powers  in SI.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
 </html>"),
-      experiment(StopTime=1),
-      Diagram(coordinateSystem(extent={{-100,-20},{60,40}})),
-      Icon(coordinateSystem(extent={{-100,-20},{60,40}})));
+      experiment(__Dymola_NumberOfIntervals=2000),
+      Diagram(coordinateSystem(extent={{-80,-20},{80,40}})),
+      Icon(coordinateSystem(extent={{-80,-20},{80,40}})));
   end Load;
 
   model Machines "Machines"

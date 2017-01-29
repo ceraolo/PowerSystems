@@ -62,7 +62,7 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
   model PQindLoad "PQ inductive load, 3-phase dq0"
     extends Partials.IndLoadBase;
 
-    parameter Generic.Current imax(unit="1") = 2 "maximum current";
+    parameter Types.Generic.Current imax(unit="1") = 2 "maximum current";
     parameter SI.Time tcst=0.01 "time constant Z";
   protected
     Real v2=v*v;
@@ -192,10 +192,10 @@ Consumes the desired active and reactive power at <b>nominal</b> voltage.</p>
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end Yload;
 
   model PQcapLoad "PQ capacitive load, 3-phase dq0"
@@ -274,10 +274,10 @@ Consumes the desired active and reactive power independent of voltage.</p>
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid),Line(points={{-30,16},{-30,8},{-20,
             8}}, color={0,0,255}),Line(points={{-30,0},{-30,-8},{-20,-8}},
-            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color
-            ={0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
-            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points
-            ={{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
+            color={0,0,255}),Line(points={{-30,-16},{-30,-24},{-20,-24}}, color=
+             {0,0,255}),Line(points={{-10,8},{20,8},{20,16}}, color={0,0,255}),
+            Line(points={{-10,-8},{20,-8},{20,0}}, color={0,0,255}),Line(points=
+             {{-10,-24},{20,-24},{20,-16}}, color={0,0,255})}));
   end PQcapLoad;
 
   model ZIPload "ZIP inductive load, 3-phase dq0"
@@ -520,10 +520,10 @@ Consumes the desired active and reactive power at steady state and <b>nominal</b
         "= true to use input signal pq_in, otherwise use parameter pq0"
         annotation (Evaluate=true,choices(checkBox=true));
 
-      parameter Generic.Power[2] pq0(each min=0) = {sqrt(3),1}/2
+      parameter Types.Generic.Power[2] pq0(each min=0) = {sqrt(3),1}/2
         "fixed {active, reactive} power (start value if use_pq_in)"
         annotation (Dialog(enable=not use_pq_in));
-      parameter Generic.Resistance r_n=0 "resistance neutral to grd";
+      parameter Types.Generic.Resistance r_n=0 "resistance neutral to grd";
       Modelica.Blocks.Interfaces.RealInput[2] pq_in(each min=0) if use_pq_in
         "desired {active, reactive} power" annotation (Placement(transformation(
             origin={0,100},
