@@ -22,23 +22,27 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-40,-70},{0,-80}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-40,-70},{0,-80}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Short_ABC;
 
   model Fault_bc "b to c fault, 3-phase dq0"
@@ -53,19 +57,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Fault_bc;
 
   model Fault_ca "c to a fault, 3-phase dq0"
@@ -80,19 +87,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Fault_ca;
 
   model Fault_ab "a to b fault, 3-phase dq0"
@@ -107,19 +117,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid)}));
   end Fault_ab;
 
   model Fault_abc "a to b to c fault, 3-phase dq0"
@@ -165,23 +178,27 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-40,-70},{0,-80}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-40,-70},{0,-80}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid)}));
   end Fault_abc;
 
   model Fault_A "a to ground fault, 3-phase dq0"
@@ -196,19 +213,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid)}));
   end Fault_A;
 
   model Fault_B "b to ground fault, 3-phase dq0"
@@ -223,19 +243,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid)}));
   end Fault_B;
 
   model Fault_C "c to ground fault, 3-phase dq0"
@@ -250,19 +273,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Fault_C;
 
   model Fault_bC "b to c to ground fault, 3-phase dq0"
@@ -277,19 +303,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Fault_bC;
 
   model Fault_cA "c to a to ground fault, 3-phase dq0"
@@ -304,19 +333,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid)}));
   end Fault_cA;
 
   model Fault_aB "a to b to ground fault, 3-phase dq0"
@@ -331,19 +363,22 @@ The transformation to inertial abc is only needed to determine the correct phase
       Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={Ellipse(
-              extent={{-30,60},{-10,40}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,20},{-10,0}},
-              lineColor={0,0,0},
-              fillColor={255,0,0},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-30,-20},{-10,-40}},
-              lineColor={0,0,0},
-              fillColor={0,255,128},
-              fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-30,60},{-10,40}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,20},{-10,0}},
+            lineColor={0,0,0},
+            fillColor={255,0,0},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-30,-20},{-10,-40}},
+            lineColor={0,0,0},
+            fillColor={0,255,128},
+            fillPattern=FillPattern.Solid)}));
   end Fault_aB;
 
   model Fault_Abc "b to a, c to a, a to ground fault, 3-phase dq0"
@@ -429,14 +464,14 @@ The transformation to inertial abc is only needed to determine the correct phase
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
-                  extent={{-40,80},{40,-80}},
-                  lineColor={0,0,0},
-                  lineThickness=0.5,
-                  fillColor={175,175,175},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{38,78},{2,-12},{38,12},{2,-78}},
-                  color={255,255,0},
-                  thickness=0.5)}));
+              extent={{-40,80},{40,-80}},
+              lineColor={0,0,0},
+              lineThickness=0.5,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid), Line(
+              points={{38,78},{2,-12},{38,12},{2,-78}},
+              color={255,255,0},
+              thickness=0.5)}));
     end FaultBase;
 
     partial model Fault_pp "Two-phase fault, 3-phase dq0"
@@ -470,6 +505,12 @@ The transformation to inertial abc is only needed to determine the correct phase
       v_pos = v_abc[m_ph[1]] - v_abc[m_ph[2]] > 0;
       i_abc[n_ph] = epsG*v_abc[n_ph];
       sum(i_abc[m_ph]) = epsG*sum(v_abc[m_ph]);
+      annotation (Documentation(info="<html>
+<p>Base model for fault phase-phase models.</p>
+<p>When fault time is reached, fault is initiated first waiting the first zero crossing of the line-to-line voltage between the two lines to be faulted together.</p>
+<p>The actual fault occurs after the time corresponding to the parameter angle phi_on has passed.</p>
+<p>When actual fault is initiated, boolean variable on is set to true.</p>
+</html>"));
     end Fault_pp;
 
     partial model Fault_pg "One-phase to ground fault, 3-phase dq0"
@@ -504,10 +545,10 @@ The transformation to inertial abc is only needed to determine the correct phase
       annotation (Documentation(info="<html>
 </html>"), Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}),graphics={Rectangle(
-                  extent={{-40,-70},{0,-80}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid)}));
+              extent={{-40,-70},{0,-80}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid)}));
     end Fault_pg;
 
     partial model Fault_ppg "Two-phase to ground fault, 3-phase dq0"
@@ -555,10 +596,10 @@ The transformation to inertial abc is only needed to determine the correct phase
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
-                  extent={{-40,-70},{0,-80}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid)}));
+              extent={{-40,-70},{0,-80}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid)}));
     end Fault_ppg;
 
     partial model Fault_pppg "Three-phase to ground fault, 3-phase dq0"
@@ -616,23 +657,27 @@ The transformation to inertial abc is only needed to determine the correct phase
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={Ellipse(
-                  extent={{-30,60},{-10,40}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{-30,20},{-10,0}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid),Ellipse(
-                  extent={{-30,-20},{-10,-40}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid),Rectangle(
-                  extent={{-40,-70},{0,-80}},
-                  lineColor={0,0,0},
-                  fillColor={255,0,0},
-                  fillPattern=FillPattern.Solid)}));
+            grid={2,2}), graphics={
+            Ellipse(
+              extent={{-30,60},{-10,40}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{-30,20},{-10,0}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid),
+            Ellipse(
+              extent={{-30,-20},{-10,-40}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid),
+            Rectangle(
+              extent={{-40,-70},{0,-80}},
+              lineColor={0,0,0},
+              fillColor={255,0,0},
+              fillPattern=FillPattern.Solid)}));
     end Fault_pppg;
 
   end Partials;

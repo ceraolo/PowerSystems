@@ -5,7 +5,7 @@ package Elementary "AC 3-phase components dq0"
   model Breaker "Breaker"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-20,20},{0,40}})));
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
     PowerSystems.AC3ph.Nodes.Ground grd2
       annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
@@ -17,7 +17,9 @@ package Elementary "AC 3-phase components dq0"
       V_nom=10e3,
       S_nom=1e6)
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter(V_nom=10e3, S_nom=1e6)
+    PowerSystems.AC3ph.Sensors.PVImeter meter(            S_nom=1e6,
+      abc=true,
+      V_nom=10000)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     replaceable PowerSystems.AC3ph.Breakers.Breaker breaker(V_nom=10e3, I_nom=
           100) annotation (Placement(transformation(extent={{40,-10},{60,10}})));
@@ -46,6 +48,8 @@ package Elementary "AC 3-phase components dq0"
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
+<p>Shows breaker operation.</p>
+<p>The breaker is intially closed; open request is given to the three phases at t=0,1, but actual opening occurs later, since, for each phase, the breaker waits for the first zero crossing of the current. This can be checked looking at i_abc values of meter.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
 </html>"),
       experiment(StopTime=0.2, Interval=1e-4),
@@ -59,21 +63,23 @@ package Elementary "AC 3-phase components dq0"
       annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
     PowerSystems.AC3ph.Sources.Voltage voltage1(V_nom=10e3, alpha0=
           0.17453292519943)
-      annotation (Placement(transformation(extent={{-90,-50},{-70,-30}})));
+      annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
     PowerSystems.AC3ph.Breakers.Switch switch1(V_nom=10e3, I_nom=100)
-      annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
+      annotation (Placement(transformation(extent={{-50,-50},{-30,-30}})));
     PowerSystems.AC3ph.Lines.FaultRXline line(redeclare record Data =
           PowerSystems.AC3ph.Lines.Parameters.RXline (V_nom=10e3, S_nom=1e6))
       annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
     PowerSystems.AC3ph.Breakers.Switch switch2(V_nom=10e3, I_nom=100)
-      annotation (Placement(transformation(extent={{40,-50},{60,-30}})));
+      annotation (Placement(transformation(extent={{30,-50},{50,-30}})));
     PowerSystems.AC3ph.Sources.Voltage voltage2(V_nom=10e3)
-      annotation (Placement(transformation(extent={{90,-50},{70,-30}})));
+      annotation (Placement(transformation(extent={{80,-50},{60,-30}})));
     PowerSystems.Control.Relays.SwitchRelay relay1(t_switch={0.15})
-      annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.Control.Relays.SwitchRelay relay2(t_switch={0.153})
-      annotation (Placement(transformation(extent={{80,-10},{60,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter(V_nom=10e3, S_nom=1e6)
+      annotation (Placement(transformation(extent={{70,-10},{50,10}})));
+    PowerSystems.AC3ph.Sensors.PVImeter meter(            S_nom=1e6,
+      V_nom=10000,
+      abc=true)
       annotation (Placement(transformation(
           extent={{-10,-10},{10,10}},
           rotation=90,
@@ -81,33 +87,37 @@ package Elementary "AC 3-phase components dq0"
     replaceable PowerSystems.AC3ph.Faults.Fault_ab fault_ab
       annotation (Placement(transformation(extent={{-10,16},{10,36}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
-      annotation (Placement(transformation(extent={{-90,-50},{-110,-30}})));
+      annotation (Placement(transformation(extent={{-80,-50},{-100,-30}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd2
-      annotation (Placement(transformation(extent={{90,-50},{110,-30}})));
+      annotation (Placement(transformation(extent={{80,-50},{100,-30}})));
 
   equation
     connect(relay1.y, switch1.control)
-      annotation (Line(points={{-60,0},{-50,0},{-50,-30}}, color={255,0,255}));
+      annotation (Line(points={{-50,0},{-40,0},{-40,-30}}, color={255,0,255}));
     connect(relay2.y, switch2.control)
-      annotation (Line(points={{60,0},{50,0},{50,-30}}, color={255,0,255}));
+      annotation (Line(points={{50,0},{40,0},{40,-30}}, color={255,0,255}));
     connect(voltage1.term, switch1.term_p)
-      annotation (Line(points={{-70,-40},{-60,-40}}, color={0,110,110}));
+      annotation (Line(points={{-60,-40},{-50,-40}}, color={0,110,110}));
     connect(switch1.term_n, line.term_p)
-      annotation (Line(points={{-40,-40},{-10,-40}}, color={0,110,110}));
+      annotation (Line(points={{-30,-40},{-10,-40}}, color={0,110,110}));
     connect(line.term_n, switch2.term_p)
-      annotation (Line(points={{10,-40},{40,-40}}, color={0,110,110}));
+      annotation (Line(points={{10,-40},{30,-40}}, color={0,110,110}));
     connect(switch2.term_n, voltage2.term)
-      annotation (Line(points={{60,-40},{70,-40}}, color={0,110,110}));
+      annotation (Line(points={{50,-40},{60,-40}}, color={0,110,110}));
     connect(line.term_f, meter.term_p) annotation (Line(points={{0,-30},{0,-20},
             {-6.12303e-016,-20}}, color={0,110,110}));
     connect(meter.term_n, fault_ab.term) annotation (Line(points={{6.12303e-016,
             0},{0,0},{0,16}}, color={0,110,110}));
     connect(grd1.term, voltage1.neutral)
-      annotation (Line(points={{-90,-40},{-90,-40}}, color={0,0,255}));
+      annotation (Line(points={{-80,-40},{-80,-40}}, color={0,0,255}));
     connect(voltage2.neutral, grd2.term)
-      annotation (Line(points={{90,-40},{90,-40}}, color={0,0,255}));
+      annotation (Line(points={{80,-40},{80,-40}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
+<p>This model shows a line-to-line fault on a lne, halfway.</p>
+<p>Note that the meter can show also phase quantities. Meter currents are non-zero and asymmetrical before the fault occurs, because of the pre-fault non-zero conductance. However these currents are very small ans should be considered near-zero.</p>
+<p>Fault occurs at 0.1 s; actual fault occurs at t=0.110357 s (fault_ab.fault_pp.on  becomes true). For the logic to switch on to true, see info of AC3ph.Faults.Partials.Fault_pp.</p>
+<p>Sending-end and receiving-end relays disconnect the grids at 0.15 s and 0.153 s respectivey.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
 </html>"),
       experiment(StopTime=0.2, Interval=1e-4),

@@ -5,7 +5,7 @@ package Sources "Voltage and Power Sources"
   model Voltage "Ideal voltage, 3-phase dq0"
     extends Partials.VoltageBase;
 
-    parameter SIpu.Voltage v0=1 "fixed voltage"
+    parameter Types.Generic.Voltage v0=1 "fixed voltage"
       annotation (Dialog(enable=not use_vPhasor_in));
     parameter SI.Angle alpha0=0 "fixed phase angle"
       annotation (Dialog(enable=not use_vPhasor_in));
@@ -97,8 +97,7 @@ where
    vPhasor_in[2]      in rad
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -184,8 +183,8 @@ with variable amplitude and phase when 'vPhasor_in' connected to a signal-input.
         Dialog(enable=initType == PowerSystems.Types.Init.v_alpha or initType
              == PowerSystems.Types.Init.v_p or initType == PowerSystems.Types.Init.v_q,
           tab="Initialization"));
-    parameter SI.Angle alpha_start=0 "initial terminal phase angle" annotation
-      (Dialog(enable=initType == PowerSystems.Types.Init.v_alpha, tab=
+    parameter SI.Angle alpha_start=0 "initial terminal phase angle" annotation (
+       Dialog(enable=initType == PowerSystems.Types.Init.v_alpha, tab=
             "Initialization"));
     parameter SIpu.ApparentPower p_start=1 "initial terminal active power"
       annotation (Dialog(enable=initType == PowerSystems.Types.Init.v_p,tab=
@@ -392,8 +391,7 @@ with variable (active, reactive) power when 'pq' connected to a signal-input.</p
 <p>Frequency: the source has always <i>system</i>-frequency.</p>
 <p>Use only if prescibed values for pq are compatible with the properties of the connected system.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
