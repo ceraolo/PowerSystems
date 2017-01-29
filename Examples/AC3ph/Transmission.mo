@@ -15,8 +15,8 @@ package Transmission "AC transmission, dq0"
       annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
     PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-    PowerSystems.AC3ph.Lines.RXline line(len=200000, redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.RXline)
+    PowerSystems.AC3ph.Lines.RXline line(redeclare record Data =
+          PowerSystems.AC3ph.Lines.Parameters.RXline, len=100000)
       annotation (Placement(transformation(extent={{18,-10},{38,10}})));
     PowerSystems.AC3ph.Sensors.Psensor powSens
       annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
@@ -42,19 +42,22 @@ package Transmission "AC transmission, dq0"
       annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
-<p>Shows the influence of phase-difference on power flow.<br>
-Alternatively one can look at a variation of amplitude ratios.</p>
-<p><i>See for example:</i>
-<pre>
-  sensor1.p[1]     active power
-  sensor1.p[2]     reactive power.
-</pre>
-<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>
-"),
+<p>Shows the influence of phase-difference on power flow.</p>
+<p>The theory of power transfer across a RX-line is well known. </p>
+<p>For the particular simple case of resistance very low in comparison with reactance it is as follows: </p>
+<p><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer1.png\"/></p>
+<p>The maximum active power transfer occurs when <i><span style=\"font-family: Symbol;\">b</span></i>=<i><span style=\"font-family: Symbol;\">p</span></i>/2, and is equal to: <i><span style=\"font-family: Times New Roman;\">P</span></i><sub>max</sub>=<i>UE</i>/<i>X.</i></p>
+<p>In this model we have a RX transmission line with the two ends voltages having amplitude equal to the nominal values. </p>
+<p>To see results comparable with the above formulas, first change the line resistance from the default value 1e-3 PU/km to 1e-4 PU/km. </p>
+<p>Using these values the following results are obtained (p[1] is active power, p[2] is reactive power): </p>
+<p><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer2.png\"/></p>
+<p><br><br><br>If the resistance is modified and set back to its default of 1e-3 PU/km, the curves change as follows: </p><p><br><br><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer3.png\"/></p>
+<p><br><br>While reactive power remains basically unchanged active power is larger, especially its peak, since the power lost inside the line resistance is added to the transferred power.</p>
+<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
+</html>"),
       experiment(StopTime=60),
-      Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
-      Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
+      Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end PowerTransfer;
 
   model PowerTransferRXY "Power transfer between two nodes"
