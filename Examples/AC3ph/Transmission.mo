@@ -2,6 +2,61 @@ within PowerSystems.Examples.AC3ph;
 package Transmission "AC transmission, dq0"
   extends Modelica.Icons.ExamplesPackage;
 
+  model PowerTransfer "Power transfer between two nodes"
+    import PowerSystems;
+
+    inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.SteadyState)
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+    PowerSystems.Blocks.Signals.TransientPhasor transPh(
+      t_change=30,
+      t_duration=60,
+      ph_end=2*pi,
+      ph_start=0)
+      annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
+    PowerSystems.AC3ph.Sources.InfBus infBus1(V_nom=130e3, use_vPhasor_in=true)
+      annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
+    PowerSystems.AC3ph.Lines.RXline line(len=200000, redeclare record Data =
+          PowerSystems.AC3ph.Lines.Parameters.RXline)
+      annotation (Placement(transformation(extent={{18,-10},{38,10}})));
+    PowerSystems.AC3ph.Sensors.Psensor powSens
+      annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
+    PowerSystems.AC3ph.Sources.InfBus infBus2(V_nom=130e3)
+      annotation (Placement(transformation(extent={{78,-10},{58,10}})));
+    PowerSystems.AC3ph.Nodes.GroundOne grd1
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
+    PowerSystems.AC3ph.Nodes.GroundOne grd2
+      annotation (Placement(transformation(extent={{78,-10},{98,10}})));
+
+  equation
+    connect(transPh.y, infBus1.vPhasor_in)
+      annotation (Line(points={{-62,20},{-44,20},{-44,10}}, color={0,0,127}));
+    connect(infBus1.term, powSens.term_p)
+      annotation (Line(points={{-40,0},{-20,0}}, color={0,110,110}));
+    connect(powSens.term_n, line.term_p)
+      annotation (Line(points={{0,0},{18,0}}, color={0,110,110}));
+    connect(line.term_n, infBus2.term)
+      annotation (Line(points={{38,0},{58,0}}, color={0,110,110}));
+    connect(grd1.term, infBus1.neutral)
+      annotation (Line(points={{-70,0},{-60,0}}, color={0,0,255}));
+    connect(grd2.term, infBus2.neutral)
+      annotation (Line(points={{78,0},{78,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
+<p>Shows the influence of phase-difference on power flow.<br>
+Alternatively one can look at a variation of amplitude ratios.</p>
+<p><i>See for example:</i>
+<pre>
+  sensor1.p[1]     active power
+  sensor1.p[2]     reactive power.
+</pre>
+<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
+</html>
+"),
+      experiment(StopTime=60),
+      Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
+      Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
+  end PowerTransfer;
+
   model PowerTransferRXY "Power transfer between two nodes"
     import PowerSystems;
 
