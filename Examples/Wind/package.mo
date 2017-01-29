@@ -691,15 +691,15 @@ package Components
     lambdai = 1/(lambda + 0.08*beta) - 0.035/(beta^3 + 1);
     lambda = w*R/v;
     annotation (Diagram(graphics), Icon(graphics={Polygon(
-            points={{-6,-6},{-86,-16},{-8,8},{14,86},{6,6},{62,-58},{-6,-6}},
-            lineColor={85,85,255},
-            smooth=Smooth.None,
-            fillColor={85,85,255},
-            fillPattern=FillPattern.Solid), Rectangle(
-            extent={{-8,0},{8,-100}},
-            lineColor={85,85,255},
-            fillColor={85,85,255},
-            fillPattern=FillPattern.Solid)}));
+                points={{-6,-6},{-86,-16},{-8,8},{14,86},{6,6},{62,-58},{-6,-6}},
+                lineColor={85,85,255},
+                smooth=Smooth.None,
+                fillColor={85,85,255},
+                fillPattern=FillPattern.Solid),Rectangle(
+                extent={{-8,0},{8,-100}},
+                lineColor={85,85,255},
+                fillColor={85,85,255},
+                fillPattern=FillPattern.Solid)}));
     end Rotor;
 
   model WindTurbine

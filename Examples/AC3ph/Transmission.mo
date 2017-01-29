@@ -51,8 +51,9 @@ package Transmission "AC transmission, dq0"
 <p>To see results comparable with the above formulas, first change the line resistance from the default value 1e-3 PU/km to 1e-4 PU/km. </p>
 <p>Using these values the following results are obtained (p[1] is active power, p[2] is reactive power): </p>
 <p><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer2.png\"/></p>
-<p><br><br><br>If the resistance is modified and set back to its default of 1e-3 PU/km, the curves change as follows: </p><p><br><br><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer3.png\"/></p>
+<p><br><br><br><br>If the resistance is modified and set back to its default of 1e-3 PU/km, the curves change as follows: </p><p><br><br><br><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer3.png\"/></p>
 <p><br><br>While reactive power remains basically unchanged active power is larger, especially its peak, since the power lost inside the line resistance is added to the transferred power.</p>
+<p><br><i>Documentation by Massimo Ceraolo - University of Pisa.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
 </html>"),
       experiment(StopTime=60),
@@ -113,16 +114,14 @@ package Transmission "AC transmission, dq0"
             -40,-40},{-40,0}}, color={0,120,120}));
     annotation (
       Documentation(info="<html>
-<p>Shows the influence of phase-difference on power flow.<br>
-Alternatively one can look at a variation of amplitude ratios.</p>
-<p><i>See for example:</i>
-<pre>
-  sensor1.p[1]     active power
-  sensor1.p[2]     reactive power.
-</pre>
-<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
-</html>
-"),
+<p>The model AC3ph.Transmission.PowerTransfer refers to a 100 km generic RX line.</p>
+<p>This one refers to a longer, 200 km, 132kV line, whose geometry is specified in the line&apos;s documentation.</p>
+<p>From the Power System Analysis theory it is known that the RX model gives good results with short lines (say up to 100 km at 50 Hz), while PI line, with a single PI is reasonably good up to 200-250 km.</p>
+<p>This model compares the results of the two models using the same line parameters. Differences are significant especially for the reactive power.</p>
+<p>It is recommended to simulate PowerTransfer first, and compare the power plots (e.g. those shown in its documentation) with the ones that can be obtained with PowerTransferRXY, comparing RX and PI line&apos;s results.</p>
+<p><i>Model supplied and commented by Massimo Ceraolo-University of Pisa.</i></p>
+<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
+</html>"),
       experiment(StopTime=60),
       Diagram(coordinateSystem(extent={{-100,-60},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
