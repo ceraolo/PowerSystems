@@ -161,7 +161,7 @@ and other meter-signals.</p>
       annotation (Placement(transformation(extent={{-70,-20},{-90,0}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter_dq0(V_nom=400, S_nom=10e3)
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-    PowerSystems.AC3ph.Impedances.Inductor load_dq0(
+    PowerSystems.AC3ph.Impedances.Imped_RXX load_dq0(
       V_nom=400,
       S_nom=10e3,
       r=0.1) annotation (Placement(transformation(extent={{20,-20},{40,0}})));
@@ -206,7 +206,7 @@ Signals oscillate with the source frequency.</p>
       S_nom=10e3,
       abc=true)
       annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
-    PowerSystems.AC3ph.Impedances.Inductor load_dq0(
+    PowerSystems.AC3ph.Impedances.Imped_RXX load_dq0(
       V_nom=400,
       S_nom=10e3,
       r=0.1) annotation (Placement(transformation(extent={{20,-30},{40,-10}})));
@@ -252,7 +252,7 @@ Stationary signals are constant after an initial oscillation.</p>
       S_nom=10e3,
       abc=true)
       annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
-    PowerSystems.AC3ph.Impedances.Inductor load_dq0(
+    PowerSystems.AC3ph.Impedances.Imped_RXX load_dq0(
       V_nom=400,
       S_nom=10e3,
       r=0.1) annotation (Placement(transformation(extent={{20,-30},{40,-10}})));
@@ -442,7 +442,7 @@ and other meter-signals.</p>
       annotation (Placement(transformation(extent={{-80,-10},{-100,10}})));
     PowerSystems.AC3ph.Sensors.Phasor phasor_ind(V_nom=400, S_nom=10e3)
       annotation (Placement(transformation(extent={{-30,20},{10,60}})));
-    PowerSystems.AC3ph.Impedances.Inductor ind(
+    PowerSystems.AC3ph.Impedances.Imped_RXX ind(
       V_nom=400,
       S_nom=10e3,
       x_m=0.5,

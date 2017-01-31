@@ -12,12 +12,13 @@ package Elementary "AC 3-phase components dq0"
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC3ph.Sources.Voltage voltage(V_nom=10e3, use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
-    PowerSystems.AC3ph.Impedances.Inductor ind(
+    PowerSystems.AC3ph.Impedances.Imped_RXX ind(
       r=0.1,
       V_nom=10e3,
       S_nom=1e6)
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter(            S_nom=1e6,
+    PowerSystems.AC3ph.Sensors.PVImeter meter(
+      S_nom=1e6,
       abc=true,
       V_nom=10000)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -77,10 +78,10 @@ package Elementary "AC 3-phase components dq0"
       annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.Control.Relays.SwitchRelay relay2(t_switch={0.153})
       annotation (Placement(transformation(extent={{70,-10},{50,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter(            S_nom=1e6,
+    PowerSystems.AC3ph.Sensors.PVImeter meter(
+      S_nom=1e6,
       V_nom=10000,
-      abc=true)
-      annotation (Placement(transformation(
+      abc=true) annotation (Placement(transformation(
           extent={{-10,-10},{10,10}},
           rotation=90,
           origin={0,-10})));
@@ -125,18 +126,18 @@ package Elementary "AC 3-phase components dq0"
       Icon(coordinateSystem(extent={{-100,-60},{100,40}})));
   end Fault;
 
-  model Impedance "Impedance"
+  model LineImped "Impedance across grids"
 
     inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-20,20},{0,40}})));
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC3ph.Sources.Voltage voltage(use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter
       annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-    replaceable PowerSystems.AC3ph.Impedances.Inductor ind(r=0.1)
-      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+    replaceable PowerSystems.AC3ph.Impedances.Imped_RXX lineImped(r=0.1)
+      annotation (Placement(transformation(extent={{30,-10},{50,10}})));
     PowerSystems.AC3ph.Nodes.Ground grd2
       annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.AC3ph.Nodes.GroundOne grd1
@@ -147,55 +148,25 @@ package Elementary "AC 3-phase components dq0"
       annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
     connect(voltage.term, meter.term_p)
       annotation (Line(points={{-50,0},{-40,0}}, color={0,110,110}));
-    connect(meter.term_n, ind.term_p)
-      annotation (Line(points={{-20,0},{20,0}}, color={0,110,110}));
-    connect(ind.term_n, grd2.term)
-      annotation (Line(points={{40,0},{80,0}}, color={0,110,110}));
+    connect(meter.term_n, lineImped.term_p)
+      annotation (Line(points={{-20,0},{6,0},{30,0}}, color={0,110,110}));
+    connect(lineImped.term_n, grd2.term)
+      annotation (Line(points={{50,0},{66,0},{80,0}}, color={0,110,110}));
     connect(grd1.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
-<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
+<p>Simple model showing two ideal networks (Grids) connected through an Impedance model, actually resistance-impedance.</p>
+<p>This resistance-inductance might represent a transmission line, and consequently this example is similar to Elementary.Line (in which the impedance, is substituted by a PI-line) and Transmission.PowerTransfer (in which the impedance is substituted by a RX-line)</p>
+<p>The main differences between an Inductance model and an RXLine is that its parameters are directly in ohm (or pu, not in ohms/lenght with possibility to separately define length).It interesting to evaluate power flows inthis model. Details are reported in Transmission.PowerTransfer documentation.</p>
+<p><br><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
 </html>"),
       experiment(StopTime=0.2),
       Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
-  end Impedance;
+  end LineImped;
 
-  model ImpedanceYD "Impedance Y-Delta"
-
-    inner PowerSystems.System system
-      annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-    PowerSystems.Blocks.Signals.TransientPhasor transPh
-      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
-    PowerSystems.AC3ph.Sources.Voltage voltage(use_vPhasor_in=true)
-      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
-    PowerSystems.AC3ph.Sensors.PVImeter meter
-      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-    replaceable PowerSystems.AC3ph.ImpedancesYD.Inductor indYD(r=0.1)
-      annotation (Placement(transformation(extent={{30,-10},{50,10}})));
-    PowerSystems.AC3ph.Nodes.GroundOne grd
-      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
-
-  equation
-    connect(transPh.y, voltage.vPhasor_in)
-      annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
-    connect(voltage.term, meter.term_p)
-      annotation (Line(points={{-50,0},{-40,0}}, color={0,110,110}));
-    connect(meter.term_n, indYD.term)
-      annotation (Line(points={{-20,0},{30,0}}, color={0,110,110}));
-    connect(grd.term, voltage.neutral)
-      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
-    annotation (
-      Documentation(info="<html>
-<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
-</html>"),
-      experiment(StopTime=0.2),
-      Diagram(coordinateSystem(extent={{-100,-20},{80,40}})),
-      Icon(coordinateSystem(extent={{-100,-20},{80,40}})));
-  end ImpedanceYD;
-
-  model Line "Line"
+  model LinePI "Line"
 
     inner PowerSystems.System system
       annotation (Placement(transformation(extent={{-20,20},{0,40}})));
@@ -234,14 +205,50 @@ package Elementary "AC 3-phase components dq0"
       annotation (Line(points={{90,0},{90,0}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
+<p>Simple model showing two ideal networks (Grids) connected through a PI-line model.</p>
+<p>This example is similar to Elementary.Impedance (in which the Line is substituted by an impedance) and Transmission.PowerTransfer (in which the impedance is substituted by a RX-line)</p>
+<p>It interesting to evaluate power flows inthis model. Details are reported in Transmission.PowerTransfer documentation.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
 </html>"),
       experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
-  end Line;
+  end LinePI;
 
-  model Load "Load"
+  model LoadImped "Y-Delta Impedance as a load"
+
+    inner PowerSystems.System system
+      annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+    PowerSystems.Blocks.Signals.TransientPhasor transPh
+      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
+    PowerSystems.AC3ph.Sources.Voltage voltage(use_vPhasor_in=true)
+      annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
+    PowerSystems.AC3ph.Sensors.PVImeter meter
+      annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+    replaceable PowerSystems.AC3ph.ImpedancesYD.LoadImped_RXX loadImped(r=0.1)
+      annotation (Placement(transformation(extent={{38,-10},{58,10}})));
+    PowerSystems.AC3ph.Nodes.GroundOne grd
+      annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
+
+  equation
+    connect(transPh.y, voltage.vPhasor_in)
+      annotation (Line(points={{-80,20},{-54,20},{-54,10}}, color={0,0,127}));
+    connect(voltage.term, meter.term_p)
+      annotation (Line(points={{-50,0},{-40,0}}, color={0,110,110}));
+    connect(meter.term_n, loadImped.term)
+      annotation (Line(points={{-20,0},{8,0},{38,0}}, color={0,110,110}));
+    connect(grd.term, voltage.neutral)
+      annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
+<p><a href=\"modelica://PowerSystems.Examples.AC3ph.Elementary\">up users guide</a></p>
+</html>"),
+      experiment(StopTime=0.2),
+      Diagram(coordinateSystem(extent={{-100,-20},{80,40}})),
+      Icon(coordinateSystem(extent={{-100,-20},{80,40}})));
+  end LoadImped;
+
+  model LoadPQ "Load"
     import PowerSystems;
 
     inner PowerSystems.System system
@@ -253,13 +260,14 @@ package Elementary "AC 3-phase components dq0"
       V_nom=load.V_nom,
       S_nom=load.S_nom)
       annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-    replaceable PowerSystems.AC3ph.Loads.PQindLoad load(tcst=0.01, use_pq_in=
-          true,
+    replaceable PowerSystems.AC3ph.Loads.PQindLoad load(
+      tcst=0.01,
+      use_pq_in=true,
       V_nom=100,
       S_nom=1000)
       annotation (Placement(transformation(extent={{50,-10},{70,10}})));
     PowerSystems.Blocks.Signals.Transient[2] trsSignal(s_start={1,0.5}, s_end={
-          0.5,0.25})   annotation (Placement(transformation(
+          0.5,0.25}) annotation (Placement(transformation(
           origin={60,30},
           extent={{-10,-10},{10,10}},
           rotation=270)));
@@ -289,7 +297,7 @@ package Elementary "AC 3-phase components dq0"
       experiment(__Dymola_NumberOfIntervals=2000),
       Diagram(coordinateSystem(extent={{-80,-20},{80,40}})),
       Icon(coordinateSystem(extent={{-80,-20},{80,40}})));
-  end Load;
+  end LoadPQ;
 
   model Machines "Machines"
 
@@ -382,7 +390,7 @@ package Elementary "AC 3-phase components dq0"
 
     inner PowerSystems.System system
       annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
-    PowerSystems.AC3ph.ImpedancesYD.Inductor ind(r=0.1)
+    PowerSystems.AC3ph.ImpedancesYD.LoadImped_RXX ind(r=0.1)
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meter(abc=true)
       annotation (Placement(transformation(extent={{0,-10},{20,10}})));
@@ -477,7 +485,7 @@ package Elementary "AC 3-phase components dq0"
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC3ph.Sources.Voltage vAC(V_nom=2, use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
-    PowerSystems.AC3ph.Impedances.Inductor ind(r=0.05)
+    PowerSystems.AC3ph.Impedances.Imped_RXX ind(r=0.05)
       annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meterAC(av=true, tcst=0.1)
       annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
@@ -530,7 +538,7 @@ package Elementary "AC 3-phase components dq0"
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.AC3ph.Sources.Voltage vAC(V_nom=2, use_vPhasor_in=true)
       annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
-    PowerSystems.AC3ph.Impedances.Inductor ind(r=0.05)
+    PowerSystems.AC3ph.Impedances.Imped_RXX ind(r=0.05)
       annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
     PowerSystems.AC3ph.Sensors.PVImeter meterAC(av=true, tcst=0.1)
       annotation (Placement(transformation(extent={{-20,-10},{0,10}})));

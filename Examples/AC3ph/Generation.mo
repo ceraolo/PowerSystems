@@ -174,7 +174,7 @@ Both active and reactive powerflow are now directly determined through a paramet
       v0=2.258,
       alpha0=0.78539816339745)
       annotation (Placement(transformation(extent={{-82,-60},{-62,-40}})));
-    PowerSystems.AC3ph.Impedances.Inductor RLgen1(
+    PowerSystems.AC3ph.Impedances.Imped_RXX RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       r=0.01,
@@ -281,7 +281,7 @@ The power-angle is artificially fixed. The correspondence is:
       v0=2.258,
       alpha0=0.78539816339745)
       annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
-    PowerSystems.AC3ph.Impedances.Inductor RLgen1(
+    PowerSystems.AC3ph.Impedances.Imped_RXX RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       x_s=1.1,
@@ -402,7 +402,7 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
       v0=2.245,
       alpha0=1.0285225282003)
       annotation (Placement(transformation(extent={{-82,-70},{-62,-50}})));
-    PowerSystems.AC3ph.Impedances.Inductor RLgen1(
+    PowerSystems.AC3ph.Impedances.Imped_RXX RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       x_s=1.1,
@@ -530,7 +530,7 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
       v0=2.245,
       alpha0=1.0285225282003)
       annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
-    PowerSystems.AC3ph.Impedances.Inductor RLgen1(
+    PowerSystems.AC3ph.Impedances.Imped_RXX RLgen1(
       V_nom=20e3,
       S_nom=500e6,
       x_s=1.1,
