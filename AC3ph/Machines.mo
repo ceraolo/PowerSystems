@@ -109,8 +109,7 @@ The mapping from current demand to voltage demand is based on the steady-state e
 <p>Equivalent circuit is on <b>diagram layer</b> of parameter record ACdq0.Machines.Parameters.*</p>
 <p>More information see Partials.AsynchronBase.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -146,8 +145,7 @@ A wide range of rotor speeds can be achieved by controlling the AC voltage of te
 Doubly fed induction generators are popular for wind turbines.
 <p>For more information see Partials.AsynchronBase.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=true,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -327,8 +325,7 @@ Doubly fed induction generators are popular for wind turbines.
 </pre></p>
 <p>More information see Partials.SynchronBase.</p>
 </html>
-"),
-      Diagram(coordinateSystem(
+"),   Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -470,8 +467,7 @@ The mapping from current demand to voltage demand is based on the steady-state e
 <p>Limit velocity for pm-excitation without field weakening (d-axis current i_s[1]=0).
 <pre>  w_lim = omega_nom/psi_pm</pre></p><p>More information see Partials.SynchronBase.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -547,8 +543,7 @@ not allowing steady-state initialisation for asynchronous machines. Note that
 <pre>  phi_el = pole_pair_number*phi_mechanical</pre>
 More info see at 'Machines.Asynchron' and 'Machines.Synchron'.</p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={
@@ -1122,8 +1117,7 @@ where <tt>psi_pm</tt> relates to the induced armature voltage <tt>v_op</tt> at o
 <p>This is a default model. The excitation-voltage is directly determined by the pu field-voltage control-signal.<br>
 It does not contain any electronic component.</p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
@@ -1142,8 +1136,8 @@ It does not contain any electronic component.</p>
                   textString="field"),Text(
                   extent={{-100,-10},{100,-30}},
                   lineColor={0,0,255},
-                  textString="voltage"),Line(points={{-80,-40},{40,-40}}, color
-              ={0,0,255})}));
+                  textString="voltage"),Line(points={{-80,-40},{40,-40}}, color=
+               {0,0,255})}));
     end Excitation;
 
     model PowerAngle "Direct determination of generator power angle"
@@ -1177,8 +1171,7 @@ Generator rotates at given power angle delta. Replaces turbine and generator-rot
 Connector 'term' to be connected to 'generator.term'.</p>
 <p>Note: initial equations in synchronous machine must be omitted.</p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
@@ -1344,8 +1337,8 @@ txt
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{50,80},{50,10}}, color={0,0,
-              255}),Line(points={{90,50},{90,40}}, color={0,0,255}),Line(points
-              ={{-40,10},{90,10},{90,20}}, color={0,0,255}),Line(points={{50,-20},
+              255}),Line(points={{90,50},{90,40}}, color={0,0,255}),Line(points=
+               {{-40,10},{90,10},{90,20}}, color={0,0,255}),Line(points={{50,-20},
               {50,-90}}, color={0,0,255}),Line(points={{-40,-90},{90,-90},{90,-80}},
               color={0,0,255}),Line(points={{90,-50},{90,-60}}, color={0,0,255}),
               Line(points={{-40,80},{90,80},{90,70}}, color={0,0,255}),
@@ -1598,8 +1591,8 @@ txt
 
       Boolean transDat "use transient data?" annotation (Dialog,choices(choice=
               true "transient data", choice=false "equivalent circuit data"));
-      Boolean use_xtr "use x_transient and t_closed?" annotation (Dialog(enable
-            =transDat), choices(choice=true "x_tr and t_closed", choice=false
+      Boolean use_xtr "use x_transient and t_closed?" annotation (Dialog(enable=
+             transDat), choices(choice=true "x_tr and t_closed", choice=false
             "t_closed and t_open"));
       SIpu.Reactance[n_d] xtr_d "trans reactance d-axis {xtr_d', xtr_d'', ..}"
         annotation (Dialog(enable=transDat and use_xtr));
@@ -1683,10 +1676,10 @@ Therefore we have to use the following definition for the phase-angle of i_f:
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{10,80},{10,10}}, color={0,0,
-              255}),Line(points={{50,80},{50,10}}, color={0,0,255}),Line(points
-              ={{90,50},{90,40}}, color={0,0,255}),Line(points={{-40,10},{90,10},
-              {90,20}}, color={0,0,255}),Line(points={{50,-20},{50,-90}}, color
-              ={0,0,255}),Line(points={{10,-20},{10,-90}}, color={0,0,255}),
+              255}),Line(points={{50,80},{50,10}}, color={0,0,255}),Line(points=
+               {{90,50},{90,40}}, color={0,0,255}),Line(points={{-40,10},{90,10},
+              {90,20}}, color={0,0,255}),Line(points={{50,-20},{50,-90}}, color=
+               {0,0,255}),Line(points={{10,-20},{10,-90}}, color={0,0,255}),
               Line(points={{-40,-90},{90,-90},{90,-80}}, color={0,0,255}),Line(
               points={{-40,-20},{90,-20},{90,-30}}, color={0,0,255}),Line(
               points={{90,-50},{90,-60}}, color={0,0,255}),Text(

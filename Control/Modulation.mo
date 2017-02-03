@@ -149,8 +149,7 @@ package Modulation "Pulse width modulation"
   gates[5:6]     phase-module c
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-20,-60},{-20,-80}}, color={255,
@@ -265,16 +264,15 @@ equation
   gates[5:6]     phase-module c
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-40,46},{40,46}}, color={128,128,
             128}),Line(points={{-20,56},{-20,36}}, color={128,128,128}),
             Rectangle(extent={{-40,36},{40,56}}, lineColor={128,128,128}),Line(
             points={{-20,-60},{-20,-80}}, color={255,0,255}),Line(points={{0,-60},
-            {0,-80}}, color={255,0,255}),Line(points={{20,-60},{20,-80}}, color
-            ={255,0,255})}));
+            {0,-80}}, color={255,0,255}),Line(points={{20,-60},{20,-80}}, color=
+             {255,0,255})}));
   end PWMtab;
 
   block SVPWMasyn "Space vector PWM asynchronous mode"
@@ -350,8 +348,7 @@ equation
   gates[5:6]     phase-module c
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-20,-60},{-20,-80}}, color={255,
@@ -432,8 +429,7 @@ equation
   gates[5:6]     phase-module c
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-20,-60},{-20,-80}}, color={255,
@@ -490,8 +486,7 @@ equation
   gates[5:6]     phase-module c
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-20,-60},{-20,-80}}, color={255,
@@ -605,8 +600,7 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
   gates[3:4]     phase-module 2
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,-60},{0,-80}}, color={255,0,
@@ -693,8 +687,7 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
   gates[3:4]     phase-module 2
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,-60},{0,-80}}, color={255,0,
@@ -758,8 +751,7 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
   gates[3:4]     phase-module 2
 </pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-20,56},{-20,36}}, color={128,
@@ -795,8 +787,7 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
 </pre></p>
 The input vPhasor[1] has no influence on this model. It is only needed, if additional PWM is desired.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{0,-60},{0,-80}}, color={255,0,
@@ -843,8 +834,8 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-68,10},{70,-4}}, color={0,120,
             120}),Line(points={{-60,-30},{-60,30},{-30,30},{-30,-30},{-10,-30},
-            {-10,30},{15,30},{15,-30},{40,-30},{40,30},{60,30},{60,-30}}, color
-            ={255,255,0}),Text(
+            {-10,30},{15,30},{15,-30},{40,-30},{40,30},{60,30},{60,-30}}, color=
+             {255,255,0}),Text(
               extent={{-100,100},{100,60}},
               lineColor={0,0,0},
               textString="%name")}));
@@ -881,8 +872,7 @@ The input vPhasor[1] has no influence on this model. It is only needed, if addit
       Documentation(info="<html>
 <p>Pulse width modulation for chopper, current controlled.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-60,-20},{-30,20},{-6,-20},{20,
@@ -1829,14 +1819,14 @@ This part calculates the duty ratios of the space vector modulation.
       connect(Not.y, Timer.u) annotation (Line(points={{-170,-1},{-170,-40},{-162,
               -40}}, color={255,0,255}));
       connect(trigger, load_data[1].trigger) annotation (Line(points={{-220,80},
-              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color
-            ={255,0,255}));
+              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color=
+             {255,0,255}));
       connect(trigger, load_data[2].trigger) annotation (Line(points={{-220,80},
-              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color
-            ={255,0,255}));
+              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color=
+             {255,0,255}));
       connect(trigger, load_data[3].trigger) annotation (Line(points={{-220,80},
-              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color
-            ={255,0,255}));
+              {-188,80},{-188,-60},{-170,-60},{-170,-110},{-178.2,-110}}, color=
+             {255,0,255}));
       connect(GreaterEqual1.u1, GreaterEqual2.u1) annotation (Line(points={{-2,
               170},{-60,170},{-60,90},{-2,90}},color={0,0,127}));
       connect(GreaterEqual2.u1, GreaterEqual3.u1) annotation (Line(points={{-2,

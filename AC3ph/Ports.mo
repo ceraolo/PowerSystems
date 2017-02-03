@@ -637,8 +637,7 @@ The neutral point is isolated.</p>
         defaultComponentName="Y",
         Documentation(info="<html>
 </html>
-  "),
-        Icon(coordinateSystem(
+  "),   Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(
@@ -697,8 +696,8 @@ Defines Y-topology transform of voltage and current variables.</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-88,80},{-60,80}}, color={0,0,
-              255}),Line(points={{-90,0},{-60,0}}, color={0,0,255}),Line(points
-              ={{-90,-80},{-60,-80}}, color={0,0,255}),Line(
+              255}),Line(points={{-90,0},{-60,0}}, color={0,0,255}),Line(points=
+               {{-90,-80},{-60,-80}}, color={0,0,255}),Line(
                   points={{-60,80},{10,80},{60,0},{10,-80},{-60,-80}},
                   color={255,0,0},
                   thickness=0.5),Line(
@@ -745,8 +744,7 @@ Defines Delta-topology transform of voltage and current variables.</p>
 </pre>
 <p>with <tt>Rot = rotation_30deg</tt></p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-100,80},{80,80}}, color={0,0,
@@ -759,8 +757,8 @@ Defines Delta-topology transform of voltage and current variables.</p>
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{-90,80},{80,80}}, color={0,0,
-              255}),Line(points={{-90,0},{-60,0}}, color={0,0,255}),Line(points
-              ={{-90,-80},{80,-80}}, color={0,0,255}),Polygon(
+              255}),Line(points={{-90,0},{-60,0}}, color={0,0,255}),Line(points=
+               {{-90,-80},{80,-80}}, color={0,0,255}),Polygon(
                   points={{-60,0},{80,80},{80,-80},{-60,0}},
                   lineColor={255,0,0},
                   lineThickness=0.5)}));
@@ -804,8 +802,7 @@ Defines switcheable Y-Delta-topology transform of voltage and current variables.
 The neutral point is isolated.</p>
 <p>More info see Topology.Y and Topology.Delta.</p>
 </html>
-  "),
-        Icon(coordinateSystem(
+  "),   Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{60,-5},{100,-5}}, color={0,0,
@@ -879,8 +876,8 @@ The neutral point is isolated.</p>
                   lineColor={255,0,0},
                   pattern=LinePattern.Dot,
                   lineThickness=0.5),Line(points={{60,-5},{90,-5}}, color={0,0,
-              255}),Line(points={{-90,0},{-70,0}}, color={0,0,255}),Line(points
-              ={{-88,75},{-70,75}}, color={0,0,255}),Line(points={{-90,-75},{-70,
+              255}),Line(points={{-90,0},{-70,0}}, color={0,0,255}),Line(points=
+               {{-88,75},{-70,75}}, color={0,0,255}),Line(points={{-90,-75},{-70,
               -75}}, color={0,0,255}),Line(
                   points={{-60,-70},{80,-70}},
                   color={0,0,255},
@@ -936,8 +933,7 @@ annotation (Placement(transformation(
 Regularised version of Y_Delta. To be used, if device is fed across an inductive component implying a differentiable current.</p>
 <p>More info see Topology.Y and Topology.Delta.</p>
 </html>
-  "),
-        Icon(coordinateSystem(
+  "),   Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Line(points={{60,-5},{100,-5}}, color={0,0,
@@ -1011,8 +1007,8 @@ Regularised version of Y_Delta. To be used, if device is fed across an inductive
                   lineColor={255,0,0},
                   pattern=LinePattern.Dot,
                   lineThickness=0.5),Line(points={{60,-5},{90,-5}}, color={0,0,
-              255}),Line(points={{-90,0},{-70,0}}, color={0,0,255}),Line(points
-              ={{-88,75},{-70,75}}, color={0,0,255}),Line(points={{-90,-75},{-70,
+              255}),Line(points={{-90,0},{-70,0}}, color={0,0,255}),Line(points=
+               {{-88,75},{-70,75}}, color={0,0,255}),Line(points={{-90,-75},{-70,
               -75}}, color={0,0,255}),Line(
                   points={{-60,-70},{80,-70}},
                   color={0,0,255},

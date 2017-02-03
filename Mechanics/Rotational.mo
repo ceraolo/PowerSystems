@@ -140,8 +140,8 @@ The start value is always given by <tt>w0</tt>.</p>
     parameter SI.Time t_unit=1 "unit of 'time' in tab";
     parameter SI.Torque tau_unit=1 "unit of 'torque' in tab";
     parameter Real[2] t_bd(unit="s") = {0,1} "{first, last} time in tab";
-    parameter Integer drive_load=1 "driving or load" annotation (choices(choice
-          =1 "driving torque (+1)", choice=-1 "load torque (-1)"));
+    parameter Integer drive_load=1 "driving or load" annotation (choices(choice=
+           1 "driving torque (+1)", choice=-1 "load torque (-1)"));
     parameter Integer direction(
       min=-1,
       max=1) = 1 "forward or backward in time" annotation (choices(choice=1
@@ -260,8 +260,7 @@ The force as a function of position <tt>s</tt> corresponds to a mass moving alon
 <p>Note: If the height h is also needed, it has to be scaled with the factor slope_scale*D.<br>
 Start integration at time = 0.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(points={{-38,190},{-38,190}},
@@ -401,8 +400,7 @@ No pole pair reduction of equations of motion.<br>
 phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -446,8 +444,7 @@ No pole pair reduction of equations of motion.<br>
 phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -501,8 +498,7 @@ No pole pair reduction of equations of motion.<br>
 phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -548,8 +544,7 @@ No pole pair reduction of equations of motion.<br>
 phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -596,8 +591,7 @@ No pole pair reduction of equations of motion.<br>
 phi and w represent the mechanical angle and angular velocity.
 </i></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -638,8 +632,7 @@ phi and w represent the mechanical angle and angular velocity.
 <p>Rotating torsion-elastic massless shaft. It is equivalent to a massless torsion spring.<br><br>
 The parameter <tt>stiffness</tt> is a length-independent specification, in contrast to a spring-constant.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -706,8 +699,7 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
 <p>For memorising
 <pre>  ratio[1]/ratio[end] > 1 if flange_a faster flange_b.</pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -825,8 +817,7 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
 <p>For memorising
 <pre>  ratio[1]/ratio[end] > 1 if flange_a faster flange_b.</pre></p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -921,8 +912,7 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
       Documentation(info="<html>
 <p>Joining two rotational flanges directly, in place of gear.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -956,16 +946,15 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
       defaultComponentName="angleSens1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
               extent={{-70,70},{70,-70}},
               lineColor={128,128,128},
               fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(points={{0,70},{0,40}}, color
-            ={128,128,128}),Line(points={{22.9,32.8},{40.2,57.3}}, color={128,
+              fillPattern=FillPattern.Solid),Line(points={{0,70},{0,40}}, color=
+             {128,128,128}),Line(points={{22.9,32.8},{40.2,57.3}}, color={128,
             128,128}),Line(points={{-22.9,32.8},{-40.2,57.3}}, color={128,128,
             128}),Line(points={{37.6,13.7},{65.8,23.9}}, color={128,128,128}),
             Line(points={{-37.6,13.7},{-65.8,23.9}}, color={128,128,128}),Line(
@@ -977,8 +966,8 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
               extent={{-5,5},{5,-5}},
               lineColor={0,0,0},
               fillColor={128,128,128},
-              fillPattern=FillPattern.Solid),Line(points={{-90,0},{0,0}}, color
-            ={135,135,135}),Text(
+              fillPattern=FillPattern.Solid),Line(points={{-90,0},{0,0}}, color=
+             {135,135,135}),Text(
               extent={{-100,-100},{100,-140}},
               lineColor={0,0,0},
               textString="%name")}));
@@ -1006,8 +995,7 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
       defaultComponentName="powerSens1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(
@@ -1052,8 +1040,7 @@ Gear ratios are defined by <b>relative</b> speed. The following specifications a
         defaultComponentName="tabForce1",
         Documentation(info="<html>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Rectangle(extent={{-40,-90},{40,-70}},

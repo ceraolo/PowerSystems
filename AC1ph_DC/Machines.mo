@@ -103,8 +103,7 @@ L_md depends on the winding ratio between armature and field winding</p>
 &nbsp; - solving the steady-state machine equations for L_md at nominal conditions. This method leads to</p>
 <pre>  L_md=(V_nom/I_nom - (R_fd + R_q))/(pp*w_nom)</pre>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -170,8 +169,7 @@ It can be determined in several ways,<br>
   w_el_lim = pp*w_nom/(1 - R_q*I_nom/V_nom)  no-load angular velocity (electrical)
 </pre>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -212,8 +210,7 @@ It can be determined in several ways,<br>
 </pre>
 or from the induced armature voltage at nominal (compare with the synchronous machine).</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -552,8 +549,7 @@ The connector 'airgap' transfers the electromagnetic rotor-torque to the mechani
 <p>This package contains the <b>electrical part</b> (electrical equations) of DC machines.<br>
 Complete drives are found in package Drives.</p>
 </html>
-"),
-    Diagram(coordinateSystem(
+"), Diagram(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-100,-100},{100,100}},
         grid={2,2}), graphics={Line(

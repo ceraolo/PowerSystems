@@ -116,8 +116,7 @@ plot 'asm.torque', then right-click 'asm.motor.slip' and choose 'Independent var
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=3),
+"),   experiment(StopTime=3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end ASM_Y_D;
@@ -133,8 +132,8 @@ Compare 'transient' and 'steady-state' mode.</p>
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC3ph.Inverters.Select select
       annotation (Placement(transformation(extent={{-50,20},{-30,40}})));
-    PowerSystems.AC3ph.Inverters.InverterAverage inverter(redeclare record Data
-        = PowerSystems.Examples.Data.Semiconductors.IdealSC3kV_500A)
+    PowerSystems.AC3ph.Inverters.InverterAverage inverter(redeclare record Data =
+          PowerSystems.Examples.Data.Semiconductors.IdealSC3kV_500A)
       annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
     PowerSystems.AC3ph.Sensors.PVImeter power(av=true, tcst=0.05)
       annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
@@ -195,8 +194,7 @@ The model uses a time-average inverter. With the actual parameter values the 'in
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(
+"),   experiment(
         StopTime=60,
         Interval=5e-2,
         Tolerance=1e-006),
@@ -285,8 +283,7 @@ The model uses a time-average inverter. For comparison with the previous example
 Compare 'transient' and 'steady-state' mode.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Drives\">up users guide</a></p>
 </html>
-"),
-      experiment(
+"),   experiment(
         StopTime=60,
         Interval=5e-2,
         Tolerance=1e-006),
@@ -479,8 +476,8 @@ On-load steady-state start with torque-increase at 3 s and load-step 6 s.</p>
             "switch, no diode, no losses") "inverter with modulator",
       redeclare model Motor = PowerSystems.AC3ph.Machines.Synchron3rd_pm_ctrl (
             redeclare record Data =
-              PowerSystems.Examples.Data.Machines.Synchron3rd_pm400V_30kVA (r_n
-                =0)))
+              PowerSystems.Examples.Data.Machines.Synchron3rd_pm400V_30kVA (r_n=
+                 0)))
       annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
     PowerSystems.Common.Thermal.BdCondV bdCond(m=5)
       annotation (Placement(transformation(extent={{0,-20},{20,0}})));
@@ -654,7 +651,6 @@ Check vPhasor[1] &lt;  1.<br>The time-average inverter produces a desired voltag
       redeclare model Motor = PowerSystems.AC3ph.Machines.Asynchron_ctrl (
             redeclare record Data =
               PowerSystems.Examples.Data.Machines.Asynchron400V_30kVA (r_n=0)),
-
       redeclare model Inverter = PowerSystems.AC3ph.Inverters.Inverter (
             redeclare model Inverter =
               PowerSystems.AC3ph.Inverters.Components.InverterSwitch

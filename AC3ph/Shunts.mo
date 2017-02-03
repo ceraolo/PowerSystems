@@ -147,8 +147,7 @@ package Shunts "Reactive and capacitive shunts"
 &nbsp;  _pp denotes phase-to-phase</p>
 <p>Info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -267,8 +266,8 @@ package Shunts "Reactive and capacitive shunts"
               pattern=LinePattern.Dot),Line(points={{-60,-50},{20,-50}}, color=
             {0,0,255}),Line(points={{-50,50},{-50,40}}, color={0,0,255}),Line(
             points={{-50,-50},{-50,-42}}, color={0,0,255}),Line(points={{-50,8},
-            {-50,-10}}, color={0,0,255}),Line(points={{-10,50},{-10,16}}, color
-            ={0,0,255}),Line(points={{-10,-50},{-10,-16}}, color={0,0,255}),
+            {-50,-10}}, color={0,0,255}),Line(points={{-10,50},{-10,16}}, color=
+             {0,0,255}),Line(points={{-10,-50},{-10,-16}}, color={0,0,255}),
             Text(
               extent={{-80,-60},{0,-70}},
               lineColor={0,0,255},
@@ -330,8 +329,7 @@ package Shunts "Reactive and capacitive shunts"
 Use only if 'non symmetric' is really desired because this component needs a time dependent transform of the coefficient matrix.</p>
 <p>Info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -458,8 +456,7 @@ Use only if 'non symmetric' is really desired because this component needs a tim
 &nbsp;  _pp denotes phase-to-phase</p>
 <p>Info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -583,8 +580,8 @@ Use only if 'non symmetric' is really desired because this component needs a tim
               pattern=LinePattern.Dot),Line(points={{-60,-50},{20,-50}}, color=
             {0,0,255}),Line(points={{-50,50},{-50,40}}, color={0,0,255}),Line(
             points={{-50,-50},{-50,-42}}, color={0,0,255}),Line(points={{-50,8},
-            {-50,-10}}, color={0,0,255}),Line(points={{-10,50},{-10,16}}, color
-            ={0,0,255}),Line(points={{-10,-50},{-10,-16}}, color={0,0,255}),
+            {-50,-10}}, color={0,0,255}),Line(points={{-10,50},{-10,16}}, color=
+             {0,0,255}),Line(points={{-10,-50},{-10,-16}}, color={0,0,255}),
             Text(
               extent={{-80,-60},{0,-70}},
               lineColor={0,0,255},

@@ -29,8 +29,7 @@ package Exciters "Generator Exciters "
 <p>Constant excitation-voltage.</p>
 <p><tt>fieldVoltage=1</tt> corresponds to <tt>norm(v)=1 pu</tt> at open generator terminals.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -70,8 +69,7 @@ package Exciters "Generator Exciters "
 <p>Constant excitation-voltage (setpoint value).</p>
 <p><tt>fieldVoltage=1</tt> corresponds to <tt>norm(v)=1 pu</tt> at open generator terminals.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -121,8 +119,7 @@ package Exciters "Generator Exciters "
 <p>First order control of excitation-voltage.</p>
 <p><tt>fieldVoltage=1</tt> corresponds to <tt>norm(v)=1 pu</tt> at open generator terminals.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

@@ -42,8 +42,7 @@ package Signals "Special signals"
 at time <tt>t_change</tt> with a transition duration <tt>t_duration</tt>.<br><br>
 The transition function is a hyperbolic tangent.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Line(points={{-80,-60},{-64,-60},{-44,-58},{-34,
@@ -70,8 +69,7 @@ The transition function is a hyperbolic tangent.</p>
       defaultComponentName="cstPh1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -106,8 +104,7 @@ Norm and phase change from <tt>{a_start, ph_start}</tt> to <tt>{a_end, ph_end}</
 at time <tt>t_change</tt> with a transition duration <tt>t_duration</tt>.<br><br>
 The transition function is a hyperbolic tangent for both norm and phase.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -195,8 +192,7 @@ The transition function is a hyperbolic tangent.</p>
 The relative angle of the phases can be chosen arbitrarily (for non-symmetric signals).
 </p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -230,8 +226,7 @@ The relative angle of the phases can be chosen arbitrarily (for non-symmetric si
 <p>The signal has variable amplitude and frequency and constant phase.
 The relative angle of the phases can be chosen arbitrarily (for non-symmetric signals).</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(
@@ -272,8 +267,7 @@ The relative angle of the phases can be chosen arbitrarily (for non-symmetric si
 <p>The signal has variable amplitude and frequency and constant phase.
 The relative angle of the phases can be chosen arbitrarily (for non-symmetric signals).</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

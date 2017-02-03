@@ -43,7 +43,7 @@ model WindTurbine_IG
         PowerSystems.AC3ph.Transformers.Parameters.TrafoIdeal (V_nom={690,15e3},
           S_nom=3e6))
     annotation (Placement(transformation(extent={{-20,-90},{0,-70}})));
-  equation
+equation
   connect(generator.heat, bdCond.heat) annotation (Line(
       points={{-60,-30},{-60,-24}},
       color={176,0,0},
@@ -83,7 +83,7 @@ model WindTurbine_IG
       color={0,120,120},
       smooth=Smooth.None));
   annotation (experiment(StopTime=100), Diagram(graphics));
-  end WindTurbine_IG;
+end WindTurbine_IG;
 
 
 model WindTurbine_DFIG
@@ -126,8 +126,8 @@ model WindTurbine_DFIG
     annotation (Placement(transformation(extent={{-10,-44},{-30,-24}})));
   PowerSystems.Common.Thermal.BdCondV bdCond1(m=1) annotation (Placement(
         transformation(extent={{-30,-18},{-10,2}}, rotation=0)));
-  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation
-    (Placement(transformation(extent={{0,-44},{20,-24}}, rotation=0)));
+  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation (
+     Placement(transformation(extent={{0,-44},{20,-24}}, rotation=0)));
   PowerSystems.AC3ph.Inverters.InverterAverage inverter2
     annotation (Placement(transformation(extent={{30,-44},{50,-24}})));
   PowerSystems.AC3ph.Inverters.Select select2
@@ -141,7 +141,7 @@ model WindTurbine_DFIG
         PowerSystems.AC3ph.Transformers.Parameters.TrafoIdeal (V_nom={690,15e3},
           S_nom=3e6))
     annotation (Placement(transformation(extent={{-20,-90},{0,-70}})));
-  equation
+equation
   connect(generator.heat, bdCond.heat) annotation (Line(
       points={{-60,-30},{-60,-18}},
       color={176,0,0},
@@ -182,7 +182,6 @@ model WindTurbine_DFIG
       smooth=Smooth.None));
   connect(generator.phiRotor, inverter1.theta) annotation (Line(
       points={{-70,-30},{-74,-30},{-74,20},{-6,20},{-6,-20},{-14,-20},{-14,-24}},
-
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -221,7 +220,7 @@ model WindTurbine_DFIG
   connect(vPhasor_set.y, inverter1.vPhasor) annotation (Line(points={{-31,6},{-34,
           6},{-34,-20},{-26,-20},{-26,-24}}, color={0,0,127}));
   annotation (experiment(StopTime=100));
-  end WindTurbine_DFIG;
+end WindTurbine_DFIG;
 
 
 model WindTurbine_PSGR
@@ -253,8 +252,8 @@ model WindTurbine_PSGR
     annotation (Placement(transformation(extent={{-12,-50},{-32,-30}})));
   PowerSystems.Common.Thermal.BdCondV bdCond1(m=1) annotation (Placement(
         transformation(extent={{-32,-24},{-12,-4}}, rotation=0)));
-  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation
-    (Placement(transformation(extent={{0,-50},{20,-30}}, rotation=0)));
+  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation (
+     Placement(transformation(extent={{0,-50},{20,-30}}, rotation=0)));
   PowerSystems.AC3ph.Inverters.InverterAverage inverter2
     annotation (Placement(transformation(extent={{30,-50},{50,-30}})));
   PowerSystems.AC3ph.Inverters.Select select2
@@ -279,7 +278,7 @@ model WindTurbine_PSGR
     annotation (Placement(transformation(extent={{-20,-90},{0,-70}})));
   PowerSystems.AC3ph.Nodes.DefReference reference
     annotation (Placement(transformation(extent={{-54,-50},{-34,-30}})));
-  equation
+equation
   connect(windSpeed.y, rotor.v) annotation (Line(
       points={{-69,50},{-51,50}},
       color={0,0,127},
@@ -358,7 +357,7 @@ model WindTurbine_PSGR
       smooth=Smooth.None));
   annotation (experiment(StopTime=100), Diagram(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
-  end WindTurbine_PSGR;
+end WindTurbine_PSGR;
 
 
 model WindTurbine_PSGI
@@ -377,10 +376,10 @@ model WindTurbine_PSGI
     annotation (Placement(transformation(extent={{10,40},{30,60}})));
   Modelica.Mechanics.Rotational.Components.IdealGear gear(ratio=generator.par.pp
         /200) annotation (Placement(transformation(extent={{-20,40},{0,60}})));
-  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation
-    (Placement(transformation(extent={{0,-50},{20,-30}}, rotation=0)));
-  PowerSystems.AC3ph.Machines.Synchron_pm_ctrl generator(redeclare record Data
-      = Data.Machines.Synchron_pm400V_30kVA (
+  PowerSystems.AC1ph_DC.Sensors.PVImeter meterDC(av=true, tcst=0.1) annotation (
+     Placement(transformation(extent={{0,-50},{20,-30}}, rotation=0)));
+  PowerSystems.AC3ph.Machines.Synchron_pm_ctrl generator(redeclare record Data =
+        Data.Machines.Synchron_pm400V_30kVA (
         V_nom=690,
         S_nom=3e6,
         pp=4))
@@ -420,7 +419,7 @@ model WindTurbine_PSGI
     annotation (Placement(transformation(extent={{-10,-10},{-30,10}})));
   Modelica.Blocks.Sources.RealExpression i_d_set(y=0)
     annotation (Placement(transformation(extent={{-10,4},{-30,24}})));
-  equation
+equation
   connect(windSpeed.y, rotor.v) annotation (Line(
       points={{-69,50},{-51,50}},
       color={0,0,127},
@@ -500,7 +499,7 @@ model WindTurbine_PSGI
   connect(i_q_err.y, PI.u)
     annotation (Line(points={{-31,0},{-42.8,0}}, color={0,0,127}));
   annotation (experiment(StopTime=100));
-  end WindTurbine_PSGI;
+end WindTurbine_PSGI;
 
 
 
@@ -579,7 +578,7 @@ model WindFarm "Multiple wind turbines connected together"
         extent={{-6,-6},{6,6}},
         rotation=0,
         origin={-10,-90})));
-  equation
+equation
   connect(line.term_n, infBus.term)
     annotation (Line(points={{60,-50},{60,-70}}, color={0,110,110}));
   connect(infBus.neutral, grd.term)
@@ -653,7 +652,7 @@ model WindFarm "Multiple wind turbines connected together"
       color={0,120,120},
       smooth=Smooth.None));
   annotation (experiment(StopTime=100));
-  end WindFarm;
+end WindFarm;
 
 
 package Components
@@ -684,7 +683,7 @@ package Components
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
     Modelica.Blocks.Interfaces.RealInput v(unit="m/s") "wind speed"
       annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
-    equation
+  equation
     0 = P*P_nom + w*flange.tau;
     P*P_nom = 0.5*rho*A*v^3*Cp;
     Cp = c1*(c2*lambdai - c3*beta - c4)*exp(-c5*lambdai) + c6*lambda;
@@ -700,15 +699,15 @@ package Components
                 lineColor={85,85,255},
                 fillColor={85,85,255},
                 fillPattern=FillPattern.Solid)}));
-    end Rotor;
+  end Rotor;
 
   model WindTurbine
     inner outer System system;
 
     Modelica.Blocks.Interfaces.RealInput windSpeed
       annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-    PowerSystems.AC3ph.Machines.Asynchron_dfig generator(redeclare record Data
-        = Data.Machines.Asynchron400V_30kVA (
+    PowerSystems.AC3ph.Machines.Asynchron_dfig generator(redeclare record Data =
+          Data.Machines.Asynchron400V_30kVA (
           V_nom=690,
           S_nom=3e6,
           pp=4))
@@ -748,7 +747,7 @@ package Components
     Modelica.Blocks.Sources.RealExpression vPhasor_set[2](y={0.5 - min(
           windSpeed, 15)/20,0.25*windSpeed/15})
       annotation (Placement(transformation(extent={{-10,-4},{-30,16}})));
-    equation
+  equation
     connect(generator.heat, bdCond.heat) annotation (Line(
         points={{-60,-30},{-60,-18}},
         color={176,0,0},
@@ -781,7 +780,6 @@ package Components
         smooth=Smooth.None));
     connect(generator.phiRotor, inverter1.theta) annotation (Line(
         points={{-70,-30},{-74,-30},{-74,20},{-6,20},{-6,-20},{-14,-20},{-14,-24}},
-
         color={0,0,127},
         smooth=Smooth.None));
 
@@ -842,9 +840,9 @@ package Components
                 smooth=Smooth.None,
                 fillColor={85,85,255},
                 fillPattern=FillPattern.Solid)}));
-    end WindTurbine;
+  end WindTurbine;
 
-  end Components;
+end Components;
 
 package Test
   extends Modelica.Icons.ExamplesPackage;
@@ -861,7 +859,7 @@ package Test
     Modelica.Mechanics.Rotational.Sources.ConstantSpeed constantSpeed(w_fixed(
           displayUnit="rpm") = 6.2831853071796, phi(start=0, fixed=true))
       annotation (Placement(transformation(extent={{70,0},{50,20}})));
-    equation
+  equation
     connect(ramp.y, rotor.v) annotation (Line(
         points={{-49,10},{-11,10}},
         color={0,0,127},
@@ -871,9 +869,9 @@ package Test
         color={0,0,0},
         smooth=Smooth.None));
     annotation (experiment(StopTime=100), Diagram(graphics));
-    end RotorTest;
+  end RotorTest;
 
-  end Test;
+end Test;
 
 
 annotation (preferredView="info", Documentation(info="<html>

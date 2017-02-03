@@ -44,8 +44,7 @@ package Sensors "Sensors n-phase or DC"
       defaultComponentName="Isensor1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(extent={{-20,20},{20,-20}}, lineColor=
@@ -96,8 +95,7 @@ package Sensors "Sensors n-phase or DC"
       defaultComponentName="Isensor1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(extent={{-20,20},{20,-20}}, lineColor=
@@ -391,8 +389,7 @@ negative values of eta indicate powerflow against direction of arrow.</p>
 <p>Note: Take care about the above definitions if approximations are used in measured components.<br>
 In problematic cases use power sensors electrical and mechanical.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Ellipse(

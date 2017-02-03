@@ -25,8 +25,7 @@ package Custom "Custom models"
       defaultComponentName="diode1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(
@@ -94,8 +93,7 @@ package Custom "Custom models"
       defaultComponentName="thyristor1",
       Documentation(info="<html>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Polygon(

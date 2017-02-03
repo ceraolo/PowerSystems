@@ -66,8 +66,7 @@ package Interfaces
       defaultComponentName="heat_n",
       Documentation(info="<html>
 </html>
-"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+"),   Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics={Rectangle(
               extent={{-100,50},{0,-50}},
               lineColor={176,0,0},
@@ -133,8 +132,7 @@ package Interfaces
       Documentation(info="<html>
 <p>Thermal connector with a vector of 'port's, negative.</p>
 </html>
-"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+"),   Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics={
           Text(
             extent={{-100,120},{120,60}},
@@ -267,8 +265,7 @@ Used in 'System' for sending/receiving weighted frequency-data.</p>
 Needed within certain models to establish the connection to 'system' for sending/receiving weighted frequency-data.</p>
 <p>Used in generator models.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

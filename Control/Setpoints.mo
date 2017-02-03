@@ -33,8 +33,7 @@ With attribute 'fixed=false' these are fixed at steady-state initialisation.<br>
 They depend on the chosen (initial) system-frequency f0, the initial terminal voltage and the initial active power.<br>
 The setpoints are kept constant during simulation.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -104,8 +103,7 @@ The setpoints are kept constant during simulation.</p>
 The setpoint parameters with attribute 'fixed=false' are fixed at steady-state initialisation and represent the steady-state initial values.<br>
 They depend on the chosen (initial) system-frequency f0, the initial terminal voltage and the initial active power.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -150,8 +148,7 @@ They depend on the chosen (initial) system-frequency f0, the initial terminal vo
 <p>The speed setpoint setpts[1] is directly determined by the parameter w_set with attribute 'fixed=true'.<br>
 The power setpoint setpts[2] is taken from input setpt_p.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

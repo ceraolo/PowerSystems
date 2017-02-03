@@ -288,7 +288,7 @@ Stationary signals are constant after an initial oscillation.</p>
     "Transient simulation with fixed initial conditions"
 
     inner PowerSystems.System system(dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      annotation (Placement(transformation(extent={{-10,60},{10,80}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(
       a_start=1.14,
       a_end=1.0865,
@@ -385,7 +385,9 @@ Fast dynamics are resolved after switching.</p>
 and other meter-signals.</p>
 <p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
 </html>
-"), experiment(StopTime=1, Interval=1e-3));
+"), experiment(StopTime=1, Interval=1e-3),
+      Diagram(coordinateSystem(extent={{-100,-100},{100,80}})),
+      Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
   end SimulationFixedInitial;
 
   model SimulationSteadyInitial
@@ -407,18 +409,15 @@ and other meter-signals.</p>
   model SimulationSteadyState "Steady-state simulation"
     extends SimulationFixedInitial(system(dynType=PowerSystems.Types.Dynamics.SteadyState));
     annotation (Documentation(info="<html>
-<p>With 'system.dynType = SteadyState' transients are suppressed and only slow dynamics, imposed by the source-voltage is resolved.<br>
-This quasi-stationary approximation corresponds to an infinitely fast response of the system.</p>
-<p>
-<i>See for example:</i>
-<pre>
-  meter.p[1]  active power in pu, changing from 0.5 (1000 MW) to 0.25 (500 MW)
-  meter.p[2]  reactive power in pu, from 0.25 (500 MW) to 0.125 (250 MW)
-</pre>
-and other meter-signals.</p>
-<p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a></p>
-</html>
-"), experiment(StopTime=1, Interval=1e-3));
+<p>With &apos;system.dynType = SteadyState&apos; electrical transients in lines are suppressed and only slow dynamics, here imposed by the source-voltage is resolved.</p>
+<p>In practice, the Steady-State approximation involves lines models in which the derivative term is suppressed. See. eq. (4) in PowerSystems.UsersGuide.ShortGuide info.</p>
+<p><br><i>See for example:</i> </p>
+<pre>  meter.p[1]  active power in pu, changing from 0.5 (1000 MW) to 0.25 (500 MW)
+  meter.p[2]  reactive power in pu, from 0.25 (500 MW) to 0.125 (250 MW)</pre>
+<p>and other meter-signals.</p>
+<p><a href=\"modelica://PowerSystems.Examples.Introductory\">up users guide</a> </p>
+</html>"),
+    experiment(StopTime=1, Interval=1e-3));
   end SimulationSteadyState;
 
   model Display "Display of phasors and power"

@@ -217,7 +217,6 @@ AC_power = DC_power.</p>
               PowerSystems.Control.Modulation.PWMsyn "sine PWM syn"),
         choice(redeclare model Modulator =
               PowerSystems.Control.Modulation.PWMtab "sine PWM syn tabulated"),
-
         choice(redeclare model Modulator =
               PowerSystems.Control.Modulation.SVPWMasyn "SV PWM asyn"),
         choice(redeclare model Modulator =
@@ -578,8 +577,7 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
         Documentation(info="<html>
 <p>Passive rectifier, using diode-modules.</p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(
@@ -898,8 +896,7 @@ Blocking losses are neglected in the expression of dissipated heat <tt>Q_flow</t
 <p>Gates:
 <pre>  true=on, false=off.</pre></p>
 </html>
-"),
-        Icon(coordinateSystem(
+"),     Icon(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
             grid={2,2}), graphics={Text(

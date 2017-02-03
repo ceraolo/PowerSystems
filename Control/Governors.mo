@@ -48,8 +48,7 @@ package Governors "Turbine Governors "
 <p>Constant excitation-voltage.</p>
 <p><tt>fieldVoltage=1</tt> corresponds to <tt>norm(v)=1 pu</tt> at open generator terminals.</p>
 </html>
-"),
-      Diagram(coordinateSystem(
+"),   Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(extent={{0,20},{20,0}}, lineColor={
@@ -126,8 +125,7 @@ package Governors "Turbine Governors "
       Documentation(info="<html>
 <p>First order control of turbine power.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Text(

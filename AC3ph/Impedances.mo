@@ -5,7 +5,7 @@ package Impedances "Impedance and admittance two terminal"
   model Resistor "Resistor, 3-phase dq0"
     extends Partials.ImpedBase(final f_nom=0, final dynType=Types.Dynamics.SteadyState);
 
-    parameter Generic.Resistance r=1 "resistance";
+    parameter Types.Generic.Resistance r=1 "resistance";
   protected
     final parameter SI.Resistance R=r*Utilities.Precalculation.baseR(
           puUnits,
@@ -206,8 +206,8 @@ package Impedances "Impedance and admittance two terminal"
   model Capacitor "Capacitor with parallel conductor, 3-phase dq0"
     extends Partials.ImpedBase;
 
-    parameter Generic.Conductance g=0 "conductance";
-    parameter Generic.Susceptance b=1 "susceptance";
+    parameter Types.Generic.Conductance g=0 "conductance";
+    parameter Types.Generic.Susceptance b=1 "susceptance";
   protected
     final parameter SI.Resistance[2] GC_base=Utilities.Precalculation.baseGC(
           puUnits,
@@ -490,8 +490,7 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>No phase to phase capacitance.</p>
 <p> More info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -886,8 +885,7 @@ a time dependent transform of the coefficient matrix.</p>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package ACdq0.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(

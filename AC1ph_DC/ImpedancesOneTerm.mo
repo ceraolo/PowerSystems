@@ -190,8 +190,8 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
               extent={{-50,-10},{50,-16}},
               lineColor={0,0,255},
               fillColor={0,0,255},
-              fillPattern=FillPattern.Solid),Line(points={{0,60},{0,16}}, color
-            ={0,0,255}),Line(points={{0,-60},{0,-16}}, color={0,0,255})}));
+              fillPattern=FillPattern.Solid),Line(points={{0,60},{0,16}}, color=
+             {0,0,255}),Line(points={{0,-60},{0,-16}}, color={0,0,255})}));
   end Capacitor;
 
   model Varistor "Varistor, 1-phase"
@@ -214,8 +214,7 @@ package ImpedancesOneTerm "Impedance and admittance one terminal"
 <p> Voltage limiter with hyperbolic tangent characteristic.</p>
 <p> More info see package AC1ph_DC.Impedances.</p>
 </html>
-"),
-      Icon(coordinateSystem(
+"),   Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
