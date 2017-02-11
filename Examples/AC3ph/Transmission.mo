@@ -119,7 +119,7 @@ package Transmission "AC transmission, dq0"
 <p>From the Power System Analysis theory it is known that the RX model gives good results with short lines (say up to 100 km at 50 Hz), while PI line or a T line, with a single PI or T is reasonably good up to 200-250 km.</p>
 <p>This model compares the results of the two models using the same line parameters. Differences are significant especially for the reactive power.</p>
 <p>It is recommended to simulate PowerTransfer first, and compare the power plots (e.g. those shown in its documentation) with the ones that can be obtained with PowerTransferRXY, comparing RX and T line&apos;s results.</p>
-<p>The T line model can be substituted by a PI line model. However this may cause an initialisation problem, since at t=0 we will have xat wo ends of the line capacitances directly connected to voltage sources. This is a condition which can not be dealt successfully with by all Modelica tools.</p>
+<p>The T line model can be substituted by a PI line model. However this may cause an initialisation problem, since at t=0 we will have, at the two line ends, capacitances directly connected to voltage sources. This is a condition which can not be dealt successfully with by all Modelica tools.</p>
 <p><i>Model supplied and commented by Massimo Ceraolo-University of Pisa.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
 </html>"),
