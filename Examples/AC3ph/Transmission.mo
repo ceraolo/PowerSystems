@@ -86,7 +86,7 @@ package Transmission "AC transmission, dq0"
     PowerSystems.AC3ph.Nodes.GroundOne grd2
       annotation (Placement(transformation(extent={{78,-10},{98,10}})));
 
-    PowerSystems.AC3ph.Lines.PIline line1(
+    PowerSystems.AC3ph.Lines.Tline line1(
       ne=1,
       redeclare record Data = PowerSystems.Examples.Data.Lines.ItOHline_132kV,
       len=200000)
@@ -116,9 +116,10 @@ package Transmission "AC transmission, dq0"
       Documentation(info="<html>
 <p>The model AC3ph.Transmission.PowerTransfer refers to a 100 km generic RX line.</p>
 <p>This one refers to a longer, 200 km, 132kV line, whose geometry is specified in the line&apos;s documentation.</p>
-<p>From the Power System Analysis theory it is known that the RX model gives good results with short lines (say up to 100 km at 50 Hz), while PI line, with a single PI is reasonably good up to 200-250 km.</p>
+<p>From the Power System Analysis theory it is known that the RX model gives good results with short lines (say up to 100 km at 50 Hz), while PI line or a T line, with a single PI or T is reasonably good up to 200-250 km.</p>
 <p>This model compares the results of the two models using the same line parameters. Differences are significant especially for the reactive power.</p>
-<p>It is recommended to simulate PowerTransfer first, and compare the power plots (e.g. those shown in its documentation) with the ones that can be obtained with PowerTransferRXY, comparing RX and PI line&apos;s results.</p>
+<p>It is recommended to simulate PowerTransfer first, and compare the power plots (e.g. those shown in its documentation) with the ones that can be obtained with PowerTransferRXY, comparing RX and T line&apos;s results.</p>
+<p>The T line model can be substituted by a PI line model. However this may cause an initialisation problem, since at t=0 we will have xat wo ends of the line capacitances directly connected to voltage sources. This is a condition which can not be dealt successfully with by all Modelica tools.</p>
 <p><i>Model supplied and commented by Massimo Ceraolo-University of Pisa.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
 </html>"),
@@ -290,7 +291,8 @@ Compare with PIline.</p>
 <pre>  meter.p[1:2]     active and reactive power</pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end RXline;
@@ -357,7 +359,8 @@ Compare with RXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1, Interval=2.5e-5),
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end Tline;
@@ -428,7 +431,8 @@ Compare with FaultPIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultRXline;
@@ -444,8 +448,8 @@ Compare with FaultPIline.</p>
       annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
     PowerSystems.AC3ph.Breakers.Breaker breaker1(V_nom=400e3, I_nom=2500)
       annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data =
-          PowerSystems.AC3ph.Lines.Parameters.Line (
+    PowerSystems.AC3ph.Lines.FaultTline line(len=400e3, redeclare record Data
+        = PowerSystems.AC3ph.Lines.Parameters.Line (
           V_nom=400e3,
           x=0.25e-3,
           r=0.02e-3))
@@ -500,7 +504,8 @@ Compare with FaultRXline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1, Interval=2.5e-5),
+"),
+      experiment(StopTime=1, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-40},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,40}})));
   end FaultTline;
@@ -585,7 +590,8 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.5, Interval=2.5e-5),
+"),
+      experiment(StopTime=0.5, Interval=2.5e-5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXline;
@@ -773,7 +779,8 @@ Compare with DoublePIline.</p>
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=0.5),
+"),
+      experiment(StopTime=0.5),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end DoubleRXlineTG;

@@ -3,17 +3,18 @@ package Elementary "AC 1-phase and DC components"
   extends Modelica.Icons.ExamplesPackage;
 
   model Breaker "Breaker"
+    import PowerSystems;
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-20,40},{0,60}})));
+      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     PowerSystems.Control.Relays.SwitchRelay relay(
       n=1,
       ini_state=true,
       t_switch={0.1}) annotation (Placement(transformation(
-          origin={50,50},
+          origin={36,50},
           extent={{-10,-10},{10,10}},
           rotation=270)));
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage(V_nom=10e3, use_vPhasor_in=
@@ -28,9 +29,9 @@ package Elementary "AC 1-phase and DC components"
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     replaceable PowerSystems.AC1ph_DC.Breakers.Breaker breaker(V_nom=10e3,
         I_nom=100)
-      annotation (Placement(transformation(extent={{40,-10},{60,10}})));
+      annotation (Placement(transformation(extent={{26,-10},{46,10}})));
     PowerSystems.AC1ph_DC.Nodes.Ground grd
-      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+      annotation (Placement(transformation(extent={{80,-10},{100,10}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
       annotation (Placement(transformation(extent={{-70,-10},{-90,10}})));
 
@@ -42,11 +43,9 @@ package Elementary "AC 1-phase and DC components"
     connect(ind.term_n, meter.term_p)
       annotation (Line(points={{-20,0},{-10,0}}, color={0,0,255}));
     connect(meter.term_n, breaker.term_p)
-      annotation (Line(points={{10,0},{40,0}}, color={0,0,255}));
-    connect(breaker.term_n, grd.term)
-      annotation (Line(points={{60,0},{90,0}}, color={0,0,255}));
+      annotation (Line(points={{10,0},{26,0}}, color={0,0,255}));
     connect(relay.y[1], breaker.control)
-      annotation (Line(points={{50,40},{50,32},{50,10}}, color={255,0,255}));
+      annotation (Line(points={{36,40},{36,32},{36,10}}, color={255,0,255}));
     connect(grd1.term, voltage.neutral)
       annotation (Line(points={{-70,0},{-70,0}}, color={0,0,255}));
     annotation (
@@ -57,6 +56,58 @@ package Elementary "AC 1-phase and DC components"
       Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end Breaker;
+
+  model DComponent "Simple line with AC and DC component"
+    import PowerSystems;
+
+    inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
+        dynType=PowerSystems.Types.Dynamics.FixedInitial)
+      annotation (Placement(transformation(extent={{-10,40},{10,60}})));
+    PowerSystems.Blocks.Signals.TransientPhasor transPh
+      annotation (Placement(transformation(extent={{-52,16},{-32,36}})));
+    PowerSystems.AC1ph_DC.Sources.ACvoltage uAC(use_vPhasor_in=true, V_nom=
+          10000)
+      annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
+    PowerSystems.AC1ph_DC.Impedances.Inductor ind(
+      S_nom=1e6,
+      V_nom=10000,
+      r={0.6,0.1})
+      annotation (Placement(transformation(extent={{44,-10},{64,10}})));
+    PowerSystems.AC1ph_DC.Sensors.PVImeter meter(            S_nom=1e6,
+      puUnits=false,
+      V_nom=10000)
+      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
+    PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
+      annotation (Placement(transformation(extent={{-76,-10},{-96,10}})));
+
+    PowerSystems.AC1ph_DC.Nodes.Ground grd
+      annotation (Placement(transformation(extent={{80,-10},{100,10}})));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage uDC(V=1000)
+      annotation (Placement(transformation(extent={{-42,-10},{-62,10}})));
+  equation
+    connect(transPh.y, uAC.vPhasor_in)
+      annotation (Line(points={{-32,26},{-4,26},{-4,10}}, color={0,0,127}));
+    connect(uDC.p, uAC.neutral)
+      annotation (Line(points={{-42,0},{-31,0},{-20,0}}, color={0,0,255}));
+    connect(uDC.n, grd1.term)
+      annotation (Line(points={{-62,0},{-69,0},{-76,0}}, color={0,0,255}));
+    connect(ind.term_p, meter.term_n)
+      annotation (Line(points={{44,0},{37,0},{30,0}}, color={0,0,255}));
+    connect(meter.term_p, uAC.term)
+      annotation (Line(points={{10,0},{5,0},{0,0}}, color={0,0,255}));
+    connect(ind.term_n, grd.term)
+      annotation (Line(points={{64,0},{72,0},{80,0}}, color={0,0,255}));
+    annotation (
+      Documentation(info="<html>
+<p>This example dshows what happens when a mixed DC-AC signal is applied to an &QUOT;inductor&QUOT; component (actually a two conductor line with ground return).</p>
+<p>Consider the plot of i[2] &egrave; of any positively-marked terminal. It follows the typical behaviour of an R-L circuit, fed by a DC volgate (here 1000V). The time constant is L/R, i.e, here 1/314.16 s, the final current is E/R, here 1000/10=100A.</p>
+<p>Current i[1], instead is the AC current flowing in the loop, </p>
+<p><br><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
+</html>"),
+      experiment(StopTime=0.3, Interval=0.0001),
+      Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
+      Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
+  end DComponent;
 
   model Fault "Fault"
 
