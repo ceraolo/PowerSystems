@@ -67,7 +67,7 @@ package Elementary "AC 1-phase and DC components"
 
     inner PowerSystems.System system(refType=PowerSystems.Types.ReferenceFrame.Inertial,
         dynType=PowerSystems.Types.Dynamics.FixedInitial)
-      annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
+      annotation (Placement(transformation(extent={{-100,30},{-80,50}})));
     PowerSystems.Blocks.Signals.TransientPhasor transPh(ph_start=-2.0943951023932,
         ph_end=-2.0943951023932)
       annotation (Placement(transformation(extent={{-52,16},{-32,36}})));
@@ -76,8 +76,9 @@ package Elementary "AC 1-phase and DC components"
       annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
     PowerSystems.AC1ph_DC.Impedances.Inductor ind(
       S_nom=1e6,
+      r={0.6,0.1},
       V_nom=10000,
-      r={0.6,0.1})
+      xm=0.1)
       annotation (Placement(transformation(extent={{44,-10},{64,10}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter(
       S_nom=1e6,
@@ -95,24 +96,27 @@ package Elementary "AC 1-phase and DC components"
       annotation (Placement(transformation(
           extent={{-10,-10},{10,10}},
           rotation=-90,
-          origin={-76,74})));
+          origin={-44,72})));
     Modelica.Electrical.Analog.Basic.Ground ground
-      annotation (Placement(transformation(extent={{38,34},{58,54}})));
+      annotation (Placement(transformation(extent={{70,32},{90,52}})));
     Modelica.Electrical.Analog.Sources.SineVoltage uACsl(
       V=sqrt(2)*10e3,
       freqHz=50,
       phase=-0.5235987755983)
-      annotation (Placement(transformation(extent={{-36,74},{-56,94}})));
+      annotation (Placement(transformation(extent={{-4,72},{-24,92}})));
     Modelica.Electrical.Analog.Basic.Resistor resistor(R=60)
-      annotation (Placement(transformation(extent={{-24,76},{-4,96}})));
-    Modelica.Electrical.Analog.Basic.Inductor inductor(L=100/(2*pi*50))
-      annotation (Placement(transformation(extent={{10,76},{30,96}})));
+      annotation (Placement(transformation(extent={{8,74},{28,94}})));
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R=10)
-      annotation (Placement(transformation(extent={{-24,52},{-4,72}})));
-    Modelica.Electrical.Analog.Basic.Inductor inductor1(L=100/(2*pi*50))
-      annotation (Placement(transformation(extent={{10,52},{30,72}})));
+      annotation (Placement(transformation(extent={{8,50},{28,70}})));
     Modelica.Electrical.Analog.Basic.Ground ground1
-      annotation (Placement(transformation(extent={{-86,40},{-66,60}})));
+      annotation (Placement(transformation(extent={{-54,38},{-34,58}})));
+    Modelica.Electrical.Analog.Basic.Transformer line(
+      L1=100/(2*pi*50),
+      L2=100/(2*pi*50),
+      M=10/(2*pi*50)) annotation (Placement(transformation(
+          extent={{-10,-10},{10,10}},
+          rotation=90,
+          origin={52,72})));
   equation
     connect(transPh.y, uAC.vPhasor_in)
       annotation (Line(points={{-32,26},{-4,26},{-4,10}}, color={0,0,127}));
@@ -127,26 +131,27 @@ package Elementary "AC 1-phase and DC components"
     connect(ind.term_n, grd.term)
       annotation (Line(points={{64,0},{72,0},{80,0}}, color={0,0,255}));
     connect(uACsl.n, uDCsl.p)
-      annotation (Line(points={{-56,84},{-66,84},{-76,84}}, color={0,0,255}));
-    connect(resistor.p, uACsl.p) annotation (Line(points={{-24,86},{-30,86},{-30,
-            84},{-36,84}}, color={0,0,255}));
-    connect(resistor.n, inductor.p)
-      annotation (Line(points={{-4,86},{10,86}}, color={0,0,255}));
-    connect(ground.p, inductor.n) annotation (Line(points={{48,54},{48,54},{48,
-            86},{30,86}}, color={0,0,255}));
-    connect(resistor1.n, inductor1.p)
-      annotation (Line(points={{-4,62},{10,62}}, color={0,0,255}));
-    connect(inductor1.n, inductor.n) annotation (Line(points={{30,62},{48,62},{
-            48,86},{30,86}}, color={0,0,255}));
+      annotation (Line(points={{-24,82},{-34,82},{-44,82}}, color={0,0,255}));
+    connect(resistor.p, uACsl.p) annotation (Line(points={{8,84},{2,84},{2,82},
+            {-4,82}}, color={0,0,255}));
     connect(ground1.p, uDCsl.n)
-      annotation (Line(points={{-76,60},{-76,64}}, color={0,0,255}));
-    connect(resistor1.p, uACsl.n) annotation (Line(points={{-24,62},{-40,62},{-40,
-            62},{-56,62},{-56,84}}, color={0,0,255}));
+      annotation (Line(points={{-44,58},{-44,62}}, color={0,0,255}));
+    connect(resistor1.p, uACsl.n) annotation (Line(points={{8,60},{-8,60},{-24,
+            60},{-24,82}}, color={0,0,255}));
+    connect(line.p2, resistor.n) annotation (Line(points={{47,82},{46,82},{46,
+            86},{46,84},{28,84}}, color={0,0,255}));
+    connect(line.p1, resistor1.n) annotation (Line(points={{47,62},{46,62},{46,
+            58},{46,60},{28,60}}, color={0,0,255}));
+    connect(line.n2, ground.p) annotation (Line(points={{57,82},{58,82},{58,86},
+            {58,84},{80,84},{80,52}}, color={0,0,255}));
+    connect(line.n1, ground.p)
+      annotation (Line(points={{57,62},{80,62},{80,52}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
 <p>This example shows what happens when a mixed DC-AC signal is applied to an &QUOT;inductor&QUOT; component (actually a two conductor line with ground return).</p>
 <p>Current i[1] and i[2] in AC terminals are the currents flowing in conductors 1 and 2, as can be verified also in the MSL version of the system.</p>
 <p>The sum ind.i[1]+ind.i[2] can be seen also flowing in terminals of the DC part of Power Systems the model.</p>
+<p>In the example provided the mutual between the two circuits is 10&percnt; of the inductance of each of them.</p>
 <p><br><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>"),
       experiment(StopTime=0.2, Interval=0.0001),
@@ -176,8 +181,8 @@ package Elementary "AC 1-phase and DC components"
           PowerSystems.AC1ph_DC.Lines.Parameters.RXline (V_nom=10e3, S_nom=1e6))
       annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
     PowerSystems.AC1ph_DC.Sensors.PVImeter meter(V_nom=10e3, S_nom=1e6)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation
-            =90)));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation=
+             90)));
     replaceable PowerSystems.AC1ph_DC.Faults.Fault_Ab fault_Ab
       annotation (Placement(transformation(extent={{-10,30},{10,50}})));
     PowerSystems.AC1ph_DC.Nodes.GroundOne grd1
@@ -210,8 +215,7 @@ package Elementary "AC 1-phase and DC components"
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=1e-4),
+"),   experiment(StopTime=0.2, Interval=1e-4),
       Diagram(coordinateSystem(extent={{-100,-60},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-60},{100,60}})));
   end Fault;
@@ -343,8 +347,8 @@ package Elementary "AC 1-phase and DC components"
     PowerSystems.AC1ph_DC.Sources.ACvoltage voltage1(V_nom=20e3, alpha0=
           0.5235987755983)
       annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
-    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data
-        = PowerSystems.Examples.Data.Transformers.TrafoStray1ph (
+    PowerSystems.AC1ph_DC.Transformers.TrafoStray trafo(redeclare record Data =
+          PowerSystems.Examples.Data.Transformers.TrafoStray1ph (
           V_nom={20e3,132e3},
           S_nom=100e6,
           f_nom=50))
@@ -553,8 +557,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=1),
+"),   experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Machines;
@@ -588,8 +591,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=2.7e-4),
+"),   experiment(StopTime=0.2, Interval=2.7e-4),
       Diagram(coordinateSystem(extent={{-100,-20},{80,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{80,60}})));
   end Sensor;
@@ -619,8 +621,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=2.7e-4),
+"),   experiment(StopTime=0.2, Interval=2.7e-4),
       Diagram(coordinateSystem(extent={{-60,-20},{80,60}})),
       Icon(coordinateSystem(extent={{-60,-20},{80,60}})));
   end Source;
@@ -685,8 +686,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=3, Interval=4e-4),
+"),   experiment(StopTime=3, Interval=4e-4),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Transformer;
@@ -740,8 +740,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=0.2e-3),
+"),   experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Rectifier;
@@ -801,8 +800,7 @@ Compare with DoublePIline.</p>
       Documentation(info="<html>
 <p><a href=\"modelica://PowerSystems.Examples.AC1ph_DC.Elementary\">up users guide</a></p>
 </html>
-"),
-      experiment(StopTime=0.2, Interval=0.2e-3),
+"),   experiment(StopTime=0.2, Interval=0.2e-3),
       Diagram(coordinateSystem(extent={{-100,-40},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-40},{100,60}})));
   end Inverter;
