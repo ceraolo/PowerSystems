@@ -46,7 +46,8 @@ The powerflow depends essentially on the phase difference between the nodes and 
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-20},{100,40}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,40}})));
   end Vsource;
@@ -134,12 +135,10 @@ The active powerflow is now directly determined through a parameter instead of i
       annotation (Line(points={{70,0},{70,0}}, color={0,0,255}));
     annotation (
       Documentation(info="<html>
-<p>Active and reactive power are given in the source node, whereas the slackBus is identical to the previous example.<br>
-Both active and reactive powerflow are now directly determined through a parameter.</p>
-<p><i>See for example:</i>
-<pre>
- sensor.p[1:2]    active and reactive power
-</pre></p>
+<p>Active and reactive power are given in the source node, whereas the slackBus is identical to the previous example.</p><p>Both active and reactive powerflow are now directly determined through a parameter.</p>
+<p><i>See for example:</i> </p>
+<pre> sensor.p[1:2]    active and reactive power</pre>
+<p><i>Model checked with Dymola 2017 and OpenModelica 1.11.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>"),
       experiment(StopTime=1),
@@ -352,7 +351,8 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-100},{100,80}})),
       Icon(coordinateSystem(extent={{-100,-100},{100,80}})));
   end TurbineGenerator;
@@ -486,7 +486,8 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-80},{100,80}})),
       Icon(coordinateSystem(extent={{-100,-80},{100,80}})));
   end TurbineGeneratorLine;
@@ -601,7 +602,8 @@ Instead of a fixed power-angle as in the previous example, a turbine delivers th
 </pre></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
-"),   experiment(StopTime=1),
+"),
+      experiment(StopTime=1),
       Diagram(coordinateSystem(extent={{-100,-80},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-80},{100,60}})));
   end TurboGeneratorLine;
@@ -1058,7 +1060,8 @@ The wind-speed is increased from 5 to 15 m/s. The machine remains stable.</p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Generation\">up users guide</a></p>
 </html>
 
-"),   experiment(StopTime=60, Interval=60e-3),
+"),
+      experiment(StopTime=60, Interval=60e-3),
       Diagram(coordinateSystem(extent={{-100,-20},{100,60}})),
       Icon(coordinateSystem(extent={{-100,-20},{100,60}})));
   end WindGeneratorLine;
@@ -1204,6 +1207,7 @@ public
       redeclare model Inverter = PowerSystems.AC3ph.Inverters.InverterAverage (
             redeclare record Data =
               PowerSystems.Examples.Data.Semiconductors.IdealSC1kV_100A (Vf=0)),
+
       w_start=1130.9733552923)
       annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
 

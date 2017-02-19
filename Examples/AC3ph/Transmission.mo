@@ -51,9 +51,10 @@ package Transmission "AC transmission, dq0"
 <p>To see results comparable with the above formulas, first change the line resistance from the default value 1e-3 PU/km to 1e-4 PU/km. </p>
 <p>Using these values the following results are obtained (p[1] is active power, p[2] is reactive power): </p>
 <p><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer2.png\"/></p>
-<p><br><br><br><br>If the resistance is modified and set back to its default of 1e-3 PU/km, the curves change as follows: </p><p><br><br><br><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer3.png\"/></p>
+<p><br><br><br><br>If the resistance is modified and set back to its default of 1e-3 PU/km, the curves change as follows: </p>
+<p><br><br><br><br><img src=\"modelica://PowerSystems/Examples/AC3ph/PowerTransfer3.png\"/></p>
 <p><br><br>While reactive power remains basically unchanged active power is larger, especially its peak, since the power lost inside the line resistance is added to the transferred power.</p>
-<p><br><i>Documentation by Massimo Ceraolo - University of Pisa.</i></p>
+<p><br><i>Documentation by Massimo Ceraolo - University of Pisa. Model checked with Dynola 2017  and OpenModelica 1.11.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
 </html>"),
       experiment(StopTime=60),
@@ -120,7 +121,7 @@ package Transmission "AC transmission, dq0"
 <p>This model compares the results of the two models using the same line parameters. Differences are significant especially for the reactive power.</p>
 <p>It is recommended to simulate PowerTransfer first, and compare the power plots (e.g. those shown in its documentation) with the ones that can be obtained with PowerTransferRXY, comparing RX and T line&apos;s results.</p>
 <p>The T line model can be substituted by a PI line model. However this may cause an initialisation problem, since at t=0 we will have, at the two line ends, capacitances directly connected to voltage sources. This is a condition which can not be dealt successfully with by all Modelica tools.</p>
-<p><i>Model supplied and commented by Massimo Ceraolo-University of Pisa.</i></p>
+<p><i>Model supplied and commented by Massimo Ceraolo - University of Pisa, and checked with Dymola 2017 and OpenModelica 1.11.</i></p>
 <p><a href=\"modelica://PowerSystems.Examples.AC3ph.Transmission\">up users guide</a> </p>
 </html>"),
       experiment(StopTime=60),
