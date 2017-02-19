@@ -93,10 +93,10 @@ package Impedances "Impedance and admittance two terminal"
       "mutual reactance between conds 1 and 2";
   protected
     final parameter Real[2] RL_base=Utilities.Precalculation.baseRL(
-        puUnits,
-        V_nom,
-        S_nom,
-        2*pi*f_nom);
+          puUnits,
+          V_nom,
+          S_nom,
+          2*pi*f_nom);
     final parameter SI.Resistance[2] R=r*RL_base[1];
     //  final parameter SI.Inductance[2, 2] L=x*RL_base[2];
     final parameter SI.Inductance[2, 2] L=[xs[1], xm; xm, xs[2]]*RL_base[2];
@@ -130,36 +130,31 @@ package Impedances "Impedance and admittance two terminal"
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-60,30},{-40,10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,30},{60,10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-60,-10},{-40,-30}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,-10},{60,-30}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,5},{60,-5}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-60,30},{-40,10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{60,10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-60,-10},{-40,-30}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,-10},{60,-30}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,5},{60,-5}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end Inductor;
 
   model InductorNew "Inductor with series resistor, 1-phase"
@@ -208,36 +203,31 @@ package Impedances "Impedance and admittance two terminal"
       Diagram(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
-          grid={2,2}), graphics={
-          Rectangle(
-            extent={{-60,30},{-40,10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,30},{60,10}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-60,-10},{-40,-30}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,-10},{60,-30}},
-            lineColor={0,0,255},
-            lineThickness=0.5,
-            fillColor={0,0,255},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-40,5},{60,-5}},
-            lineColor={175,175,175},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+          grid={2,2}), graphics={Rectangle(
+              extent={{-60,30},{-40,10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,30},{60,10}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-60,-10},{-40,-30}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,-10},{60,-30}},
+              lineColor={0,0,255},
+              lineThickness=0.5,
+              fillColor={0,0,255},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-40,5},{60,-5}},
+              lineColor={175,175,175},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
   end InductorNew;
 
   model Capacitor "Capacitor with parallel conductor, 1-phase"
@@ -384,7 +374,8 @@ Instead of x and r the parameters z_abs and cos(phi) are used.</p>
 </pre>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -467,7 +458,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>No pair capacitance.</p>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -549,7 +541,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 <p>Voltage limiter with hyperbolic tangent characteristic.</p>
 <p>More info see package AC1_DC.Impedances.</p>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -611,7 +604,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="resSym",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -679,7 +673,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="capSym",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -800,7 +795,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="dcLink",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={Rectangle(
@@ -890,7 +886,8 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
       defaultComponentName="dcLink",
       Documentation(info="<html>
 </html>
-"),   Icon(coordinateSystem(
+"),
+      Icon(coordinateSystem(
           preserveAspectRatio=false,
           extent={{-100,-100},{100,100}},
           grid={2,2}), graphics={
@@ -953,11 +950,10 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
 "), Diagram(coordinateSystem(
             preserveAspectRatio=false,
             extent={{-100,-100},{100,100}},
-            grid={2,2}), graphics={
-            Line(points={{-80,20},{-60,20}}, color={0,0,255}),
-            Line(points={{-80,-20},{-60,-20}}, color={0,0,255}),
-            Line(points={{60,20},{80,20}}, color={0,0,255}),
-            Line(points={{60,-20},{80,-20}}, color={0,0,255})}));
+            grid={2,2}), graphics={Line(points={{-80,20},{-60,20}}, color={0,0,
+              255}),Line(points={{-80,-20},{-60,-20}}, color={0,0,255}),Line(
+              points={{60,20},{80,20}}, color={0,0,255}),Line(points={{60,-20},
+              {80,-20}}, color={0,0,255})}));
     end ImpedBase;
 
     partial model ImpedBaseHeat "Impedance base with heat port, 1-phase"
@@ -988,47 +984,28 @@ Instead of b and g the parameters y_abs and cos(phi) are used.</p>
   annotation (preferredView="info", Documentation(info="<html>
 <p>Contains lumped impedance models and can also be regarded as a collection of basic formulas. Shunts are part of a separate package.</p>
 <p>General relations.</p>
-<pre>
-  r = R / R_base                  resistance
+<pre>  r = R / R_base                  resistance
   x = 2*pi*f_nom*L/R_base         reactance
   g = G / G_base                  conductance
   b = (2*pi*f_nom*C) / G_base     susceptance
-  G_base = 1/R_base
-</pre>
+  G_base = 1/R_base</pre>
 <p>The reactance-matrix is</p>
-<pre>
-  x = [x_s, x_m
-       x_m, x_s]
-</pre>
-<p>with the relations</p>
-<pre>
-  x1   = x_s - x_m,         stray reactance
-  x0  = x_s + x_m,          zero reactance
-  x_s = (x1 + x0)/2,        self reactance single conductor
-  x_m = (x0 - x1)/2,        mutual reactance
-</pre>
-<p>Coupling.</p>
-<pre>
-  -x_s &lt;  x_m &lt;  x_s
-  uncoupled limit:          x_m = 0,        x0 = x_s
-  fully positive coupled:   x_m = x_s,      x0 = 2*x_s
-  fully negative coupled:   x_m = -x_s,     x0 = 0
-</pre>
+<pre>  x = [x_s[1], x_m
+       x_m,    x_s[2]]</pre>
+<p>Coupling:</p>
+<pre>  -x_s &LT;  x_m &LT;  x_s
+  uncoupled limit:          x_m = 0,        
+  fully positive coupled:   x_m = x_s,      
+  fully negative coupled:   x_m = -x_s.</pre>
 <p>The resistance matrix is</p>
-<pre>
-  r = [r1, 0
-       0,  r2]
-</pre>
+<pre>  r = [r1, 0
+       0,  r2]</pre>
 <p>The susceptance matrix is</p>
-<pre>
-  b = [ b_pg + b_pp, -b_pp
-       -b_pp,         b_pg + b_pp]
-</pre>
-<p>where <tt>_pg</tt> denotes 'phase-to-ground' and <tt>_pp</tt> 'phase-to-phase' in analogy to the three-phase notation. More precisely (for a one-phase system) <tt>_pp</tt> means 'conductor-to-conductor'.</p>
+<pre>  b = [ b_pg + b_pp, -b_pp
+       -b_pp,         b_pg + b_pp]</pre>
+<p>where <code>_pg</code> denotes &apos;phase-to-ground&apos; and <code>_pp</code> &apos;phase-to-phase&apos; in analogy to the three-phase notation. More precisely (for a one-phase system) <code>_pp</code> means &apos;conductor-to-conductor&apos;.</p>
 <p>The corresponding conduction matrix is (in analogy to susceptance)</p>
-<pre>
-  g = [g_pg + g_pp, -g_pp
-      -g_pp,         g_pg + g_pp]
-</pre>
+<pre>  g = [g_pg + g_pp, -g_pp
+      -g_pp,         g_pg + g_pp]</pre>
 </html>"));
 end Impedances;
